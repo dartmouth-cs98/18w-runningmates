@@ -9,7 +9,7 @@ Sara Topic
 Drew Waterman  
 Shea Wojciehowski  
 
-(Insert a Team Photo URL here)
+![Untitled drawing (4).png]
 
 ## Problem Statement
 
