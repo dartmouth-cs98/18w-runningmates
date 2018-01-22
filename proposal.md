@@ -34,8 +34,6 @@ https://www.npr.org/sections/health-shots/2017/03/06/518362255/feeling-lonely-to
 * Fitbit
 * Garmin Connect - Network Connections 
 
-Include any existing solutions and explain how you plan on differentiating your product. You should have ~10 different sources. These can range from commercial/competitive solutions to research papers that inform some part of your product.
-
 Our product will aim to provide an easy user experience in finding individuals in their area to connect over a specific outdoor activity with. The application differs from other “meet-up” style apps by being data-driven in its recommendations for events and people a user would be interested in. Our focus on providing better connections between people, such as a chat capability, will attract a larger user base that want to forge new connections easily.
 Another way that our product differs is we avoid the issue in other applications where users can simply claim they are avid runners or otherwise extremely fit regardless of whether they actually are. Since our app will track their activity, we will be able to verify that they are actually running as long and far as they claim. The benefits of this are twofold. One, we will be better able to match users to other users of similar ability levels. Two, this will be an added element of safety that will deter “catfishers”.
 
