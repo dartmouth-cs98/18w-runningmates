@@ -9,7 +9,7 @@ Sara Topic
 Drew Waterman  
 Shea Wojciehowski  
 
-![Untitled drawing (4).png]
+<img src="Untitled drawing (4).png" width="300" height="550">
 
 ## Problem Statement
 
