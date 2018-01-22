@@ -48,10 +48,10 @@ The application will use state-of-art data analytic techniques to provide users 
 ##### Brian Francis  
 * Technical Skills: C, Java, Frontend, CSS, SQL, Mongodb, React
 * Work style/ other: 
-Works well alone and programming
-Very excited about UI and UX 
-Love working on teams and solid communicator 
-Love thinking of ideas and adding features  
+- Works well alone and programming
+- Very excited about UI and UX 
+- Love working on teams and solid communicator 
+- Love thinking of ideas and adding features  
 ##### Jonathan Gonzalez
 * Technical Skills - Frontend stuff, backend stuff, ability to learn new stuff
 * Work Style
