@@ -34,7 +34,7 @@ https://www.npr.org/sections/health-shots/2017/03/06/518362255/feeling-lonely-to
 * Fitbit
 * Garmin Connect - Network Connections 
 
-Our product will aim to provide an easy user experience in finding individuals in their area to connect over a specific outdoor activity with. The application differs from other “meet-up” style apps by being data-driven in its recommendations for events and people a user would be interested in. Our focus on providing better connections between people, such as a chat capability, will attract a larger user base that want to forge new connections easily.
+Our product will aim to provide an easy user experience in finding individuals in their area to connect with over a specific outdoor activity. The application differs from other “meet-up” style apps by being data-driven in its recommendations for events and people a user would be interested in. Our focus on providing better connections between people, such as a chat capability, will attract a larger user base that want to forge new connections easily.
 Another way that our product differs is we avoid the issue in other applications where users can simply claim they are avid runners or otherwise extremely fit regardless of whether they actually are. Since our app will track their activity, we will be able to verify that they are actually running as long and far as they claim. The benefits of this are twofold. One, we will be better able to match users to other users of similar ability levels. Two, this will be an added element of safety that will deter “catfishers”.
 
 ## Proposed Solution
@@ -92,6 +92,16 @@ I love gifs so the slack channel will be LIT
   * Work Style: I like to work with others and talk through potential ways to implement a feature before starting the implementation. I enjoy helping others whenever it’s needed. I believe communication is key to a successful product.
  
 ##### Shea Wojciehowski  
+
+* Technical Skills: Java, C, React-Native, SQL (a little), InVision, frontend design, lots of experience making and designing Android apps
+* Special Skills:
+    - Relentless problem solver, won't give up or get too frustrated when faced with tough problems, love trying to figure out innovative, simple solutions
+    - Very detail-oriented, I enjoy structure
+    - Good at communicating and bringing people together, as well as listening to everyone's voice and integrating different ideas
+    - Windows user
+    - Kind of a goofball but I can be serious when necessary, want people to have fun, genuinely care about teammates' wellbeing
+    - Good eye for design esp. little details, creative thinker
+* Work Style: I like working collaboratively, and helping others as well as asking for help when I get stuck. I much prefer to be organized and think ahead before I try to solve a problem/implement a feature. I find that this leads to a lot less roadblocks later on. Although I am detail oriented, I also need a greater structure in my mind that I am working towards, and I like mapping things out as a team before we do them. I want people on the team to feel comfortable talking with me and expressing any ideas or worries; I am a huge fan of open, honest communication.
 
 ## Strategy
 
