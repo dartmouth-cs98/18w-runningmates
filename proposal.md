@@ -95,7 +95,7 @@ I love gifs so the slack channel will be LIT
 
 * Technical Skills: Java, C, React-Native, SQL (a little), InVision, frontend design, lots of experience making and designing Android apps
 * Special Skills:
-    - Relentless problem solver, won't give up or get too frustrated when faced with tough problems, love trying to figure out innovative, simple solutions
+    - Relentless problem solver, won't give up or get too frustrated when faced with tough problems, love trying to figure out simple solutions to complex problems
     - Very detail-oriented, I enjoy structure
     - Good at communicating and bringing people together, as well as listening to everyone's voice and integrating different ideas
     - Windows user
