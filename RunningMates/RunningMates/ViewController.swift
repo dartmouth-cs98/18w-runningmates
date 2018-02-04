@@ -19,6 +19,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+
+    
+    @IBAction func didTapStrava(sender: AnyObject) {
+        if let url = NSURL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=https://RunningMates&scope=write&state=mystate&approval_prompt=force"){
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+    }
 
 
 }
