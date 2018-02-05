@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
 				FA5711092021208D005792CB /* Assets.xcassets */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FA57110E2021208E005792CB /* Info.plist */,
@@ -179,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
