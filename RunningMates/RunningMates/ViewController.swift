@@ -33,12 +33,16 @@ import WebKit
             view = webView
         }
         override func viewDidLoad() {
+            
             super.viewDidLoad()
             
             let myURL = URL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }
+        
+
+   
 }
 
 
