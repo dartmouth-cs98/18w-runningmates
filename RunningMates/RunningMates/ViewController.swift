@@ -22,10 +22,11 @@ import WebKit
 //        // Dispose of any resources that can be recreated.
 //    }
 
+
     class ViewController: UIViewController, WKUIDelegate {
-        
+
         var webView: WKWebView!
-        
+
         override func loadView() {
             let webConfiguration = WKWebViewConfiguration()
             webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -33,16 +34,16 @@ import WebKit
             view = webView
         }
         override func viewDidLoad() {
-            
+
             super.viewDidLoad()
-            
+
             let myURL = URL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }
-        
 
-   
+
+
 }
 
 
@@ -92,4 +93,3 @@ import WebKit
 //    }
 
 //}
-
