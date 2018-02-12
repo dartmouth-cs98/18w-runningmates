@@ -9,7 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,8 +23,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 
     
     @IBAction func didTapStrava(sender: AnyObject) {
@@ -29,6 +31,11 @@ class ViewController: UIViewController {
         }
     }
 
-
+    @IBAction func tryLogin(_ sender: UIButton) {
+        var username = usernameTextField.text;
+        var pass = passTextField.text;
+        
+        // try to save username and password to mongoDb
+    }
 }
 
