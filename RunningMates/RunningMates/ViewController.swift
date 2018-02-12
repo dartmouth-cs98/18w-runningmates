@@ -27,20 +27,14 @@ import WebKit
 
     
     @IBAction func didTapStrava(sender: AnyObject) {
-        //        if let url = NSURL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=https://localhost:9090&scope=write&state=mystate&approval_prompt=force"){
-//            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-//        }
-        
-        //1
         print("did tap strava")
         let oauthswift = OAuth2Swift(
-            consumerKey:    "23202",
-            consumerSecret: "44397e262d39065e316b57b70a43abd5edf75a96",        // No secret required
+            consumerKey:    "23426",
+            consumerSecret: "0904fa1a2eeff05ab70dcbf642d935f472bbf8ee",        // No secret required
             authorizeUrl:   "https://www.strava.com/oauth/authorize",
             accessTokenUrl: "https://www.strava.com/oauth/token",
             responseType:   "code"
         )
-        print(oauthswift)
         
         oauthswift.allowMissingStateCheck = true
         //2
@@ -51,15 +45,15 @@ import WebKit
             withCallbackURL: URL(string: "RunningMates://localhost:9090")!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
+                print("response token: ")
+
                 print(credential.oauthToken)
-                print("im here")
                 // Do your request
         },
             failure: { error in
                 print(error.localizedDescription)
         }
         )
-        print("heree")
 
     
         
