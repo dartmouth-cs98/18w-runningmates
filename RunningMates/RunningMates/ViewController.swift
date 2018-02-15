@@ -7,29 +7,44 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passTextField: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+//
+//class ViewController: UIViewController {
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view, typically from a nib.
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    
-    @IBAction func didTapStrava(sender: AnyObject) {
-        if let url = NSURL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=https://RunningMates&scope=write&state=mystate&approval_prompt=force"){
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+    class ViewController: UIViewController, WKUIDelegate {
+
+        var webView: WKWebView!
+        @IBOutlet weak var loginButton: UIButton!
+        @IBOutlet weak var usernameTextField: UITextField!
+        @IBOutlet weak var passTextField: UITextField!
+
+        override func loadView() {
+            let webConfiguration = WKWebViewConfiguration()
+            webView = WKWebView(frame: .zero, configuration: webConfiguration)
+            webView.uiDelegate = self
+            view = webView
         }
-    }
+        override func viewDidLoad() {
+
+            super.viewDidLoad()
+
+            let myURL = URL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force")
+            let myRequest = URLRequest(url: myURL!)
+            webView.load(myRequest)
+        }
+
 
     @IBAction func tryLogin(_ sender: UIButton) {
         var username = usernameTextField.text;
@@ -39,3 +54,50 @@ class ViewController: UIViewController {
     }
 }
 
+
+
+
+
+  //  @IBAction func didTapStrava(sender: AnyObject) {
+//        if let url = NSURL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force"){
+//            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+//            print("my url", url);
+
+       // }
+//        print("here")
+//        let Url = String(format: "https://www.strava.com/oauth/authorize")
+//        guard let serviceUrl = URL(string: Url) else { return }
+//        //        let loginParams = String(format: LOGIN_PARAMETERS1, "test", "Hi World")
+//        let parameterDictionary = ["client_id" : "23189", "response_type" : "code", "redirect_uri" : "http://localhost:9090", "scope" : "write", "state" : "mystate", "approval_prompt": "force" ]
+//        var request = URLRequest(url: serviceUrl)
+//        request.httpMethod = "POST"
+//        print("here 1")
+//
+//        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+//        print("here 2")
+//
+//        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else {
+//            return
+//        }
+//        request.httpBody = httpBody
+//
+//        let session = URLSession.shared
+//        session.dataTask(with: request) { (data, response, error) in
+//            if let response = response {
+//                print("i am here")
+//                print(response)
+//            }
+//            if let data = data {
+//                do {
+//                    print(response)
+//                    //let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                    //print([json])
+//                }catch {
+//                    print(error)
+//                }
+//            }
+//            }.resume()
+//
+//    }
+
+//}
