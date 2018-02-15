@@ -10,7 +10,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchingView" customModule="RunningMates" customModuleProvider="target">
+            <connections>
+                <outlet property="achievementsLabel" destination="8ox-t4-YE6" id="8Uy-Zu-QpN"/>
+                <outlet property="avgRunsLabel" destination="SHe-cT-oO7" id="9nb-lg-s4s"/>
+                <outlet property="eventsButton" destination="ez6-nQ-man" id="fan-ll-DPO"/>
+                <outlet property="hometownLabel" destination="pSz-rf-wsr" id="86u-Zx-VBE"/>
+                <outlet property="matchButton" destination="oj1-ga-O2g" id="RgC-q1-OW7"/>
+                <outlet property="matching" destination="iN0-l3-epB" id="3QK-gO-eIw"/>
+                <outlet property="nameLabel" destination="3n5-WQ-3Be" id="ylM-FU-LzO"/>
+                <outlet property="peopleButton" destination="DjG-Ax-3r2" id="j5K-lK-sYC"/>
+                <outlet property="profilePic" destination="lVX-sy-YGU" id="wMk-1I-V2W"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -58,11 +70,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-ga-O2g">
-                    <rect key="frame" x="153" y="612" width="68" height="49"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Match!"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W94-v5-G12">
                     <rect key="frame" x="71" y="536" width="238" height="55"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -70,10 +77,15 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-ga-O2g">
+                    <rect key="frame" x="153" y="612" width="68" height="49"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Match!"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="0.5" y="36.5"/>
+            <point key="canvasLocation" x="485" y="87"/>
         </view>
     </objects>
 </document>
