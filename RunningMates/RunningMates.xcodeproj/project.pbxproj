@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
+		FA1369B7202F6D9300D67317 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1369B5202F6D9300D67317 /* MyViewController.swift */; };
+		FA1369B8202F6D9300D67317 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1369B6202F6D9300D67317 /* MyViewController.xib */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -24,10 +26,68 @@
 			remoteGlobalIDString = FA5710FE2021208D005792CB;
 			remoteInfo = RunningMates;
 		};
+		FAB22A5220323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F435027A1A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
+		FAB22A5420323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
+			remoteInfo = OAuthSwiftOSX;
+		};
+		FAB22A5620323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4B6EE1E1BF74CE300443596;
+			remoteInfo = OAuthSwiftTVOS;
+		};
+		FAB22A5820323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C40890C01C11B37000E3146A;
+			remoteInfo = OAuthSwiftWatchOS;
+		};
+		FAB22A5A20323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F451E3C5195B8CD80051434C;
+			remoteInfo = OAuthSwiftDemo;
+		};
+		FAB22A5C20323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
+			remoteInfo = OAuthSwiftOSXDemo;
+		};
+		FAB22A5E20323A3400C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
+			remoteInfo = OAuthSwiftTests;
+		};
+		FAB22A6020323A4F00C0B975 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F43502791A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
+		FA1369B5202F6D9300D67317 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		FA1369B6202F6D9300D67317 /* MyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +98,7 @@
 		FA5711132021208E005792CB /* RunningMatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunningMatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711172021208E005792CB /* RunningMatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMatesTests.swift; sourceTree = "<group>"; };
 		FA5711192021208E005792CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../../Downloads/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +122,7 @@
 		FA5710F62021208D005792CB = {
 			isa = PBXGroup;
 			children = (
+				FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */,
 				FA5711012021208D005792CB /* RunningMates */,
 				FA5711162021208E005792CB /* RunningMatesTests */,
 				FA5711002021208D005792CB /* Products */,
@@ -81,6 +143,8 @@
 			children = (
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
+				FA1369B5202F6D9300D67317 /* MyViewController.swift */,
+				FA1369B6202F6D9300D67317 /* MyViewController.xib */,
 				FA5711062021208D005792CB /* Main.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
 				FA5711092021208D005792CB /* Assets.xcassets */,
@@ -99,6 +163,20 @@
 			path = RunningMatesTests;
 			sourceTree = "<group>";
 		};
+		FAB22A4920323A3400C0B975 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB22A5320323A3400C0B975 /* OAuthSwift.framework */,
+				FAB22A5520323A3400C0B975 /* OAuthSwift.framework */,
+				FAB22A5720323A3400C0B975 /* OAuthSwift.framework */,
+				FAB22A5920323A3400C0B975 /* OAuthSwift.framework */,
+				FAB22A5B20323A3400C0B975 /* OAuthSwiftDemo.app */,
+				FAB22A5D20323A3400C0B975 /* OAuthSwiftOSXDemo.app */,
+				FAB22A5F20323A3400C0B975 /* OAuthSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,6 +191,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				FAB22A6120323A4F00C0B975 /* PBXTargetDependency */,
 			);
 			name = RunningMates;
 			productName = RunningMates;
@@ -169,6 +248,12 @@
 			mainGroup = FA5710F62021208D005792CB;
 			productRefGroup = FA5711002021208D005792CB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FAB22A4920323A3400C0B975 /* Products */;
+					ProjectRef = FAB22A4820323A3400C0B975 /* OAuthSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FA5710FE2021208D005792CB /* RunningMates */,
@@ -176,6 +261,58 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FAB22A5320323A3400C0B975 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = FAB22A5220323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5520323A3400C0B975 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = FAB22A5420323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5720323A3400C0B975 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = FAB22A5620323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5920323A3400C0B975 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = FAB22A5820323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5B20323A3400C0B975 /* OAuthSwiftDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftDemo.app;
+			remoteRef = FAB22A5A20323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5D20323A3400C0B975 /* OAuthSwiftOSXDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftOSXDemo.app;
+			remoteRef = FAB22A5C20323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FAB22A5F20323A3400C0B975 /* OAuthSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuthSwiftTests.xctest;
+			remoteRef = FAB22A5E20323A3400C0B975 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FA5710FD2021208D005792CB /* Resources */ = {
@@ -186,6 +323,7 @@
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
+				FA1369B8202F6D9300D67317 /* MyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
+				FA1369B7202F6D9300D67317 /* MyViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +362,11 @@
 			isa = PBXTargetDependency;
 			target = FA5710FE2021208D005792CB /* RunningMates */;
 			targetProxy = FA5711142021208E005792CB /* PBXContainerItemProxy */;
+		};
+		FAB22A6120323A4F00C0B975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuthSwift;
+			targetProxy = FAB22A6020323A4F00C0B975 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

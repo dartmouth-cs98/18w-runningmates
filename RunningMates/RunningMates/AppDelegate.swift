@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import OAuthSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        window?.backgroundColor = UIColor.white
+//
+//        // Allocate memory for an instance of the 'MainViewController' class
+//        let mainViewController = MyViewController()
+//
+//        // Set the root view controller of the app's window
+//        window!.rootViewController = mainViewController
+//
+//        // Make the window visible
+        //window!.makeKeyAndVisible()
+        return true
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        OAuthSwift.handle(url: url)
         return true
     }
 
