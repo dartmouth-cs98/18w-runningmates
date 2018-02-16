@@ -5,23 +5,9 @@
 //  Created by Sara Topic on 30/01/2018.
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
-
+import OAuthSwift
 import UIKit
 import WebKit
-
-//
-//class ViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
 
     class ViewController: UIViewController, WKUIDelegate {
 
@@ -36,6 +22,7 @@ import WebKit
             webView.uiDelegate = self
             view = webView
         }
+        
         override func viewDidLoad() {
 
             super.viewDidLoad()
@@ -44,7 +31,36 @@ import WebKit
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }
+    
+    @IBAction func didTapStrava(sender: AnyObject) {
+        print("did tap strava")
+        let oauthswift = OAuth2Swift(
+            consumerKey:    "23426",
+            consumerSecret: "0904fa1a2eeff05ab70dcbf642d935f472bbf8ee",        // No secret required
+            authorizeUrl:   "https://www.strava.com/oauth/authorize",
+            accessTokenUrl: "https://www.strava.com/oauth/token",
+            responseType:   "code"
+        )
+        
+        oauthswift.allowMissingStateCheck = true
+        //2
+        oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
 
+        
+        let handle = oauthswift.authorize(
+            withCallbackURL: URL(string: "RunningMates://localhost:9090")!,
+            scope: "write", state:"mystate",
+            success: { credential, response, parameters in
+                print("response token: ")
+
+                print(credential.oauthToken)
+                // Do your request
+        },
+            failure: { error in
+                print(error.localizedDescription)
+            }
+        )
+    }
 
     @IBAction func tryLogin(_ sender: UIButton) {
         var username = usernameTextField.text;
@@ -52,52 +68,8 @@ import WebKit
         
         // try to save username and password to mongoDb
     }
+        
 }
 
 
 
-
-
-  //  @IBAction func didTapStrava(sender: AnyObject) {
-//        if let url = NSURL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force"){
-//            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
-//            print("my url", url);
-
-       // }
-//        print("here")
-//        let Url = String(format: "https://www.strava.com/oauth/authorize")
-//        guard let serviceUrl = URL(string: Url) else { return }
-//        //        let loginParams = String(format: LOGIN_PARAMETERS1, "test", "Hi World")
-//        let parameterDictionary = ["client_id" : "23189", "response_type" : "code", "redirect_uri" : "http://localhost:9090", "scope" : "write", "state" : "mystate", "approval_prompt": "force" ]
-//        var request = URLRequest(url: serviceUrl)
-//        request.httpMethod = "POST"
-//        print("here 1")
-//
-//        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-//        print("here 2")
-//
-//        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else {
-//            return
-//        }
-//        request.httpBody = httpBody
-//
-//        let session = URLSession.shared
-//        session.dataTask(with: request) { (data, response, error) in
-//            if let response = response {
-//                print("i am here")
-//                print(response)
-//            }
-//            if let data = data {
-//                do {
-//                    print(response)
-//                    //let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    //print([json])
-//                }catch {
-//                    print(error)
-//                }
-//            }
-//            }.resume()
-//
-//    }
-
-//}
