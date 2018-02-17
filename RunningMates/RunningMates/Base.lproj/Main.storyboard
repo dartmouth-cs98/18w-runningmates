@@ -40,21 +40,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APC-nb-npr">
-                                <rect key="frame" x="165" y="597" width="44" height="30"/>
+                                <rect key="frame" x="165" y="530" width="44" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Strava"/>
                                 <connections>
                                     <action selector="didTapStravaWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sri-RS-0DG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fct-9i-zlr">
+                                <rect key="frame" x="266" y="539" width="71" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="go to filter"/>
+                                <connections>
+                                    <segue destination="i5O-3r-hPK" kind="show" id="tdt-W3-3On"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
+        </scene>
+        <!--FilterStoryboard-->
+        <scene sceneID="XZX-9L-btc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FilterStoryboard" id="i5O-3r-hPK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jok-vY-2AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1306" y="96"/>
         </scene>
         <!--Matching View Controller-->
         <scene sceneID="YMV-lf-WPM">
@@ -89,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kW-Gg-LNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1216.8" y="85.907046476761622"/>
+            <point key="canvasLocation" x="2135" y="156"/>
         </scene>
     </scenes>
 </document>

@@ -46,12 +46,14 @@ import WebKit
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-
+                
                 print(credential.oauthToken)
+                
                 // Do your request
         },
             failure: { error in
                 print(error.localizedDescription)
+                print("wrong login")
         }
         )
 
