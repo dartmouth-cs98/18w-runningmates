@@ -39,7 +39,7 @@ import WebKit
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
-            consumerSecret: "0904fa1a2eeff05ab70dcbf642d935f472bbf8ee",        // No secret required
+            consumerSecret: "0904fa1a2eeff05ab70dcbf642d935f472bbf8ee",     // No secret required
             authorizeUrl:   "https://www.strava.com/oauth/authorize",
             accessTokenUrl: "https://www.strava.com/oauth/token",
             responseType:   "code"
@@ -54,13 +54,15 @@ import WebKit
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-
+                
                 print(credential.oauthToken)
+                
                 // Do your request
         },
             failure: { error in
                 print(error.localizedDescription)
-            }
+                print("wrong login")
+        }
         )
     }
 
