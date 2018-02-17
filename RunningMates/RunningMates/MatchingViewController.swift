@@ -13,7 +13,7 @@ class MatchingViewController: UIViewController {
    // MARK: Properties
    
     @IBOutlet weak var nameLabel: UILabel!
-    
+    let myUser = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "url", bio: "bio", gender: "female", age: 21, location: "iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
     
     override func viewDidLoad() {
        super.viewDidLoad()
@@ -29,7 +29,7 @@ class MatchingViewController: UIViewController {
 
     @IBAction func matchButton(_ sender: UIButton) {
         
-        nameLabel.text = "Divya Kalidindi"
+        nameLabel.text = myUser.firstName
     }
    
    
