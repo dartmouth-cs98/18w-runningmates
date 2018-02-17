@@ -31,6 +31,6 @@ class MatchingViewController: UIViewController {
         
         nameLabel.text = myUser.firstName
     }
-    //        addSubview(matchingView)
+   
    
 }
