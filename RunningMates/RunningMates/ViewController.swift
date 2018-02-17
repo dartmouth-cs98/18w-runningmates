@@ -6,20 +6,23 @@
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
 import OAuthSwift
+import Alamofire
 import UIKit
 import WebKit
 
     class ViewController: UIViewController, WKUIDelegate {
 
         var webView: WKWebView!
+        var rootURl: String = "http://localhost:9090/"
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var usernameTextField: UITextField!
         @IBOutlet weak var passTextField: UITextField!
+        @IBOutlet weak var emailTextField: UITextField!
 
         override func loadView() {
             let webConfiguration = WKWebViewConfiguration()
             webView = WKWebView(frame: .zero, configuration: webConfiguration)
-            webView.uiDelegate = self
+                    webView.uiDelegate = self
             view = webView
         }
         
@@ -43,7 +46,6 @@ import WebKit
         )
         
         oauthswift.allowMissingStateCheck = true
-        //2
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
 
         
@@ -63,12 +65,39 @@ import WebKit
     }
 
     @IBAction func tryLogin(_ sender: UIButton) {
-        var username = usernameTextField.text;
-        var pass = passTextField.text;
+        let username: String? = usernameTextField.text
+        let pass: String? = passTextField.text
+        let email: String? = emailTextField.text
         
-        // try to save username and password to mongoDb
+        requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
     }
         
+        func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
+        
+        //var dic=NSDictionary()
+            
+            let params: Parameters = [
+                "email": email!,
+                "username": username!,
+                "password": password!
+            ]
+            
+        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("Post Successful")
+                    //dic=(response.result.value) as! NSDictionary
+                    
+                    //var error = NSInteger()
+                    //error=dic.object(forKey: "error") as! NSInteger
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        debugPrint("whole _request ****",_request)
+    }
 }
 
 
