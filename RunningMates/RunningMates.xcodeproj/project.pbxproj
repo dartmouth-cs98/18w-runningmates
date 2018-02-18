@@ -21,6 +21,7 @@
 		FA57110A2021208D005792CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5711092021208D005792CB /* Assets.xcassets */; };
 		FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57110B2021208E005792CB /* LaunchScreen.storyboard */; };
 		FA5711182021208E005792CB /* RunningMatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711172021208E005792CB /* RunningMatesTests.swift */; };
+		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		FA5711132021208E005792CB /* RunningMatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunningMatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711172021208E005792CB /* RunningMatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMatesTests.swift; sourceTree = "<group>"; };
 		FA5711192021208E005792CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,7 +298,6 @@
 				FA5711012021208D005792CB /* RunningMates */,
 				FA5711002021208D005792CB /* Products */,
 				1177F6F0969072012E085894 /* Pods */,
-				F8988B25203A409C005AB612 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -317,6 +318,7 @@
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA5711062021208D005792CB /* Main.storyboard */,
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
+				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
@@ -338,6 +340,14 @@
 				FA5711192021208E005792CB /* Info.plist */,
 			);
 			path = RunningMatesTests;
+			sourceTree = "<group>";
+		};
+		FAD70D35203A313A0081C71E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,6 +500,7 @@
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
+				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 			);
