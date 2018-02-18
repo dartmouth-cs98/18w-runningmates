@@ -19,20 +19,10 @@ import WebKit
         @IBOutlet weak var passTextField: UITextField!
         @IBOutlet weak var emailTextField: UITextField!
 
-        override func loadView() {
-            let webConfiguration = WKWebViewConfiguration()
-            webView = WKWebView(frame: .zero, configuration: webConfiguration)
-                    webView.uiDelegate = self
-            view = webView
-        }
-        
         override func viewDidLoad() {
 
             super.viewDidLoad()
 
-            let myURL = URL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force")
-            let myRequest = URLRequest(url: myURL!)
-            webView.load(myRequest)
         }
     
     @IBAction func didTapStrava(sender: AnyObject) {
@@ -50,13 +40,33 @@ import WebKit
 
         
         let handle = oauthswift.authorize(
+            
+            
             withCallbackURL: URL(string: "RunningMates://localhost:9090")!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
                 
                 print(credential.oauthToken)
+                let params: Parameters = [
+                    "token": credential.oauthToken,
+                ]
+                let Url = self.rootURl + "api/stravaSignup"
                 
+                let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .success:
+                            print("Post Successful")
+                            //dic=(response.result.value) as! NSDictionary
+                            
+                            //var error = NSInteger()
+                            //error=dic.object(forKey: "error") as! NSInteger
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                }
                 // Do your request
         },
             failure: { error in
