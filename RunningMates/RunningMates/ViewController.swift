@@ -6,25 +6,34 @@
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
 import OAuthSwift
+import Alamofire
 import UIKit
 import WebKit
 
-//
-//class ViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
-
     class ViewController: UIViewController, WKUIDelegate {
 
+        var webView: WKWebView!
+        var rootURl: String = "http://localhost:9090/"
+        @IBOutlet weak var loginButton: UIButton!
+        @IBOutlet weak var usernameTextField: UITextField!
+        @IBOutlet weak var passTextField: UITextField!
+        @IBOutlet weak var emailTextField: UITextField!
+
+        override func loadView() {
+            let webConfiguration = WKWebViewConfiguration()
+            webView = WKWebView(frame: .zero, configuration: webConfiguration)
+                    webView.uiDelegate = self
+            view = webView
+        }
+        
+        override func viewDidLoad() {
+
+            super.viewDidLoad()
+
+            let myURL = URL(string: "https://www.strava.com/oauth/authorize?client_id=23189&response_type=code&redirect_uri=http://localhost:9090&scope=write&state=mystate&approval_prompt=force")
+            let myRequest = URLRequest(url: myURL!)
+            webView.load(myRequest)
+        }
     
     @IBAction func didTapStrava(sender: AnyObject) {
         print("did tap strava")
@@ -37,7 +46,6 @@ import WebKit
         )
         
         oauthswift.allowMissingStateCheck = true
-        //2
         oauthswift.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauthswift)
 
         
@@ -56,12 +64,42 @@ import WebKit
                 print("wrong login")
         }
         )
-
-    
-        
     }
-    
 
+    @IBAction func tryLogin(_ sender: UIButton) {
+        let username: String? = usernameTextField.text
+        let pass: String? = passTextField.text
+        let email: String? = emailTextField.text
+        
+        requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
+    }
+        
+        func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
+        
+        //var dic=NSDictionary()
+            
+            let params: Parameters = [
+                "email": email!,
+                "username": username!,
+                "password": password!
+            ]
+            
+        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("Post Successful")
+                    //dic=(response.result.value) as! NSDictionary
+                    
+                    //var error = NSInteger()
+                    //error=dic.object(forKey: "error") as! NSInteger
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        debugPrint("whole _request ****",_request)
+    }
 }
 
 
