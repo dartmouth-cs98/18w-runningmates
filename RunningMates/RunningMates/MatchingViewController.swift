@@ -13,6 +13,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
    // MARK: Properties
    
     @IBOutlet weak var nameLabel: UILabel!
+    var current_index = 0
     
     let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "url", bio: "drew_bio", gender: "female", age: 21, location: "iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
     
@@ -51,6 +52,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         userList.append(myUser5)
         userList.append(myUser6)
         
+        
+        
         nameLabel.text = userList[0].firstName
         
    }
@@ -63,12 +66,21 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
    //MARK: Actions
     // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
+        let size = userList.count
         
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right:
             print("SWIPED right")
+            //do nothing if swipe right?
         case UISwipeGestureRecognizerDirection.left:
             print("SWIPED left")
+            if (current_index < size-1) {
+                current_index = current_index + 1
+            }
+            else {
+                current_index = 0
+            }
+            nameLabel.text = userList[current_index].firstName
             
         default:
             break
