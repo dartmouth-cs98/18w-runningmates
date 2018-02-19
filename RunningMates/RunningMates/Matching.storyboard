@@ -46,6 +46,7 @@
                         <viewLayoutGuide key="safeArea" id="xuo-33-ZIu"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="Z7o-t1-mWA" id="RsU-n5-K62"/>
                         <outlet property="nameLabel" destination="pDv-P0-cpK" id="q5h-zD-7ln"/>
                     </connections>
                 </viewController>
