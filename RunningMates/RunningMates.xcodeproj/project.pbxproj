@@ -12,6 +12,7 @@
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
 		9041768D7C1A5BDF522B31C6 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
+		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
@@ -135,6 +136,7 @@
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510B12036245900E9A2C5 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../../OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,14 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
+		F802D348203A41AB003B9A88 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		F81510B22036245900E9A2C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +300,7 @@
 				FA5711012021208D005792CB /* RunningMates */,
 				FA5711002021208D005792CB /* Products */,
 				1177F6F0969072012E085894 /* Pods */,
-				FAD70D35203A313A0081C71E /* Recovered References */,
+				F802D348203A41AB003B9A88 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +316,7 @@
 		FA5711012021208D005792CB /* RunningMates */ = {
 			isa = PBXGroup;
 			children = (
+				F8BEE1EC203B0E2C00274660 /* User.swift */,
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
@@ -333,14 +344,6 @@
 				FA5711192021208E005792CB /* Info.plist */,
 			);
 			path = RunningMatesTests;
-			sourceTree = "<group>";
-		};
-		FAD70D35203A313A0081C71E /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +576,7 @@
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
+				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
