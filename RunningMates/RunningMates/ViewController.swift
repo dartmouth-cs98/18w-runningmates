@@ -13,7 +13,7 @@ import WebKit
     class ViewController: UIViewController, WKUIDelegate {
 
         var webView: WKWebView!
-        var rootURl: String = "http://localhost:9090/"
+        var rootURl: String = "https://running-mates.herokuapp.com/"
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var usernameTextField: UITextField!
         @IBOutlet weak var passTextField: UITextField!
@@ -84,16 +84,16 @@ import WebKit
         requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
     }
         
-        func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
+    func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
+    
+    //var dic=NSDictionary()
         
-        //var dic=NSDictionary()
-            
-            let params: Parameters = [
-                "email": email!,
-                "username": username!,
-                "password": password!
-            ]
-            
+        let params: Parameters = [
+            "email": email!,
+            "username": username!,
+            "password": password!
+        ]
+        
         let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
             .responseJSON { response in
                 switch response.result {

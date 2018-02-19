@@ -13,19 +13,21 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
    // MARK: Properties
    
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
     
-    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "url", bio: "drew_bio", gender: "female", age: 21, location: "iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
+    //STATIC USERS (NOT FETCHED FROM DATABASE)
+    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "drew_bio", gender: "female", age: 21, location: "Davenport, Iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
     
-    let myUser2 = User.init(firstName: "Divya", lastName: "Kalidindi", imageURL: "url", bio: "divya_bio", gender: "female", age: 21, location: "california", email: "email@email.com", username: "divya_username", password: "password", token: "token")
+    let myUser2 = User.init(firstName: "Divya", lastName: "Kalidindi", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/11011108_721832241247638_7480659355385060361_n.jpg?oh=32815d13cbfedff312b0aa696a0856d6&oe=5B0A6634", bio: "divya_bio", gender: "female", age: 21, location: "San Jose, California", email: "email@email.com", username: "divya_username", password: "password", token: "token")
     
-    let myUser3 = User.init(firstName: "Brian", lastName: "Francis", imageURL: "url", bio: "brian_bio", gender: "male", age: 21, location: "california", email: "email@email.com", username: "brian_username", password: "password", token: "token")
+    let myUser3 = User.init(firstName: "Brian", lastName: "Francis", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/10343026_10208475643911796_8181307666930996163_n.jpg?oh=05206a7f2b629969f6a59cded20bb032&oe=5B1465C9", bio: "brian_bio", gender: "male", age: 21, location: "Menlo, California", email: "email@email.com", username: "brian_username", password: "password", token: "token")
     
-    let myUser4 = User.init(firstName: "Shea", lastName: "Wojciehowski", imageURL: "url", bio: "shea_bio", gender: "female", age: 21, location: "california", email: "email@email.com", username: "shea_username", password: "password", token: "token")
+    let myUser4 = User.init(firstName: "Shea", lastName: "Wojciehowski", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/12920343_920606948037536_7665732452654505496_n.jpg?oh=97c2240c683b256906b9a1a554dc37e8&oe=5B188030", bio: "shea_bio", gender: "female", age: 21, location: "Seattle, Washington", email: "email@email.com", username: "shea_username", password: "password", token: "token")
     
-    let myUser5 = User.init(firstName: "Sara", lastName: "Topic", imageURL: "url", bio: "sara_bio", gender: "female", age: 21, location: "california", email: "email@email.com", username: "sara_username", password: "password", token: "token")
+    let myUser5 = User.init(firstName: "Sara", lastName: "Topic", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/18300829_10203269778100892_1763409033707054557_n.jpg?oh=778da3fbcfcb259557173978d219dd74&oe=5B1F3980", bio: "sara_bio", gender: "female", age: 21, location: "Manchester, New Hamsphire", email: "email@email.com", username: "sara_username", password: "password", token: "token")
     
-    let myUser6 = User.init(firstName: "Jon", lastName: "Gonzalez", imageURL: "url", bio: "jon_bio", gender: "male", age: 21, location: "california", email: "email@email.com", username: "jon_username", password: "password", token: "token")
+    let myUser6 = User.init(firstName: "Jon", lastName: "Gonzalez", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-1/10155896_10201446542802611_5710423303942551522_n.jpg?oh=9b1c5d9f02ddb0ff330bf26a9c5fca97&oe=5B19F862", bio: "jon_bio", gender: "male", age: 21, location: "Queens, New York", email: "email@email.com", username: "jon_username", password: "password", token: "token")
     
     var userList = [User]()
     
@@ -45,6 +47,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(swipeLeft)
         self.view.addGestureRecognizer(swipeRight)
         
+        
         userList.append(myUser1)
         userList.append(myUser2)
         userList.append(myUser3)
@@ -52,11 +55,34 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         userList.append(myUser5)
         userList.append(myUser6)
         
-        
-        
         nameLabel.text = userList[0].firstName
+        self.downloadImage(userList[0].imageURL, inView: imageView)
         
    }
+    
+    func downloadImage(_ uri : String, inView: UIImageView){
+        
+        let url = URL(string: uri)
+        
+        let task = URLSession.shared.dataTask(with: url!) {responseData,response,error in
+            if error == nil{
+                if let data = responseData {
+                    
+                    DispatchQueue.main.async {
+                        inView.image = UIImage(data: data)
+                    }
+                    
+                }else {
+                    print("no data")
+                }
+            }else{
+                print("Error")
+            }
+        }
+        
+        task.resume()
+        
+    }
 
    override func didReceiveMemoryWarning() {
        super.didReceiveMemoryWarning()
@@ -67,6 +93,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
         let size = userList.count
+        
         
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right:
@@ -81,6 +108,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                 current_index = 0
             }
             nameLabel.text = userList[current_index].firstName
+            self.downloadImage(userList[current_index].imageURL, inView: imageView)
+            
             
         default:
             break
@@ -93,6 +122,33 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         print("You clicked match.")
         
     }
+    
+//    func fetchUsers() {
+//
+//        //var dic=NSDictionary()
+//
+////        let params: Parameters = [
+////            "email": email!,
+////            "username": username!,
+////            "password": password!
+////        ]
+//
+//        let _request = Alamofire.request(Url, method: .g, parameters: params, encoding: URLEncoding.httpBody)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    print("Post Successful")
+//                    //dic=(response.result.value) as! NSDictionary
+//
+//                    //var error = NSInteger()
+//                    //error=dic.object(forKey: "error") as! NSInteger
+//
+//                case .failure(let error):
+//                    print(error)
+//                }
+//        }
+//        debugPrint("whole _request ****",_request)
+//    }
    
    
 }
