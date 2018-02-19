@@ -35,4 +35,37 @@ class User {
         self.password = password
         self.token = token
     }
+    
+    //JSON initializer
+    // https://developer.apple.com/swift/blog/?id=37
+    init?(json: [String: Any]) {
+        guard let firstName = json["firstName"] as? String,
+            let lastName = json["lastName"] as? String,
+            let imageURL = json["imageURL"] as? String,
+            let bio = json["bio"] as? String,
+            let gender = json["gender"] as? String,
+            let age = json["age"] as? Int,
+            let location = json["location"] as? String,
+            let email = json["email"] as? String,
+            let username = json["username"] as? String,
+            let password = json["password"] as? String,
+            let token = json["token"] as? String
+
+            else {
+                return nil
+        }
+
+        self.firstName = firstName
+        self.lastName = lastName
+        self.imageURL = imageURL
+        self.bio = bio
+        self.gender = gender
+        self.age = age
+        self.location = location
+        self.email = email
+        self.username = username
+        self.password = password
+        self.token = token
+    }
+    
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08381B37DA646700E218FD78 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708506380A555FB2EF597CDF /* Pods_RunningMates.framework */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -129,6 +130,7 @@
 		2B6483CB2037918400092C12 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		2B6483CC2037918400092C12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		708506380A555FB2EF597CDF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9041768D7C1A5BDF522B31C6 /* Pods_RunningMates.framework in Frameworks */,
+				08381B37DA646700E218FD78 /* Pods_RunningMates.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +274,14 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
+		D9195A1800393C4FF7DA6B1B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				708506380A555FB2EF597CDF /* Pods_RunningMates.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F802D348203A41AB003B9A88 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +312,7 @@
 				FA5711002021208D005792CB /* Products */,
 				1177F6F0969072012E085894 /* Pods */,
 				F802D348203A41AB003B9A88 /* Recovered References */,
+				D9195A1800393C4FF7DA6B1B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
