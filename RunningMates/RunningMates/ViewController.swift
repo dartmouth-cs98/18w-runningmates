@@ -20,9 +20,10 @@ import WebKit
         @IBOutlet weak var emailTextField: UITextField!
 
         override func viewDidLoad() {
-
             super.viewDidLoad()
-
+            usernameTextField.borderStyle = UITextBorderStyle.roundedRect
+            passTextField.borderStyle = UITextBorderStyle.roundedRect
+            emailTextField.borderStyle = UITextBorderStyle.roundedRect
         }
     
     @IBAction func didTapStrava(sender: AnyObject) {
