@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		12D6AD2770A3750BB94BEF43 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
-		2B16CFA5203B7D4C00DFFBEF /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */; };
+		2B16CFD1203CE70E00DFFBEF /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
+		2B16CFD3203CE74200DFFBEF /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -145,7 +146,8 @@
 
 /* Begin PBXFileReference section */
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
-		2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "sunrise image.jpeg"; path = "../../../Desktop/sunrise image.jpeg"; sourceTree = "<group>"; };
+		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
+		2B16CFD2203CE74200DFFBEF /* logo_strava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_strava.png; sourceTree = "<group>"; };
 		2B6483922037918400092C12 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2B6483932037918400092C12 /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
 		2B6483942037918400092C12 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -262,7 +264,8 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */,
+				2B16CFD2203CE74200DFFBEF /* logo_strava.png */,
+				2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -642,9 +645,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B16CFD3203CE74200DFFBEF /* logo_strava.png in Resources */,
+				2B16CFD1203CE70E00DFFBEF /* sunrise image.jpeg in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
-				2B16CFA5203B7D4C00DFFBEF /* sunrise image.jpeg in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
