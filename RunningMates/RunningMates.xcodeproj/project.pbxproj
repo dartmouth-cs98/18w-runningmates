@@ -144,7 +144,8 @@
 
 /* Begin PBXFileReference section */
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
-		2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "sunrise image.jpeg"; path = "../../../Desktop/sunrise image.jpeg"; sourceTree = "<group>"; };
+		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
+		2B16CFD2203CE74200DFFBEF /* logo_strava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_strava.png; sourceTree = "<group>"; };
 		2B6483922037918400092C12 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2B6483932037918400092C12 /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
 		2B6483942037918400092C12 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -261,7 +262,8 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */,
+				2B16CFD2203CE74200DFFBEF /* logo_strava.png */,
+				2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -641,6 +643,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B16CFD3203CE74200DFFBEF /* logo_strava.png in Resources */,
+				2B16CFD1203CE70E00DFFBEF /* sunrise image.jpeg in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
