@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		12D6AD2770A3750BB94BEF43 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
-		2B16CFA5203B7D4C00DFFBEF /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFA4203B7D4C00DFFBEF /* sunrise image.jpeg */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -644,7 +643,6 @@
 			files = (
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
-				2B16CFA5203B7D4C00DFFBEF /* sunrise image.jpeg in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
