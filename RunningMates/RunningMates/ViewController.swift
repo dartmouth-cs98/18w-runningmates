@@ -26,7 +26,9 @@ import WebKit
             emailTextField.borderStyle = UITextBorderStyle.roundedRect
         }
     
-    @IBAction func didTapStrava(sender: AnyObject) {
+        @IBAction func didTapStrava(_ sender: Any) {
+       // }
+        //@IBAction func didTapStrava(sender: AnyObject) {
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
