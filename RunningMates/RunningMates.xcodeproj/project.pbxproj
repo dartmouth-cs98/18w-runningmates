@@ -13,6 +13,8 @@
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
 		9041768D7C1A5BDF522B31C6 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */; };
+		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
+		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
@@ -643,8 +645,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B16CFD3203CE74200DFFBEF /* logo_strava.png in Resources */,
-				2B16CFD1203CE70E00DFFBEF /* sunrise image.jpeg in Resources */,
+				F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */,
+				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
