@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
    
@@ -15,6 +16,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
+//    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
     
     //STATIC USERS (NOT FETCHED FROM DATABASE)
     let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "drew_bio", gender: "female", age: 21, location: "Davenport, Iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
@@ -47,16 +50,17 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(swipeLeft)
         self.view.addGestureRecognizer(swipeRight)
         
+        userList = getUsers()
         
-        userList.append(myUser1)
-        userList.append(myUser2)
-        userList.append(myUser3)
-        userList.append(myUser4)
-        userList.append(myUser5)
-        userList.append(myUser6)
+//        userList.append(myUser1)
+//        userList.append(myUser2)
+//        userList.append(myUser3)
+//        userList.append(myUser4)
+//        userList.append(myUser5)
+//        userList.append(myUser6)
         
-        nameLabel.text = userList[0].firstName
-        self.downloadImage(userList[0].imageURL, inView: imageView)
+//        nameLabel.text = userList[0].firstName
+//        self.downloadImage(userList[0].imageURL, inView: imageView)
         
    }
     
@@ -82,6 +86,45 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         
         task.resume()
         
+    }
+    
+    func getUsers() -> [User]{
+        print("getting users")
+        var usersList = [User]()
+        
+//        let params: Parameters = [
+//            "username": "drew",
+//            "location": [0,0]
+//        ]
+        
+        let params: [String: Any] = [
+            "username": "drew",
+            "location": [0,0]
+        ]
+        
+        
+//        let url = rootURl + "api/users"
+        let url = "http://localhost:9090/api/users"
+//        var url: String = "https://running-mates.herokuapp.com/api/users"
+        
+        var headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let _request = Alamofire.request("http://localhost:9090/api/users", method: .get, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+//                    print()
+//                    let jsonUser = User(json: [String:Any](response))
+//                    usersList.append(jsonUser)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        debugPrint("whole _request ****",_request)
+        
+        return usersList
     }
 
    override func didReceiveMemoryWarning() {
