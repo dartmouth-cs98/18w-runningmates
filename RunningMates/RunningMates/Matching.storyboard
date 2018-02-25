@@ -87,7 +87,11 @@
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7al-KH-HkQ"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7al-KH-HkQ">
+                                            <connections>
+                                                <segue destination="enw-5Z-cHv" kind="show" id="PB3-15-GmP"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -113,6 +117,14 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2133.5999999999999" y="155.17241379310346"/>
+        </scene>
+        <!--chat-->
+        <scene sceneID="pTn-tk-e9g">
+            <objects>
+                <viewControllerPlaceholder storyboardName="chat" id="enw-5Z-cHv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCg-WT-rzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2933" y="-84"/>
         </scene>
         <!--FilterStoryboard-->
         <scene sceneID="7Xc-qg-bIu">
