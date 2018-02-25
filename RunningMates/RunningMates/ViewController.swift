@@ -49,8 +49,8 @@ import WebKit
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                let  imagePickerController = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
-                self.present(imagePickerController, animated: true, completion: nil)
+                let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+                self.present(matchingVC, animated: true, completion: nil)
 
                 print(credential.oauthToken)
                 let params: Parameters = [
@@ -107,6 +107,9 @@ import WebKit
                 switch response.result {
                 case .success:
                     print("Post Successful")
+                    let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+                    self.present(matchingVC, animated: true, completion: nil)
+
                     //dic=(response.result.value) as! NSDictionary
                     
                     //var error = NSInteger()

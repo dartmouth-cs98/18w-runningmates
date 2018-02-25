@@ -95,6 +95,14 @@
                                     <action selector="didTapStrava:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s7N-bH-drD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCO-Xc-bz7">
+                                <rect key="frame" x="41" y="27" width="279" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="just go to matching #hack #peaksecurity"/>
+                                <connections>
+                                    <segue destination="i5O-3r-hPK" kind="show" id="YpS-Xh-o6U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <userDefinedRuntimeAttributes>
@@ -238,4 +246,7 @@
         <image name="logo_strava.png" width="195" height="195"/>
         <image name="sunrise image.jpeg" width="800" height="1000"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JW7-l0-rUl"/>
+    </inferredMetricsTieBreakers>
 </document>
