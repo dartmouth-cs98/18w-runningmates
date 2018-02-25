@@ -10,7 +10,7 @@ import Alamofire
 import UIKit
 import WebKit
 
-    class ViewController: UIViewController, WKUIDelegate {
+    class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
         var rootURl: String = "https://running-mates.herokuapp.com/"
@@ -49,10 +49,15 @@ import WebKit
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                
+                let  imagePickerController = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+                self.present(imagePickerController, animated: true, completion: nil)
+
                 print(credential.oauthToken)
                 let params: Parameters = [
                     "token": credential.oauthToken,
+                    
+                    
+
                 ]
                 let Url = self.rootURl + "api/stravaSignup"
                 
