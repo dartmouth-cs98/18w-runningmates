@@ -10,6 +10,19 @@ import Alamofire
 import UIKit
 import WebKit
 
+extension UIViewController {
+    // Use this to hide the soft keyboard when the user taps the background
+    func hideKeyboardOnBackgroundTap() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
     class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
@@ -21,10 +34,14 @@ import WebKit
 
         override func viewDidLoad() {
             super.viewDidLoad()
+            
             usernameTextField.borderStyle = UITextBorderStyle.roundedRect
             passTextField.borderStyle = UITextBorderStyle.roundedRect
             emailTextField.borderStyle = UITextBorderStyle.roundedRect
+            
+            self.hideKeyboardOnBackgroundTap()
         }
+    
     
         @IBAction func didTapStrava(_ sender: Any) {
        // }
