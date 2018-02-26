@@ -55,7 +55,6 @@
                                 </state>
                                 <connections>
                                     <action selector="tryLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fFc-C3-hQD"/>
-                                    <segue destination="i5O-3r-hPK" kind="show" identifier="mySegue" id="JW7-l0-rUl"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VfU-XG-lQr">
@@ -246,7 +245,4 @@
         <image name="logo_strava.png" width="195" height="195"/>
         <image name="sunrise image.jpeg" width="800" height="1000"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="JW7-l0-rUl"/>
-    </inferredMetricsTieBreakers>
 </document>
