@@ -6,11 +6,17 @@
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
 import UIKit
+import DLRadioButton
+
 
 class FilterViewController: UIViewController {
+   
+
     
     // MARK: Properties
     
+    @IBOutlet weak var femaleButton: DLRadioButton!
+    @IBOutlet weak var maleButton: DLRadioButton!
     //@IBOutlet weak var nameLabel: UILabel!
     
   //  @IBOutlet weak var genderLabel: UILabel!
@@ -26,6 +32,29 @@ class FilterViewController: UIViewController {
     }
     
     //MARK: Actions
+    
+        
+
+    @IBAction func didSelectFemale(_ sender: DLRadioButton) {
+
+        print("selected female")
+        femaleButton.isSelected = false
+
+        
+        
+    }
+    @IBAction func didSelectMale(_ sender: Any) {
+        print("selected male")
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                // set deselected
+                button.isSelected = false
+            } else {
+                // set selected
+                button.isSelected = true
+            }
+        }
+    }
     
     //@IBAction func matchButton(_ sender: UIButton) {
         

@@ -74,7 +74,11 @@
                         <viewLayoutGuide key="safeArea" id="xuo-33-ZIu"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Profile" id="NGa-nT-MwV"/>
+                        <barButtonItem title="Profile" id="NGa-nT-MwV">
+                            <connections>
+                                <segue destination="R0D-EK-oUE" kind="show" id="X4i-3n-USb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="4hB-7x-VKG"/>
                         <barButtonItem width="42" systemItem="fixedSpace" id="7iJ-tZ-azm">
                             <color key="tintColor" red="1" green="0.048751087826785833" blue="0.04962878066422749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,6 +130,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6t-Ih-xyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3206.4000000000001" y="102.54872563718142"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="2I0-U5-6ES">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="R0D-EK-oUE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3427" y="295"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HlG-C0-ney">
