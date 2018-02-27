@@ -10,6 +10,19 @@ import Alamofire
 import UIKit
 import WebKit
 
+extension UIViewController {
+    // Use this to hide the soft keyboard when the user taps the background
+    func hideKeyboardOnBackgroundTap() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
     class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
@@ -21,10 +34,14 @@ import WebKit
 
         override func viewDidLoad() {
             super.viewDidLoad()
+            
             usernameTextField.borderStyle = UITextBorderStyle.roundedRect
             passTextField.borderStyle = UITextBorderStyle.roundedRect
             emailTextField.borderStyle = UITextBorderStyle.roundedRect
+            
+            self.hideKeyboardOnBackgroundTap()
         }
+    
     
         @IBAction func didTapStrava(_ sender: Any) {
        // }
@@ -89,7 +106,25 @@ import WebKit
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
-        requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
+        // Check to make sure user has filled in all textfields
+        if ((usernameTextField.text == "") || (passTextField.text == "") || (emailTextField.text == "")) {
+            let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        // Check to make sure email has '@' symbol and username and password are long enough
+        } else if (!(emailTextField.text?.contains("@"))!) {
+            let alert = UIAlertController(title: "", message: "Please enter a valid email address.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        // Make sure they have entered a long enough username, password, and email
+        } else if ((username?.count)! < 3 || (pass?.count)! < 3 || (email?.count)! < 3) {
+            let alert = UIAlertController(title: "", message: "Please enter a email, username and password longer than 3 characters.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            // If everything looks ok, try to sign them in
+            requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
+        }
     }
         
     func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
@@ -107,6 +142,7 @@ import WebKit
                 switch response.result {
                 case .success:
                     print("Post Successful")
+                    print(response)
                     let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
                     self.present(matchingVC, animated: true, completion: nil)
 
