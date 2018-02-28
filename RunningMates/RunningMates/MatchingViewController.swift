@@ -10,72 +10,75 @@ import UIKit
 import Alamofire
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
-   
+
    // MARK: Properties
-   
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
     var rootURl: String = "https://running-mates.herokuapp.com/"
-    
-    //STATIC USERS (NOT FETCHED FROM DATABASE)
-    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "drew_bio", gender: "female", age: 21, location: "Davenport, Iowa", email: "email@email.com", username: "drew_username", password: "password", token: "token")
-    
-    let myUser2 = User.init(firstName: "Divya", lastName: "Kalidindi", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/11011108_721832241247638_7480659355385060361_n.jpg?oh=32815d13cbfedff312b0aa696a0856d6&oe=5B0A6634", bio: "divya_bio", gender: "female", age: 21, location: "San Jose, California", email: "email@email.com", username: "divya_username", password: "password", token: "token")
-    
-    let myUser3 = User.init(firstName: "Brian", lastName: "Francis", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/10343026_10208475643911796_8181307666930996163_n.jpg?oh=05206a7f2b629969f6a59cded20bb032&oe=5B1465C9", bio: "brian_bio", gender: "male", age: 21, location: "Menlo, California", email: "email@email.com", username: "brian_username", password: "password", token: "token")
-    
-    let myUser4 = User.init(firstName: "Shea", lastName: "Wojciehowski", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/12920343_920606948037536_7665732452654505496_n.jpg?oh=97c2240c683b256906b9a1a554dc37e8&oe=5B188030", bio: "shea_bio", gender: "female", age: 21, location: "Seattle, Washington", email: "email@email.com", username: "shea_username", password: "password", token: "token")
-    
-    let myUser5 = User.init(firstName: "Sara", lastName: "Topic", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/18300829_10203269778100892_1763409033707054557_n.jpg?oh=778da3fbcfcb259557173978d219dd74&oe=5B1F3980", bio: "sara_bio", gender: "female", age: 21, location: "Manchester, New Hamsphire", email: "email@email.com", username: "sara_username", password: "password", token: "token")
-    
-    let myUser6 = User.init(firstName: "Jon", lastName: "Gonzalez", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-1/10155896_10201446542802611_5710423303942551522_n.jpg?oh=9b1c5d9f02ddb0ff330bf26a9c5fca97&oe=5B19F862", bio: "jon_bio", gender: "male", age: 21, location: "Queens, New York", email: "email@email.com", username: "jon_username", password: "password", token: "token")
-    
+
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+
+//    //STATIC USERS (NOT FETCHED FROM DATABASE)
+//    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "I love running really fast. Try and keep up!", gender: "female", age: 21, location: ["0","0"], email: "email@email.com", username: "drew_username", password: "password", token: "token")
+
+//    let myUser2 = User.init(firstName: "Divya", lastName: "Kalidindi", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/11011108_721832241247638_7480659355385060361_n.jpg?oh=32815d13cbfedff312b0aa696a0856d6&oe=5B0A6634", bio: "Running is so fun!", gender: "female", age: 21, location: "San Jose, California", email: "email@email.com", username: "divya_username", password: "password", token: "token")
+//
+//    let myUser3 = User.init(firstName: "Brian", lastName: "Francis", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/10343026_10208475643911796_8181307666930996163_n.jpg?oh=05206a7f2b629969f6a59cded20bb032&oe=5B1465C9", bio: "running is mah lyfe", gender: "male", age: 21, location: "Menlo, California", email: "email@email.com", username: "brian_username", password: "password", token: "token")
+//
+//    let myUser4 = User.init(firstName: "Shea", lastName: "Wojciehowski", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/12920343_920606948037536_7665732452654505496_n.jpg?oh=97c2240c683b256906b9a1a554dc37e8&oe=5B188030", bio: "RUNNING RUNNING RUNNING", gender: "female", age: 21, location: "Seattle, Washington", email: "email@email.com", username: "shea_username", password: "password", token: "token")
+//
+//    let myUser5 = User.init(firstName: "Sara", lastName: "Topic", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/18300829_10203269778100892_1763409033707054557_n.jpg?oh=778da3fbcfcb259557173978d219dd74&oe=5B1F3980", bio: "Need 1 for run", gender: "female", age: 21, location: "Manchester, New Hamsphire", email: "email@email.com", username: "sara_username", password: "password", token: "token")
+//
+//    let myUser6 = User.init(firstName: "Jon", lastName: "Gonzalez", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-1/10155896_10201446542802611_5710423303942551522_n.jpg?oh=9b1c5d9f02ddb0ff330bf26a9c5fca97&oe=5B19F862", bio: "Come run with me!!", gender: "male", age: 21, location: "Queens, New York", email: "email@email.com", username: "jon_username", password: "password", token: "token")
+
     var userList = [User]()
-    
-    
+
+
     override func viewDidLoad() {
        super.viewDidLoad()
        // Do any additional setup after loading the view, typically from a nib.
-        
+
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
         let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        
+
         let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        
+
         self.view.addGestureRecognizer(swipeLeft)
         self.view.addGestureRecognizer(swipeRight)
-        
-        userList = getUsers()
-        
-//        userList.append(myUser1)
-//        userList.append(myUser2)
-//        userList.append(myUser3)
-//        userList.append(myUser4)
-//        userList.append(myUser5)
-//        userList.append(myUser6)
-        
-//        nameLabel.text = userList[0].firstName
-//        self.downloadImage(userList[0].imageURL, inView: imageView)
-        
+
+        // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
+        userList = getUsers(completion: { list in
+                self.userList = list
+                if (self.userList.count > 0) {
+                self.nameLabel.text = self.userList[0].firstName
+                self.downloadImage(self.userList[0].imageURL, inView: self.imageView)
+                self.ageLabel.text = String(self.userList[self.current_index].age)
+                self.locationLabel.text = String(describing: self.userList[self.current_index].location)
+                self.bioLabel.text = self.userList[self.current_index].bio
+            }
+        })
    }
-    
+
     func downloadImage(_ uri : String, inView: UIImageView){
-        
+
         let url = URL(string: uri)
-        
+
         let task = URLSession.shared.dataTask(with: url!) {responseData,response,error in
             if error == nil{
                 if let data = responseData {
-                    
+
                     DispatchQueue.main.async {
                         inView.image = UIImage(data: data)
                     }
-                    
+
                 }else {
                     print("no data")
                 }
@@ -83,30 +86,30 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                 print("Error")
             }
         }
-        
+
         task.resume()
-        
+
     }
-    
-    func getUsers() -> [User]{
+
+    func getUsers( completion: @escaping ([User])->()) -> [User]{
         print("getting users")
         var usersList = [User]()
-        
+
 //        let params: Parameters = [
 //            "username": "drew",
 //            "location": [0,0]
 //        ]
-        
+
         let params: [String: Any] = [
             "username": "drew",
             "location": [0,0]
         ]
-        
-        
+
+
 //        let url = rootURl + "api/users"
         let url = "http://localhost:9090/api/users"
 //        var url: String = "https://running-mates.herokuapp.com/api/users"
-        
+
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -114,16 +117,34 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-//                    print()
-//                    let jsonUser = User(json: [String:Any](response))
-//                    usersList.append(jsonUser)
+                    print("success")
+//                    print(String(describing: response.result.value))
                     
+                    if let jsonResult = response.result.value as? [[String:Any]] {
+                        for jsonUser in jsonResult {
+//                            print("jsonUser:")
+//                            print(jsonUser)
+                            let user = User(json: jsonUser)
+                            if (user != nil) {
+                                usersList.append(user!)
+                                print("successfully added user")
+                                print(usersList.count)
+                            } else {
+                                print("nil")
+                            }
+                        }
+                        completion(usersList)
+                    } else {
+                        print("error creating user")
+                    }
+
                 case .failure(let error):
+                    print("error fetching users")
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
-        
+//        debugPrint("whole _request ****",_request)
+
         return usersList
     }
 
@@ -131,13 +152,13 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
        super.didReceiveMemoryWarning()
        // Dispose of any resources that can be recreated.
    }
-   
+
    //MARK: Actions
     // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
         let size = userList.count
-        
-        
+
+
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right:
             print("SWIPED right")
@@ -152,20 +173,24 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             nameLabel.text = userList[current_index].firstName
             self.downloadImage(userList[current_index].imageURL, inView: imageView)
-            
-            
+
+            ageLabel.text = String(userList[current_index].age)
+            locationLabel.text = String(describing: userList[current_index].location)
+            bioLabel.text = userList[current_index].bio
+
+
         default:
             break
         }
-        
+
     }
-    
+
     @IBAction func matchButton(_ sender: UIButton) {
-        
+
         print("You clicked match.")
-        
+
     }
-    
+
 //    func fetchUsers() {
 //
 //        //var dic=NSDictionary()
@@ -192,6 +217,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 //        }
 //        debugPrint("whole _request ****",_request)
 //    }
-   
-   
+
+
 }

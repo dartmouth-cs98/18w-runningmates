@@ -10,7 +10,7 @@ import Alamofire
 import UIKit
 import WebKit
 
-    class ViewController: UIViewController, WKUIDelegate {
+    class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
 //        var rootURl: String = "https://running-mates.herokuapp.com/"
@@ -27,7 +27,9 @@ import WebKit
             emailTextField.borderStyle = UITextBorderStyle.roundedRect
         }
     
-    @IBAction func didTapStrava(sender: AnyObject) {
+        @IBAction func didTapStrava(_ sender: Any) {
+       // }
+        //@IBAction func didTapStrava(sender: AnyObject) {
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
@@ -48,10 +50,15 @@ import WebKit
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                
+                let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+                self.present(matchingVC, animated: true, completion: nil)
+
                 print(credential.oauthToken)
                 let params: Parameters = [
                     "token": credential.oauthToken,
+                    
+                    
+
                 ]
                 let Url = self.rootURl + "api/stravaSignup"
                 
@@ -101,6 +108,9 @@ import WebKit
                 switch response.result {
                 case .success:
                     print("Post Successful")
+                    let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+                    self.present(matchingVC, animated: true, completion: nil)
+
                     //dic=(response.result.value) as! NSDictionary
                     
                     //var error = NSInteger()
