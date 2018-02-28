@@ -92,13 +92,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func getUsers( completion: @escaping ([User])->()) -> [User]{
-        print("getting users")
         var usersList = [User]()
-
-//        let params: Parameters = [
-//            "username": "drew",
-//            "location": [0,0]
-//        ]
 
         let params: [String: Any] = [
             "username": "drew",
@@ -106,29 +100,22 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         ]
 
 
-//        let url = rootURl + "api/users"
-        let url = "http://localhost:9090/api/users"
-//        var url: String = "https://running-mates.herokuapp.com/api/users"
+        let url = rootURl + "api/users"
 
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-        let _request = Alamofire.request("http://localhost:9090/api/users", method: .get, parameters: params)
+        let _request = Alamofire.request(url, method: .get, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    print("success")
-//                    print(String(describing: response.result.value))
-                    
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
-//                            print("jsonUser:")
-//                            print(jsonUser)
+                                print("jsonUser:")
+                                print(jsonUser)
                             let user = User(json: jsonUser)
                             if (user != nil) {
                                 usersList.append(user!)
-                                print("successfully added user")
-                                print(usersList.count)
                             } else {
                                 print("nil")
                             }
@@ -143,8 +130,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                 }
         }
-//        debugPrint("whole _request ****",_request)
-
         return usersList
     }
 

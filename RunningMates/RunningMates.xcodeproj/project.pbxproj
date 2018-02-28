@@ -661,7 +661,6 @@
 				F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
-				88AE1F6B203E7D0C004A51FE /* LoginStoryboard.storyboard in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
@@ -741,7 +740,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88AE1F6D203E7E00004A51FE /* LoginViewController.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
