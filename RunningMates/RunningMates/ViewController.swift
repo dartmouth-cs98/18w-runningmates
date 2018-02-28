@@ -26,7 +26,8 @@ extension UIViewController {
     class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
-        var rootURl: String = "https://running-mates.herokuapp.com/"
+//        var rootURl: String = "https://running-mates.herokuapp.com/"
+        var rootURl: String = "http://localhost:9090/"
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var usernameTextField: UITextField!
         @IBOutlet weak var passTextField: UITextField!
@@ -137,7 +138,7 @@ extension UIViewController {
             "password": password!
         ]
         
-        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
+        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
                 case .success:

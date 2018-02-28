@@ -189,6 +189,8 @@
 		2B6483CC2037918400092C12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88AE1F6A203E7D0C004A51FE /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		88AE1F6C203E7E00004A51FE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
@@ -432,6 +434,8 @@
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
+				88AE1F6A203E7D0C004A51FE /* LoginStoryboard.storyboard */,
+				88AE1F6C203E7E00004A51FE /* LoginViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
