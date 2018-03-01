@@ -15,14 +15,14 @@ class User {
     var bio: String
     var gender: String
     var age: Int
-    var location: String
+    var location: [Float]
     var email: String
     var username: String
     var password: String
     var token: String
 
     //MARK: Initialization
-    init(firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: String, email: String, username: String, password: String, token: String) {
+    init(firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], email: String, username: String, password: String, token: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.imageURL = imageURL
@@ -39,33 +39,36 @@ class User {
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
     init?(json: [String: Any]) {
-        guard let firstName = json["firstName"] as? String,
-            let lastName = json["lastName"] as? String,
-            let imageURL = json["imageURL"] as? String,
-            let bio = json["bio"] as? String,
-            let gender = json["gender"] as? String,
-            let age = json["age"] as? Int,
-            let location = json["location"] as? String,
-            let email = json["email"] as? String,
-            let username = json["username"] as? String,
-            let password = json["password"] as? String,
-            let token = json["token"] as? String
+        print("location type:")
+ 
+        let firstName = json["firstName"]! as? String
+            let lastName = json["lastName"]! as? String
+            let imageURL = json["imageURL"]! as? String
+            let bio = json["bio"]! as? String
+            let gender = json["gender"]! as? String
+            let age = json["age"]! as? Int
+            let location = json["location"]! as? [Float]
+            let email = json["email"]! as? String
+            let username = json["username"]! as? String
+            let password = json["password"]! as? String
+//            let token = json["token"]! as? String
 
-            else {
-                return nil
-        }
+//            else {
+//                return nil
+//        }
 
-        self.firstName = firstName
-        self.lastName = lastName
-        self.imageURL = imageURL
-        self.bio = bio
-        self.gender = gender
-        self.age = age
-        self.location = location
-        self.email = email
-        self.username = username
-        self.password = password
-        self.token = token
+        self.firstName = firstName!
+        self.lastName = lastName!
+        self.imageURL = imageURL!
+        self.bio = bio!
+        self.gender = gender!
+        self.age = age!
+        self.location = location!
+//        self.location = [0,0]
+        self.email = email!
+        self.username = username!
+        self.password = password!
+        self.token = ""
     }
     
 }
