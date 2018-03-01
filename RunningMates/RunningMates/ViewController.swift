@@ -57,9 +57,7 @@ extension UIViewController {
     }
         
     func requestForLogin(Url:String, password: String?, email: String?) {
-    
-    //var dic=NSDictionary()
-        
+            
         let params: Parameters = [
             "email": email!,
             "password": password!
