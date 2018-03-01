@@ -13,10 +13,13 @@ class FilterViewController: UIViewController {
    
 
     
-    // MARK: Properties
-    
     @IBOutlet weak var femaleButton: DLRadioButton!
+    var femaleButtonSwitch = 1
+    // MARK: Properties
     @IBOutlet weak var maleButton: DLRadioButton!
+    var maleButtonSwitch = 1
+
+  
     //@IBOutlet weak var nameLabel: UILabel!
     
   //  @IBOutlet weak var genderLabel: UILabel!
@@ -33,33 +36,25 @@ class FilterViewController: UIViewController {
     
     //MARK: Actions
     
-        
-
-    @IBAction func didSelectFemale(_ sender: DLRadioButton) {
-
-        print("selected female")
-        femaleButton.isSelected = false
-
-        
-        
-    }
-    @IBAction func didSelectMale(_ sender: Any) {
+    @IBAction func maleButtonSelected(_ sender: Any) {
         print("selected male")
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                // set deselected
-                button.isSelected = false
-            } else {
-                // set selected
-                button.isSelected = true
-            }
+        maleButtonSwitch = maleButtonSwitch * -1;
+        if maleButtonSwitch > 0{
+            maleButton.isSelected = false
+        }else{
+            maleButton.isSelected = true
         }
     }
     
-    //@IBAction func matchButton(_ sender: UIButton) {
-        
-      //  nameLabel.text = "Divya Kalidindi"
-    //}
-    //        addSubview(matchingView)
+    @IBAction func femaleButtonSelected(_ sender: Any) {
+        print("selected female")
+        femaleButtonSwitch = femaleButtonSwitch * -1;
+        if femaleButtonSwitch > 0{
+            femaleButton.isSelected = false
+        }else{
+            femaleButton.isSelected = true
+        }
+    }
+
     
 }
