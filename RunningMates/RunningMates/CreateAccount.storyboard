@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2kk-h8-hBr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Title-->
         <scene sceneID="KbZ-cq-U6R">
             <objects>
-                <viewController id="2kk-h8-hBr" customClass="ViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createAccount" id="2kk-h8-hBr" customClass="CreateAccountViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" alpha="0.89999997615814209" contentMode="scaleToFill" id="Ol1-yV-cCc" customClass="GradientView" customModule="RunningMates">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,7 @@
                                     <color key="titleColor" red="0.45018105380000001" green="0.31602113710000002" blue="0.58434097039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="tryLogin:" destination="2kk-h8-hBr" eventType="touchUpInside" id="cop-rv-VPx"/>
+                                    <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="Hv0-gH-pOx"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3SN-1Q-euP">
@@ -91,7 +91,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapStrava:" destination="2kk-h8-hBr" eventType="touchUpInside" id="qpd-RU-ypq"/>
+                                    <action selector="didTapStrava:" destination="2kk-h8-hBr" eventType="touchUpInside" id="bZU-X9-ojj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,12 +111,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="emailTextField" destination="7J1-kb-ycW" id="Jls-iY-fu3"/>
-                        <outlet property="loginButton" destination="zhr-cD-3f4" id="MVX-Ry-D1R"/>
+                        <outlet property="emailTextField" destination="7J1-kb-ycW" id="DRf-Xj-Ew0"/>
                         <outlet property="passReconfirmTextField" destination="p12-1Q-QDl" id="wQy-31-Kry"/>
                         <outlet property="passTextField" destination="3SN-1Q-euP" id="h2d-Vn-Cei"/>
-                        <outlet property="signUpButton" destination="zhr-cD-3f4" id="udx-dN-FfV"/>
-                        <outlet property="usernameTextField" destination="3SN-1Q-euP" id="1Ki-Ve-7xD"/>
+                        <outlet property="signUpButton" destination="zhr-cD-3f4" id="kDh-AS-iFK"/>
+                        <outlet property="stravaButton" destination="lj6-PR-g2b" id="cXD-Dx-fTK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZL6-aL-Cnf" sceneMemberID="firstResponder"/>

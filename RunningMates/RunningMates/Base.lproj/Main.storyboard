@@ -76,13 +76,14 @@
                             </button>
                             <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z1-Dk-72V">
                                 <rect key="frame" x="0.0" y="560" width="375" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Create new account">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapCreateAccountButton:" destination="YdX-Bu-cFg" eventType="touchUpInside" id="UKq-Lx-Grg"/>
+                                    <segue destination="EBC-b5-tvg" kind="show" identifier="createAccount" id="6a4-Qa-otY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -103,7 +104,6 @@
                         <outlet property="emailTextField" destination="eBe-CR-my3" id="5ta-aC-RGB"/>
                         <outlet property="loginButton" destination="5TG-WG-TQu" id="ket-ug-Wbk"/>
                         <outlet property="passTextField" destination="wZB-sK-dip" id="cch-0K-OKU"/>
-                        <outlet property="usernameTextField" destination="wZB-sK-dip" id="C1S-rA-MRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpj-FS-zYR" sceneMemberID="firstResponder"/>
@@ -117,6 +117,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jok-vY-2AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1306" y="96"/>
+        </scene>
+        <!--createAccount-->
+        <scene sceneID="jIE-pF-7av">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="createAccount" storyboardName="CreateAccount" referencedIdentifier="createAccount" id="EBC-b5-tvg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DXF-Ec-HZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1163" y="355"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="va5-ng-txQ">
