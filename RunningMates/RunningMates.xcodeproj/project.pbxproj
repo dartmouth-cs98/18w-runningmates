@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		12D6AD2770A3750BB94BEF43 /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
+		2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */; };
+		2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */; };
+		2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -151,6 +154,9 @@
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
 		2B16CFD2203CE74200DFFBEF /* logo_strava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_strava.png; sourceTree = "<group>"; };
+		2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
+		2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
+		2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		2B6483922037918400092C12 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2B6483932037918400092C12 /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
 		2B6483942037918400092C12 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -431,9 +437,12 @@
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
 				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
+				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
+				2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */,
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
+				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				88AE1F6A203E7D0C004A51FE /* LoginStoryboard.storyboard */,
 				88AE1F6C203E7E00004A51FE /* LoginViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
@@ -659,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */,
+				2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
@@ -668,6 +678,7 @@
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
+				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
 				FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,6 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,

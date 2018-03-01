@@ -29,21 +29,25 @@ extension UIViewController {
 //        var rootURl: String = "https://running-mates.herokuapp.com/"
         var rootURl: String = "http://localhost:9090/"
         @IBOutlet weak var loginButton: UIButton!
-        @IBOutlet weak var usernameTextField: UITextField!
         @IBOutlet weak var passTextField: UITextField!
         @IBOutlet weak var emailTextField: UITextField!
-
+        @IBOutlet weak var createAccountButton: UIButton!
+        
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            usernameTextField.borderStyle = UITextBorderStyle.roundedRect
             passTextField.borderStyle = UITextBorderStyle.roundedRect
             emailTextField.borderStyle = UITextBorderStyle.roundedRect
             
             self.hideKeyboardOnBackgroundTap()
         }
     
-    
+        @IBAction func didTapCreateAccountButton(_ sender: Any) {
+            // Show create account screen
+            let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier: "createAccount") as! CreateAccountViewController
+            self.present(createAccountVC, animated: true, completion: nil)
+        }
+        
         @IBAction func didTapStrava(_ sender: Any) {
        // }
         //@IBAction func didTapStrava(sender: AnyObject) {
@@ -103,12 +107,11 @@ extension UIViewController {
     }
 
     @IBAction func tryLogin(_ sender: UIButton) {
-        let username: String? = usernameTextField.text
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
         // Check to make sure user has filled in all textfields
-        if ((usernameTextField.text == "") || (passTextField.text == "") || (emailTextField.text == "")) {
+        if ((passTextField.text == "") || (emailTextField.text == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -118,23 +121,22 @@ extension UIViewController {
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         // Make sure they have entered a long enough username, password, and email
-        } else if ((username?.count)! < 3 || (pass?.count)! < 3 || (email?.count)! < 3) {
+        } else if ((pass?.count)! < 3 || (email?.count)! < 3) {
             let alert = UIAlertController(title: "", message: "Please enter a email, username and password longer than 3 characters.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             // If everything looks ok, try to sign them in
-            requestForLogin(Url: rootURl + "api/signup", username: username, password: pass, email: email)
+            requestForLogin(Url: rootURl + "api/signup", password: pass, email: email)
         }
     }
         
-    func requestForLogin(Url:String, username: String?, password: String?, email: String?) {
+    func requestForLogin(Url:String, password: String?, email: String?) {
     
     //var dic=NSDictionary()
         
         let params: Parameters = [
             "email": email!,
-            "username": username!,
             "password": password!
         ]
         
