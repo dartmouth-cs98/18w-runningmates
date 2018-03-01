@@ -11,7 +11,8 @@ import UIKit
 import WebKit
 
 extension UIViewController {
-    // Use this to hide the soft keyboard when the user taps the background
+    
+    // Use this function to hide the soft keyboard when the user taps the background
     func hideKeyboardOnBackgroundTap() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

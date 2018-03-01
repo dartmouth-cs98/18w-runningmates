@@ -12,6 +12,7 @@
 		2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */; };
 		2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */; };
 		2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */; };
+		2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -157,6 +158,7 @@
 		2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateProfile.storyboard; sourceTree = "<group>"; };
 		2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccount.storyboard; sourceTree = "<group>"; };
 		2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		2B6483922037918400092C12 /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2B6483932037918400092C12 /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
 		2B6483942037918400092C12 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				88AE1F6A203E7D0C004A51FE /* LoginStoryboard.storyboard */,
 				88AE1F6C203E7E00004A51FE /* LoginViewController.swift */,
+				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
@@ -754,6 +757,7 @@
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
+				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="KbZ-cq-U6R">
             <objects>
                 <viewController id="2kk-h8-hBr" customClass="ViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhr-cD-3f4" userLabel="Sign Up Button">
                                 <rect key="frame" x="103" y="488" width="171" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.45018105380000001" green="0.31602113710000002" blue="0.58434097039999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -106,6 +106,9 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="D5I-pq-eIt">
+                        <barButtonItem key="backBarButtonItem" title="Go Back" id="1J0-60-k7C"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="7J1-kb-ycW" id="Jls-iY-fu3"/>
