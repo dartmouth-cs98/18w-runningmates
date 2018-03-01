@@ -102,6 +102,14 @@
                                     <segue destination="i5O-3r-hPK" kind="show" id="YpS-Xh-o6U"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7C-BU-XgG">
+                                <rect key="frame" x="173" y="48" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="gert"/>
+                                <connections>
+                                    <segue destination="Q1c-BN-oLB" kind="show" id="LNP-zj-Cl3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <userDefinedRuntimeAttributes>
@@ -146,16 +154,13 @@
                                 <rect key="frame" x="16" y="35" width="153" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="JCs-0d-Glg" appends="YES" id="iN4-2U-T8l"/>
-                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRN-TQ-QOS">
-                                <rect key="frame" x="78" y="197" width="30" height="30"/>
+                                <rect key="frame" x="17" y="197" width="153" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit"/>
+                                <state key="normal" title="Change profile picture"/>
                                 <connections>
-                                    <action selector="editImage:" destination="Q1c-BN-oLB" eventType="touchUpInside" id="Ngl-vS-1An"/>
+                                    <action selector="editProfileImage:" destination="Q1c-BN-oLB" eventType="touchUpInside" id="e0t-Ld-VJ4"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z4o-Mv-COX">
@@ -221,6 +226,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deM-KH-Ucc">
+                                <rect key="frame" x="170" y="572" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveChanges:" destination="Q1c-BN-oLB" eventType="touchUpInside" id="kf7-0E-Ww9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="EEe-RI-rAe"/>
@@ -232,11 +245,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjU-Ps-wbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="JCs-0d-Glg">
-                    <connections>
-                        <action selector="selectImageFromPhotoLibrary:" destination="Q1c-BN-oLB" id="Y5A-hD-zeR"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2938" y="277"/>
         </scene>

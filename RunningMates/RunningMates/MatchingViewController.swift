@@ -16,8 +16,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
-//    var rootURl: String = "http://localhost:9090/"
-    var rootURl: String = "https://running-mates.herokuapp.com/"
+    var rootURl: String = "http://localhost:9090/"
+//    var rootURl: String = "https://running-mates.herokuapp.com/"
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -96,7 +96,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
         let params: [String: Any] = [
             "username": "drew",
-            "location": [0,0]
+            "location": [43.7022, 72.2896]
         ]
 
 
@@ -173,7 +173,25 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func matchButton(_ sender: UIButton) {
 
         print("You clicked match.")
-
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "requestingUser": "fdsfasd",
+            "requestedUser": "fdsaf"
+        ]
+        
+        let url = rootURl + "api/users"
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("success")
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
     }
 
 //    func fetchUsers() {
