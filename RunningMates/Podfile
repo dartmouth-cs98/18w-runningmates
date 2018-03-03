@@ -5,5 +5,6 @@ use_frameworks!
 target 'RunningMates' do
 # Pods for RunningMates
     pod 'Alamofire', '~> 4.5'
-
+    pod 'DLRadioButton', '~> 1.4'
+    pod 'OAuthSwift', '~> 1.2.0'
 end
