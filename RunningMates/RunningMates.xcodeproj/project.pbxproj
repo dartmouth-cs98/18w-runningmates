@@ -32,6 +32,7 @@
 		FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF412042514A00EA78CE /* Settings.storyboard */; };
 		FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1AF432042539700EA78CE /* SettingsViewController.swift */; };
 		FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF452043218D00EA78CE /* chat.storyboard */; };
+		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -304,6 +305,7 @@
 		FAD1AF412042514A00EA78CE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FAD1AF432042539700EA78CE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FAD1AF452043218D00EA78CE /* chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = chat.storyboard; sourceTree = "<group>"; };
+		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -555,6 +557,7 @@
 				88AE1F6C203E7E00004A51FE /* LoginViewController.swift */,
 				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
+				FAD3055C2048C1BF00DB682F /* RangeSlider.swift */,
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
 				FA5711092021208D005792CB /* Assets.xcassets */,
@@ -944,6 +947,7 @@
 				FA2267582045E04600BDB545 /* DLRadioButton.m in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
+				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,

@@ -11,6 +11,7 @@ import DLRadioButton
 
 class FilterViewController: UIViewController {
    
+    let rangeSlider = RangeSlider(frame: CGRect.zero)
 
     
     @IBOutlet weak var femaleButton: DLRadioButton!
@@ -26,7 +27,17 @@ class FilterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        rangeSlider.backgroundColor = UIColor.red
+        view.addSubview(rangeSlider)
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        let margin: CGFloat = 20.0
+        let width = view.bounds.width - 2.0 * margin
+        rangeSlider.frame = CGRect(x: margin, y: margin + topLayoutGuide.length,
+                                   width: width, height: 31.0)
     }
     
     override func didReceiveMemoryWarning() {
