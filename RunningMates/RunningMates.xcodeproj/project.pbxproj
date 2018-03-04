@@ -23,6 +23,8 @@
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
 		FA2267582045E04600BDB545 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2267572045E04600BDB545 /* DLRadioButton.m */; };
+		FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */; };
+		FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -32,6 +34,7 @@
 		FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF412042514A00EA78CE /* Settings.storyboard */; };
 		FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1AF432042539700EA78CE /* SettingsViewController.swift */; };
 		FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF452043218D00EA78CE /* chat.storyboard */; };
+		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -291,6 +294,8 @@
 		FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../../Downloads/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../Downloads/Alamofire-master-2/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DLRadioButton.xcodeproj; path = DLRadioButton/DLRadioButton.xcodeproj; sourceTree = "<group>"; };
+		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
+		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 		FAD1AF412042514A00EA78CE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FAD1AF432042539700EA78CE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FAD1AF452043218D00EA78CE /* chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = chat.storyboard; sourceTree = "<group>"; };
+		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -539,7 +545,9 @@
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
+				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FA2267562045E04600BDB545 /* DLRadioButton.h */,
 				FA2267572045E04600BDB545 /* DLRadioButton.m */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
@@ -555,6 +563,7 @@
 				88AE1F6C203E7E00004A51FE /* LoginViewController.swift */,
 				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
+				FAD3055C2048C1BF00DB682F /* RangeSlider.swift */,
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
 				FA5711092021208D005792CB /* Assets.xcassets */,
@@ -940,10 +949,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
+				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
+				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				FA2267582045E04600BDB545 /* DLRadioButton.m in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
+				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,

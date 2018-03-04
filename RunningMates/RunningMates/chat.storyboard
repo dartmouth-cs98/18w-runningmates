@@ -32,15 +32,6 @@
                             <navigationBar key="tableFooterView" contentMode="scaleToFill" id="GpZ-Y6-pUN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Chat" id="UsK-c9-T7U">
-                                        <barButtonItem key="leftBarButtonItem" title="Matching" id="kve-tX-Gpq">
-                                            <connections>
-                                                <segue destination="43R-jx-633" kind="show" id="rGq-NY-8TV"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
                             </navigationBar>
                         </tableView>
                         <connections>
