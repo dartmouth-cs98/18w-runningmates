@@ -5,6 +5,7 @@
 //  Created by Sara Topic on 03/03/2018.
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
+//source: https://www.raywenderlich.com/76433/how-to-make-a-custom-control-swift
 
 import UIKit
 import QuartzCore

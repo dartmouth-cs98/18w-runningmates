@@ -1,6 +1,7 @@
 import UIKit
 import QuartzCore
 
+//source: https://www.raywenderlich.com/76433/how-to-make-a-custom-control-swift
 class RangeSlider: UIControl {
     let trackLayer = RangeSliderTrackLayer()
     let lowerThumbLayer = RangeSliderThumbLayer()
