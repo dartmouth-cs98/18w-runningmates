@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P04-fV-YYq">
-                                <rect key="frame" x="16" y="362.79327383034683" width="135.99999999999989" height="38.999999999999872"/>
+                                <rect key="frame" x="16" y="512" width="135.99999999999989" height="38.999999999999872"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Proximity">
@@ -47,40 +47,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Gender">
-                                        <attributes>
-                                            <font key="NSFont" size="21" name=".AppleSystemUIFont"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="4" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="7nn-HZ-yPu" userLabel="paceSlide">
-                                <rect key="frame" x="21" y="579.79327383034683" width="340" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.65490196078431373" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                                <rect key="contentStretch" x="0.40000000000000002" y="0.0" width="0.0" height="1"/>
-                                <color key="thumbTintColor" red="1" green="0.65490196078431373" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="IJb-On-fSr" userLabel="proximitySlide">
-                                <rect key="frame" x="21" y="430.79327383034683" width="340" height="30.000000000000028"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <rect key="contentStretch" x="0.40000000000000002" y="0.0" width="0.0" height="1"/>
-                                <color key="thumbTintColor" red="1" green="0.65490196078431373" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                            </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="18" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="bF5-qg-xCe" userLabel="AgeSlide">
-                                <rect key="frame" x="17" y="292.79327383034683" width="340" height="30.000000000000014"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <rect key="contentStretch" x="0.40000000000000002" y="0.0" width="0.0" height="1"/>
-                                <color key="minimumTrackTintColor" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="thumbTintColor" red="1" green="0.65490196078431373" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-dL-5FM">
-                                <rect key="frame" x="19" y="496.99999999999994" width="57" height="39.000000000000057"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Pace">
                                         <attributes>
                                             <font key="NSFont" size="21" name=".AppleSystemUIFont"/>
                                         </attributes>
@@ -178,6 +144,18 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-dL-5FM">
+                                <rect key="frame" x="16" y="381" width="57" height="39.000000000000057"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Pace">
+                                        <attributes>
+                                            <font key="NSFont" size="21" name=".AppleSystemUIFont"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="m69-ZC-I5W"/>

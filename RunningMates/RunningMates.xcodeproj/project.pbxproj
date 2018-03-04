@@ -23,6 +23,8 @@
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
 		FA2267582045E04600BDB545 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2267572045E04600BDB545 /* DLRadioButton.m */; };
+		FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */; };
+		FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -292,6 +294,8 @@
 		FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../../Downloads/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../Downloads/Alamofire-master-2/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DLRadioButton.xcodeproj; path = DLRadioButton/DLRadioButton.xcodeproj; sourceTree = "<group>"; };
+		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
+		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -541,7 +545,9 @@
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
+				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FA2267562045E04600BDB545 /* DLRadioButton.h */,
 				FA2267572045E04600BDB545 /* DLRadioButton.m */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
@@ -943,6 +949,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
+				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
+				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				FA2267582045E04600BDB545 /* DLRadioButton.m in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
