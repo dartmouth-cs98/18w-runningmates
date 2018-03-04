@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ago-c8-JKF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="matching" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hEu-Oc-4T3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-SZ-Ahu">
@@ -70,37 +69,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LpG-zT-cIM">
-                                <rect key="frame" x="1" y="20" width="372" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textAttributes key="largeTitleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="74" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem id="rJU-S6-Jmv">
-                                        <nil key="title"/>
-                                        <leftBarButtonItems>
-                                            <barButtonItem title="Profile                   " id="Ys2-i2-JbK"/>
-                                            <barButtonItem systemItem="compose" id="mOG-tQ-5fc">
-                                                <connections>
-                                                    <segue destination="bZu-eF-9dI" kind="show" id="GWB-8G-5cG"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </leftBarButtonItems>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7al-KH-HkQ">
-                                            <connections>
-                                                <segue destination="enw-5Z-cHv" kind="show" id="PB3-15-GmP"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xuo-33-ZIu"/>
                     </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <toolbarItems>
+                        <barButtonItem title="Profile" id="NGa-nT-MwV">
+                            <connections>
+                                <segue destination="R0D-EK-oUE" kind="show" id="X4i-3n-USb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="4hB-7x-VKG"/>
+                        <barButtonItem width="42" systemItem="fixedSpace" id="7iJ-tZ-azm">
+                            <color key="tintColor" red="1" green="0.048751087826785833" blue="0.04962878066422749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <barButtonItem title="Item" image="Image-1" width="234" id="73I-q6-GJx">
+                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <segue destination="bZu-eF-9dI" kind="show" id="c2e-J7-coF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Item" image="Image-2" id="TNV-gT-Go4">
+                            <connections>
+                                <segue destination="enw-5Z-cHv" kind="show" id="naY-Yh-eAO"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="okQ-F0-SDE"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="ageLabel" destination="j6n-9X-lxp" id="QRK-eh-E7o"/>
                         <outlet property="bioLabel" destination="5Ai-J4-F2l" id="loA-x5-XYo"/>
@@ -116,7 +113,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2133.5999999999999" y="155.17241379310346"/>
+            <point key="canvasLocation" x="2472.8000000000002" y="155.17241379310346"/>
         </scene>
         <!--chat-->
         <scene sceneID="pTn-tk-e9g">
@@ -124,7 +121,7 @@
                 <viewControllerPlaceholder storyboardName="chat" id="enw-5Z-cHv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCg-WT-rzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2933" y="-84"/>
+            <point key="canvasLocation" x="3271.1999999999998" y="-84.557721139430285"/>
         </scene>
         <!--FilterStoryboard-->
         <scene sceneID="7Xc-qg-bIu">
@@ -132,7 +129,41 @@
                 <viewControllerPlaceholder storyboardName="FilterStoryboard" id="bZu-eF-9dI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6t-Ih-xyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2868" y="103"/>
+            <point key="canvasLocation" x="3206.4000000000001" y="102.54872563718142"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="2I0-U5-6ES">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="R0D-EK-oUE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3427" y="295"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HlG-C0-ney">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="SLy-yC-Sbj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="krc-st-WTX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YLw-4w-hut">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="ago-c8-JKF" kind="relationship" relationship="rootViewController" id="HGK-uy-ZLu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oej-es-Mwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="526" y="155"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image-1" width="339" height="271"/>
+        <image name="Image-2" width="677" height="561"/>
+    </resources>
 </document>

@@ -1,12 +1,18 @@
 PODS:
   - Alamofire (4.6.0)
+  - DLRadioButton (1.4.11)
+  - OAuthSwift (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - DLRadioButton (~> 1.4)
+  - OAuthSwift (~> 1.2.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
+  OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
 
-PODFILE CHECKSUM: 563a20f89a69322bc5f6a9c8d33a79d238d54e83
+PODFILE CHECKSUM: dce5728fb110817676b15ae95c96866233420f74
 
 COCOAPODS: 1.4.0
