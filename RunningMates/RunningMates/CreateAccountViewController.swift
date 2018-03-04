@@ -71,9 +71,8 @@ class CreateAccountViewController: UIViewController {
                         switch response.result {
                         case .success:
                             print("Post Successful")
-                            //dic=(response.result.value) as! NSDictionary
-                            //var error = NSInteger()
-                            //error=dic.object(forKey: "error") as! NSInteger
+                            let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                            self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
                             print(error)
                         }
@@ -128,8 +127,9 @@ class CreateAccountViewController: UIViewController {
                 case .success:
                     print("Post Successful")
                     print(response)
-                    // Todo: segue to create account view
-                    
+                    // If the account creation was successful, send user to create profile page
+                    let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                    self.present(createProfileVC, animated: true, completion: nil)
                 case .failure(let error):
                     print(error)
                 }
