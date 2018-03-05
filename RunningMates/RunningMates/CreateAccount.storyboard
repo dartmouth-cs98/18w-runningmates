@@ -55,7 +55,6 @@
                                 </state>
                                 <connections>
                                     <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="Hv0-gH-pOx"/>
-                                    <segue destination="4Yu-2o-yEC" kind="show" id="vEv-km-GOA"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3SN-1Q-euP">

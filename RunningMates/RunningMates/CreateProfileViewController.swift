@@ -11,7 +11,7 @@ import OAuthSwift
 import Alamofire
 import WebKit
 
-class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
@@ -27,8 +27,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
-        //saveButton.layer.borderColor = UIColor.green.cgColor
-        //saveButton.setTitleColor(UIColor.green, for: UIControlState.normal)
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         bioTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
@@ -64,21 +62,23 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) ->
         String? {
-            var pickerLabel = view as? UILabel;
-            
-            if (pickerLabel == nil)
-            {
-                pickerLabel = UILabel()
-                
-                pickerLabel?.font = UIFont(name: "Montserrat", size: 14)
-                pickerLabel?.textAlignment = NSTextAlignment.center
-            }
-            
             return pickerOptions[row]
     }
     
     @IBAction func addImageButtonClicked(_ sender: Any) {
-        //upload new image from camera roll
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = image
+        dismiss(animated:true, completion: nil)
     }
     
     

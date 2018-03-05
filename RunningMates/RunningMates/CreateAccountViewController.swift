@@ -11,7 +11,7 @@ import OAuthSwift
 import Alamofire
 import WebKit
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var passReconfirmTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
@@ -19,6 +19,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     
+    var alertView: UIAlertController?
     var webView: WKWebView!
     //var rootURl: String = "https://running-mates.herokuapp.com/"
     var rootURl: String = "http://localhost:9090/"
@@ -57,8 +58,8 @@ class CreateAccountViewController: UIViewController {
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
-                self.present(matchingVC, animated: true, completion: nil)
+                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                self.present(createProfileVC, animated: true, completion: nil)
                 
                 print(credential.oauthToken)
                 let params: Parameters = [
@@ -90,7 +91,7 @@ class CreateAccountViewController: UIViewController {
         let email: String? = emailTextField.text
         
         // Check to make sure user has filled in all textfields
-        if ((passTextField.text == "") || (emailTextField.text == "")) {
+        if ((passTextField.text! == "") || (emailTextField.text! == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -104,7 +105,7 @@ class CreateAccountViewController: UIViewController {
             let alert = UIAlertController(title: "", message: "Please enter a email, username and password longer than 3 characters.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        } else if (!(passTextField.text == passReconfirmTextField.text)) {
+        } else if (!(passTextField.text! == passReconfirmTextField.text!)) {
             let alert = UIAlertController(title: "Password Mismatch", message: "Please re-enter your password.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -131,6 +132,9 @@ class CreateAccountViewController: UIViewController {
                     let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                     self.present(createProfileVC, animated: true, completion: nil)
                 case .failure(let error):
+                    let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                     print(error)
                 }
         }
