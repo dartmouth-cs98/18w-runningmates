@@ -10,7 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Main-->
+        <scene sceneID="11G-sR-r0v">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="IST-ae-gXH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VGx-P6-O1Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="507"/>
+        </scene>
+        <!--Create Account View Controller-->
         <scene sceneID="KbZ-cq-U6R">
             <objects>
                 <viewController storyboardIdentifier="createAccount" id="2kk-h8-hBr" customClass="CreateAccountViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
@@ -94,6 +102,17 @@
                                     <action selector="didTapStrava:" destination="2kk-h8-hBr" eventType="touchUpInside" id="bZU-X9-ojj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YL-sD-or9">
+                                <rect key="frame" x="18" y="20" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCancelButtonClick:" destination="2kk-h8-hBr" eventType="touchUpInside" id="vDl-xN-FvI"/>
+                                    <segue destination="IST-ae-gXH" kind="show" id="NSL-bY-6Qo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="T63-OG-7ZX"/>
                         <userDefinedRuntimeAttributes>
@@ -106,11 +125,9 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="D5I-pq-eIt">
-                        <barButtonItem key="backBarButtonItem" title="Go Back" id="1J0-60-k7C"/>
-                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="2YL-sD-or9" id="ILZ-42-GaK"/>
                         <outlet property="emailTextField" destination="7J1-kb-ycW" id="DRf-Xj-Ew0"/>
                         <outlet property="passReconfirmTextField" destination="p12-1Q-QDl" id="wQy-31-Kry"/>
                         <outlet property="passTextField" destination="3SN-1Q-euP" id="h2d-Vn-Cei"/>

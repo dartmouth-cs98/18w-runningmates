@@ -43,12 +43,12 @@ extension UIViewController {
             self.hideKeyboardOnBackgroundTap()
         }
     
-        @IBAction func didTapCreateAccountButton(_ sender: Any) {
-            // Show create account screen
-            let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier:
-                "createAccount") as! CreateAccountViewController
-            self.present(createAccountVC, animated: true, completion: nil)
-        }
+    @IBAction func didTapCreateAccountButton(_ sender: Any) {
+        // Show create account screen
+        let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier:
+            "createAccount") as! CreateAccountViewController
+        self.present(createAccountVC, animated: false, completion: nil)
+    }
 
     @IBAction func tryLogin(_ sender: UIButton) {
         let pass: String? = passTextField.text
