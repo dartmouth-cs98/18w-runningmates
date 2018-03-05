@@ -59,13 +59,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         userList = getUsers(completion: { list in
                 self.userList = list
-                if (self.userList.count > 0) {
-                self.nameLabel.text = self.userList[0].firstName
-                self.downloadImage(self.userList[0].imageURL, inView: self.imageView)
-                    self.ageLabel.text = String(describing: self.userList[self.current_index].age)
-                self.locationLabel.text = String(describing: self.userList[self.current_index].location)
-                self.bioLabel.text = self.userList[self.current_index].bio
-            }
+                self.changeDisplayedUser()
         })
    }
 
@@ -122,19 +116,36 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    print("result: ")
-                    print(String(describing: response.result.value))
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
-                                let user = User(json: jsonUser)
+                                let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 if (user != nil) {
                                     usersList.append(user!)
                                 } else {
                                     print("nil")
                                 }
+                            } catch UserInitError.invalidFirstName {
+                                print("invalid first name")
+                                print(jsonUser)
+                            } catch UserInitError.invalidLastName {
+                                print("invalid last name")
+                            } catch UserInitError.invalidImageURL {
+                                print("invalid image url")
+                            } catch UserInitError.invalidBio {
+                                print("invalid bio")
+                            } catch UserInitError.invalidGender {
+                                print("invalid gender")
+                            } catch UserInitError.invalidAge {
+                                print("invalid age")
+                            } catch UserInitError.invalidLocation {
+                                print("invalid location")
+                            } catch UserInitError.invalidEmail {
+                                print("invalid email")
+                            } catch UserInitError.invalidPassword {
+                                print("invalid password")
                             } catch {
-                                print("error with user format")
+                                print("other error")
                             }
                         }
                         completion(usersList)
@@ -160,11 +171,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
         let size = userList.count
 
-
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right:
             print("SWIPED right")
-            //do nothing if swipe right?
+            if (current_index > 0) {
+                current_index = current_index - 1
+            }
+            else {
+                current_index = size - 1
+            }
         case UISwipeGestureRecognizerDirection.left:
             print("SWIPED left")
             if (current_index < size-1) {
@@ -173,18 +188,37 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             else {
                 current_index = 0
             }
-            nameLabel.text = userList[current_index].firstName
-            self.downloadImage(userList[current_index].imageURL, inView: imageView)
-
-            ageLabel.text = String(describing: userList[current_index].age)
-            locationLabel.text = String(describing: userList[current_index].location)
-            bioLabel.text = userList[current_index].bio
-
-
+     
         default:
             break
         }
+        
+        changeDisplayedUser()
 
+    }
+    
+    func changeDisplayedUser() {
+        nameLabel.text = userList[current_index].firstName
+        self.downloadImage(userList[current_index].imageURL, inView: imageView)
+        
+        ageLabel.text = String(describing: userList[current_index].age)
+        locationLabel.text = String(describing: userList[current_index].location)
+        bioLabel.text = userList[current_index].bio
+        
+        let data = (self.userList[self.current_index].data as! [String:Any])
+       
+        if (data["totalMilesRun"] != nil) {
+            self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
+        } else {
+            self.milesLabel.text = ""
+        }
+        
+        if (data["AveragePace"] != nil) {
+            self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
+        } else {
+            self.avgPaceLabel.text = ""
+        }
+        
     }
 
     @IBAction func matchButton(_ sender: UIButton) {
