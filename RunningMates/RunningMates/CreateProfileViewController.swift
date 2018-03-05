@@ -16,29 +16,39 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var bioTextView: UITextField!
+    @IBOutlet weak var averagePaceTextField: UITextField!
+   // @IBOutlet weak var bioTextView: UITextField!
+    @IBOutlet weak var totalElevationTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
+    @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
     //var rootURl: String = "https://running-mates.herokuapp.com/"
     var rootURl: String = "http://localhost:9090/"
     var pickerOptions: [String] = [String]()
-    
+    var imagePicker: UIImagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        bioTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        //bioTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         nameTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        averagePaceTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
-        bioTextView.clipsToBounds = true
+       // bioTextView.clipsToBounds = true
         nameTextView.clipsToBounds = true
+        averagePaceTextField.clipsToBounds = true
+        totalMilesTextField.clipsToBounds = true
+        totalElevationTextField.clipsToBounds = true
         
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
     }
@@ -65,26 +75,50 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             return pickerOptions[row]
     }
     
+    // Access their photo library and ask user to pick a photo
     @IBAction func addImageButtonClicked(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary;
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    // In the delegate method, set the profile image to the image the user picked
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         profileImage.image = image
         dismiss(animated:true, completion: nil)
     }
     
+//    func uploadImageToServer() {
+//        let params: Parameters = [
+//            "file-name": email!,
+//            "password": password!
+//        ]
+//
+//        let _request = Alamofire.request(Url, method: .get, parameters: params, encoding: JSONEncoding.default)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    print("Post Successful")
+//                    print(response)
+//                    // If the account creation was successful, send user to create profile page
+//                    let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+//                    self.present(createProfileVC, animated: true, completion: nil)
+//                case .failure(let error):
+//                    let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
+//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                    print(error)
+//                }
+//        }
+//        debugPrint("whole _request ****",_request)
+//    }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         //check if enough data has been entered, save user and send to matching page
     }
     
-    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better (like adding rounded edges to other text boxes, make bio text start at the top and not middle of text box). More importantly, for functionality I still need to implement the image uploading and strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
+    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the image uploading and strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
 }

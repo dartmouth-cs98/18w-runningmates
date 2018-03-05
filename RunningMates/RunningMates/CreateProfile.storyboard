@@ -36,7 +36,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="saveButtonClicked:" destination="BMV-4H-rHf" eventType="touchUpInside" id="xa0-z1-4Qb"/>
+                                            <action selector="saveButtonClicked:" destination="BMV-4H-rHf" eventType="touchUpInside" id="brm-Rr-UQu"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="k9M-cw-9BN">
@@ -118,21 +118,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odJ-eP-pMd">
-                                        <rect key="frame" x="13" y="355" width="341" height="103"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <real key="value" value="1.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLD-lp-UVh">
                                         <rect key="frame" x="52" y="326" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -235,6 +220,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2nW-MV-Ibt">
+                                        <rect key="frame" x="16" y="352" width="336" height="115"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -254,12 +254,14 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="addImageButton" destination="xTh-jU-mGs" id="eO7-VL-gka"/>
-                        <outlet property="bioTextView" destination="odJ-eP-pMd" id="0sW-I7-uan"/>
+                        <outlet property="averagePaceTextField" destination="hcD-G9-VaE" id="4HI-jZ-pcV"/>
                         <outlet property="locationTextView" destination="oqJ-d7-0kp" id="N66-7m-isQ"/>
                         <outlet property="nameTextView" destination="hKo-hT-evt" id="lHs-YE-Uih"/>
                         <outlet property="pickerView" destination="kMF-fs-HGL" id="0BB-3a-lcT"/>
                         <outlet property="profileImage" destination="Fwi-6U-3FX" id="pHz-w0-v1F"/>
                         <outlet property="saveButton" destination="bOr-i5-KqX" id="1DA-ep-Dwm"/>
+                        <outlet property="totalElevationTextField" destination="rbV-hA-ucH" id="71b-Je-oHm"/>
+                        <outlet property="totalMilesTextField" destination="INy-0o-bbo" id="inX-cA-Tf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYZ-po-Tey" userLabel="First Responder" sceneMemberID="firstResponder"/>
