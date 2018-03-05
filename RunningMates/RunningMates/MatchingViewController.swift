@@ -16,13 +16,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
-    var rootURl: String = "http://localhost:9090/"
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
-
+    @IBOutlet weak var milesLabel: UILabel!
+    @IBOutlet weak var avgPaceLabel: UILabel!
+    
 //    //STATIC USERS (NOT FETCHED FROM DATABASE)
 //    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "I love running really fast. Try and keep up!", gender: "female", age: 21, location: ["0","0"], email: "email@email.com", username: "drew_username", password: "password", token: "token")
 
@@ -60,7 +62,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                 if (self.userList.count > 0) {
                 self.nameLabel.text = self.userList[0].firstName
                 self.downloadImage(self.userList[0].imageURL, inView: self.imageView)
-                self.ageLabel.text = String(self.userList[self.current_index].age)
+                    self.ageLabel.text = String(describing: self.userList[self.current_index].age)
                 self.locationLabel.text = String(describing: self.userList[self.current_index].location)
                 self.bioLabel.text = self.userList[self.current_index].bio
             }
@@ -93,12 +95,23 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func getUsers( completion: @escaping ([User])->()) -> [User]{
         var usersList = [User]()
-
-        let params: [String: Any] = [
-            "username": "drew",
-            "location": [43.7022, 72.2896]
-        ]
-
+        
+        let params : [String: Any]
+        
+        if (rootURl == "http://localhost:9090/") {
+           params = [
+                "email": "drew@drew.com",
+                "location": [43.7022, 72.2896]
+            ]
+        } else {
+            params = [
+                "email": "drew@test.com",
+                "location": [
+                    -147.349442,
+                    64.751114
+                ],
+            ]
+        }
 
         let url = rootURl + "api/users"
 
@@ -109,15 +122,19 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             .responseJSON { response in
                 switch response.result {
                 case .success:
+                    print("result: ")
+                    print(String(describing: response.result.value))
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
-                                print("jsonUser:")
-                                print(jsonUser)
-                            let user = User(json: jsonUser)
-                            if (user != nil) {
-                                usersList.append(user!)
-                            } else {
-                                print("nil")
+                            do {
+                                let user = User(json: jsonUser)
+                                if (user != nil) {
+                                    usersList.append(user!)
+                                } else {
+                                    print("nil")
+                                }
+                            } catch {
+                                print("error with user format")
                             }
                         }
                         completion(usersList)
@@ -159,7 +176,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             nameLabel.text = userList[current_index].firstName
             self.downloadImage(userList[current_index].imageURL, inView: imageView)
 
-            ageLabel.text = String(userList[current_index].age)
+            ageLabel.text = String(describing: userList[current_index].age)
             locationLabel.text = String(describing: userList[current_index].location)
             bioLabel.text = userList[current_index].bio
 

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-SZ-Ahu">
-                                <rect key="frame" x="153" y="543" width="68" height="54"/>
+                                <rect key="frame" x="153" y="569" width="68" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Match"/>
                                 <connections>
@@ -56,7 +56,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ai-J4-F2l">
-                                <rect key="frame" x="16" y="481" width="349" height="51"/>
+                                <rect key="frame" x="16" y="510" width="349" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -64,6 +64,20 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6n-9X-lxp">
                                 <rect key="frame" x="70" y="412" width="30" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Miles Run" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4m-id-Isp">
+                                <rect key="frame" x="16" y="477" width="171" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Average Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gd-NR-ra9">
+                                <rect key="frame" x="195" y="477" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -100,9 +114,11 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="ageLabel" destination="j6n-9X-lxp" id="QRK-eh-E7o"/>
+                        <outlet property="avgPaceLabel" destination="4gd-NR-ra9" id="kha-Jc-c4U"/>
                         <outlet property="bioLabel" destination="5Ai-J4-F2l" id="loA-x5-XYo"/>
                         <outlet property="imageView" destination="Z7o-t1-mWA" id="RsU-n5-K62"/>
                         <outlet property="locationLabel" destination="ZQ0-Uf-ABm" id="I05-W4-AAL"/>
+                        <outlet property="milesLabel" destination="m4m-id-Isp" id="gqd-pj-vzy"/>
                         <outlet property="nameLabel" destination="pDv-P0-cpK" id="q5h-zD-7ln"/>
                     </connections>
                 </viewController>
