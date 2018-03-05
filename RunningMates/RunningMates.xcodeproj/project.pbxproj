@@ -112,139 +112,6 @@
 			remoteGlobalIDString = 634D5B591C5D8B0F00A3740D;
 			remoteInfo = DLRadioButton;
 		};
-		FA2267642045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F435027A1A6791B200038A29;
-			remoteInfo = OAuthSwift;
-		};
-		FA2267662045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
-			remoteInfo = OAuthSwiftOSX;
-		};
-		FA2267682045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4B6EE1E1BF74CE300443596;
-			remoteInfo = OAuthSwiftTVOS;
-		};
-		FA22676A2045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C40890C01C11B37000E3146A;
-			remoteInfo = OAuthSwiftWatchOS;
-		};
-		FA22676C2045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F451E3C5195B8CD80051434C;
-			remoteInfo = OAuthSwiftDemo;
-		};
-		FA22676E2045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
-			remoteInfo = OAuthSwiftOSXDemo;
-		};
-		FA2267702045E17500BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
-			remoteInfo = OAuthSwiftTests;
-		};
-		FA2267722045E18F00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F43502791A6791B200038A29;
-			remoteInfo = OAuthSwift;
-		};
-		FA22679A2045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		FA22679C2045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS Tests";
-		};
-		FA22679E2045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
-			remoteInfo = "Alamofire macOS";
-		};
-		FA2267A02045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
-			remoteInfo = "Alamofire macOS Tests";
-		};
-		FA2267A22045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS";
-		};
-		FA2267A42045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
-			remoteInfo = "Alamofire tvOS Tests";
-		};
-		FA2267A62045E28E00BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4202FE01B667AA100C997FB;
-			remoteInfo = "Alamofire watchOS";
-		};
-		FA2267AE2045E29900BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = "Alamofire iOS";
-		};
-		FA2267B62045E34000BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 634D5B5A1C5D8B0F00A3740D;
-			remoteInfo = DLRadioButton;
-		};
-		FA2267B82045E34000BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 636C50241C5D9315008B5C96;
-			remoteInfo = DLRadioButtonTests;
-		};
-		FA2267BA2045E37900BDB545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 634D5B591C5D8B0F00A3740D;
-			remoteInfo = DLRadioButton;
-		};
 		FA5711142021208E005792CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA5710F72021208D005792CB /* Project object */;
@@ -316,9 +183,6 @@
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunningMates-Bridging-Header.h"; sourceTree = "<group>"; };
-		FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../../Downloads/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
-		FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../Downloads/Alamofire-master-2/Alamofire.xcodeproj"; sourceTree = "<group>"; };
-		FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DLRadioButton.xcodeproj; path = DLRadioButton/DLRadioButton.xcodeproj; sourceTree = "<group>"; };
 		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
 		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,50 +378,10 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		FA22675B2045E17500BDB545 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FA2267652045E17500BDB545 /* OAuthSwift.framework */,
-				FA2267672045E17500BDB545 /* OAuthSwift.framework */,
-				FA2267692045E17500BDB545 /* OAuthSwift.framework */,
-				FA22676B2045E17500BDB545 /* OAuthSwift.framework */,
-				FA22676D2045E17500BDB545 /* OAuthSwiftDemo.app */,
-				FA22676F2045E17500BDB545 /* OAuthSwiftOSXDemo.app */,
-				FA2267712045E17500BDB545 /* OAuthSwiftTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FA2267902045E28D00BDB545 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FA22679B2045E28E00BDB545 /* Alamofire.framework */,
-				FA22679D2045E28E00BDB545 /* Alamofire iOS Tests.xctest */,
-				FA22679F2045E28E00BDB545 /* Alamofire.framework */,
-				FA2267A12045E28E00BDB545 /* Alamofire macOS Tests.xctest */,
-				FA2267A32045E28E00BDB545 /* Alamofire.framework */,
-				FA2267A52045E28E00BDB545 /* Alamofire tvOS Tests.xctest */,
-				FA2267A72045E28E00BDB545 /* Alamofire.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FA2267B12045E33F00BDB545 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FA2267B72045E34000BDB545 /* DLRadioButton.framework */,
-				FA2267B92045E34000BDB545 /* DLRadioButtonTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		FA5710F62021208D005792CB = {
 			isa = PBXGroup;
 			children = (
-				FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */,
 				88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */,
-				FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */,
-				FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */,
 				FA5711012021208D005792CB /* RunningMates */,
 				2B16CFA2203B7D0700DFFBEF /* Resources */,
 				FA5711002021208D005792CB /* Products */,
@@ -640,9 +464,6 @@
 			);
 			dependencies = (
 				88D5098D204CD35300DBDDD0 /* PBXTargetDependency */,
-				FA2267BB2045E37900BDB545 /* PBXTargetDependency */,
-				FA2267AF2045E29900BDB545 /* PBXTargetDependency */,
-				FA2267732045E18F00BDB545 /* PBXTargetDependency */,
 			);
 			name = RunningMates;
 			productName = RunningMates;
@@ -703,20 +524,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FA2267902045E28D00BDB545 /* Products */;
-					ProjectRef = FA22678F2045E28D00BDB545 /* Alamofire.xcodeproj */;
-				},
-				{
 					ProductGroup = 88D50983204CD33000DBDDD0 /* Products */;
 					ProjectRef = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
-				},
-				{
-					ProductGroup = FA2267B12045E33F00BDB545 /* Products */;
-					ProjectRef = FA2267B02045E33F00BDB545 /* DLRadioButton.xcodeproj */;
-				},
-				{
-					ProductGroup = FA22675B2045E17500BDB545 /* Products */;
-					ProjectRef = FA22675A2045E17500BDB545 /* OAuthSwift.xcodeproj */;
 				},
 				{
 					ProductGroup = 2B04C960203B6F45008F7E52 /* Products */;
@@ -793,118 +602,6 @@
 			fileType = wrapper.cfbundle;
 			path = DLRadioButtonTests.xctest;
 			remoteRef = 88D5098A204CD33000DBDDD0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267652045E17500BDB545 /* OAuthSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuthSwift.framework;
-			remoteRef = FA2267642045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267672045E17500BDB545 /* OAuthSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuthSwift.framework;
-			remoteRef = FA2267662045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267692045E17500BDB545 /* OAuthSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuthSwift.framework;
-			remoteRef = FA2267682045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22676B2045E17500BDB545 /* OAuthSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuthSwift.framework;
-			remoteRef = FA22676A2045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22676D2045E17500BDB545 /* OAuthSwiftDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OAuthSwiftDemo.app;
-			remoteRef = FA22676C2045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22676F2045E17500BDB545 /* OAuthSwiftOSXDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OAuthSwiftOSXDemo.app;
-			remoteRef = FA22676E2045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267712045E17500BDB545 /* OAuthSwiftTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = OAuthSwiftTests.xctest;
-			remoteRef = FA2267702045E17500BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22679B2045E28E00BDB545 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = FA22679A2045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22679D2045E28E00BDB545 /* Alamofire iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire iOS Tests.xctest";
-			remoteRef = FA22679C2045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA22679F2045E28E00BDB545 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = FA22679E2045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267A12045E28E00BDB545 /* Alamofire macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire macOS Tests.xctest";
-			remoteRef = FA2267A02045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267A32045E28E00BDB545 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = FA2267A22045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267A52045E28E00BDB545 /* Alamofire tvOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Alamofire tvOS Tests.xctest";
-			remoteRef = FA2267A42045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267A72045E28E00BDB545 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = FA2267A62045E28E00BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267B72045E34000BDB545 /* DLRadioButton.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DLRadioButton.framework;
-			remoteRef = FA2267B62045E34000BDB545 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA2267B92045E34000BDB545 /* DLRadioButtonTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DLRadioButtonTests.xctest;
-			remoteRef = FA2267B82045E34000BDB545 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1038,21 +735,6 @@
 			isa = PBXTargetDependency;
 			name = DLRadioButton;
 			targetProxy = 88D5098C204CD35300DBDDD0 /* PBXContainerItemProxy */;
-		};
-		FA2267732045E18F00BDB545 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OAuthSwift;
-			targetProxy = FA2267722045E18F00BDB545 /* PBXContainerItemProxy */;
-		};
-		FA2267AF2045E29900BDB545 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire iOS";
-			targetProxy = FA2267AE2045E29900BDB545 /* PBXContainerItemProxy */;
-		};
-		FA2267BB2045E37900BDB545 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DLRadioButton;
-			targetProxy = FA2267BA2045E37900BDB545 /* PBXContainerItemProxy */;
 		};
 		FA5711152021208E005792CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -243,6 +243,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                 }
         }
+        //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+        let alertController = UIAlertController(title: "You matched with ???", message: "Go to your chat to say hello!", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 
 //    func fetchUsers() {
