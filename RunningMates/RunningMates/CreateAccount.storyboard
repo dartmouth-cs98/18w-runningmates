@@ -139,6 +139,14 @@
             </objects>
             <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
         </scene>
+        <!--CreateProfile-->
+        <scene sceneID="KUI-G8-MH4">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="createProfile" storyboardName="CreateProfile" id="4Yu-2o-yEC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4r5-Ac-KGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1237" y="254"/>
+        </scene>
     </scenes>
     <resources>
         <image name="logo_strava.png" width="195" height="195"/>
