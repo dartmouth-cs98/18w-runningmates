@@ -22,7 +22,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
-
+    @IBOutlet weak var milesLabel: UILabel!
+    @IBOutlet weak var avgPaceLabel: UILabel!
+    
 //    //STATIC USERS (NOT FETCHED FROM DATABASE)
 //    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "I love running really fast. Try and keep up!", gender: "female", age: 21, location: ["0","0"], email: "email@email.com", username: "drew_username", password: "password", token: "token")
 
@@ -57,13 +59,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         userList = getUsers(completion: { list in
                 self.userList = list
-                if (self.userList.count > 0) {
-                self.nameLabel.text = self.userList[0].firstName
-                self.downloadImage(self.userList[0].imageURL, inView: self.imageView)
-                self.ageLabel.text = String(self.userList[self.current_index].age)
-                self.locationLabel.text = String(describing: self.userList[self.current_index].location)
-                self.bioLabel.text = self.userList[self.current_index].bio
-            }
+                self.changeDisplayedUser()
         })
    }
 
@@ -93,12 +89,23 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func getUsers( completion: @escaping ([User])->()) -> [User]{
         var usersList = [User]()
-
-        let params: [String: Any] = [
-            "username": "drew",
-            "location": [0,0]
-        ]
-
+        
+        let params : [String: Any]
+        
+        if (rootURl == "http://localhost:9090/") {
+           params = [
+                "email": "drew@drew.com",
+                "location": [43.7022, 72.2896]
+            ]
+        } else {
+            params = [
+                "email": "drew@test.com",
+                "location": [
+                    -147.349442,
+                    64.751114
+                ],
+            ]
+        }
 
         let url = rootURl + "api/users"
 
@@ -111,13 +118,34 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                 case .success:
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
-                                print("jsonUser:")
+                            do {
+                                let user = try User(json: (jsonUser["user"] as? [String:Any])!)
+                                if (user != nil) {
+                                    usersList.append(user!)
+                                } else {
+                                    print("nil")
+                                }
+                            } catch UserInitError.invalidFirstName {
+                                print("invalid first name")
                                 print(jsonUser)
-                            let user = User(json: jsonUser)
-                            if (user != nil) {
-                                usersList.append(user!)
-                            } else {
-                                print("nil")
+                            } catch UserInitError.invalidLastName {
+                                print("invalid last name")
+                            } catch UserInitError.invalidImageURL {
+                                print("invalid image url")
+                            } catch UserInitError.invalidBio {
+                                print("invalid bio")
+                            } catch UserInitError.invalidGender {
+                                print("invalid gender")
+                            } catch UserInitError.invalidAge {
+                                print("invalid age")
+                            } catch UserInitError.invalidLocation {
+                                print("invalid location")
+                            } catch UserInitError.invalidEmail {
+                                print("invalid email")
+                            } catch UserInitError.invalidPassword {
+                                print("invalid password")
+                            } catch {
+                                print("other error")
                             }
                         }
                         completion(usersList)
@@ -143,11 +171,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
         let size = userList.count
 
-
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.right:
             print("SWIPED right")
-            //do nothing if swipe right?
+            if (current_index > 0) {
+                current_index = current_index - 1
+            }
+            else {
+                current_index = size - 1
+            }
         case UISwipeGestureRecognizerDirection.left:
             print("SWIPED left")
             if (current_index < size-1) {
@@ -156,24 +188,61 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
             else {
                 current_index = 0
             }
-            nameLabel.text = userList[current_index].firstName
-            self.downloadImage(userList[current_index].imageURL, inView: imageView)
-
-            ageLabel.text = String(userList[current_index].age)
-            locationLabel.text = String(describing: userList[current_index].location)
-            bioLabel.text = userList[current_index].bio
-
-
+     
         default:
             break
         }
+        
+        changeDisplayedUser()
 
+    }
+    
+    func changeDisplayedUser() {
+        nameLabel.text = userList[current_index].firstName
+        self.downloadImage(userList[current_index].imageURL, inView: imageView)
+        
+        ageLabel.text = String(describing: userList[current_index].age)
+        locationLabel.text = String(describing: userList[current_index].location)
+        bioLabel.text = userList[current_index].bio
+        
+        let data = (self.userList[self.current_index].data as! [String:Any])
+       
+        if (data["totalMilesRun"] != nil) {
+            self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
+        } else {
+            self.milesLabel.text = ""
+        }
+        
+        if (data["AveragePace"] != nil) {
+            self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
+        } else {
+            self.avgPaceLabel.text = ""
+        }
+        
     }
 
     @IBAction func matchButton(_ sender: UIButton) {
 
         print("You clicked match.")
-
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "requestingUser": "fdsfasd",
+            "requestedUser": "fdsaf"
+        ]
+        
+        let url = rootURl + "api/users"
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("success")
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
     }
 
 //    func fetchUsers() {

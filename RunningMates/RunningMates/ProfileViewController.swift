@@ -8,6 +8,7 @@
 
 
 import UIKit
+import Alamofire
 // https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/WorkWithViewControllers.html#//apple_ref/doc/uid/TP40015214-CH6-SW1 for image picking
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -17,6 +18,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var bioTextField: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
+    
+    var rootURl: String = "http://localhost:9090/"
     
     
     override func viewDidLoad() {
@@ -44,6 +47,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
+        // https://stackoverflow.com/questions/47916207/how-to-get-image-extension-format-from-uiimage-in-swift
+        let assetPath = info[UIImagePickerControllerReferenceURL] as! NSURL
+        let imgType = assetPath.pathExtension
+        
+        print("type:")
+        print(String(describing: imgType))
+        
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
@@ -55,7 +65,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     //MARK: Actions
 
     
-    @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
+    @IBAction func editProfileImage(_ sender: Any) {
         // Hide the keyboard.
         //nameTextField.resignFirstResponder()
         
@@ -69,4 +79,33 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
+//    @IBAction func selectImageFromPhotoLibrary(_ sender: UIButton) {
+//
+//    }
+    
+    
+    @IBAction func saveChanges(_ sender: Any) {
+        print("You clicked save.")
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "file-name": "name",
+            "file-type": "type"
+        ]
+        
+        let url = rootURl + "api/signS3"
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("success! response is:")
+                    print(response)
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
+    }
+    
 }
