@@ -13,6 +13,7 @@ import WebKit
 
 class CreateAccountViewController: UIViewController {
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var passReconfirmTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var stravaButton: UIButton!
@@ -84,6 +85,13 @@ class CreateAccountViewController: UIViewController {
                 print("wrong login")
             }
         )
+    }
+    
+    @IBAction func onCancelButtonClick(_ sender: Any) {
+        // Show create account screen
+        let  mainVC = self.storyboard?.instantiateViewController(withIdentifier:
+            "Main") as! ViewController
+        self.present(mainVC, animated: false, completion: nil)
     }
     
     @IBAction func trySignUp(_ sender: Any) {
