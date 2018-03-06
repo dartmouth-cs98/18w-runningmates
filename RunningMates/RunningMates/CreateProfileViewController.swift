@@ -22,8 +22,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
-    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    var rootURl: String = "http://localhost:9090/"
     var pickerOptions: [String] = [String]()
     var imagePicker: UIImagePickerController = UIImagePickerController()
     

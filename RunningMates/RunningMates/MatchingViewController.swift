@@ -16,8 +16,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
-    var rootURl: String = "http://localhost:9090/"
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = ""
@@ -316,11 +316,13 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                 }
         completion(title, message)
         }
+        
     }
 
     @IBAction func matchButton(_ sender: UIButton) {
 
         print("You clicked match.")
+        
         
         sendRequest(completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
