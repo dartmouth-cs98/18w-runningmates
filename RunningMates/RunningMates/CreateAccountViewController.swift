@@ -22,8 +22,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     
     var alertView: UIAlertController?
     var webView: WKWebView!
-    //var rootURl: String = "https://running-mates.herokuapp.com/"
-    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    var rootURl: String = "http://localhost:9090/"
     
     override func viewDidLoad() {
         super.viewDidLoad()

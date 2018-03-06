@@ -58,6 +58,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         userList = getUsers(completion: { list in
+                print("completion")
                 self.userList = list
                 self.changeDisplayedUser()
         })
@@ -127,7 +128,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                                 }
                             } catch UserInitError.invalidFirstName {
                                 print("invalid first name")
-                                print(jsonUser)
                             } catch UserInitError.invalidLastName {
                                 print("invalid last name")
                             } catch UserInitError.invalidImageURL {
@@ -158,6 +158,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                 }
         }
+        print("done with getting users")
         return usersList
     }
 
@@ -192,13 +193,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         default:
             break
         }
-        
+        print(current_index)
         changeDisplayedUser()
 
     }
     
     func changeDisplayedUser() {
-        nameLabel.text = userList[current_index].firstName
+        print("changing displayed user")
+        nameLabel.text = userList[current_index].firstName! + ","
         self.downloadImage(userList[current_index].imageURL, inView: imageView)
         
         ageLabel.text = String(describing: userList[current_index].age)
@@ -210,13 +212,13 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         if (data["totalMilesRun"] != nil) {
             self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
         } else {
-            self.milesLabel.text = ""
+            self.milesLabel.text = "No info to show"
         }
         
         if (data["AveragePace"] != nil) {
             self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
         } else {
-            self.avgPaceLabel.text = ""
+            self.avgPaceLabel.text = "No info to show"
         }
         
     }
