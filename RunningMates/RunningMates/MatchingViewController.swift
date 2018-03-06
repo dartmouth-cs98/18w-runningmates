@@ -18,6 +18,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
     var rootURl: String = "https://running-mates.herokuapp.com/"
+    var userId: String = ""
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var userEmail: String = ""
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -43,10 +46,16 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
        super.viewDidLoad()
+        self.userEmail = appDelegate.userEmail
        // Do any additional setup after loading the view, typically from a nib.
 
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
+        
+        getUserId(completion: {id in
+            self.userId = id
+        })
+        
         let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
 
@@ -58,7 +67,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         userList = getUsers(completion: { list in
-                print("completion")
                 self.userList = list
                 self.changeDisplayedUser()
         })
@@ -95,12 +103,13 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         
         if (rootURl == "http://localhost:9090/") {
            params = [
-                "email": "drew@drew.com",
-                "location": [43.7022, 72.2896]
+                "email": self.userEmail,
+                "location": [                    -147.349442,
+                                                 64.751114]
             ]
         } else {
             params = [
-                "email": "drew@test.com",
+                "email": self.userEmail,
                 "location": [
                     -147.349442,
                     64.751114
@@ -126,6 +135,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                                 } else {
                                     print("nil")
                                 }
+                            } catch UserInitError.invalidId {
+                                print("invalid id")
                             } catch UserInitError.invalidFirstName {
                                 print("invalid first name")
                             } catch UserInitError.invalidLastName {
@@ -158,8 +169,61 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
                     print(error)
                 }
         }
-        print("done with getting users")
         return usersList
+    }
+    
+    func getUserId( completion: @escaping (String)->()) {
+        var url = rootURl + "api/getuser"
+        
+        var params : [String:Any] = [
+            "email": userEmail
+        ]
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonUser = response.result.value as? [String:Any] {
+                            do {
+                                let user = try User(json: (jsonUser as [String:Any]))
+                                if (user != nil) {
+                                    print("user")
+                                    print(user!)
+                                    completion((user?.id)!)
+                                } else {
+                                    print("nil")
+                                }
+                            } catch UserInitError.invalidId {
+                                print("invalid id")
+                            } catch UserInitError.invalidFirstName {
+                                print("invalid first name")
+                            } catch UserInitError.invalidLastName {
+                                print("invalid last name")
+                            } catch UserInitError.invalidImageURL {
+                                print("invalid image url")
+                            } catch UserInitError.invalidBio {
+                                print("invalid bio")
+                            } catch UserInitError.invalidGender {
+                                print("invalid gender")
+                            } catch UserInitError.invalidAge {
+                                print("invalid age")
+                            } catch UserInitError.invalidLocation {
+                                print("invalid location")
+                            } catch UserInitError.invalidEmail {
+                                print("invalid email")
+                            } catch UserInitError.invalidPassword {
+                                print("invalid password")
+                            } catch {
+                                print("other error")
+                            }
+                    } else {
+                        print("error creating user for user id")
+                    }
+                    
+                case .failure(let error):
+                    print("failure: error creating user for user id")
+                    print(error)
+                }
+        }
     }
 
    override func didReceiveMemoryWarning() {
@@ -193,13 +257,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         default:
             break
         }
-        print(current_index)
         changeDisplayedUser()
 
     }
     
     func changeDisplayedUser() {
-        print("changing displayed user")
+        if (current_index >= 0 && current_index < userList.count) {
         nameLabel.text = userList[current_index].firstName! + ","
         self.downloadImage(userList[current_index].imageURL, inView: imageView)
         
@@ -220,6 +283,39 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             self.avgPaceLabel.text = "No info to show"
         }
+        }
+    }
+    
+    func sendRequest(completion: @escaping (String, String)->()) {
+        // alamofire request
+        let params: [String: Any] = [
+            "userId": self.userId,
+            "targetId": userList[current_index].id!
+        ]
+        
+        let url = rootURl + "api/match"
+        
+        var title = ""
+        var message = ""
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let responseDictionary = response.result.value as! [String:Any]
+                    if (String(describing: responseDictionary["response"]!) == "match") {
+                        title = "You matched with \(self.userList[self.current_index].firstName!)"
+                        message = "Go to your chat to say hello!"
+                    } else {
+                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
+                        message = "Keep running!"
+                    }
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        completion(title, message)
+        }
         
     }
 
@@ -227,31 +323,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
         print("You clicked match.")
         
-        // alamofire request
-        let params: [String: Any] = [
-            "requestingUser": "fdsfasd",
-            "requestedUser": "fdsaf"
-        ]
         
-        let url = rootURl + "api/users"
-        
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    print("success")
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        }
-        //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-        var matchName = userList[current_index].firstName
-        let alertController = UIAlertController(title: "You matched with " + "\(matchName!)!", message: "Go to your chat to say hello!", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
-        
-        present(alertController, animated: true, completion: nil)
+        sendRequest(completion: { title, message in
+            //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            })
     }
 
 //    func fetchUsers() {

@@ -53,11 +53,20 @@ extension UIViewController {
     @IBAction func tryLogin(_ sender: UIButton) {
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
-        requestForLogin(Url: rootURl + "api/signin", password: pass, email: email)
+        requestForLogin(Url: rootURl + "api/signin", password: pass, email: email, completion: {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.userEmail = self.emailTextField.text!
+            print(appDelegate.userEmail)
+            
+            let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+            self.present(matchingVC, animated: true, completion: nil)
+            })
     }
         
-    func requestForLogin(Url:String, password: String?, email: String?) {
-            
+    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
+        
+        print("requestForLogin")
+        
         let params: Parameters = [
             "email": email!,
             "password": password!
@@ -67,16 +76,11 @@ extension UIViewController {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    print("Post Successful")
-                    print(response)
-                    let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
-                    self.present(matchingVC, animated: true, completion: nil)
-                    
+                    completion()
                 case .failure(let error):
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
     }
 }
 

@@ -9,6 +9,7 @@
 import Foundation
 
 enum UserInitError: Error {
+    case invalidId
     case invalidFirstName
     case invalidLastName
     case invalidImageURL
@@ -21,6 +22,7 @@ enum UserInitError: Error {
 }
 
 class User {
+    var id: String?
     var firstName: String?
     var lastName: String
     var imageURL: String
@@ -34,14 +36,15 @@ class User {
     var blockedMates: [Any]?
     var seenProfiles: [Any]?
     var email: String
-    var password: String
+    var password: String?
     var token: String?
     var preferences: [String:Any]?
     var data: [String:Any]?
     
 
     //MARK: Initialization
-    init(firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+        self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.imageURL = imageURL
@@ -64,6 +67,9 @@ class User {
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
     init?(json: [String: Any]) throws {
+        guard let id = json["id"] as! String? else {
+            throw UserInitError.invalidId
+        }
         guard let firstName = json["firstName"] as! String? else {
             throw UserInitError.invalidFirstName
         }
@@ -93,13 +99,12 @@ class User {
         guard let email = json["email"] as! String? else {
             throw UserInitError.invalidEmail
         }
-        guard let password = json["password"] as! String? else {
-            throw UserInitError.invalidPassword
-        }
+        let password = json["password"] as! String?
         let token = json["token"] as! String?
         let preferences = json["preferences"] as! [String:Any]?
         let data = json["data"] as! [String:Any]?
 
+        self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.imageURL = imageURL
