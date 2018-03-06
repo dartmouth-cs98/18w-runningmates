@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var bioTextField: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
     
-    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
     
     
     override func viewDidLoad() {
