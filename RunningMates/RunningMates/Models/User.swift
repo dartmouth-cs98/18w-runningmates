@@ -64,7 +64,6 @@ class User {
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
     init?(json: [String: Any]) throws {
-        print(String(describing: json["firstName"]))
         guard let firstName = json["firstName"] as! String? else {
             throw UserInitError.invalidFirstName
         }

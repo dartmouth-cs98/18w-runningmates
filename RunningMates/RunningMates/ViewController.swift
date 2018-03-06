@@ -27,8 +27,8 @@ extension UIViewController {
     class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
-//        var rootURl: String = "https://running-mates.herokuapp.com/"
-        var rootURl: String = "http://localhost:9090/"
+        var rootURl: String = "https://running-mates.herokuapp.com/"
+//        var rootURl: String = "http://localhost:9090/"
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var passTextField: UITextField!
         @IBOutlet weak var emailTextField: UITextField!
