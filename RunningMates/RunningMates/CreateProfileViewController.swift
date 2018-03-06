@@ -91,31 +91,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         dismiss(animated:true, completion: nil)
     }
     
-//    func uploadImageToServer() {
-//        let params: Parameters = [
-//            "file-name": email!,
-//            "password": password!
-//        ]
-//
-//        let _request = Alamofire.request(Url, method: .get, parameters: params, encoding: JSONEncoding.default)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    print("Post Successful")
-//                    print(response)
-//                    // If the account creation was successful, send user to create profile page
-//                    let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
-//                    self.present(createProfileVC, animated: true, completion: nil)
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
-    
     @IBAction func saveButtonClicked(_ sender: Any) {
         //check if enough data has been entered, save user and send to matching page
     }
