@@ -22,8 +22,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     
     var alertView: UIAlertController?
     var webView: WKWebView!
-    var rootURl: String = "https://running-mates.herokuapp.com/"
-//    var rootURl: String = "http://localhost:9090/"
+//    var rootURl: String = "https://running-mates.herokuapp.com/"
+    var rootURl: String = "http://localhost:9090/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,11 +119,18 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             self.present(alert, animated: true, completion: nil)
         } else {
             // If everything looks ok, try to sign them in
-            requestForLogin(Url: rootURl + "api/signup", password: pass, email: email)
+            requestForLogin(Url: rootURl + "api/signup", password: pass, email: email, completion: {
+                print("completion")
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.userEmail = self.emailTextField.text!
+                // If the account creation was successful, send user to create profile page
+                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                self.present(createProfileVC, animated: true, completion: nil)
+            })
         }
     }
     
-    func requestForLogin(Url:String, password: String?, email: String?) {
+    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
         
         let params: Parameters = [
             "email": email!,
@@ -134,11 +141,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    print("Post Successful")
-                    print(response)
-                    // If the account creation was successful, send user to create profile page
-                    let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
-                    self.present(createProfileVC, animated: true, completion: nil)
+                    completion()
                 case .failure(let error):
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
