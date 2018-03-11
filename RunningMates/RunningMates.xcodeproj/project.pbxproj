@@ -18,7 +18,15 @@
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
+<<<<<<< HEAD
 		8910FDC916F63FF6F3ACACCE /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
+=======
+<<<<<<< HEAD
+		C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
+=======
+		95530D9C585784CC739A51AB /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
+>>>>>>> 02614a7904fb70f9108a2c7c721ae0d2b8efb21f
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
@@ -28,6 +36,7 @@
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
 		FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */; };
 		FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */; };
+		FA38B38E204E0476003626F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA38B38D204E0476003626F6 /* Images.xcassets */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -91,6 +100,7 @@
 			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
 			remoteInfo = OAuthSwiftTests;
 		};
+<<<<<<< HEAD
 		88D50988204CD33000DBDDD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
@@ -112,6 +122,8 @@
 			remoteGlobalIDString = 634D5B591C5D8B0F00A3740D;
 			remoteInfo = DLRadioButton;
 		};
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 		FA5711142021208E005792CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA5710F72021208D005792CB /* Project object */;
@@ -182,8 +194,14 @@
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunningMates-Bridging-Header.h"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		FA2267562045E04600BDB545 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLRadioButton.h; path = DLRadioButton/DLRadioButton/DLRadioButton.h; sourceTree = SOURCE_ROOT; };
+		FA2267572045E04600BDB545 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLRadioButton.m; path = DLRadioButton/DLRadioButton/DLRadioButton.m; sourceTree = SOURCE_ROOT; };
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
 		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
+		FA38B38D204E0476003626F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -206,7 +224,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				8910FDC916F63FF6F3ACACCE /* Pods_RunningMates.framework in Frameworks */,
+=======
+<<<<<<< HEAD
+				C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */,
+=======
+				95530D9C585784CC739A51AB /* Pods_RunningMates.framework in Frameworks */,
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
+>>>>>>> 02614a7904fb70f9108a2c7c721ae0d2b8efb21f
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +379,7 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		88D50983204CD33000DBDDD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +389,8 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 		C28809185B44C26C9178A174 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,7 +410,11 @@
 		FA5710F62021208D005792CB = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */,
+=======
+				FA38B38D204E0476003626F6 /* Images.xcassets */,
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 				FA5711012021208D005792CB /* RunningMates */,
 				2B16CFA2203B7D0700DFFBEF /* Resources */,
 				FA5711002021208D005792CB /* Products */,
@@ -462,7 +495,10 @@
 			buildRules = (
 			);
 			dependencies = (
+<<<<<<< HEAD
 				88D5098D204CD35300DBDDD0 /* PBXTargetDependency */,
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 			);
 			name = RunningMates;
 			productName = RunningMates;
@@ -500,7 +536,7 @@
 					FA5710FE2021208D005792CB = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					FA5711122021208E005792CB = {
 						CreatedOnToolsVersion = 9.2;
@@ -523,10 +559,13 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+<<<<<<< HEAD
 					ProductGroup = 88D50983204CD33000DBDDD0 /* Products */;
 					ProjectRef = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
 				},
 				{
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 					ProductGroup = 2B04C960203B6F45008F7E52 /* Products */;
 					ProjectRef = 2B6483B82037918400092C12 /* OAuthSwift.xcodeproj */;
 				},
@@ -589,6 +628,7 @@
 			remoteRef = 2B04C975203B6F45008F7E52 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
 		88D50989204CD33000DBDDD0 /* DLRadioButton.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -603,6 +643,8 @@
 			remoteRef = 88D5098A204CD33000DBDDD0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -621,6 +663,7 @@
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
+				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
 				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
@@ -729,11 +772,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+<<<<<<< HEAD
 		88D5098D204CD35300DBDDD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DLRadioButton;
 			targetProxy = 88D5098C204CD35300DBDDD0 /* PBXContainerItemProxy */;
 		};
+=======
+>>>>>>> defd2d43c754380944d5eca948887df371ef347b
 		FA5711152021208E005792CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FA5710FE2021208D005792CB /* RunningMates */;
@@ -891,16 +937,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = JQ28K6Y7JE;
 				INFOPLIST_FILE = RunningMates/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.RunningMates;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.dartmouth.RunningMates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "27b64893-80a1-4e59-b2dc-28d7b0131d1b";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development edu.dartmouth.RunningMates";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunningMates/RunningMates-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -910,15 +963,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = JQ28K6Y7JE;
 				INFOPLIST_FILE = RunningMates/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.RunningMates;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.dartmouth.RunningMates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e0ad89a2-fc22-4a4a-a856-a8a762287f1a";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore edu.Dartmouth.RunningMates";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunningMates/RunningMates-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
