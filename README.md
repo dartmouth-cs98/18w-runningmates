@@ -10,10 +10,15 @@ This repository contains the front end solution for the app. The front end will 
 
 ### Dependencies
 
+Dependencies are managed by cocoa pods. 
+To install cocoa pods:
+`$sudo gem install cocoapods`
 
 ## Setup
 
 * Git clone this repo into your local directory.
+* Run `$pod install`
+* Run `$open RunningMates/RunningMates.xcodeproj/project.pbxproj `
 
 
 ## Deployment
