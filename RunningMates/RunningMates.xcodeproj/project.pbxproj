@@ -19,8 +19,8 @@
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
 		8910FDC916F63FF6F3ACACCE /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
-		C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		95530D9C585784CC739A51AB /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
+		C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
@@ -94,27 +94,6 @@
 			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
 			remoteInfo = OAuthSwiftTests;
 		};
-		88D50988204CD33000DBDDD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 634D5B5A1C5D8B0F00A3740D;
-			remoteInfo = DLRadioButton;
-		};
-		88D5098A204CD33000DBDDD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 636C50241C5D9315008B5C96;
-			remoteInfo = DLRadioButtonTests;
-		};
-		88D5098C204CD35300DBDDD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 634D5B591C5D8B0F00A3740D;
-			remoteInfo = DLRadioButton;
-		};
 		FA5711142021208E005792CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA5710F72021208D005792CB /* Project object */;
@@ -176,7 +155,6 @@
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
-		88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DLRadioButton.xcodeproj; path = "../../../Desktop/DLRadioButton-master/DLRadioButton.xcodeproj"; sourceTree = "<group>"; };
 		B5AB06653744964379D2084B /* Pods-RunningMates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.debug.xcconfig"; sourceTree = "<group>"; };
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -185,8 +163,6 @@
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunningMates-Bridging-Header.h"; sourceTree = "<group>"; };
-		FA2267562045E04600BDB545 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLRadioButton.h; path = DLRadioButton/DLRadioButton/DLRadioButton.h; sourceTree = SOURCE_ROOT; };
-		FA2267572045E04600BDB545 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLRadioButton.m; path = DLRadioButton/DLRadioButton/DLRadioButton.m; sourceTree = SOURCE_ROOT; };
 		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
 		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		FA38B38D204E0476003626F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -361,15 +337,6 @@
 			path = OSX;
 			sourceTree = "<group>";
 		};
-		88D50983204CD33000DBDDD0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				88D50989204CD33000DBDDD0 /* DLRadioButton.framework */,
-				88D5098B204CD33000DBDDD0 /* DLRadioButtonTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		C28809185B44C26C9178A174 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +356,6 @@
 		FA5710F62021208D005792CB = {
 			isa = PBXGroup;
 			children = (
-				88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */,
 				FA38B38D204E0476003626F6 /* Images.xcassets */,
 				FA5711012021208D005792CB /* RunningMates */,
 				2B16CFA2203B7D0700DFFBEF /* Resources */,
@@ -471,7 +437,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				88D5098D204CD35300DBDDD0 /* PBXTargetDependency */,
 			);
 			name = RunningMates;
 			productName = RunningMates;
@@ -531,10 +496,6 @@
 			productRefGroup = FA5711002021208D005792CB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 88D50983204CD33000DBDDD0 /* Products */;
-					ProjectRef = 88D50982204CD33000DBDDD0 /* DLRadioButton.xcodeproj */;
-				},
 				{
 					ProductGroup = 2B04C960203B6F45008F7E52 /* Products */;
 					ProjectRef = 2B6483B82037918400092C12 /* OAuthSwift.xcodeproj */;
@@ -596,20 +557,6 @@
 			fileType = wrapper.cfbundle;
 			path = OAuthSwiftTests.xctest;
 			remoteRef = 2B04C975203B6F45008F7E52 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		88D50989204CD33000DBDDD0 /* DLRadioButton.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DLRadioButton.framework;
-			remoteRef = 88D50988204CD33000DBDDD0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		88D5098B204CD33000DBDDD0 /* DLRadioButtonTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DLRadioButtonTests.xctest;
-			remoteRef = 88D5098A204CD33000DBDDD0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -739,11 +686,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		88D5098D204CD35300DBDDD0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DLRadioButton;
-			targetProxy = 88D5098C204CD35300DBDDD0 /* PBXContainerItemProxy */;
-		};
 		FA5711152021208E005792CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FA5710FE2021208D005792CB /* RunningMates */;
