@@ -18,7 +18,7 @@ To install cocoa pods:
 
 * Git clone this repo into your local directory.
 * Run `$pod install`
-* Run `$open RunningMates/RunningMates.xcodeproj/project.pbxproj `
+* Run `$open RunningMates.xcworkspace`
 
 
 ## Deployment
