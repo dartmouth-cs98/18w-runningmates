@@ -7,4 +7,6 @@ target 'RunningMates' do
     pod 'Alamofire', '~> 4.5'
     pod 'DLRadioButton', '~> 1.4'
     pod 'OAuthSwift', '~> 1.2.0'
+    pod 'Socket.IO-Client-Swift', '~> 13.1.0'
+
 end
