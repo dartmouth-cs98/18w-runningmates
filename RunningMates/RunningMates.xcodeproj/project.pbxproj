@@ -383,31 +383,15 @@
 				F8BEE1EC203B0E2C00274660 /* User.swift */,
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
-				FA5711042021208D005792CB /* ViewController.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
-				FA5711062021208D005792CB /* Main.storyboard */,
-				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
+				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
-				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
-				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
-				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
-				2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */,
-				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
-				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
-				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
-				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
-				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
-				FA076CC320363EB200FC848D /* FilterViewController.swift */,
+				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
 				FAD3055C2048C1BF00DB682F /* RangeSlider.swift */,
-				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				88C0AF9920291C2B0008F5B5 /* Matching.xib */,
 				FA5711092021208D005792CB /* Assets.xcassets */,
-				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FA57110E2021208E005792CB /* Info.plist */,
-				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
-				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
-				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				FA5711162021208E005792CB /* RunningMatesTests */,
 				FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */,
 			);
@@ -421,6 +405,38 @@
 				FA5711192021208E005792CB /* Info.plist */,
 			);
 			path = RunningMatesTests;
+			sourceTree = "<group>";
+		};
+		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA5711042021208D005792CB /* ViewController.swift */,
+				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
+				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
+				FA076CC320363EB200FC848D /* FilterViewController.swift */,
+				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
+				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
+				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
+				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
+				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FAB5A7C6206F190D00DDE1E9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FAD1AF452043218D00EA78CE /* chat.storyboard */,
+				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
+				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
+				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
+				2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */,
+				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
+				FA5711062021208D005792CB /* Main.storyboard */,
+				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
+				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
