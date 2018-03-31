@@ -12,6 +12,5 @@ import SocketIO
 class ChatViewController: UIViewController {
 
     
-    
 }
 
