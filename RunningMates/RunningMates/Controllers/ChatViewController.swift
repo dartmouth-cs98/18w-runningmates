@@ -9,8 +9,11 @@
 
 import UIKit
 import SocketIO
+import Chatto
+import ChattoAdditions
 
-class ChatViewController: UIViewController {
+
+class ChatViewController: BaseChatViewController {
 
     @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
