@@ -42,11 +42,19 @@
                                 <rect key="frame" x="313" y="623" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendMessage:" destination="AUe-I5-IXW" eventType="touchUpInside" id="sSX-1y-Ykt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="AM7-eT-ZtH"/>
                     </view>
+                    <connections>
+                        <outlet property="chatInput" destination="D2u-6m-D9C" id="odP-pB-6aH"/>
+                        <outlet property="chatView" destination="J8y-gc-WT5" id="0Yd-yR-ccg"/>
+                        <outlet property="sendButton" destination="hCd-Mm-dLm" id="aSe-VU-efY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXe-Ev-dDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

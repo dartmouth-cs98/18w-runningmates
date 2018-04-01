@@ -12,13 +12,48 @@ import SocketIO
 
 class ChatViewController: UIViewController {
 
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!, config: [.log(true), .connectParams(["token" : "ABC438s"])])
-    var socket:SocketIOClient!
+    @IBOutlet weak var chatView: UITableView!
+    @IBOutlet weak var chatInput: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
+    
+    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    
+    
+    // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
+    func addHandlers() {
+        manager.defaultSocket.on("chat message") {data, ack in
+            print(data)
+        }
+    }
+
+    @IBAction func sendMessage(_ sender: Any) {
+        print(self.chatInput.text!)
+        let socket = manager.defaultSocket
+        socket.emit("chat message", [self.chatInput.text!])
+    }
+    
+    
+    // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.socket = manager.defaultSocket
-        self.socket.connect();
+   
+    let socket = manager.defaultSocket
+    
+    socket.on(clientEvent: .connect) {data, ack in
+    print("socket connected")
+    }
+    
+    socket.on("currentAmount") {data, ack in
+    guard let cur = data[0] as? Double else { return }
+    
+    socket.emitWithAck("canUpdate", cur).timingOut(after: 0) {data in
+    socket.emit("update", ["amount": cur + 2.50])
+    }
+    
+    ack.with("Got your currentAmount", "dude")
+    }
+    
+    socket.connect()
     }
 
 }

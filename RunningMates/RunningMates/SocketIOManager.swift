@@ -11,31 +11,15 @@
 import UIKit
 import SocketIO
 
-//class SocketIOManager: NSObject {
-//    static let sharedInstance = SocketIOManager()
+//class Manager {
+//    let manager = SocketManager(socketURL: URL(string: "http://somesocketioserver.com")!)
 //
-//
-//    override init() {
-//        super.init()
+//    func addHandlers() {
+//        manager.defaultSocket.on("myEvent") {data, ack in
+//            print(data)
+//        }
 //    }
-//
-//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!, config: [.log(true), .compress])
-//    let socket = manager.defaultSocket
-//
-//
-//    func establishConnection() {
-//        socket.connect()
-//    }
-//
-//
-//    func closeConnection() {
-//        socket.disconnect()
-//    }
-//
-//
-//    func sendMessage(message: String, withNickname nickname: String) {
-//        socket.emit("chatMessage", nickname, message)
-//    }
-//
+//}
+
 //}
 
