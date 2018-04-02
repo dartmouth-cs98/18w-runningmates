@@ -27,9 +27,7 @@ class ChatViewController: UIViewController {
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
     func addHandlers() {
         let socket = manager.defaultSocket
-        print("add handlers called")
         socket.on("chat message") {data, ack in
-            print("I AM HERE", data)
             self.recieveMessage(message_data: data)
         }
 
@@ -37,8 +35,8 @@ class ChatViewController: UIViewController {
 
     func recieveMessage(message_data: [Any]){
         print("message recieved")
-
         print(message_data[0])
+        // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
         guard let cur = message_data[0] as? String else { return }
         self.textViewTemp.text.append(cur)
         self.textViewTemp.text.append("\n")
@@ -53,14 +51,8 @@ class ChatViewController: UIViewController {
         self.textViewTemp.text.append(self.chatInput.text! + "\n")
         self.chatInput.text = ""
  
-        //textViewTemp.text = "\n"
-        //self.chatInput.text = ""
 
     }
-    
-    
-
-    
 
     
     // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
@@ -75,17 +67,6 @@ class ChatViewController: UIViewController {
     socket.on("chat message") {data, ack in
         print("I AM HERE", data)
         self.recieveMessage(message_data: data)
-    }
-
-    
-    socket.on("currentAmount") {data, ack in
-    guard let cur = data[0] as? Double else { return }
-    
-    socket.emitWithAck("canUpdate", cur).timingOut(after: 0) {data in
-    socket.emit("update", ["amount": cur + 2.50])
-    }
-    
-    ack.with("Got your currentAmount", "dude")
     }
     
     socket.connect()
