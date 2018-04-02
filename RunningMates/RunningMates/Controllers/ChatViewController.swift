@@ -9,16 +9,18 @@
 
 import UIKit
 import SocketIO
-import Chatto
-import ChattoAdditions
+//import Chatto
+//import ChattoAdditions
 
 
-class ChatViewController: BaseChatViewController {
+class ChatViewController: UIViewController {
 
-    @IBOutlet weak var chatView: UITableView!
+//    @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var textViewTemp: UITextView!
     
+   
     
     let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
     
@@ -34,6 +36,12 @@ class ChatViewController: BaseChatViewController {
         print(self.chatInput.text!)
         let socket = manager.defaultSocket
         socket.emit("chat message", [self.chatInput.text!])
+        self.textViewTemp.text.append(self.chatInput.text! + "\n")
+        self.chatInput.text = ""
+ 
+        //textViewTemp.text = "\n"
+        //self.chatInput.text = ""
+
     }
     
     
