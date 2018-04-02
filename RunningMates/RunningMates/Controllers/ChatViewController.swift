@@ -20,18 +20,32 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textViewTemp: UITextView!
     
-   
+
     
     let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
     
-    
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
     func addHandlers() {
-        manager.defaultSocket.on("chat message") {data, ack in
-            print(data)
+        let socket = manager.defaultSocket
+        print("add handlers called")
+        socket.on("chat message") {data, ack in
+            print("I AM HERE", data)
+            self.recieveMessage(message_data: data)
         }
+
     }
 
+    func recieveMessage(message_data: [Any]){
+        print("message recieved")
+
+        print(message_data[0])
+        guard let cur = message_data[0] as? String else { return }
+        self.textViewTemp.text.append(cur)
+        self.textViewTemp.text.append("\n")
+
+    }
+
+    
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
         let socket = manager.defaultSocket
@@ -45,6 +59,10 @@ class ChatViewController: UIViewController {
     }
     
     
+
+    
+
+    
     // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
     override func viewDidLoad() {
    
@@ -53,6 +71,12 @@ class ChatViewController: UIViewController {
     socket.on(clientEvent: .connect) {data, ack in
     print("socket connected")
     }
+        
+    socket.on("chat message") {data, ack in
+        print("I AM HERE", data)
+        self.recieveMessage(message_data: data)
+    }
+
     
     socket.on("currentAmount") {data, ack in
     guard let cur = data[0] as? Double else { return }
@@ -65,7 +89,13 @@ class ChatViewController: UIViewController {
     }
     
     socket.connect()
+        
+        
+        
     }
+    
+    
+
 
 }
 
