@@ -47,18 +47,49 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     var userList = [User]()
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
+        //location services
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        switch CLLocationManager.authorizationStatus() {
+        //ask for permission. note: iOS only lets you ask once
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+        //show an alert if they said no last time
+        case .authorizedWhenInUse, .restricted, .denied:
+            let alertController = UIAlertController(
+                title: "Background Location Access Disabled",
+                message: "In order to optimize your matching experience please enable location services",
+                preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.open(URL(string: "\(url)")!)
+                    
+                }
+            }
+            alertController.addAction(openAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        case .authorizedAlways:
+            // just needed something in this switch
+            print("thanks! for letting us see your location")
+        }
+        
+    }
 
     override func viewDidLoad() {
        super.viewDidLoad()
-
-        print("im here")
-        //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
-        //location services 
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-
-        locationManager.requestAlwaysAuthorization()
-                
+       
         self.userEmail = appDelegate.userEmail
        // Do any additional setup after loading the view, typically from a nib.
 
