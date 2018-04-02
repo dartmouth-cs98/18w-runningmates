@@ -8,11 +8,15 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
-class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
+
+class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
    // MARK: Properties
 
+    var locationManager: CLLocationManager!
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
@@ -46,6 +50,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
        super.viewDidLoad()
+
+        print("im here")
+        //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
+        //location services 
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+
+        locationManager.requestAlwaysAuthorization()
+                
         self.userEmail = appDelegate.userEmail
        // Do any additional setup after loading the view, typically from a nib.
 
