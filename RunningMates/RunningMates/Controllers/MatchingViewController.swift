@@ -21,7 +21,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
-    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = ""
@@ -141,11 +141,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
 
     func getUsers( completion: @escaping ([User])->()) -> [User]{
+        let rootUrl: String = appDelegate.rootUrl
         var usersList = [User]()
         
         let params : [String: Any]
         
-        if (rootURl == "http://localhost:9090/") {
+        if (rootUrl == "http://localhost:9090/") {
            params = [
                 "email": self.userEmail,
                 "location": [                    -147.349442,
@@ -161,7 +162,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             ]
         }
 
-        let url = rootURl + "api/users"
+        let url = rootUrl + "api/users"
 
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -217,7 +218,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func getUserId( completion: @escaping (String)->()) {
-        var url = rootURl + "api/getuser"
+        let rootUrl: String = appDelegate.rootUrl
+        var url = rootUrl + "api/getuser"
         
         var params : [String:Any] = [
             "email": userEmail
@@ -331,13 +333,16 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func sendRequest(completion: @escaping (String, String)->()) {
+        
+        let rootUrl: String = appDelegate.rootUrl
+        
         // alamofire request
         let params: [String: Any] = [
             "userId": self.userId,
             "targetId": userList[current_index].id!
         ]
         
-        let url = rootURl + "api/match"
+        let url = rootUrl + "api/match"
         
         var title = ""
         var message = ""

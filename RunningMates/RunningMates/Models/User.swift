@@ -5,6 +5,8 @@
 //  Created by Sudikoff Lab iMac on 2/15/18.
 //  Copyright © 2018 Dongri Jin. All rights reserved.
 //
+// Used the following tutorial for reference: https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/PersistData.html#//apple_ref/doc/uid/TP40015214-CH14-SW1
+
 
 import UIKit
 import os.log
@@ -44,26 +46,26 @@ class User: NSObject, NSCoding {
     
 
 //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json 
-//    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
-//        self.id = id
-//        self.firstName = firstName
-//        self.lastName = lastName
-//        self.imageURL = imageURL
-//        self.bio = bio
-//        self.gender = gender
-//        self.age = age
-//        self.location = location
-//        self.swipes = swipes
-//        self.mates = mates
-//        self.potentialMates = potentialMates
-//        self.seenProfiles = seenProfiles
-//        self.blockedMates = blockedMates
-//        self.email = email
-//        self.password = password
-//        self.token = token
-//        self.preferences = preferences
-//        self.data = data
-//    }
+    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.imageURL = imageURL
+        self.bio = bio
+        self.gender = gender
+        self.age = age
+        self.location = location
+        self.swipes = swipes
+        self.mates = mates
+        self.potentialMates = potentialMates
+        self.seenProfiles = seenProfiles
+        self.blockedMates = blockedMates
+        self.email = email
+        self.password = password
+        self.token = token
+        self.preferences = preferences
+        self.data = data
+    }
     
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
@@ -167,21 +169,40 @@ class User: NSObject, NSCoding {
         aCoder.encode(data, forKey: PropertyKey.data)
     }
     
+    // adapted from the following tutorial: https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/PersistData.html#//apple_ref/doc/uid/TP40015214-CH14-SW1
     required convenience init?(coder aDecoder: NSCoder) {
         
         // The name is required. If we cannot decode a name string, the initializer should fail.
-        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+        guard let id = aDecoder.decodeObject(forKey: PropertyKey.id) as? String else {
+            os_log("Unable to decode the id for a User object.", log: OSLog.default, type: .debug)
             return nil
         }
+        let firstName = aDecoder.decodeObject(forKey: PropertyKey.firstName) as? String
+        let lastName = aDecoder.decodeObject(forKey: PropertyKey.lastName) as? String
+        let imageURL = aDecoder.decodeObject(forKey: PropertyKey.imageURL) as? String
+        let bio = aDecoder.decodeObject(forKey: PropertyKey.bio) as? String
+        let gender = aDecoder.decodeObject(forKey: PropertyKey.gender) as? String
+        let age = aDecoder.decodeInteger(forKey: PropertyKey.age)
+        let location = aDecoder.decodeObject(forKey: PropertyKey.location) as? [Float]
+        let swipes = aDecoder.decodeObject(forKey: PropertyKey.swipes) as? [String: Int]
+        let mates = aDecoder.decodeObject(forKey: PropertyKey.mates) as? [Any]
+        let potentialMates = aDecoder.decodeObject(forKey: PropertyKey.potentialMates) as? [Any]
+        let seenProfiles = aDecoder.decodeObject(forKey: PropertyKey.seenProfiles) as? [Any]
+        let blockedMates = aDecoder.decodeObject(forKey: PropertyKey.blockedMates) as? [Any]
+        let email = aDecoder.decodeObject(forKey: PropertyKey.email) as? String
+        let password = aDecoder.decodeObject(forKey: PropertyKey.password) as? String
+        let token = aDecoder.decodeObject(forKey: PropertyKey.token) as? String
+        let preferences = aDecoder.decodeObject(forKey: PropertyKey.preferences) as? [String: Any]
+        let data = aDecoder.decodeObject(forKey: PropertyKey.data) as? [String: Any]
         
-        // Because photo is an optional property of Meal, just use conditional cast.
-        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-        
-        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
+//        // Because photo is an optional property of Meal, just use conditional cast.
+//        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+//
+//        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating)
+//        self.init(name: name, photo: photo, rating: rating)
+        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, data: data!);
         
     }
 }

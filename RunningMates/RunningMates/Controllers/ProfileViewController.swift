@@ -19,7 +19,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var bioTextField: UITextView!
     @IBOutlet weak var photoImageView: UIImageView!
     
-    var rootURl: String = "http://localhost:9090/"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    var rootURl: String = "http://localhost:9090/"
     
     
     override func viewDidLoad() {
@@ -86,6 +87,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func saveChanges(_ sender: Any) {
         print("You clicked save.")
+        let rootUrl: String = appDelegate.rootUrl
         
         // alamofire request
         let params: [String: Any] = [
@@ -93,7 +95,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             "file-type": "type"
         ]
         
-        let url = rootURl + "api/signS3"
+        let url = rootUrl + "api/signS3"
         
         let _request = Alamofire.request(url, method: .post, parameters: params)
             .responseJSON { response in

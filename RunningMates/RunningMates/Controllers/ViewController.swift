@@ -27,8 +27,11 @@ extension UIViewController {
     class ViewController: UIViewController, WKUIDelegate, UINavigationControllerDelegate {
 
         var webView: WKWebView!
-        var rootURl: String = "https://running-mates.herokuapp.com/"
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+//        var rootURl: String = "https://running-mates.herokuapp.com/"
 //        var rootURl: String = "http://localhost:9090/"
+        
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var passTextField: UITextField!
         @IBOutlet weak var emailTextField: UITextField!
@@ -51,12 +54,14 @@ extension UIViewController {
     }
 
     @IBAction func tryLogin(_ sender: UIButton) {
+        let rootUrl: String = appDelegate.rootUrl
+        
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
-        requestForLogin(Url: rootURl + "api/signin", password: pass, email: email, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.userEmail = self.emailTextField.text!
-            print(appDelegate.userEmail)
+        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
+            
+            self.appDelegate.userEmail = self.emailTextField.text!
+            print(self.appDelegate.userEmail)
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
