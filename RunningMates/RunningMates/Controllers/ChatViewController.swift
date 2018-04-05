@@ -9,33 +9,51 @@
 
 import UIKit
 import SocketIO
-import Chatto
-import ChattoAdditions
+//import Chatto
+//import ChattoAdditions
 
 
-class ChatViewController: BaseChatViewController {
+class ChatViewController: UIViewController {
 
-    @IBOutlet weak var chatView: UITableView!
+//    @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var textViewTemp: UITextView!
     
+
     
     let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
     
-    
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
     func addHandlers() {
-        manager.defaultSocket.on("chat message") {data, ack in
-            print(data)
+        let socket = manager.defaultSocket
+        socket.on("chat message") {data, ack in
+            self.recieveMessage(message_data: data)
         }
+
     }
 
+    func recieveMessage(message_data: [Any]){
+        print("message recieved")
+        print(message_data[0])
+        // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
+        guard let cur = message_data[0] as? String else { return }
+        self.textViewTemp.text.append(cur)
+        self.textViewTemp.text.append("\n")
+
+    }
+
+    
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
         let socket = manager.defaultSocket
         socket.emit("chat message", [self.chatInput.text!])
+        self.textViewTemp.text.append(self.chatInput.text! + "\n")
+        self.chatInput.text = ""
+ 
+
     }
-    
+
     
     // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
     override func viewDidLoad() {
@@ -45,19 +63,20 @@ class ChatViewController: BaseChatViewController {
     socket.on(clientEvent: .connect) {data, ack in
     print("socket connected")
     }
-    
-    socket.on("currentAmount") {data, ack in
-    guard let cur = data[0] as? Double else { return }
-    
-    socket.emitWithAck("canUpdate", cur).timingOut(after: 0) {data in
-    socket.emit("update", ["amount": cur + 2.50])
-    }
-    
-    ack.with("Got your currentAmount", "dude")
+        
+    socket.on("chat message") {data, ack in
+        print("I AM HERE", data)
+        self.recieveMessage(message_data: data)
     }
     
     socket.connect()
+        
+        
+        
     }
+    
+    
+
 
 }
 

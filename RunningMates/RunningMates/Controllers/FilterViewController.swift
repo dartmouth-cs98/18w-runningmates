@@ -18,13 +18,14 @@ class FilterViewController: UIViewController {
     
    // @IBOutlet weak var fuckUXcode: RangeSlider!
     
+    var genderPref = ""
     @IBOutlet weak var femaleButton: DLRadioButton!
     var femaleButtonSwitch = 1
     // MARK: Properties
     @IBOutlet weak var maleButton: DLRadioButton!
     var maleButtonSwitch = 1
 
-  
+    
     //@IBOutlet weak var nameLabel: UILabel!
     
   //  @IBOutlet weak var genderLabel: UILabel!
@@ -41,6 +42,22 @@ class FilterViewController: UIViewController {
 
             }
     
+    @IBAction func savePrefs(_ sender: Any) {
+        if (femaleButton.isSelected && maleButton.isSelected) {
+            genderPref = "All"
+        }
+        else if (femaleButton.isSelected) {
+            genderPref = "female"
+        }
+        else if (maleButton.isSelected) {
+            genderPref = "male"
+        }
+        else {
+            print("You must select a gender preference.")
+        }
+        print(genderPref)
+        
+    }
     
     override func viewDidLayoutSubviews() {
         let margin: CGFloat = 20.0
@@ -69,7 +86,6 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func maleButtonSelected(_ sender: Any) {
-        print("selected male")
         maleButtonSwitch = maleButtonSwitch * -1;
         if maleButtonSwitch > 0{
             maleButton.isSelected = false
@@ -79,7 +95,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func femaleButtonSelected(_ sender: Any) {
-        print("selected female")
+
         femaleButtonSwitch = femaleButtonSwitch * -1;
         if femaleButtonSwitch > 0{
             femaleButton.isSelected = false
@@ -87,6 +103,8 @@ class FilterViewController: UIViewController {
             femaleButton.isSelected = true
         }
     }
+    
+    
 
     
 }

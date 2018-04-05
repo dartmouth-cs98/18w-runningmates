@@ -3,7 +3,7 @@
 //  RunningMates
 //
 //  Created by Sara Topic on 30/01/2018.
-//  Copyright © 2018 Apple Inc. All rights reserved.
+//  Copyright © 2018 Apple Inc. All righ/Users/saratopic/RunningMatesBackend/18w-runningmates-backend/app/server.jsts reserved.
 //
 
 import UIKit
