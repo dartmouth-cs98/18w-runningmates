@@ -12,9 +12,11 @@ import DLRadioButton
 class FilterViewController: UIViewController {
    
     let ageSlide = RangeSlider(frame: CGRect.zero)
-    let paceSlide = RangeSlider(frame: CGRect.zero)
-    let proxSlide = RangeSlider(frame: CGRect.zero)
+//    let paceSlide = RangeSlider(frame: CGRect.zero)
+//    let proxSlide = RangeSlider(frame: CGRect.zero)
 
+    @IBOutlet weak var minAgeSelected: UITextField!
+    @IBOutlet weak var maxAgeSelected: UITextField!
     
    // @IBOutlet weak var fuckUXcode: RangeSlider!
     
@@ -33,12 +35,13 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(ageSlide)
-        view.addSubview(paceSlide)
-        view.addSubview(proxSlide)
+//        view.addSubview(paceSlide)
+//        view.addSubview(proxSlide)
 
-        ageSlide.addTarget(self, action: Selector(("ageSliderValueChanged:")), for: .valueChanged)
-        paceSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
-        proxSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
+        ageSlide.addTarget(self, action: #selector(FilterViewController.ageSliderValueChanged), for: .valueChanged)
+        
+//        paceSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
+//        proxSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
 
             }
     
@@ -62,12 +65,12 @@ class FilterViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         let margin: CGFloat = 20.0
         let width = view.bounds.width - 2.0 * margin
-        ageSlide.frame = CGRect(x: margin, y: 200.0 + topLayoutGuide.length,
+        ageSlide.frame = CGRect(x: margin, y: 250.0 + topLayoutGuide.length,
                                    width: width, height: 31.0)
-        paceSlide.frame = CGRect(x: margin, y: 375.0 + topLayoutGuide.length,
-                                width: width, height: 31.0)
-        proxSlide.frame = CGRect(x: margin, y: 500.0 + topLayoutGuide.length,
-                                 width: width, height: 31.0)
+        //paceSlide.frame = CGRect(x: margin, y: 375.0 + topLayoutGuide.length,
+         //                       width: width, height: 31.0)
+       // proxSlide.frame = CGRect(x: margin, y: 500.0 + topLayoutGuide.length,
+           //                      width: width, height: 31.0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,9 +83,14 @@ class FilterViewController: UIViewController {
 //        print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
 //    }
 //
-    @IBAction func rangeSliderValueChanged(_ sender: RangeSlider) {
-        print("Range slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
-
+    @objc func rangeSliderValueChanged(rangeSlider: RangeSlider) {
+        print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
+    }
+    @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
+        print("Age slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
+        self.minAgeSelected.text = String(Int(round(ageSlide.lowerValue)));
+        self.maxAgeSelected.text = String(Int(round(ageSlide.upperValue)));
+        
     }
     
     @IBAction func maleButtonSelected(_ sender: Any) {

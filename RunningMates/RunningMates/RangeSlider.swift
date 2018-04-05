@@ -90,6 +90,8 @@ class RangeSlider: UIControl {
     }
     
     func updateLayerFrames() {
+        
+       // print("updating layer frames")
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
@@ -105,7 +107,10 @@ class RangeSlider: UIControl {
         upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth / 2.0, y: 0.0,
                                        width: thumbWidth, height: thumbWidth)
         upperThumbLayer.setNeedsDisplay()
+       
+        self.sendActions(for: .valueChanged)
         
+
         CATransaction.commit()
     }
     

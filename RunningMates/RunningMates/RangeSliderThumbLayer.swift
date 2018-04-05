@@ -39,7 +39,7 @@ class RangeSliderThumbLayer: CALayer {
             ctx.strokePath()
             
             if highlighted {
-                print("highlighted")
+                //    print("highlighted")
                 ctx.setFillColor(UIColor(white: 0.0, alpha: 0.1).cgColor)
                 ctx.addPath(thumbPath.cgPath)
                 (ctx).fillPath()

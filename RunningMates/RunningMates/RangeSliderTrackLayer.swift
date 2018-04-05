@@ -14,7 +14,7 @@ class RangeSliderTrackLayer: CALayer {
     weak var rangeSlider: RangeSlider?
 
     override func draw(in ctx: CGContext!) {
-        print("im even here")
+      //  print("im even here")
 
         if let slider = rangeSlider {
             // Clip
@@ -29,7 +29,7 @@ class RangeSliderTrackLayer: CALayer {
             
             // Fill the highlighted range
             ctx.setFillColor(slider.trackHighlightTintColor.cgColor)
-            print("fillding highlighted range")
+          //  print("fillding highlighted range")
             let lowerValuePosition = CGFloat(slider.positionForValue(value: slider.lowerValue))
             let upperValuePosition = CGFloat(slider.positionForValue(value: slider.upperValue))
             let rect = CGRect(x: lowerValuePosition, y: 0.0, width: upperValuePosition - lowerValuePosition, height: bounds.height)
