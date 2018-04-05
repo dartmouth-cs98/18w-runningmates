@@ -11,14 +11,15 @@ import DLRadioButton
 
 class FilterViewController: UIViewController {
    
-    let ageSlide = RangeSlider(frame: CGRect.zero)
-//    let paceSlide = RangeSlider(frame: CGRect.zero)
-//    let proxSlide = RangeSlider(frame: CGRect.zero)
+     let ageSlide = RangeSlider(frame: CGRect.zero)
+     let distSlide = RangeSlider(frame: CGRect.zero)
+     let proxSlide = RangeSlider(frame: CGRect.zero)
 
     @IBOutlet weak var minAgeSelected: UITextField!
     @IBOutlet weak var maxAgeSelected: UITextField!
     
-   // @IBOutlet weak var fuckUXcode: RangeSlider!
+    @IBOutlet weak var minDistSelected: UITextField!
+    @IBOutlet weak var maxDistSelected: UITextField!
     
     var genderPref = ""
     @IBOutlet weak var femaleButton: DLRadioButton!
@@ -35,10 +36,18 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(ageSlide)
-//        view.addSubview(paceSlide)
-//        view.addSubview(proxSlide)
+        view.addSubview(distSlide)
+        view.addSubview(proxSlide)
 
         ageSlide.addTarget(self, action: #selector(FilterViewController.ageSliderValueChanged), for: .valueChanged)
+        distSlide.addTarget(self, action: #selector(FilterViewController.distSliderValueChanged), for: .valueChanged)
+        
+        proxSlide.addTarget(self, action: #selector(FilterViewController.proxSliderValueChanged), for: .valueChanged)
+        
+        ageSlide.configRangeSlider(id: 1)
+        distSlide.configRangeSlider(id: 2)
+        proxSlide.configRangeSlider(id: 3)
+
         
 //        paceSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
 //        proxSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
@@ -67,10 +76,10 @@ class FilterViewController: UIViewController {
         let width = view.bounds.width - 2.0 * margin
         ageSlide.frame = CGRect(x: margin, y: 250.0 + topLayoutGuide.length,
                                    width: width, height: 31.0)
-        //paceSlide.frame = CGRect(x: margin, y: 375.0 + topLayoutGuide.length,
-         //                       width: width, height: 31.0)
-       // proxSlide.frame = CGRect(x: margin, y: 500.0 + topLayoutGuide.length,
-           //                      width: width, height: 31.0)
+        distSlide.frame = CGRect(x: margin, y: 375.0 + topLayoutGuide.length,
+                            width: width, height: 31.0)
+        proxSlide.frame = CGRect(x: margin, y: 500.0 + topLayoutGuide.length,
+                                 width: width, height: 31.0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,12 +93,45 @@ class FilterViewController: UIViewController {
 //    }
 //
     @objc func rangeSliderValueChanged(rangeSlider: RangeSlider) {
-        print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
+       // print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
     }
     @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
         print("Age slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
         self.minAgeSelected.text = String(Int(round(ageSlide.lowerValue)));
         self.maxAgeSelected.text = String(Int(round(ageSlide.upperValue)));
+        
+    }
+    
+    
+    @objc func distSliderValueChanged(rangeSlider: RangeSlider) {
+        print("Dist slider value changed: (\(distSlide.lowerValue) \(distSlide.upperValue))")
+        
+       //https://stackoverflow.com/questions/28447732/checking-if-a-double-value-is-an-integer-swift
+        let roundMin = round(distSlide.lowerValue/0.5)*0.5
+        let minIsInteger = roundMin.truncatingRemainder(dividingBy: 1.0) == 0.0
+        if (minIsInteger){
+            self.minDistSelected.text = String(Int(roundMin));
+
+        }
+        else{
+            self.minDistSelected.text = String(roundMin);
+        }
+        
+        let roundMax = round(distSlide.upperValue/0.5)*0.5
+        let maxIsInteger = roundMax.truncatingRemainder(dividingBy: 1.0) == 0.0
+
+        if (maxIsInteger){
+            self.maxDistSelected.text = String(Int(roundMax));
+            
+        }
+        else{
+            self.maxDistSelected.text = String(roundMax);
+        }
+        
+    }
+    
+    @objc func proxSliderValueChanged(rangeSlider: RangeSlider) {
+        print("Prox slider value changed: (\(proxSlide.lowerValue) \(proxSlide.upperValue))")
         
     }
     

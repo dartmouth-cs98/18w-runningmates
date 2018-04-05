@@ -2,7 +2,8 @@ import UIKit
 import QuartzCore
 
 //source: https://www.raywenderlich.com/76433/how-to-make-a-custom-control-swift
-class RangeSlider: UIControl {
+class AgeRangeSlider: UIControl {
+    
     let trackLayer = RangeSliderTrackLayer()
     let lowerThumbLayer = RangeSliderThumbLayer()
     let upperThumbLayer = RangeSliderThumbLayer()
@@ -68,6 +69,7 @@ class RangeSlider: UIControl {
             updateLayerFrames()
         }
     }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
