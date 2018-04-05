@@ -16,33 +16,39 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var averagePaceTextField: UITextField!
-   // @IBOutlet weak var bioTextView: UITextField!
+    @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var totalElevationTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
-    var rootURl: String = "https://running-mates.herokuapp.com/"
-//    var rootURl: String = "http://localhost:9090/"
+    @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var longestRunTextView: UITextField!
+    @IBOutlet weak var racesDoneTextView: UITextView!
+    @IBOutlet weak var frequentSegmentsTextView: UITextView!
+    @IBOutlet weak var KOMsTextField: UITextField!
+    @IBOutlet weak var runsPerWeekTextField: UITextField!
+    
+    //var rootURl: String = "https://running-mates.herokuapp.com/"
+    var rootURl: String = "http://localhost:9090/"
     var pickerOptions: [String] = [String]()
     var imagePicker: UIImagePickerController = UIImagePickerController()
+    
+    var newUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        //bioTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         nameTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        averagePaceTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        milesPerWeekTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
-       // bioTextView.clipsToBounds = true
         nameTextView.clipsToBounds = true
-        averagePaceTextField.clipsToBounds = true
+        milesPerWeekTextField.clipsToBounds = true
         totalMilesTextField.clipsToBounds = true
         totalElevationTextField.clipsToBounds = true
         
@@ -92,8 +98,22 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        //check if enough data has been entered, save user and send to matching page
+        //check if enough data has been entered
+        if ((nameTextView.text! == "") || (bioTextView.text! == "") || (milesPerWeekTextField.text! == "") || (runsPerWeekTextField.text! == "")) {
+        let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        }
+        let json: [String: Any] = ["firstName": nameTextView.text!,
+                                   "imageURL": profileImage.image,
+                                   "bio": bioTextView.text!,
+                                   "location": locationTextView.text!]
+        var user: User = try! User.init(json: json) as! User
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.userData = user! // format of key value pairs
+        // save user and send to matching page
+        // backend save and local save
     }
     
-    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the image uploading and strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
+    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
 }
