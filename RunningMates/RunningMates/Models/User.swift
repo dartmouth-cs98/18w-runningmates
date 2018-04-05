@@ -23,13 +23,13 @@ enum UserInitError: Error {
 }
 
 class User: NSObject, NSCoding {
-    var firstName: String?
-    var lastName: String
-    var imageURL: String
+    var firstName: String
+    var lastName: String?
+    var imageURL: String?
     var images: [String:Any]?
     var bio: String
-    var gender: String
-    var age: Int
+    var gender: String?
+    var age: Int?
     var location: [Float]
     var desiredGoals: [Any]?
     var swipes: [String: Int]?
@@ -157,16 +157,51 @@ class User: NSObject, NSCoding {
         
         // The first name is required. If we cannot decode a name string, the initializer should fail.
         guard let firstName = aDecoder.decodeObject(forKey: PropertyKey.firstName) as? String else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the name for a user.", log: OSLog.default, type: .debug)
             return nil
         }
-        // Because photo is an optional property of Meal, just use conditional cast.
-       // let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        let lastName = aDecoder.decodeObject(forKey: PropertyKey.lastName) as? String
+        let imageURL = aDecoder.decodeObject(forKey: PropertyKey.imageURL) as? String
+        let images = aDecoder.decodeObject(forKey: PropertyKey.images) as? [String: Any]
+        let bio = aDecoder.decodeObject(forKey: PropertyKey.bio) as? String
+        let gender = aDecoder.decodeObject(forKey: PropertyKey.gender) as? String
+        let age = aDecoder.decodeObject(forKey: PropertyKey.age) as? Int
+        let location = aDecoder.decodeObject(forKey: PropertyKey.location) as? [Float]
+        let desiredGoals = aDecoder.decodeObject(forKey: PropertyKey.desiredGoals) as? [Any]
+        let swipes = aDecoder.decodeObject(forKey: PropertyKey.swipes) as? [String: Int]
+        let mates = aDecoder.decodeObject(forKey: PropertyKey.mates) as? [Any]
+        let potentialMates = aDecoder.decodeObject(forKey: PropertyKey.potentialMates) as? [Any]
+        let seenProfiles = aDecoder.decodeObject(forKey: PropertyKey.seenProfiles) as? [Any]
+        let blockedMates = aDecoder.decodeObject(forKey: PropertyKey.blockedMates) as? [Any]
+        let email = aDecoder.decodeObject(forKey: PropertyKey.email) as? String
+        let password = aDecoder.decodeObject(forKey: PropertyKey.password) as? String
+        let token = aDecoder.decodeObject(forKey: PropertyKey.token) as? String
+        let preferences = aDecoder.decodeObject(forKey: PropertyKey.preferences) as? [String: Any]
+        let thirdPartyIds = aDecoder.decodeObject(forKey: PropertyKey.thirdPartyIds) as? [String: Any]
+        let data = aDecoder.decodeObject(forKey: PropertyKey.data) as? [String: Any]
         
-        //let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
+        let json: [String: Any] = [PropertyKey.firstName: firstName,
+                                   PropertyKey.lastName: lastName!,
+                                   PropertyKey.imageURL: imageURL!,
+                                   PropertyKey.images: images!,
+                                   PropertyKey.bio: bio!,
+                                   PropertyKey.gender: gender!,
+                                   PropertyKey.age: age!,
+                                   PropertyKey.location: location!,
+                                   PropertyKey.desiredGoals: desiredGoals!,
+                                   PropertyKey.swipes: swipes!,
+                                   PropertyKey.mates: mates!,
+                                   PropertyKey.potentialMates: potentialMates!,
+                                   PropertyKey.seenProfiles: seenProfiles!,
+                                   PropertyKey.blockedMates: blockedMates!,
+                                   PropertyKey.email: email!,
+                                   PropertyKey.password: password!,
+                                   PropertyKey.token: token!,
+                                   PropertyKey.preferences: preferences!,
+                                   PropertyKey.thirdPartyIds: thirdPartyIds!,
+                                   PropertyKey.data: data!]
         
-        self.init(name: name, photo: photo, rating: rating)
-        
+        try? self.init(json: json)
     }
 }
 
