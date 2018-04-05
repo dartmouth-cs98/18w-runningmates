@@ -104,13 +104,19 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         }
-        let json: [String: Any] = ["firstName": nameTextView.text!,
-                                   "imageURL": profileImage.image,
+        
+        let user: [String: Any] = ["firstName": nameTextView.text!,
+                                   "imageURL": profileImage.image!,
                                    "bio": bioTextView.text!,
                                    "location": locationTextView.text!]
-        var user: User = try! User.init(json: json) as! User
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(user, toFile: User.ArchiveURL.path)
+        if isSuccessfulSave {
+            print("User successfully saved.")
+        } else {
+            print("Failed to save User...")
+        }
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.userData = user! // format of key value pairs
         // save user and send to matching page
         // backend save and local save
     }

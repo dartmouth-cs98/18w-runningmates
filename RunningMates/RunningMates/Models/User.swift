@@ -44,6 +44,9 @@ class User: NSObject, NSCoding {
     var thirdPartyIds: [String:Any]?
     var data: [String:Any]?
     
+    //MARK: Archiving Paths
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("currentUser")
     
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
