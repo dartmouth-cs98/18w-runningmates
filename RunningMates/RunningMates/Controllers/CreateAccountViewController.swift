@@ -10,6 +10,7 @@ import UIKit
 import OAuthSwift
 import Alamofire
 import WebKit
+import os.log
 
 class CreateAccountViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -22,8 +23,9 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     
     var alertView: UIAlertController?
     var webView: WKWebView!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //    var rootURl: String = "https://running-mates.herokuapp.com/"
-    var rootURl: String = "http://localhost:9090/"
+//    var rootURl: String = "http://localhost:9090/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,9 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     }
     
     @IBAction func didTapStrava(_ sender: Any) {
+        let rootUrl: String = appDelegate.rootUrl
+//        var user = User()
+        
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
@@ -55,7 +60,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         
         let handle = oauthswift.authorize(
             
-            withCallbackURL: URL(string: "RunningMates://localhost:9090")!,
+            withCallbackURL: URL(string: "RunningMates://" + rootUrl)!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
@@ -66,13 +71,65 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 let params: Parameters = [
                     "token": credential.oauthToken,
                     ]
-                let Url = self.rootURl + "api/stravaSignup"
+                let Url = rootUrl + "api/stravaSignup"
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         switch response.result {
                         case .success:
                             print("Post Successful")
+                            // Brians edits
+//                            print(response.result.value.data)
+//                            // let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                            appDelegate.userData = response.result.value.data! // format of key value pairs
+//                            appDelegate.firstName = response.result.value.firstName.text!
+//                            appDelegate.lastName = response.result.value.lastName.text!
+//                            appDelegate.age = response.result.value.age.int!
+//                            appDelegate.email = response.result.value.email.text!
+                            
+                            // first name last name bio age email data
+                            
+                            // or is it like this
+//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//
+//                            if let jsonResult = response.result.value as? [[String:Any]] {
+//                                do {
+//                                    let user1 = try User(json: (jsonUser["user"] as? [String:Any])!)
+//                                    if (user != nil) {
+//                                        print("User")
+//                                        print(user!)
+//                                        user = user1
+//                                        completion((user?.id)!) // what does this do
+//                                    } else {
+//                                        print("nil")
+//                                    }
+//                                } catch UserInitError.invalidId {
+//                                    print("invalid id")
+//                                } catch UserInitError.invalidFirstName {
+//                                    print("invalid first name")
+//                                } catch UserInitError.invalidLastName {
+//                                    print("invalid last name")
+//                                } catch UserInitError.invalidImageURL {
+//                                    print("invalid image url")
+//                                } catch UserInitError.invalidBio {
+//                                    print("invalid bio")
+//                                } catch UserInitError.invalidGender {
+//                                    print("invalid gender")
+//                                } catch UserInitError.invalidAge {
+//                                    print("invalid age")
+//                                } catch UserInitError.invalidLocation {
+//                                    print("invalid location")
+//                                } catch UserInitError.invalidEmail {
+//                                    print("invalid email")
+//                                } catch UserInitError.invalidPassword {
+//                                    print("invalid password")
+//                                } catch {
+//                                    print("other error")
+//                                }
+//                            }
+                            
+                            // need to pass the user object to the next screen
+                            
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
@@ -95,6 +152,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     }
     
     @IBAction func trySignUp(_ sender: Any) {
+        let rootUrl: String = appDelegate.rootUrl
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
@@ -119,7 +177,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             self.present(alert, animated: true, completion: nil)
         } else {
             // If everything looks ok, try to sign them in
-            requestForLogin(Url: rootURl + "api/signup", password: pass, email: email, completion: {
+            requestForLogin(Url: rootUrl + "api/signup", password: pass, email: email, completion: {
                 print("completion")
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.userEmail = self.emailTextField.text!
