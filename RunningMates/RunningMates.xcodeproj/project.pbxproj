@@ -44,6 +44,7 @@
 		FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF452043218D00EA78CE /* chat.storyboard */; };
 		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
+		FAFE988A20786040008B56BA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988920786040008B56BA /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,7 @@
 		FAD1AF452043218D00EA78CE /* chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = chat.storyboard; sourceTree = "<group>"; };
 		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
+		FAFE988920786040008B56BA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +389,7 @@
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
+				FAFE988920786040008B56BA /* Settings.swift */,
 				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
 				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
@@ -691,6 +694,7 @@
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
 				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
 				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
+				FAFE988A20786040008B56BA /* Settings.swift in Sources */,
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
