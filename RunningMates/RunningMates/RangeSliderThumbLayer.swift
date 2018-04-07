@@ -47,4 +47,5 @@ class RangeSliderThumbLayer: CALayer {
         }
     }
 
+
 }

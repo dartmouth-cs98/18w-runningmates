@@ -109,6 +109,7 @@ class RangeSlider: UIControl {
         let lowerThumbCenter = CGFloat(positionForValue(value: lowerValue))
         
         lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth / 2.0, y: 0.0, width: thumbWidth, height: thumbWidth)
+        
         lowerThumbLayer.setNeedsDisplay()
         
         let upperThumbCenter = CGFloat(positionForValue(value: upperValue))
@@ -157,9 +158,19 @@ class RangeSlider: UIControl {
             
             upperValue  = 25
             
-            lowerValue = 0
+            // this is such a hack but oh well
+            lowerValue = -2
             
             maximumValue = 25
+            
+            
+            //lowerThumbLayer.frame = CGRect(x:  0.0, y: 0.0, width: 0, height: 0)
+            //lowerThumbLayer.setNeedsDisplay()
+            lowerThumbLayer.removeFromSuperlayer()
+   
+
+
+            
         }
     }
     
@@ -205,6 +216,11 @@ class RangeSlider: UIControl {
         } else if upperThumbLayer.highlighted {
             upperValue += deltaValue
             upperValue = boundValue(value: upperValue, toLowerValue: lowerValue, upperValue: maximumValue)
+            if (slide_id == 3 && upperValue < 0){
+                //lets us set the lower value to -2 without letting them select anything less than 0
+                // gets rid of an issue with drawing the tracking since theres only a single range filter
+                upperValue = 0
+            }
         }
         
         return true

@@ -28,6 +28,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var maleButton: DLRadioButton!
     var maleButtonSwitch = 1
 
+    @IBOutlet weak var maxProximitySelected: UITextField!
     
     //@IBOutlet weak var nameLabel: UILabel!
     
@@ -110,28 +111,30 @@ class FilterViewController: UIViewController {
         let roundMin = round(distSlide.lowerValue/0.5)*0.5
         let minIsInteger = roundMin.truncatingRemainder(dividingBy: 1.0) == 0.0
         if (minIsInteger){
-            self.minDistSelected.text = String(Int(roundMin));
+            self.minDistSelected.text = String(Int(roundMin)) + "mi";
 
         }
         else{
-            self.minDistSelected.text = String(roundMin);
+            self.minDistSelected.text = String(roundMin) + "mi";
         }
         
         let roundMax = round(distSlide.upperValue/0.5)*0.5
         let maxIsInteger = roundMax.truncatingRemainder(dividingBy: 1.0) == 0.0
 
         if (maxIsInteger){
-            self.maxDistSelected.text = String(Int(roundMax));
+            self.maxDistSelected.text = String(Int(roundMax)) + "mi";
             
         }
         else{
-            self.maxDistSelected.text = String(roundMax);
+            self.maxDistSelected.text = String(roundMax) + "mi";
         }
         
     }
     
     @objc func proxSliderValueChanged(rangeSlider: RangeSlider) {
         print("Prox slider value changed: (\(proxSlide.lowerValue) \(proxSlide.upperValue))")
+        
+        self.maxProximitySelected.text = String(Int(proxSlide.upperValue)) + "mi"
         
     }
     
