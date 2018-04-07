@@ -45,6 +45,8 @@
 		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
 		FAFE988A20786040008B56BA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988920786040008B56BA /* Settings.swift */; };
+		FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFE988D2079665A008B56BA /* FullChatView.storyboard */; };
+		FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988F20796699008B56BA /* FullChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,8 @@
 		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
 		FAFE988920786040008B56BA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FAFE988D2079665A008B56BA /* FullChatView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullChatView.storyboard; sourceTree = "<group>"; };
+		FAFE988F20796699008B56BA /* FullChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +424,7 @@
 				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
+				FAFE988F20796699008B56BA /* FullChatViewController.swift */,
 				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
@@ -433,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
+				FAFE988D2079665A008B56BA /* FullChatView.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
 				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
@@ -597,6 +603,7 @@
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
+				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
@@ -702,6 +709,7 @@
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
+				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 				FAB5A7CA206F1D0400DDE1E9 /* SocketIOManager.swift in Sources */,

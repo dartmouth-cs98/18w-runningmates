@@ -100,9 +100,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldr-q8-6bC">
-                                <rect key="frame" x="298" y="48" width="55" height="30"/>
+                                <rect key="frame" x="310" y="48" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="settings"/>
+                                <state key="normal" title="chat"/>
                                 <connections>
                                     <segue destination="kV8-ES-nIY" kind="show" id="W6N-DB-7am"/>
                                 </connections>
@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
         </scene>
-        <!--Settings-->
+        <!--FullChatView-->
         <scene sceneID="qiS-JO-Tjk">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="kV8-ES-nIY" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="FullChatView" id="kV8-ES-nIY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tD1-WO-CSi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1065" y="-82"/>

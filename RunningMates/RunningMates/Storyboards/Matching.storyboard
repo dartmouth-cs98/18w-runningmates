@@ -189,10 +189,10 @@
             </objects>
             <point key="canvasLocation" x="3162" y="-207"/>
         </scene>
-        <!--chat-->
+        <!--FullChatView-->
         <scene sceneID="pTn-tk-e9g">
             <objects>
-                <viewControllerPlaceholder storyboardName="chat" id="enw-5Z-cHv" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="FullChatView" id="enw-5Z-cHv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCg-WT-rzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3271.1999999999998" y="-84.557721139430285"/>
