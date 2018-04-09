@@ -10,8 +10,8 @@
 import UIKit
 import QuartzCore
 
-class RangeSliderTrackLayer: CALayer {
-    weak var rangeSlider: RangeSlider?
+class AgeRangeSliderTrackLayer: CALayer {
+    weak var rangeSlider: AgeRangeSlider?
 
     override func draw(in ctx: CGContext!) {
       //  print("im even here")

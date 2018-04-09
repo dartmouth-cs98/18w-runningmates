@@ -2,10 +2,8 @@ import UIKit
 import QuartzCore
 
 //source: https://www.raywenderlich.com/76433/how-to-make-a-custom-control-swift
-class RangeSlider: UIControl {
+class AgeRangeSlider: UIControl {
     
-    var slide_id = 0
-
     let trackLayer = RangeSliderTrackLayer()
     let lowerThumbLayer = RangeSliderThumbLayer()
     let upperThumbLayer = RangeSliderThumbLayer()
@@ -32,9 +30,7 @@ class RangeSlider: UIControl {
     var upperValue: Double = 99 {
         didSet {
             updateLayerFrames()
-            
         }
-        
     }
     
     var trackTintColor: UIColor = UIColor(white: 0.9, alpha: 1.0) {
@@ -76,9 +72,7 @@ class RangeSlider: UIControl {
     
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
-        
         
         trackLayer.rangeSlider = self
         trackLayer.contentsScale = UIScreen.main.scale
@@ -109,7 +103,6 @@ class RangeSlider: UIControl {
         let lowerThumbCenter = CGFloat(positionForValue(value: lowerValue))
         
         lowerThumbLayer.frame = CGRect(x: lowerThumbCenter - thumbWidth / 2.0, y: 0.0, width: thumbWidth, height: thumbWidth)
-        
         lowerThumbLayer.setNeedsDisplay()
         
         let upperThumbCenter = CGFloat(positionForValue(value: upperValue))
@@ -123,58 +116,6 @@ class RangeSlider: UIControl {
         CATransaction.commit()
     }
     
-    
-    func configRangeSlider(id: Int){
-        slide_id = id
-        if (id == 1){
-            
-            print("age")
-            minimumValue = 18
-            
-            upperValue  = 99
-
-            lowerValue = 18
-
-            
-            maximumValue = 99
-  
-        }
-        if (id == 2){
-            print("pace")
-            minimumValue = 0
-            
-            upperValue  = 15
-            
-            lowerValue = 0
-            
-            maximumValue = 15
-            
-        }
-        
-        
-        if (id == 3){
-            print("prox")
-            minimumValue = 0
-            
-            upperValue  = 25
-            
-            // this is such a hack but oh well
-            lowerValue = -2
-            
-            maximumValue = 25
-            
-            
-            //lowerThumbLayer.frame = CGRect(x:  0.0, y: 0.0, width: 0, height: 0)
-            //lowerThumbLayer.setNeedsDisplay()
-            lowerThumbLayer.removeFromSuperlayer()
-   
-
-
-            
-        }
-    }
-    
-  
     func positionForValue(value: Double) -> Double {
         _ = Double(thumbWidth)
         return Double(bounds.width - thumbWidth) * (value - minimumValue) /
@@ -186,9 +127,8 @@ class RangeSlider: UIControl {
         previousLocation = touch.location(in: self)
         
         // Hit test the thumb layers
-        if slide_id != 3 && lowerThumbLayer.frame.contains(previousLocation) {
+        if lowerThumbLayer.frame.contains(previousLocation) {
             lowerThumbLayer.highlighted = true
-            
         } else if upperThumbLayer.frame.contains(previousLocation) {
             upperThumbLayer.highlighted = true
         }
@@ -216,11 +156,6 @@ class RangeSlider: UIControl {
         } else if upperThumbLayer.highlighted {
             upperValue += deltaValue
             upperValue = boundValue(value: upperValue, toLowerValue: lowerValue, upperValue: maximumValue)
-            if (slide_id == 3 && upperValue < 0){
-                //lets us set the lower value to -2 without letting them select anything less than 0
-                // gets rid of an issue with drawing the tracking since theres only a single range filter
-                upperValue = 0
-            }
         }
         
         return true
