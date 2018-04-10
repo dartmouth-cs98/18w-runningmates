@@ -6,30 +6,33 @@
 //  Copyright © 2018 Apple Inc. All rights reserved.
 //
 // http://www.thomashanning.com/uitableview-tutorial-for-beginners/
+// https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
 
 import UIKit
 import Foundation
 import Alamofire
 
 
-class FullChatViewController: UIViewController, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+class FullChatViewController: UITableViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! //1.
+    // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
         
         let text = data[indexPath.row] as! [String:Any] //2.
-
+        
         cell.textLabel?.text = text["id"] as! String //3.
-//
+        print("id: " + String(describing: text["id"]))
+        
         return cell //4.
     }
     
 
-    @IBOutlet var tableView: UITableView!
+//    @IBOutlet var tableView: UITableView!
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = ""
@@ -41,7 +44,10 @@ class FullChatViewController: UIViewController, UITableViewDataSource {
         
         fetchChats(completion: { chats in
             self.data = chats
+            print("chats:\n")
+            print(chats)
             self.tableView.dataSource = self
+            self.tableView.reloadData()
         })
         
     }
