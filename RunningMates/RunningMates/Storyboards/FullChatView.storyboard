@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m4p-Cf-bqN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dfC-Ip-HJw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="go to chat"/>
                             <connections>
-                                <segue destination="6NN-lO-wJQ" kind="show" id="T8S-Sy-49I"/>
+                                <segue destination="Fb4-hC-OJH" kind="show" id="s69-4N-YqV"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -49,12 +50,14 @@
                             <outlet property="delegate" destination="m4p-Cf-bqN" id="Xns-uE-vvX"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="8UA-tn-AUZ"/>
                     <connections>
                         <outlet property="tableView" destination="Awy-8g-ezK" id="yYK-T2-6UZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fxe-eR-aIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="372" y="363.86806596701655"/>
         </scene>
         <!--chat-->
         <scene sceneID="09v-uO-H3o">
@@ -62,7 +65,41 @@
                 <viewControllerPlaceholder storyboardName="chat" id="6NN-lO-wJQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lez-jY-weU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837" y="30"/>
+            <point key="canvasLocation" x="1175.2" y="29.685157421289357"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="0n6-uq-50A">
+            <objects>
+                <viewController id="Fb4-hC-OJH" customClass="ChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0i6-Z3-tUN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="RDd-EY-DoR"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zjh-8C-Dcm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5go-IH-j3z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1639" y="449"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="545-as-Ezf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dfC-Ip-HJw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Um4-7W-h9b">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m4p-Cf-bqN" kind="relationship" relationship="rootViewController" id="RWQ-2s-rpR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRA-Tw-2dA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-638" y="389"/>
         </scene>
     </scenes>
 </document>
