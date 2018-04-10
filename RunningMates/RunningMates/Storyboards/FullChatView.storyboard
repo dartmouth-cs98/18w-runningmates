@@ -23,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="go to chat"/>
                             <connections>
-                                <segue destination="Fb4-hC-OJH" kind="show" id="s69-4N-YqV"/>
+                                <segue destination="6NN-lO-wJQ" kind="show" id="Kaw-YB-021"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -65,7 +65,7 @@
                 <viewControllerPlaceholder storyboardName="chat" id="6NN-lO-wJQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lez-jY-weU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1175.2" y="29.685157421289357"/>
+            <point key="canvasLocation" x="1545" y="388"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="0n6-uq-50A">
