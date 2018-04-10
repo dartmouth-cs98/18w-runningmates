@@ -22,7 +22,7 @@ class ChatViewController: UIViewController {
     
 
     
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com")!)
     
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
     func addHandlers() {

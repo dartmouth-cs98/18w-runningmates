@@ -29,7 +29,7 @@ extension UIViewController {
         var webView: WKWebView!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-//        var rootURl: String = "https://running-mates.herokuapp.com/"
+        var rootURl: String = "https://running-mates.herokuapp.com/"
 //        var rootURl: String = "http://localhost:9090/"
         
         @IBOutlet weak var loginButton: UIButton!
