@@ -21,7 +21,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var textViewTemp: UITextView!
     
 
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
     
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
@@ -46,12 +46,18 @@ class ChatViewController: UIViewController {
     
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
+        
+        let message : [String: Any] = [
+            "message": self.chatInput.text!,
+            "sentBy": appDelegate.userEmail,
+            "recipient": "drew@test.com",
+            "chatID": "5ac6a0fd6a7a2763b40d92b4"
+        ]
+        
         let socket = manager.defaultSocket
-        socket.emit("chat message", [self.chatInput.text!])
+        socket.emit("chat message", message)
         self.textViewTemp.text.append(self.chatInput.text! + "\n")
         self.chatInput.text = ""
- 
-
     }
 
     
@@ -71,12 +77,6 @@ class ChatViewController: UIViewController {
     
     socket.connect()
         
-        
-        
     }
-    
-    
-
-
 }
 
