@@ -19,11 +19,14 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var chatInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textViewTemp: UITextView!
-    
 
-    
+
+
     let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com")!)
-    
+//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
     func addHandlers() {
         let socket = manager.defaultSocket
@@ -43,40 +46,39 @@ class ChatViewController: UIViewController {
 
     }
 
-    
+
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
+
+        let message : [String: Any] = [
+            "message": self.chatInput.text!,
+            "sentBy": appDelegate.userEmail,
+            "recipient": "drew@test.com",
+            "chatID": "5ac6a0fd6a7a2763b40d92b4"
+        ]
+
         let socket = manager.defaultSocket
-        socket.emit("chat message", [self.chatInput.text!])
+        socket.emit("chat message", message)
         self.textViewTemp.text.append(self.chatInput.text! + "\n")
         self.chatInput.text = ""
- 
-
     }
 
-    
+
     // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
     override func viewDidLoad() {
-   
+
     let socket = manager.defaultSocket
-    
+
     socket.on(clientEvent: .connect) {data, ack in
     print("socket connected")
     }
-        
+
     socket.on("chat message") {data, ack in
         print("I AM HERE", data)
         self.recieveMessage(message_data: data)
     }
-    
+
     socket.connect()
-        
-        
-        
+
     }
-    
-    
-
-
 }
-
