@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import Koloda
 
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
@@ -31,6 +32,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var avgPaceLabel: UILabel!
+    @IBOutlet weak var kolodaView: KolodaView!
     
 //    //STATIC USERS (NOT FETCHED FROM DATABASE)
 //    let myUser1 = User.init(firstName: "Drew", lastName: "Waterman", imageURL: "https://scontent.fzty2-1.fna.fbcdn.net/v/t1.0-9/14055102_1430974263583433_7521632927490477345_n.jpg?oh=48c6995c29eee20d6749c31f961dd708&oe=5B03FC93", bio: "I love running really fast. Try and keep up!", gender: "female", age: 21, location: ["0","0"], email: "email@email.com", username: "drew_username", password: "password", token: "token")
@@ -89,7 +91,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     override func viewDidLoad() {
        super.viewDidLoad()
-       
+        kolodaView.dataSource = self
+        kolodaView.delegate = self
         self.userEmail = appDelegate.userEmail
        // Do any additional setup after loading the view, typically from a nib.
 
@@ -167,7 +170,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
+        let request = Alamofire.request(url, method: .get, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -216,6 +219,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
         return usersList
     }
+    
     
     func getUserId( completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
@@ -276,7 +280,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
        super.didReceiveMemoryWarning()
        // Dispose of any resources that can be recreated.
    }
-
+    
    //MARK: Actions
     // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
     @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
@@ -411,4 +415,30 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //    }
 
 
+}
+
+//
+extension MatchingViewController: KolodaViewDelegate {
+    func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
+        koloda.reloadData()
+    }
+    
+}
+extension MatchingViewController: KolodaViewDataSource {
+    
+    func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
+        return images.count
+    }
+    
+    func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
+        return .fast
+    }
+    
+    func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        return UIImageView(image: images[index])
+    }
+    
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)[0] as? OverlayView
+    }
 }

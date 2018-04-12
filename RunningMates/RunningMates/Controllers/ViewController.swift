@@ -37,6 +37,8 @@ extension UIViewController {
         @IBOutlet weak var emailTextField: UITextField!
         @IBOutlet weak var createAccountButton: UIButton!
         
+        var userInstance: User!
+
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -68,8 +70,8 @@ extension UIViewController {
             })
     }
         
-    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
-        
+    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (User)->()) -> User {
+
         print("requestForLogin")
         
         let params: Parameters = [
@@ -81,7 +83,33 @@ extension UIViewController {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    completion()
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        var user = (jsonUser["user"] as? [String:Any])!
+                        var token = (jsonUser["token"] as? [String:Any])
+                        UserDefaults.setValue(user["firstName"], forKey: "firstName")
+                        UserDefaults.setValue(user["email"], forKey: "email")
+                        UserDefaults.setValue(token, forKey: "token")
+                        if (user["lastName"] != nil) {
+                            UserDefaults.setValue(user["lastName"], forKey: "firstName")
+                        }
+                        
+                        if (user["imageURL"] != nil) {
+                            UserDefaults.setValue(user["imageURL"], forKey: "firstName")
+                        }
+                        
+                        if (user["images"] != nil) {
+                            UserDefaults.setValue(user["images"], forKey: "firstName")
+                        }
+                        
+                        if (user["data"] != nil) {
+                            UserDefaults.setValue(user["data"], forKey: "firstName")
+                        }
+                        if (user["desiredGoals"] != nil) {
+                            UserDefaults.setValue(user["desiredGoals"], forKey: "firstName")
+                        }
+
+                    }
+                        
                 case .failure(let error):
                     print(error)
                     let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)
@@ -89,6 +117,7 @@ extension UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
         }
+        return user
     }
 }
 
