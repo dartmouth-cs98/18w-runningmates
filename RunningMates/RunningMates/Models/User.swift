@@ -38,12 +38,12 @@ class User {
     var email: String
     var password: String?
     var token: String?
-    var preferences: [String:Any]?
-    var data: [String:Any]?
+    var preferences: [Any]?
+    var data: [Any]?
     
 
     //MARK: Initialization
-    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [Any], data: [Any]) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
@@ -101,8 +101,8 @@ class User {
         }
         let password = json["password"] as! String?
         let token = json["token"] as! String?
-        let preferences = json["preferences"] as! [String:Any]?
-        let data = json["data"] as! [String:Any]?
+        let preferences = json["preferences"] as! [Any]?
+        let data = json["data"] as! [Any]?
 
         self.id = id
         self.firstName = firstName

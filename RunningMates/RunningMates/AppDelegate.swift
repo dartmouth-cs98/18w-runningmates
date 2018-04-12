@@ -10,6 +10,7 @@ import UIKit
 import OAuthSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var rootURl: String = "https://running-mates.herokuapp.com/"
 
     var window: UIWindow?
 

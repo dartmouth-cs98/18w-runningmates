@@ -20,8 +20,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
-//    var rootURl: String = "http://localhost:9090/"
-    var rootURl: String = "https://running-mates.herokuapp.com/"
+    var rootURl: String = "http://localhost:9090/"
+   //var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = ""
@@ -170,9 +170,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             .responseJSON { response in
                 switch response.result {
                 case .success:
+                    print(response)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
+                                
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 if (user != nil) {
                                     usersList.append(user!)
@@ -230,7 +232,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                             do {
                                 let user = try User(json: (jsonUser as [String:Any]))
                                 if (user != nil) {
-                                    print("user")
                                     print(user!)
                                     completion((user?.id)!)
                                 } else {
@@ -314,16 +315,16 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         locationLabel.text = String(describing: userList[current_index].location)
         bioLabel.text = userList[current_index].bio
         
-        let data = (self.userList[self.current_index].data as! [String:Any])
+            let data = (self.userList[self.current_index].data as! [String:Any])
        
         if (data["totalMilesRun"] != nil) {
-            self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
+            //self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
         } else {
             self.milesLabel.text = "No info to show"
         }
         
-        if (data["AveragePace"] != nil) {
-            self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
+        if (data["averageRunLength"] != nil) {
+            //self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
         } else {
             self.avgPaceLabel.text = "No info to show"
         }
