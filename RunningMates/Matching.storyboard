@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ago-c8-JKF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ago-c8-JKF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sunrise image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="bG1-C6-Qog">
-                                <rect key="frame" x="-1" y="0.0" width="377" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="625"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-SZ-Ahu">
-                                <rect key="frame" x="269" y="507" width="68" height="29"/>
+                                <rect key="frame" x="153" y="591" width="68" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Match">
@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z7o-t1-mWA">
-                                <rect key="frame" x="13" y="80" width="346" height="272"/>
+                                <rect key="frame" x="16" y="64" width="346" height="319"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -42,14 +42,14 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDv-P0-cpK">
-                                <rect key="frame" x="16" y="369" width="302" height="32"/>
+                                <rect key="frame" x="16" y="391" width="302" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ai-J4-F2l">
-                                <rect key="frame" x="16" y="543" width="338" height="41"/>
+                                <rect key="frame" x="16" y="549" width="338" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,14 +63,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Miles Run" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4m-id-Isp">
-                                <rect key="frame" x="111" y="446" width="157" height="27"/>
+                                <rect key="frame" x="111" y="451" width="157" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Average Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gd-NR-ra9">
-                                <rect key="frame" x="72" y="481" width="170" height="27"/>
+                                <rect key="frame" x="72" y="481" width="170" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,14 +87,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0on-50-f7j">
-                                <rect key="frame" x="16" y="410" width="71" height="30"/>
+                                <rect key="frame" x="16" y="420" width="71" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Miles:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erb-Ii-v3O">
-                                <rect key="frame" x="16" y="443" width="87" height="31"/>
+                                <rect key="frame" x="16" y="449" width="87" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,7 +108,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-Uf-ABm">
-                                <rect key="frame" x="87" y="413" width="231" height="20"/>
+                                <rect key="frame" x="87" y="426" width="231" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,36 +121,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjh-96-9Y8">
-                                <rect key="frame" x="-1" y="579" width="377" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Profile" id="NGa-nT-MwV">
-                                        <connections>
-                                            <segue destination="WjL-MO-6jI" kind="show" id="m3t-9a-cBe"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Item" image="Image-1" width="234" id="73I-q6-GJx">
-                                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <segue destination="bZu-eF-9dI" kind="show" id="c2e-J7-coF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Item" image="Image-2" id="TNV-gT-Go4">
-                                        <connections>
-                                            <segue destination="enw-5Z-cHv" kind="show" id="naY-Yh-eAO"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xuo-33-ZIu"/>
                     </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="MaG-cx-7vr">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" style="plain" id="71T-AJ-ZSV"/>
+                    <toolbarItems>
+                        <barButtonItem title="Profile" id="NGa-nT-MwV">
+                            <connections>
+                                <segue destination="R0D-EK-oUE" kind="show" id="X4i-3n-USb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="4hB-7x-VKG"/>
+                        <barButtonItem width="42" systemItem="fixedSpace" id="7iJ-tZ-azm">
+                            <color key="tintColor" red="1" green="0.048751087826785833" blue="0.04962878066422749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <barButtonItem title="Item" image="Image-1" width="234" id="73I-q6-GJx">
+                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="bZu-eF-9dI" kind="show" id="c2e-J7-coF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Item" image="Image-2" id="TNV-gT-Go4">
+                            <connections>
+                                <segue destination="enw-5Z-cHv" kind="show" id="naY-Yh-eAO"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="okQ-F0-SDE">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" style="plain" id="Ing-Mx-umN">
+                            <connections>
+                                <segue destination="ZTv-9W-bOi" kind="show" identifier="Main" id="SO0-5R-5qp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -189,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="3162" y="-207"/>
         </scene>
-        <!--FullChatView-->
+        <!--chat-->
         <scene sceneID="pTn-tk-e9g">
             <objects>
-                <viewControllerPlaceholder storyboardName="FullChatView" id="enw-5Z-cHv" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="chat" id="enw-5Z-cHv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCg-WT-rzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3271.1999999999998" y="-84.557721139430285"/>
@@ -212,14 +215,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3427" y="295"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="0pu-SM-I3d">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="WjL-MO-6jI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PDp-YF-HsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3185" y="375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HlG-C0-ney">

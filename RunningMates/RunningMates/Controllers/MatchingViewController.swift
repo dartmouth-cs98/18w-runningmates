@@ -100,7 +100,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             self.userId = id
         })
         
-        let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
+        let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MatchingViewController.swipeNewMatch(_:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
 
         let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
@@ -219,9 +219,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     
     func getUserId( completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
-        var url = rootUrl + "api/getuser"
+        let url = rootUrl + "api/getuser"
         
-        var params : [String:Any] = [
+        let params : [String:Any] = [
             "email": userEmail
         ]
         let _request = Alamofire.request(url, method: .post, parameters: params)
