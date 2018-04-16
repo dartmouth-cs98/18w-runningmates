@@ -7,28 +7,69 @@
 //
 // http://www.thomashanning.com/uitableview-tutorial-for-beginners/
 // https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
+// https://stackoverflow.com/questions/26207846/pass-data-through-segue
 
 import UIKit
 import Foundation
 import Alamofire
 
 
-class FullChatViewController: UITableViewController {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+class FullChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var selectedChat: String = ""
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
         
-        let text = data[indexPath.row] as! [String:Any] //2.
+        let message = data[indexPath.row] as! [String:Any]
+        let recipients: [String] = message["recipients"] as! [String]
         
-        cell.textLabel?.text = text["id"] as! String //3.
-        print("id: " + String(describing: text["id"]))
+        var displayedMembers: String = ""
+        displayedMembers += recipients[0]
         
-        return cell //4.
+        for (index, recipient) in recipients.enumerated() {
+            if (index != 0) {
+                displayedMembers = displayedMembers + ", " + recipient
+            }
+        }
+        
+        cell.textLabel?.text = displayedMembers
+        
+        return cell
+    }
+    
+    // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected a cell")
+        // Create a variable that you want to send based on the destination view controller
+        // You can get a reference to the data by using indexPath shown below
+        let selectedObj = data[indexPath.row] as! [String: Any]
+        self.selectedChat = selectedObj["id"] as! String
+    }
+    
+    // following function adapted from: https://stackoverflow.com/questions/44790227/pass-multiple-variables-through-segue-in-swift
+    // passes id of the chat pressed to the chatViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chatPressed" {
+            let cell = sender as? UITableViewCell
+            
+            let index: IndexPath? = tableView?.indexPath(for: cell!)
+            let selectedObj = data[(index?.row)!] as! [String: Any]
+            let id: String = selectedObj["id"] as! String
+            
+            let chatViewController = segue.destination as! ChatViewController
+            chatViewController.chatID = id
+        }
     }
     
 
@@ -40,12 +81,16 @@ class FullChatViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.bringSubview(toFront: toolbar)
+        
+        // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.userEmail = appDelegate.userEmail;
         
         fetchChats(completion: { chats in
             self.data = chats
-            print("chats:\n")
-            print(chats)
             self.tableView.dataSource = self
             self.tableView.reloadData()
         })
@@ -57,7 +102,7 @@ class FullChatViewController: UITableViewController {
         let url = appDelegate.rootUrl + "api/chats"
         
         let params: Parameters = [
-            "user": userEmail
+            "user": self.userEmail
         ]
         
         let _request = Alamofire.request(url, method: .get, parameters: params)
@@ -72,7 +117,7 @@ class FullChatViewController: UITableViewController {
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
+//        debugPrint("whole _request ****",_request)
     }
     
 }
