@@ -46,7 +46,7 @@
                                 </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOG-XA-Yxa">
-                                <rect key="frame" x="-1" y="579" width="377" height="44"/>
+                                <rect key="frame" x="-1" y="615" width="377" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Profile" id="FRg-wX-ySh">
@@ -68,6 +68,14 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdg-rw-und">
+                                <rect key="frame" x="252" y="585" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="go to chat"/>
+                                <connections>
+                                    <segue destination="9Nq-JQ-AYc" kind="showDetail" id="rcM-GZ-OZn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OEO-EJ-blz"/>
@@ -99,6 +107,14 @@
             </objects>
             <point key="canvasLocation" x="470" y="1244"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="cg7-L5-Z6W">
+            <objects>
+                <viewControllerPlaceholder id="wvW-9N-nNN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODI-vO-lGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="1480"/>
+        </scene>
         <!--FilterStoryboard-->
         <scene sceneID="MKO-HT-iso">
             <objects>
@@ -114,6 +130,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lez-jY-weU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="891"/>
+        </scene>
+        <!--chat-->
+        <scene sceneID="D0f-h2-KuW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="chat" id="9Nq-JQ-AYc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOE-AF-65G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="1061"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XU8-wg-kb6">
