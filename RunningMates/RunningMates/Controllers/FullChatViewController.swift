@@ -14,6 +14,15 @@ import Foundation
 import Alamofire
 
 
+class ChatPreviewCell: UITableViewCell {
+    @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var contentPreviewLabel: UILabel!
+    
+}
+
+
 class FullChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var selectedChat: String = ""
@@ -33,6 +42,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let message = data[indexPath.row] as! [String:Any]
         let recipients: [String] = message["recipients"] as! [String]
+        let content: String = message["mostRecentMessage"] as! String
+        let time: String = message["lastUpdated"] as! String
         
         var displayedMembers: String = ""
         displayedMembers += recipients[0]
