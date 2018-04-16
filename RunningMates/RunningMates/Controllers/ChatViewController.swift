@@ -52,10 +52,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+        print("making a cell")
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+//
+//
+//        cell.textLabel?.text = "hello"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! UITableViewCell
         
-        
-        cell.textLabel?.text = "hello"
+        cell.textLabel!.text = (data[indexPath.row] as! String)
+        print("data in cell making func",  data[indexPath.row] )
+        return cell
         
         //        let message = data[indexPath.row] as! [String:Any]
         //        let recipients: [String] = message["recipients"] as! [String]
@@ -71,7 +77,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         //cell.textLabel?.text = displayedMembers
         
-        return cell
     }
     
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
@@ -104,11 +109,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     //var userEmail: String = ""
     //private var data: [Any] = [Any]()  // list of chat objects with chat ID, other user's name
-    
+    func addHandlers() {
+        let socket = manager.defaultSocket
+        socket.on("chat message") {data, ack in
+            self.recieveMessage(message_data: data)
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        addHandlers()
+        loadSampleChats()
         self.userEmail = appDelegate.userEmail
         let socket = manager.defaultSocket
         
@@ -179,7 +190,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ]
         print(message)
         
-        
+        data.append(self.chatInput.text)
+        print("data array", data)
+         self.tableView.reloadData()
         let socket = manager.defaultSocket
         socket.emit("chat message", message)
         // self.textViewTemp.text.append(self.chatInput.text! + "\n")
@@ -189,6 +202,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func recieveMessage(message_data: [Any]){
         print("message recieved")
         print(message_data[0])
+        print("data array", data)
+        self.tableView.reloadData()
         // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
         guard let cur = message_data[0] as? String else { return }
         //   self.textViewTemp.text.append(cur)
@@ -197,8 +212,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     private func loadSampleChats(){
-        data.append("some message")
-        self.tableView.reloadData()
+       // data = ["some", "new", "texts"]
+      //  self.tableView.reloadData()
         
         
         
@@ -223,13 +238,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 //
 //    // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
-//    func addHandlers() {
-//        let socket = manager.defaultSocket
-//        socket.on("chat message") {data, ack in
-//            self.recieveMessage(message_data: data)
-//        }
-//
-//    }
+
 //
 //    func recieveMessage(message_data: [Any]){
 //        print("message recieved")
