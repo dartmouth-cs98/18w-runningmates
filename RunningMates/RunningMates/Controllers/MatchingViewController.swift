@@ -427,7 +427,12 @@ extension MatchingViewController: KolodaViewDelegate {
 extension MatchingViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-        return images.count
+        let images = UserDefaults.standard.stringArray(forKey: "images") ?? [String]()
+        if (images != nil) {
+            return images.count
+        }
+        return 0
+        
     }
     
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
@@ -435,10 +440,15 @@ extension MatchingViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        return UIImageView(image: images[index])
+        let images = UserDefaults.standard.stringArray(forKey: "images") ?? [String]()
+        // Need to create UIImage from URL string
+        let url = URL(string: images[index])
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        let image = UIImage(data: data!)
+        return UIImageView(image: image)
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
-        return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)[0] as? OverlayView
+        return Bundle.main.loadNibNamed("OverlayView", owner: self, options: nil)![0] as? OverlayView
     }
 }
