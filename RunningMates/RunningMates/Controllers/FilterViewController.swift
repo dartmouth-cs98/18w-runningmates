@@ -10,6 +10,9 @@ import DLRadioButton
 
 
 class FilterViewController: UIViewController {
+    
+     let rootUrl: String = appDelegate.rootUrl
+     let userEmail: String = appDelegate.userEmail
    
      let ageSlide = RangeSlider(frame: CGRect.zero)
      let distSlide = RangeSlider(frame: CGRect.zero)
@@ -70,6 +73,27 @@ class FilterViewController: UIViewController {
         }
         print(genderPref)
         
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "email": self.userEmail,
+            "preferences": genderPref
+        ]
+        
+        let url = rootURl + "/api/savePrefs"
+        
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    print("success! response is:")
+                    print(response)
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
     }
     
     override func viewDidLayoutSubviews() {
