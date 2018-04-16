@@ -85,28 +85,31 @@ extension UIViewController {
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:Any])!
                         let token = (jsonUser["token"] as? [String:Any])
-                        UserDefaults.standard.set(user["firstName"], forKey: "firstName")
-                        UserDefaults.standard.set(user["email"], forKey: "email")
-                        UserDefaults.standard.set(token, forKey: "token")
-                        if (user["lastName"] != nil) {
-                            UserDefaults.standard.set(user["lastName"], forKey: "lastName")
+                        let prevToken = UserDefaults.standard.value(forKey: "token")
+                        // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
+                        if (token != prevToken) {
+                            UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                            UserDefaults.standard.set(user["email"], forKey: "email")
+                            UserDefaults.standard.set(token, forKey: "token")
+                            if (user["lastName"] != nil) {
+                                UserDefaults.standard.set(user["lastName"], forKey: "lastName")
+                            }
+                            
+                            if (user["imageURL"] != nil) {
+                                UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
+                            }
+                            
+                            if (user["images"] != nil) {
+                                UserDefaults.standard.set(user["images"], forKey: "images")
+                            }
+                            
+                            if (user["data"] != nil) {
+                                UserDefaults.standard.set(user["data"], forKey: "data")
+                            }
+                            if (user["desiredGoals"] != nil) {
+                                UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
+                            }
                         }
-                        
-                        if (user["imageURL"] != nil) {
-                            UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
-                        }
-                        
-                        if (user["images"] != nil) {
-                            UserDefaults.standard.set(user["images"], forKey: "images")
-                        }
-                        
-                        if (user["data"] != nil) {
-                            UserDefaults.standard.set(user["data"], forKey: "data")
-                        }
-                        if (user["desiredGoals"] != nil) {
-                            UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
-                        }
-                        
                     }
                 case .failure(let error):
                     print(error)

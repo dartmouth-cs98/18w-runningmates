@@ -199,7 +199,12 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    completion()
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        let token = (jsonUser["token"] as? [String:Any])
+                        UserDefaults.standard.set(email!, forKey: "email")
+                        UserDefaults.standard.set(token, forKey: "token")
+                        UserDefaults.standard.set(password!, forKey: "password")
+                    }
                 case .failure(let error):
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
