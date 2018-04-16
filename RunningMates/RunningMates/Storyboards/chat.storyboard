@@ -21,7 +21,7 @@
         <!--Chat View Controller-->
         <scene sceneID="jf9-p7-h7l">
             <objects>
-                <viewController id="AUe-I5-IXW" customClass="ChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="AUe-I5-IXW" customClass="ChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pGa-7w-kT9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
