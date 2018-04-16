@@ -7,16 +7,18 @@
 //
 import UIKit
 import DLRadioButton
+import Alamofire
 
 
 class FilterViewController: UIViewController {
-    
-     let rootUrl: String = appDelegate.rootUrl
-     let userEmail: String = appDelegate.userEmail
+
    
      let ageSlide = RangeSlider(frame: CGRect.zero)
      let distSlide = RangeSlider(frame: CGRect.zero)
      let proxSlide = RangeSlider(frame: CGRect.zero)
+    
+    var userEmail: String = ""
+    var rootUrl: String = ""
 
     @IBOutlet weak var minAgeSelected: UITextField!
     @IBOutlet weak var maxAgeSelected: UITextField!
@@ -43,6 +45,10 @@ class FilterViewController: UIViewController {
         view.addSubview(distSlide)
         view.addSubview(proxSlide)
 
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.userEmail = appDelegate.userEmail
+        self.rootUrl = appDelegate.rootUrl
+        
         ageSlide.addTarget(self, action: #selector(FilterViewController.ageSliderValueChanged), for: .valueChanged)
         distSlide.addTarget(self, action: #selector(FilterViewController.distSliderValueChanged), for: .valueChanged)
         
@@ -71,18 +77,31 @@ class FilterViewController: UIViewController {
         else {
             print("You must select a gender preference.")
         }
-        print(genderPref)
+//        print(genderPref)
+//        print("AGE")
+//        print (ageSlide.lowerValue, ageSlide.upperValue)
+//        print("DIST")
+//        print(distSlide.lowerValue, distSlide.upperValue)
+//        print("Prox")
+//        print(proxSlide.upperValue)
         
+        let runLength = (distSlide.lowerValue, distSlide.upperValue)
+        let age = (ageSlide.lowerValue, ageSlide.upperValue)
+        let proximity = proxSlide.upperValue
+    
         
         // alamofire request
         let params: [String: Any] = [
             "email": self.userEmail,
-            "preferences": genderPref
+            "gender": genderPref,
+            "runLength": runLength,
+            "age": age,
+            "proximity": proximity
         ]
-        
-        let url = rootURl + "/api/savePrefs"
-        
-        
+        print(params)
+
+        let url = rootUrl + "/api/prefs"
+
         let _request = Alamofire.request(url, method: .post, parameters: params)
             .responseString { response in
                 switch response.result {
@@ -121,7 +140,7 @@ class FilterViewController: UIViewController {
        // print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
     }
     @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
-        print("Age slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
+//        print("Age slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
         self.minAgeSelected.text = String(Int(round(ageSlide.lowerValue)));
         self.maxAgeSelected.text = String(Int(round(ageSlide.upperValue)));
         
@@ -129,7 +148,7 @@ class FilterViewController: UIViewController {
     
     
     @objc func distSliderValueChanged(rangeSlider: RangeSlider) {
-        print("Dist slider value changed: (\(distSlide.lowerValue) \(distSlide.upperValue))")
+//        print("Dist slider value changed: (\(distSlide.lowerValue) \(distSlide.upperValue))")
         
        //https://stackoverflow.com/questions/28447732/checking-if-a-double-value-is-an-integer-swift
         let roundMin = round(distSlide.lowerValue/0.5)*0.5
@@ -156,7 +175,7 @@ class FilterViewController: UIViewController {
     }
     
     @objc func proxSliderValueChanged(rangeSlider: RangeSlider) {
-        print("Prox slider value changed: (\(proxSlide.lowerValue) \(proxSlide.upperValue))")
+//        print("Prox slider value changed: (\(proxSlide.lowerValue) \(proxSlide.upperValue))")
         
         self.maxProximitySelected.text = String(Int(proxSlide.upperValue)) + "mi"
         
