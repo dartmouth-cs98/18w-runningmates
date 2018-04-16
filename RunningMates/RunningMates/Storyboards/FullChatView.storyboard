@@ -18,6 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
+                          <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0xP-Qy-sgZ">
+                              <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                              <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                              <state key="normal" title="go to chat"/>
+                              <connections>
+                                  <segue destination="6NN-lO-wJQ" kind="show" id="Kaw-YB-021"/>
+                              </connections>
+                          </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WMK-9F-nhc">
                                 <rect key="frame" x="16" y="20" width="343" height="547"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,6 +128,14 @@
             </objects>
             <point key="canvasLocation" x="470" y="1244"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="cg7-L5-Z6W">
+            <objects>
+                <viewControllerPlaceholder id="wvW-9N-nNN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODI-vO-lGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="1480"/>
+        </scene>
         <!--FilterStoryboard-->
         <scene sceneID="MKO-HT-iso">
             <objects>
@@ -135,6 +151,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lez-jY-weU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="891"/>
+        </scene>
+        <!--chat-->
+        <scene sceneID="D0f-h2-KuW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="chat" id="9Nq-JQ-AYc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOE-AF-65G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="1061"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XU8-wg-kb6">
