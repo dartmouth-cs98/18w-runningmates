@@ -78,58 +78,20 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                         switch response.result {
                         case .success:
                             print("Post Successful")
-                            // Brians edits
-//                            print(response.result.value.data)
-//                            // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                            appDelegate.userData = response.result.value.data! // format of key value pairs
-//                            appDelegate.firstName = response.result.value.firstName.text!
-//                            appDelegate.lastName = response.result.value.lastName.text!
-//                            appDelegate.age = response.result.value.age.int!
-//                            appDelegate.email = response.result.value.email.text!
-                            
-                            // first name last name bio age email data
-                            
-                            // or is it like this
-//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//
-//                            if let jsonResult = response.result.value as? [[String:Any]] {
-//                                do {
-//                                    let user1 = try User(json: (jsonUser["user"] as? [String:Any])!)
-//                                    if (user != nil) {
-//                                        print("User")
-//                                        print(user!)
-//                                        user = user1
-//                                        completion((user?.id)!) // what does this do
-//                                    } else {
-//                                        print("nil")
-//                                    }
-//                                } catch UserInitError.invalidId {
-//                                    print("invalid id")
-//                                } catch UserInitError.invalidFirstName {
-//                                    print("invalid first name")
-//                                } catch UserInitError.invalidLastName {
-//                                    print("invalid last name")
-//                                } catch UserInitError.invalidImageURL {
-//                                    print("invalid image url")
-//                                } catch UserInitError.invalidBio {
-//                                    print("invalid bio")
-//                                } catch UserInitError.invalidGender {
-//                                    print("invalid gender")
-//                                } catch UserInitError.invalidAge {
-//                                    print("invalid age")
-//                                } catch UserInitError.invalidLocation {
-//                                    print("invalid location")
-//                                } catch UserInitError.invalidEmail {
-//                                    print("invalid email")
-//                                } catch UserInitError.invalidPassword {
-//                                    print("invalid password")
-//                                } catch {
-//                                    print("other error")
-//                                }
-//                            }
-                            
-                            // need to pass the user object to the next screen
-                            
+                            // Save some strava data locally in UserDefaults
+                            if let jsonResult = response.result.value as? [[String:Any]] {
+                                var user = (jsonUser["user"] as? [String:Any])!
+                                let token = (jsonUser["token"] as? [String:Any])
+                                    UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                                    UserDefaults.standard.set(user["email"], forKey: "email")
+                                    UserDefaults.standard.set(token, forKey: "token")
+                                    if (user["lastName"] != nil) {
+                                        UserDefaults.standard.set(user["lastName"], forKey: "lastName")
+                                    }
+                                    if (user["data"] != nil) {
+                                        UserDefaults.standard.set(user["data"], forKey: "data")
+                                    }
+                            }
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
@@ -204,6 +166,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                         UserDefaults.standard.set(email!, forKey: "email")
                         UserDefaults.standard.set(token, forKey: "token")
                         UserDefaults.standard.set(password!, forKey: "password")
+                        completion()
                     }
                 case .failure(let error):
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
