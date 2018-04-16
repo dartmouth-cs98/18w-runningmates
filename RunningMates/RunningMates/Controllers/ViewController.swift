@@ -85,9 +85,9 @@ extension UIViewController {
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:Any])!
                         let token = (jsonUser["token"] as? [String:Any])
-                        UserDefaults.setValue(user["firstName"], forKey: "firstName")
-                        UserDefaults.setValue(user["email"], forKey: "email")
-                        UserDefaults.setValue(token, forKey: "token")
+                        UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                        UserDefaults.standard.set(user["email"], forKey: "email")
+                        UserDefaults.standard.set(token, forKey: "token")
                         if (user["lastName"] != nil) {
                             UserDefaults.standard.set(user["lastName"], forKey: "lastName")
                         }
