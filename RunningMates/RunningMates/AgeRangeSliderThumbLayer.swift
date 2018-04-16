@@ -11,13 +11,13 @@
 import UIKit
 import QuartzCore
 
-class RangeSliderThumbLayer: CALayer {
+class AgeRangeSliderThumbLayer: CALayer {
     var highlighted: Bool = false {
         didSet {
             setNeedsDisplay()
         }
     }
-    weak var rangeSlider: RangeSlider?
+    weak var rangeSlider: AgeRangeSlider?
     
     override func draw(in ctx: CGContext) {
         if let slider = rangeSlider {
@@ -39,13 +39,12 @@ class RangeSliderThumbLayer: CALayer {
             ctx.strokePath()
             
             if highlighted {
-                print("highlighted")
+                //    print("highlighted")
                 ctx.setFillColor(UIColor(white: 0.0, alpha: 0.1).cgColor)
                 ctx.addPath(thumbPath.cgPath)
                 (ctx).fillPath()
             }
         }
     }
-
 
 }

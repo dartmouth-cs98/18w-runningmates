@@ -29,7 +29,7 @@ extension UIViewController {
         var webView: WKWebView!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-//        var rootURl: String = "https://running-mates.herokuapp.com/"
+        var rootURl: String = "https://running-mates.herokuapp.com/"
 //        var rootURl: String = "http://localhost:9090/"
         
         @IBOutlet weak var loginButton: UIButton!
@@ -84,6 +84,9 @@ extension UIViewController {
                     completion()
                 case .failure(let error):
                     print(error)
+                    let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
         }
     }
