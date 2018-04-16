@@ -15,6 +15,9 @@ import SocketIO
 
 class ChatViewController: UIViewController {
 
+    var chatID: String!
+    var userEmail: String!
+    
 //    @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -47,11 +50,12 @@ class ChatViewController: UIViewController {
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
         
+        print("email: " + String(describing: self.userEmail))
         let message : [String: Any] = [
             "message": self.chatInput.text!,
-            "sentBy": appDelegate.userEmail,
+            "sentBy": self.userEmail,
             "recipient": "drew@test.com",
-            "chatID": "5ac6a0fd6a7a2763b40d92b4"
+            "chatID": self.chatID
         ]
         
         let socket = manager.defaultSocket
@@ -64,19 +68,23 @@ class ChatViewController: UIViewController {
     // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
     override func viewDidLoad() {
    
-    let socket = manager.defaultSocket
-    
-    socket.on(clientEvent: .connect) {data, ack in
-    print("socket connected")
-    }
+        self.userEmail = appDelegate.userEmail
+        let socket = manager.defaultSocket
         
-    socket.on("chat message") {data, ack in
-        print("I AM HERE", data)
-        self.recieveMessage(message_data: data)
-    }
-    
-    socket.connect()
+        socket.on(clientEvent: .connect) {data, ack in
+        print("socket connected")
+        }
         
+        socket.on("chat message") {data, ack in
+            print("I AM HERE", data)
+            self.recieveMessage(message_data: data)
+        }
+        
+        socket.connect()
+        
+        if (self.chatID != nil) {
+            print("chat id: " + self.chatID)
+        }
     }
 }
 
