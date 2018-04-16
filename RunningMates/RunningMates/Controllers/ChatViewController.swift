@@ -27,39 +27,46 @@ import UIKit
 import Foundation
 import Alamofire
 
+//    @IBOutlet weak var chatView: UITableView!
+    @IBOutlet weak var chatInput: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var textViewTemp: UITextView!
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-    
-    var selectedChat: String = ""
-    var chatID: String!
-    var userEmail: String!
-    private var data = [Any]()  // list of chat objects with chat ID, other user's name
+
+
+    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com")!)
+//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
+    func addHandlers() {
+        let socket = manager.defaultSocket
+        socket.on("chat message") {data, ack in
+            self.recieveMessage(message_data: data)
+        }
 
    // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
-    
+
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
   //  @IBOutlet weak var sendButton: UIButton!
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(data.count)
         return data.count
     }
-    
+
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        
-        
+
+
         cell.textLabel?.text = "hello"
-        
+
 //        let message = data[indexPath.row] as! [String:Any]
 //        let recipients: [String] = message["recipients"] as! [String]
 //
@@ -73,10 +80,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
 //
         //cell.textLabel?.text = displayedMembers
-        
+
         return cell
     }
-    
+
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        print("selected a cell")
@@ -100,56 +107,56 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            chatViewController.chatID = id
 //        }
 //    }
-    
-    
+
+
     //    @IBOutlet var tableView: UITableView!
 //    var userId: String = ""
 //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     //var userEmail: String = ""
     //private var data: [Any] = [Any]()  // list of chat objects with chat ID, other user's name
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+
                 self.userEmail = appDelegate.userEmail
                 let socket = manager.defaultSocket
-        
+
                 socket.on(clientEvent: .connect) {data, ack in
                 print("socket connected")
                 }
-        
+
                 socket.on("chat message") {data, ack in
                     print("I AM HERE", data)
                     self.recieveMessage(message_data: data)
                 }
-        
+
                 socket.connect()
-        
+
                 if (self.chatID != nil) {
                     print("chat id: " + self.chatID)
                 }
-        
+
 //        view.bringSubview(toFront: toolbar)
-        
+
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
 //        self.userEmail = appDelegate.userEmail;
-        
+
         fetchChats(completion: { chats in
             self.data = chats
             self.tableView.dataSource = self
             self.tableView.reloadData()
         })
-        
+
     }
-    
+
     func fetchChats(completion: @escaping ([Any])->()) {
         print("i hate swift")
-        
+
 //        let url = appDelegate.rootUrl + "api/chats"
-        
+
 //        let params: Parameters = [
 //            "user": self.userEmail
 //        ]
@@ -168,10 +175,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
         //        debugPrint("whole _request ****",_request)
     }
-    
+
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
-        
+
             print("email: " + String(describing: self.userEmail))
             let message : [String: Any] = [
                     "message": self.chatInput.text!,
@@ -181,8 +188,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
             ]
             print(message)
-        
-        
+
+
             let socket = manager.defaultSocket
             socket.emit("chat message", message)
                // self.textViewTemp.text.append(self.chatInput.text! + "\n")
@@ -199,7 +206,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
 
-    
+
     private func loadSampleChats(){
         data.append("some message")
         self.tableView.reloadData()
@@ -286,4 +293,3 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
 //    }
 //}
-
