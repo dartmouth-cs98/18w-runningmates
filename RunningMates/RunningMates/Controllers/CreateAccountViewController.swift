@@ -45,7 +45,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBAction func didTapStrava(_ sender: Any) {
         let rootUrl: String = appDelegate.rootUrl
 //        var user = User()
-        
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
