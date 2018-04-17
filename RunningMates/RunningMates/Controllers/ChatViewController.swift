@@ -30,7 +30,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    //let manager = SocketManager(socketURL: URL(string: "https://localhost:9090")!)
+
+   let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
     
     var selectedChat: String = ""
     var chatID: String!
@@ -109,16 +111,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     //var userEmail: String = ""
     //private var data: [Any] = [Any]()  // list of chat objects with chat ID, other user's name
-    func addHandlers() {
-        let socket = manager.defaultSocket
-        socket.on("chat message") {data, ack in
-            self.recieveMessage(message_data: data)
-        }
-        
-    }
+//    func addHandlers() {
+//        let socket = manager.defaultSocket
+//        socket.on("chat message") {data, ack in
+//            self.recieveMessage(message_data: data)
+//        }
+//
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        addHandlers()
+       // addHandlers()
         loadSampleChats()
         self.userEmail = appDelegate.userEmail
         let socket = manager.defaultSocket
@@ -127,10 +129,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("socket connected")
         }
         
-        socket.on("chat message") {data, ack in
-            print("I AM HERE", data)
-            self.recieveMessage(message_data: data)
-        }
+            socket.on("chat message") {data, ack in
+                self.recieveMessage(message_data: data)
+            }
         
         socket.connect()
         
@@ -190,9 +191,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ]
         print(message)
         
-        data.append(self.chatInput.text)
-        print("data array", data)
-         self.tableView.reloadData()
+ 
         let socket = manager.defaultSocket
         socket.emit("chat message", message)
         // self.textViewTemp.text.append(self.chatInput.text! + "\n")
@@ -200,12 +199,26 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func recieveMessage(message_data: [Any]){
-        print("message recieved")
-        print(message_data[0])
+        
+     
+        print("message recieved******")
+        let message = message_data[0] as! [String:String]
+        if let chat = message["message"] {
+            print(chat);
+            data.append(chat);
+            //do something with bears and balls
+        }
         print("data array", data)
         self.tableView.reloadData()
+//        message recieved
+//            {
+//                message = gyigyiyg;
+//                recipient = "drew@test.com";
+//                sentBy = "brian@test.com";
+//        }
+      //  self.tableView.reloadData()
         // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
-        guard let cur = message_data[0] as? String else { return }
+        //guard let cur = message_data[0] as? String else { return }
         //   self.textViewTemp.text.append(cur)
         //  self.textViewTemp.text.append("\n")
     }
