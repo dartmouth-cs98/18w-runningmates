@@ -27,17 +27,16 @@ import Alamofire
 
 
 class MessageCell: UITableViewCell {
-    
+
 }
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //let manager = SocketManager(socketURL: URL(string: "https://localhost:9090")!)
 
-   let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-    
+
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
@@ -45,17 +44,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var data = [Any]()  // list of chat objects with chat ID, other user's name
     // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
-    
-  
+
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
     //  @IBOutlet weak var sendButton: UIButton!
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(data.count)
         return data.count
     }
-    
+
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,11 +64,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! UITableViewCell
-        
+
         cell.textLabel!.text = (data[indexPath.row] as! String)
         print("data in cell making func",  data[indexPath.row] )
         return cell
-        
+
         //        let message = data[indexPath.row] as! [String:Any]
         //        let recipients: [String] = message["recipients"] as! [String]
         //
@@ -83,9 +82,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //        }
         //
         //cell.textLabel?.text = displayedMembers
-        
+
     }
-    
+
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     //        print("selected a cell")
@@ -109,16 +108,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //            chatViewController.chatID = id
     //        }
     //    }
-    
-    
+
+
     func fetchChats(completion: @escaping ([Any])->()) {
-        
+
         let url = appDelegate.rootUrl + "api/chats"
-        
+
         let params: Parameters = [
             "user": self.userEmail
         ]
-        
+
 //        let _request = Alamofire.request(url, method: .get, parameters: params)
 //            .responseJSON { response in
 //                switch response.result {
@@ -133,7 +132,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        }
         //        debugPrint("whole _request ****",_request)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchChats(completion: { chats in
@@ -141,68 +140,79 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.dataSource = self
             self.tableView.reloadData()
         })
-        
-        
-        
+
+
+
         self.userEmail = appDelegate.userEmail
         let socket = manager.defaultSocket
-        
+
         socket.on(clientEvent: .connect) {data, ack in
             print("socket connected")
         }
-        
+
             socket.on("chat message") {data, ack in
                 self.recieveMessage(message_data: data)
             }
-        
+
         socket.connect()
-        
+
         if (self.chatID != nil) {
             print("chat id: " + self.chatID)
         }
-        
+
         //        view.bringSubview(toFront: toolbar)
-        
+
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
         //        self.userEmail = appDelegate.userEmail;
-        
+
         fetchChats(completion: { chats in
             self.data = chats
             self.tableView.dataSource = self
             self.tableView.reloadData()
         })
-        
-    }
-    
 
-    
+    }
+
+
+
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
-        
+
         print("email: " + String(describing: self.userEmail))
-        let message : [String: Any] = [
-            "message": self.chatInput.text!,
-            "sentBy": self.userEmail,
-            "recipient": "drew@test.com",
-         //   "chatID" : self.chatID
-            "chatID": "127489djkahd873dbiqehfwyryedhfsui"
-        ]
-        print(message)
         
+        var message : [String: Any]
+
+        if (self.chatID != nil) {
+            message = [
+                "message": self.chatInput.text!,
+                "sentBy": self.userEmail,
+                "recipient": "drew@test.com",
+                "chatID": self.chatID
+                // "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
+            ]
+        } else {
+            message = [
+                "message": self.chatInput.text!,
+                "sentBy": self.userEmail,
+                "recipient": "drew@test.com"
+            ]
+        }
+        print(message)
+
 
         let socket = manager.defaultSocket
         socket.emit("chat message", message)
         self.chatInput.text = ""
     }
-    
+
     func recieveMessage(message_data: [Any]){
-        
-     
+
+
         print("message recieved******")
         let message = message_data[0] as! [String:String]
-        
+
         if let chat = message["message"] {
             print(chat);
             data.append(chat);
@@ -211,12 +221,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print(sentBy);
             data.append(sentBy);
         }
-        
-        
+
+
         print("data array", data)
         self.tableView.reloadData()
 
     }
-    
-}
 
+}
