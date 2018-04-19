@@ -33,6 +33,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var rootURl: String = "http://localhost:9090/"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = ""
+    var imagePicker: UIImagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         self.hideKeyboardOnBackgroundTap()
@@ -54,6 +55,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
+        imagePicker.delegate = self
     }
     
     // The number of columns of data
@@ -78,6 +80,17 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func onAddImageButtonClicked(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = image
+        dismiss(animated:true, completion: nil)
     }
     
     @IBAction func onSaveButtonClicked(_ sender: Any) {        //check if enough data has been entered
