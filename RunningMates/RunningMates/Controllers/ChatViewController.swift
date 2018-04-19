@@ -26,29 +26,35 @@ import Foundation
 import Alamofire
 
 
-class MessageCell: UITableViewCell {
-
+class CustomMessageCell: UITableViewCell {
+    @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    
 }
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
     private var chats: [Any] = [Any]()
-    private var data = [Any]()  // list of chat objects with chat ID, other user's name
+    private var data = [Message]()  // list of chat objects with chat ID, other user's name
     // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
 
 
     @IBOutlet weak var tableView: UITableView!
+//    self.tableView.rowHeight = UITableViewAutomaticDimension
+//    self.tableView.estimatedRowHeight = 140
     @IBOutlet weak var chatInput: UITextField!
     //  @IBOutlet weak var sendButton: UIButton!
+
+   
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(data.count)
@@ -63,9 +69,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //
 //        cell.textLabel?.text = "hello"
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
 
-        cell.textLabel!.text = (data[indexPath.row] as! String)
+        let chat_text : String  = data[indexPath.row].messageText as! String
+
+        cell.textView?.text = chat_text
+
+
         print("data in cell making func",  data[indexPath.row] )
         return cell
 
@@ -135,11 +145,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchChats(completion: { chats in
-            self.chats = chats
-            self.tableView.dataSource = self
-            self.tableView.reloadData()
-        })
+//        fetchChats(completion: { chats in
+//            self.chats = chats
+//            self.tableView.dataSource = self
+//            self.tableView.reloadData()
+//        })
 
 
 
@@ -166,12 +176,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         //        self.userEmail = appDelegate.userEmail;
-
-        fetchChats(completion: { chats in
-            self.data = chats
-            self.tableView.dataSource = self
-            self.tableView.reloadData()
-        })
+//
+//        fetchChats(completion: { chats in
+//            self.data = chats
+//            self.tableView.dataSource = self
+//            self.tableView.reloadData()
+//        })
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
 
     }
 
@@ -209,19 +221,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func recieveMessage(message_data: [Any]){
 
-
+        
         print("message recieved******")
         let message = message_data[0] as! [String:String]
+        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], sentTo: appDelegate.userEmail, ChatID: "3420938423" )
 
-        if let chat = message["message"] {
-            print(chat);
-            data.append(chat);
-        }
-        if let sentBy = message["sentBy"] {
-            print(sentBy);
-            data.append(sentBy);
-        }
-
+        data.append(message_to_display);
+    
 
         print("data array", data)
         self.tableView.reloadData()
