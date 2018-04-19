@@ -61,6 +61,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
+        if (self.appDelegate.didSignUpWithStrava == 1) {
+            getUserRequest(completion: {_ in })
+        }
     }
     
     override func didReceiveMemoryWarning() {
