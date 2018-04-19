@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="leR-hx-Dfn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Dashboard-->
+        <scene sceneID="x07-xz-YgO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="vv1-tM-m60" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Jl-Ju-P4G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1211" y="3"/>
+        </scene>
+        <!--Edit Profile View Controller-->
         <scene sceneID="KcA-mi-Hah">
             <objects>
-                <viewController id="leR-hx-Dfn" sceneMemberID="viewController">
+                <viewController id="leR-hx-Dfn" customClass="EditProfileViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="44r-4z-FoR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +43,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onSaveButtonClicked:" destination="leR-hx-Dfn" eventType="touchUpInside" id="cS6-kv-PVi"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="mB9-xZ-qwH">
                                         <rect key="frame" x="3" y="58" width="365" height="36"/>
@@ -97,6 +108,9 @@
                                         <rect key="frame" x="15" y="270" width="37" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="plus_sign.png"/>
+                                        <connections>
+                                            <action selector="onAddImageButtonClicked:" destination="leR-hx-Dfn" eventType="touchUpInside" id="Eex-AM-HOc"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaS-aM-OjT">
                                         <rect key="frame" x="318" y="140" width="42" height="21"/>
@@ -156,7 +170,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     </pickerView>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhe-Cg-XYZ">
-                                        <rect key="frame" x="160" y="554" width="123" height="28"/>
+                                        <rect key="frame" x="160" y="554" width="123" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -241,6 +255,9 @@
                                         <rect key="frame" x="8" y="27" width="48" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <segue destination="vv1-tM-m60" kind="show" id="tMK-zD-YoU"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hT5-pZ-xzw">
                                         <rect key="frame" x="3" y="21" width="365" height="47"/>
@@ -402,10 +419,30 @@
                         <viewLayoutGuide key="safeArea" id="MHJ-E6-t1e"/>
                     </view>
                     <size key="freeformSize" width="375" height="1300"/>
+                    <connections>
+                        <outlet property="KOMsTextField" destination="DgG-mV-66b" id="IrC-h9-cD3"/>
+                        <outlet property="KOMsTextView" destination="DgG-mV-66b" id="2tf-VO-tDs"/>
+                        <outlet property="addImageButton" destination="PDU-CT-Ewy" id="iTc-F1-s9O"/>
+                        <outlet property="bioTextView" destination="Gph-ti-8bV" id="Pxu-tr-3Tx"/>
+                        <outlet property="frequentSegmentsTextView" destination="Md6-gt-pqH" id="KxO-Lt-nt1"/>
+                        <outlet property="locationTextView" destination="h7D-jt-EA8" id="vtp-mZ-oe7"/>
+                        <outlet property="longestRunTextView" destination="8rr-QO-4GN" id="x6t-OV-FwH"/>
+                        <outlet property="milesPerWeekTextField" destination="nhe-Cg-XYZ" id="az3-pZ-H6z"/>
+                        <outlet property="milesPerWeekTextView" destination="nhe-Cg-XYZ" id="Hcu-DH-x7a"/>
+                        <outlet property="nameTextView" destination="qRe-PJ-hjQ" id="fq6-8Y-kaA"/>
+                        <outlet property="onAddImageClicked" destination="PDU-CT-Ewy" id="a8z-bI-9zI"/>
+                        <outlet property="onSaveClicked" destination="H4p-gl-aSx" id="Z7f-6Q-AYA"/>
+                        <outlet property="pickerView" destination="Z9C-Uu-oQq" id="Y1E-kX-DxL"/>
+                        <outlet property="profileImage" destination="MPf-t3-GIX" id="ATG-6L-t5w"/>
+                        <outlet property="racesDoneTextView" destination="81N-2n-YcB" id="kWY-bh-oMr"/>
+                        <outlet property="runsPerWeekTextField" destination="FHu-26-tcf" id="wmq-DF-KX6"/>
+                        <outlet property="totalElevationTextField" destination="YaF-gL-nbr" id="Qpb-GT-Cn9"/>
+                        <outlet property="totalMilesTextField" destination="fbM-oa-8T0" id="xam-j1-ATn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zUs-wo-ot7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="209"/>
+            <point key="canvasLocation" x="552.79999999999995" y="208.69565217391306"/>
         </scene>
     </scenes>
     <resources>
