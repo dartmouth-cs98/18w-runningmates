@@ -332,6 +332,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
     }
     
+    
     func sendRequest(completion: @escaping (String, String)->()) {
         
         let rootUrl: String = appDelegate.rootUrl
@@ -372,6 +373,16 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         print("You clicked match.")
         
+        if (current_index > userList.count || userList.count == 0) {
+            let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Refresh users", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            //static right now,
+            // will add a GET request when "refresh user" is clicked once backend is fixed
+        }
+        else {
         
         sendRequest(completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
@@ -381,6 +392,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
             self.present(alertController, animated: true, completion: nil)
             })
+        }
     }
 
 //    func fetchUsers() {
