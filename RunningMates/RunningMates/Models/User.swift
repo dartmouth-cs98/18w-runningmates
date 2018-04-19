@@ -7,7 +7,6 @@
 //
 // Used the following tutorial for reference: https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/PersistData.html#//apple_ref/doc/uid/TP40015214-CH14-SW1
 
-
 import UIKit
 import os.log
 
@@ -44,8 +43,8 @@ class User: NSObject, NSCoding {
     var preferences: [String:Any]?
     var data: [String:Any]?
     
-
-//    //MARK: Initialization Dont believe we need to initialize twice with the lowere json 
+    
+    //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json
     init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
         self.id = id
         self.firstName = firstName
@@ -106,7 +105,7 @@ class User: NSObject, NSCoding {
         let token = json["token"] as! String?
         let preferences = json["preferences"] as! [String:Any]?
         let data = json["data"] as! [String:Any]?
-
+        
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
@@ -195,16 +194,14 @@ class User: NSObject, NSCoding {
         let preferences = aDecoder.decodeObject(forKey: PropertyKey.preferences) as? [String: Any]
         let data = aDecoder.decodeObject(forKey: PropertyKey.data) as? [String: Any]
         
-//        // Because photo is an optional property of Meal, just use conditional cast.
-//        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-//
-//        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
+        //        // Because photo is an optional property of Meal, just use conditional cast.
+        //        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
+        //
+        //        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         
         // Must call designated initializer.
-//        self.init(name: name, photo: photo, rating: rating)
+        //        self.init(name: name, photo: photo, rating: rating)
         self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, data: data!);
         
     }
 }
-
-
