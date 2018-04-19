@@ -61,6 +61,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
+        if (self.appDelegate.didSignUpWithStrava == 1) {
+            getUserRequest(completion: {_ in })
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,40 +113,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         }
-//        let json: [String: Any] = ["firstName": nameTextView.text!,
-//                                   "bio": bioTextView.text!,
-//                                   "location": locationTextView.text!,
-//                                   "milesPerWeek": milesPerWeekTextField.text!,
-//                                   "totalElevation": totalElevationTextField.text!,
-//                                   "totalMiles": totalMilesTextField.text!,
-//                                   "longestRun": longestRunTextView.text!,
-//                                   "racesDone": racesDoneTextView.text!,
-//                                   "runsPerWeek": runsPerWeekTextField.text!,
-//                                   "kom": KOMsTextField.text!,
-//                                   "frequentSegments": frequentSegmentsTextView.text!
-//        ]
-        
-    
-
-       
-        //var user: User = try! User.init(json: json) as! User
-        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // appDelegate.userData = user! // format of key value pairs
-
-        
-//        let user: [String: Any] = ["firstName": nameTextView.text!,
-//                                   "imageURL": profileImage.image!,
-//                                   "bio": bioTextView.text!,
-//                                   "location": locationTextView.text!]
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(user, toFile: User.ArchiveURL.path)
-//        if isSuccessfulSave {
-//            print("User successfully saved.")
-//        } else {
-//            print("Failed to save User...")
-//        }
-        
-        // save user and send to matching page
-        // backend save and local save
         
         backendSaveRequest(completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
@@ -163,16 +132,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         let rootUrl: String = appDelegate.rootUrl
         
         let params : [String: Any]
-        
-        if (rootUrl == "http://localhost:9090/") {
-            params = [
-                "email": self.userEmail
-            ]
-        } else {
-            params = [
-                "email": self.userEmail
-            ]
-        }
+        params = [
+            "email": self.userEmail
+        ]
         
         let email: String = self.userEmail
         let url = rootUrl + "api/users/" + email
@@ -209,7 +171,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         let params : [String: Any]
         
-        if (rootUrl == "http://localhost:9090/") {
             params = [
                 "email": self.userEmail,
                 "firstName": nameTextView.text!,
@@ -224,22 +185,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 "kom": KOMsTextField.text!,
                 "frequentSegments": frequentSegmentsTextView.text!
             ]
-        } else {
-            params = [
-                "email": self.userEmail,
-                "firstName": nameTextView.text!,
-                "bio": bioTextView.text!,
-                "location": locationTextView.text!,
-                "milesPerWeek": milesPerWeekTextField.text!,
-                "totalElevation": totalElevationTextField.text!,
-                "totalMiles": totalMilesTextField.text!,
-                "longestRun": longestRunTextView.text!,
-                "racesDone": racesDoneTextView.text!,
-                "runsPerWeek": runsPerWeekTextField.text!,
-                "kom": KOMsTextField.text!,
-                "frequentSegments": frequentSegmentsTextView.text!
-            ]
-        }
         
         let email: String = self.userEmail
         let url = rootUrl + "api/user/" + email
@@ -268,31 +213,4 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
          debugPrint("whole _request ****",_request)
     }
-    
-//    func backendSaveProfile( json: json?, completion: @escaping ()->()) {
-//
-//        let params: Parameters = [
-//            "email": json.email!,
-//            "firstName": json.firstName!,
-//            "imageURL": json.imageURL!,
-//            "bio": json.bio!,
-//            "location": json.location!
-//        ]
-//
-//        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    completion(t)
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Updating Profile", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
-    
-    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
 }
