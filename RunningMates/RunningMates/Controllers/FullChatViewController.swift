@@ -38,7 +38,7 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! ChatPreviewCell
         
         let message = data[indexPath.row] as! [String:Any]
         let recipients: [String] = message["recipients"] as! [String]
@@ -54,7 +54,9 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
-        cell.textLabel?.text = displayedMembers
+        cell.nameLabel?.text = displayedMembers
+        cell.contentPreviewLabel?.text = content
+        cell.dateLabel?.text = time
         
         return cell
     }
@@ -99,6 +101,9 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.userEmail = appDelegate.userEmail;
+        
+        self.tableView.estimatedRowHeight = 150.0;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         
         fetchChats(completion: { chats in
             self.data = chats

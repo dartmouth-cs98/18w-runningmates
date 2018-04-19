@@ -30,7 +30,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
     
     var selectedChat: String = ""
     var chatID: String!
@@ -170,13 +171,24 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(self.chatInput.text!)
         
         print("email: " + String(describing: self.userEmail))
-        let message : [String: Any] = [
-            "message": self.chatInput.text!,
-            "sentBy": self.userEmail,
-            "recipient": "drew@test.com",
-            // "chatID": self.chatID
-            "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
-        ]
+        
+        var message : [String: Any]
+        
+        if (self.chatID != nil) {
+            message = [
+                "message": self.chatInput.text!,
+                "sentBy": self.userEmail,
+                "recipient": "drew@test.com",
+                "chatID": self.chatID
+                // "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
+            ]
+        } else {
+            message = [
+                "message": self.chatInput.text!,
+                "sentBy": self.userEmail,
+                "recipient": "drew@test.com"
+            ]
+        }
         print(message)
         
         
