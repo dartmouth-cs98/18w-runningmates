@@ -106,6 +106,7 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         
         fetchChats(completion: { chats in
+            
             self.data = chats
             self.tableView.dataSource = self
             self.tableView.reloadData()

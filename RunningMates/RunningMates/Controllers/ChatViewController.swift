@@ -40,7 +40,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
     
-    @IBOutlet weak var textLabel: UILabel!
+  
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chatInput: UITextField!
     //  @IBOutlet weak var sendButton: UIButton!
