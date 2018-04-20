@@ -59,7 +59,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         
         let handle = oauthswift.authorize(
             
-            withCallbackURL: URL(string: "RunningMates://" + rootUrl)!,
+            withCallbackURL: URL(string: "RunningMates://" + "localhost:9090")!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")

@@ -31,6 +31,7 @@
 		FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */; };
 		FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */; };
 		FA38B38E204E0476003626F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA38B38D204E0476003626F6 /* Images.xcassets */; };
+		FA4006DC208937DE0054DAEE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4006DB208937DE0054DAEE /* Message.swift */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
 		FA5711082021208D005792CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5711062021208D005792CB /* Main.storyboard */; };
@@ -38,7 +39,6 @@
 		FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57110B2021208E005792CB /* LaunchScreen.storyboard */; };
 		FA5711182021208E005792CB /* RunningMatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711172021208E005792CB /* RunningMatesTests.swift */; };
 		FAB5A7C3206F174F00DDE1E9 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */; };
-		FAB5A7CA206F1D0400DDE1E9 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5A7C9206F1D0400DDE1E9 /* SocketIOManager.swift */; };
 		FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */; };
 		FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF412042514A00EA78CE /* Settings.storyboard */; };
 		FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1AF432042539700EA78CE /* SettingsViewController.swift */; };
@@ -172,6 +172,7 @@
 		FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
 		FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 		FA38B38D204E0476003626F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FA4006DB208937DE0054DAEE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA5711042021208D005792CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,7 +184,6 @@
 		FA5711172021208E005792CB /* RunningMatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningMatesTests.swift; sourceTree = "<group>"; };
 		FA5711192021208E005792CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		FAB5A7C9206F1D0400DDE1E9 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocketIOManager.swift; path = RunningMates/SocketIOManager.swift; sourceTree = SOURCE_ROOT; };
 		FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
 		FAD1AF412042514A00EA78CE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FAD1AF432042539700EA78CE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +392,7 @@
 			children = (
 				FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */,
 				F8BEE1EC203B0E2C00274660 /* User.swift */,
+				FA4006DB208937DE0054DAEE /* Message.swift */,
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
@@ -432,7 +433,6 @@
 				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
 				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
-				FAB5A7C9206F1D0400DDE1E9 /* SocketIOManager.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -672,8 +672,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Chatto/Chatto.framework",
-				"${BUILT_PRODUCTS_DIR}/ChattoAdditions/ChattoAdditions.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
@@ -682,8 +680,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Chatto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChattoAdditions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
@@ -708,6 +704,7 @@
 				FA5711052021208D005792CB /* ViewController.swift in Sources */,
 				88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */,
 				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
+				FA4006DC208937DE0054DAEE /* Message.swift in Sources */,
 				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
@@ -716,7 +713,6 @@
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 				FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */,
-				FAB5A7CA206F1D0400DDE1E9 /* SocketIOManager.swift in Sources */,
 				2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */,
 				FAB5A7C3206F174F00DDE1E9 /* ChatViewController.swift in Sources */,
 				FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */,
