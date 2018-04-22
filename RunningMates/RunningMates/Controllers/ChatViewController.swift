@@ -81,7 +81,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.contentView.backgroundColor = RM_orange
         let chat_text : String  = data[indexPath.row].messageText as! String
         cell.layer.cornerRadius = 10;
-
+        cell.layer.borderWidth = 5;
+        cell.layer.borderColor = UIColor.white.cgColor
         cell.textView?.text = chat_text
 
         print("data in cell making func",  data[indexPath.row].messageText )

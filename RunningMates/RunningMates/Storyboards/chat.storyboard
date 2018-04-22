@@ -52,24 +52,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFc-F6-1aA">
-                                                    <rect key="frame" x="21" y="82" width="307" height="12"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="12" id="4cY-9m-8l1"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="centerX" secondItem="YKf-lN-4eF" secondAttribute="centerX" id="3Yr-lg-Wuf"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="-1" id="Lsm-Jx-jr6"/>
-                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="top" secondItem="YKf-lN-4eF" secondAttribute="topMargin" constant="71" id="UpD-AF-Nqb"/>
-                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="5" id="Ydw-7F-awp"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="bottom" secondItem="YKf-lN-4eF" secondAttribute="bottomMargin" id="ckx-83-zFD"/>
-                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="trailing" secondItem="KkL-Hd-Qvk" secondAttribute="trailing" id="qQH-xu-P7K"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="top" secondItem="YKf-lN-4eF" secondAttribute="topMargin" constant="2" id="v6G-A7-eIl"/>
                                             </constraints>
                                         </tableViewCellContentView>
