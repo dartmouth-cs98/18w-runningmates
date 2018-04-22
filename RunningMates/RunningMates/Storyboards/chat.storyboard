@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="95" id="wpY-wS-ysK" customClass="CustomMessageCell" customModule="RunningMates" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="95" id="wpY-wS-ysK" customClass="CustomMessageCell" customModule="RunningMates" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wpY-wS-ysK" id="YKf-lN-4eF">
@@ -52,14 +52,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFc-F6-1aA">
+                                                    <rect key="frame" x="21" y="82" width="307" height="12"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="4cY-9m-8l1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="centerX" secondItem="YKf-lN-4eF" secondAttribute="centerX" id="3Yr-lg-Wuf"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="-1" id="Lsm-Jx-jr6"/>
+                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="top" secondItem="YKf-lN-4eF" secondAttribute="topMargin" constant="71" id="UpD-AF-Nqb"/>
+                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="5" id="Ydw-7F-awp"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="bottom" secondItem="YKf-lN-4eF" secondAttribute="bottomMargin" id="ckx-83-zFD"/>
+                                                <constraint firstItem="qFc-F6-1aA" firstAttribute="trailing" secondItem="KkL-Hd-Qvk" secondAttribute="trailing" id="qQH-xu-P7K"/>
                                                 <constraint firstItem="KkL-Hd-Qvk" firstAttribute="top" secondItem="YKf-lN-4eF" secondAttribute="topMargin" constant="2" id="v6G-A7-eIl"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="textView" destination="KkL-Hd-Qvk" id="Rr6-Fz-nVn"/>
                                         </connections>
@@ -78,6 +95,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXe-Ev-dDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1040.8" y="-94.002998500749626"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tlv-jZ-K9W">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ueC-zU-0gu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="HfQ-PG-aMR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R3s-PT-zah">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
         </scene>
     </scenes>
 </document>

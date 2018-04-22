@@ -29,7 +29,8 @@ import Alamofire
 class CustomMessageCell: UITableViewCell {
     @IBOutlet weak var textView: UILabel!
     @IBOutlet weak var imgView: UIImageView!
-    
+
+
 }
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -54,8 +55,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var chatInput: UITextField!
     //  @IBOutlet weak var sendButton: UIButton!
 
-   
-
+   //https://stackoverflow.com/questions/33705371/how-to-scroll-to-the-exact-end-of-the-uitableview
+    func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.data.count-1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(data.count)
         return data.count
@@ -70,15 +77,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
-
+        let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
+        cell.contentView.backgroundColor = RM_orange
         let chat_text : String  = data[indexPath.row].messageText as! String
+        cell.layer.cornerRadius = 10;
 
         cell.textView?.text = chat_text
 
-
-        print("data in cell making func",  data[indexPath.row] )
+        print("data in cell making func",  data[indexPath.row].messageText )
         return cell
-
+    }
         //        let message = data[indexPath.row] as! [String:Any]
         //        let recipients: [String] = message["recipients"] as! [String]
         //
@@ -93,7 +101,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         //cell.textLabel?.text = displayedMembers
 
-    }
+    
+    
 
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -226,11 +235,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let message = message_data[0] as! [String:String]
         let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], sentTo: appDelegate.userEmail, ChatID: "3420938423" )
 
-        data.append(message_to_display);
+        if(message_to_display.messageText != ""){
+            data.append(message_to_display);
     
-
-        print("data array", data)
-        self.tableView.reloadData()
+            print("data array", data)
+            self.tableView.reloadData()
+            scrollToBottom()
+        }
 
     }
 
