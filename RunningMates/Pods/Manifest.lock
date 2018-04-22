@@ -1,8 +1,5 @@
 PODS:
   - Alamofire (4.6.0)
-  - Chatto (3.3.0)
-  - ChattoAdditions (3.3.0):
-    - Chatto
   - DLRadioButton (1.4.11)
   - OAuthSwift (1.2.0)
   - Socket.IO-Client-Swift (13.1.1):
@@ -11,21 +8,17 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
-  - Chatto (= 3.3.0)
-  - ChattoAdditions (= 3.3.0)
   - DLRadioButton (~> 1.4)
   - OAuthSwift (~> 1.2.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Chatto: d9f67acd6230f08323a51a11c4b639d40c1f8d99
-  ChattoAdditions: 9ee09ac09a89d8c0aa3dc87019e3a22efb2cbac6
   DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
 
-PODFILE CHECKSUM: 52f675a246249fe570e14529a727cd9ca96a4906
+PODFILE CHECKSUM: 21e8f158e1b797b2789bcb40269185f0f5db6d28
 
 COCOAPODS: 1.4.0

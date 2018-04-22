@@ -26,41 +26,73 @@ import Foundation
 import Alamofire
 
 
+class CustomMessageCell: UITableViewCell {
+    @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+
+
+}
+
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
+
+
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
     let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
-    
+
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
+
     let recipientEmail : String = "drew@test.com"
     var sentByID : String = ""
     var recipientID : String = ""
-    
-    private var data = [Any]()  // list of chat objects with chat ID, other user's name
+
+    private var chats: [Any] = [Any]()
+    private var data = [Message]()  // list of chat objects with chat ID, other user's name
+
     // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
-    
-  
+
+
     @IBOutlet weak var tableView: UITableView!
+//    self.tableView.rowHeight = UITableViewAutomaticDimension
+//    self.tableView.estimatedRowHeight = 140
     @IBOutlet weak var chatInput: UITextField!
     //  @IBOutlet weak var sendButton: UIButton!
+
+   //https://stackoverflow.com/questions/33705371/how-to-scroll-to-the-exact-end-of-the-uitableview
+    func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.data.count-1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-    
+
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        
-        
-        cell.textLabel?.text = "hello"
-        
+        print("making a cell")
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+//
+//
+//        cell.textLabel?.text = "hello"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
+        let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
+        cell.contentView.backgroundColor = RM_orange
+        let chat_text : String  = data[indexPath.row].messageText as! String
+        cell.layer.cornerRadius = 10;
+        cell.layer.borderWidth = 5;
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.textView?.text = chat_text
+
+        print("data in cell making func",  data[indexPath.row].messageText )
+        return cell
+    }
         //        let message = data[indexPath.row] as! [String:Any]
         //        let recipients: [String] = message["recipients"] as! [String]
         //
@@ -74,10 +106,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //        }
         //
         //cell.textLabel?.text = displayedMembers
-        
-        return cell
-    }
+
     
+    
+
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     //        print("selected a cell")
@@ -101,43 +133,64 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //            chatViewController.chatID = id
     //        }
     //    }
-    
-    
-    //    @IBOutlet var tableView: UITableView!
-    //    var userId: String = ""
-    //    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //var userEmail: String = ""
-    //private var data: [Any] = [Any]()  // list of chat objects with chat ID, other user's name
-    
+
+
+    func fetchChats(completion: @escaping ([Message])->()) {
+
+        let url = appDelegate.rootUrl + "api/chats"
+
+        let params: Parameters = [
+            "user": self.userEmail
+        ]
+
+//        let _request = Alamofire.request(url, method: .get, parameters: params)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    completion(response.result.value as! [Any])
+//                case .failure(let error):
+//                    let alert = UIAlertController(title: "Error Fetching Chats", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
+//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                    print(error)
+//                }
+//        }
+        //        debugPrint("whole _request ****",_request)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+//        fetchChats(completion: { chats in
+//            self.chats = chats
+//            self.tableView.dataSource = self
+//            self.tableView.reloadData()
+//        })
+
+
+
         self.userEmail = appDelegate.userEmail
         let socket = manager.defaultSocket
-        
+
         socket.on(clientEvent: .connect) {data, ack in
             print("socket connected")
         }
-        
-        socket.on("chat message") {data, ack in
-            print("I AM HERE", data)
-            self.recieveMessage(message_data: data)
-        }
-        
+
+            socket.on("chat message") {data, ack in
+                self.recieveMessage(message_data: data)
+            }
+
         socket.connect()
-        
+
         if (self.chatID != nil) {
             print("chat id: " + self.chatID)
         }
-        
+
         //        view.bringSubview(toFront: toolbar)
-        
+
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
         //        self.userEmail = appDelegate.userEmail;
-        
 
         let group = DispatchGroup()
         
@@ -162,39 +215,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
         }
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
+
     }
-    
-    func fetchChats(completion: @escaping ([Any])->()) {
-        print("i hate swift")
-        
-        //        let url = appDelegate.rootUrl + "api/chats"
-        
-        //        let params: Parameters = [
-        //            "user": self.userEmail
-        //        ]
-        //
-        //        let _request = Alamofire.request(url, method: .get, parameters: params)
-        //            .responseJSON { response in
-        //                switch response.result {
-        //                case .success:
-        //                    completion(response.result.value as! [Any])
-        //                case .failure(let error):
-        //                    let alert = UIAlertController(title: "Error Fetching Chats", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-        //                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-        //                    self.present(alert, animated: true, completion: nil)
-        //                    print(error)
-        //                }
-        //        }
-        //        debugPrint("whole _request ****",_request)
-    }
-    
+
+
+
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
-        
+
         print("email: " + String(describing: self.userEmail))
-        
+
         var message : [String: Any] = [:]
-            
+ 
         if (self.chatID != nil) {
             message = [
                 "message": self.chatInput.text!,
@@ -211,37 +245,30 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             ]
         }
         print(message)
-            
-            
-        let socket = self.manager.defaultSocket
+
+        let socket = manager.defaultSocket
         socket.emit("chat message", message)
-        // self.textViewTemp.text.append(self.chatInput.text! + "\n")
         self.chatInput.text = ""
 
     }
-    
+
     func recieveMessage(message_data: [Any]){
-        print("message recieved")
-        print(message_data[0])
-        // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
-        guard let cur = message_data[0] as? String else { return }
-        //   self.textViewTemp.text.append(cur)
-        //  self.textViewTemp.text.append("\n")
+
+        
+        print("message recieved******")
+        let message = message_data[0] as! [String:String]
+        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], sentTo: appDelegate.userEmail, ChatID: "3420938423" )
+
+        if(message_to_display.messageText != ""){
+            data.append(message_to_display);
+    
+            print("data array", data)
+            self.tableView.reloadData()
+            scrollToBottom()
+        }
+
     }
-    
-    
-    private func loadSampleChats(){
-        data.append("some message")
-        self.tableView.reloadData()
-        
-        
-        
-        //  guard let chat1 = MessagePort() else {
-        //    fatalError("Unable to instantiate meal1")
-        //}
-    }
-    
-    
+
     func getUserId(email: String, completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
         let url: String = rootUrl + "api/user/" + email
@@ -292,82 +319,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print("failure: error creating user for user id")
                     print(error)
                 }
+            }
         }
-    }
-    
-}
 
-//class ChatViewController: UIViewController {
-//
-//    var chatID: String!
-//    var userEmail: String!
-//
-////    @IBOutlet weak var chatView: UITableView!
-//    @IBOutlet weak var chatInput: UITextField!
-//    @IBOutlet weak var sendButton: UIButton!
-//    @IBOutlet weak var textViewTemp: UITextView!
-//
-//
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
-//
-//    // source: https://nuclearace.github.io/Socket.IO-Client-Swift/faq.html
-//    func addHandlers() {
-//        let socket = manager.defaultSocket
-//        socket.on("chat message") {data, ack in
-//            self.recieveMessage(message_data: data)
-//        }
-//
-//    }
-//
-//    func recieveMessage(message_data: [Any]){
-//        print("message recieved")
-//        print(message_data[0])
-//        // https://stackoverflow.com/questions/29756722/cannot-invoke-append-with-an-argument-list-of-type-string
-//        guard let cur = message_data[0] as? String else { return }
-//        self.textViewTemp.text.append(cur)
-//        self.textViewTemp.text.append("\n")
-//
-//    }
-//
-//
-//    @IBAction func sendMessage(_ sender: Any) {
-//        print(self.chatInput.text!)
-//
-//        print("email: " + String(describing: self.userEmail))
-//        let message : [String: Any] = [
-//            "message": self.chatInput.text!,
-//            "sentBy": self.userEmail,
-//            "recipient": "drew@test.com",
-//            "chatID": self.chatID
-//        ]
-//
-//        let socket = manager.defaultSocket
-//        socket.emit("chat message", message)
-//        self.textViewTemp.text.append(self.chatInput.text! + "\n")
-//        self.chatInput.text = ""
-//    }
-//
-//
-//    // source: SocketIO docs (https://github.com/socketio/socket.io-client-swift/blob/master/README.md)
-//    override func viewDidLoad() {
-//
-//        self.userEmail = appDelegate.userEmail
-//        let socket = manager.defaultSocket
-//
-//        socket.on(clientEvent: .connect) {data, ack in
-//        print("socket connected")
-//        }
-//
-//        socket.on("chat message") {data, ack in
-//            print("I AM HERE", data)
-//            self.recieveMessage(message_data: data)
-//        }
-//
-//        socket.connect()
-//
-//        if (self.chatID != nil) {
-//            print("chat id: " + self.chatID)
-//        }
-//    }
-//}
+    }
+
