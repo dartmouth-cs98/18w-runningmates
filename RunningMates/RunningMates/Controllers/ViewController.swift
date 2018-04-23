@@ -37,6 +37,7 @@ extension UIViewController {
         @IBOutlet weak var emailTextField: UITextField!
         @IBOutlet weak var createAccountButton: UIButton!
         
+
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -84,18 +85,48 @@ extension UIViewController {
     }
         
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
-        
-        print("requestForLogin")
+
         
         let params: Parameters = [
             "email": email!,
             "password": password!
         ]
-        
+
         let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
                 case .success:
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        var user = (jsonUser["user"] as? [String:Any])!
+                        
+                        // Check token and prevToken storage and comparison if any errors occur
+                        let token = (jsonUser["token"] as? String)
+                        let prevToken = String(describing: UserDefaults.standard.value(forKey: "token")!)
+                        // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
+                        if !(token == prevToken) {
+                            UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                            UserDefaults.standard.set(user["email"], forKey: "email")
+                            UserDefaults.standard.set(token, forKey: "token")
+                            if (user["lastName"] != nil) {
+                                UserDefaults.standard.set(user["lastName"], forKey: "lastName")
+                            }
+                            
+                            if (user["imageURL"] != nil) {
+                                UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
+                            }
+                            
+                            if (user["images"] != nil) {
+                                UserDefaults.standard.set(user["images"], forKey: "images")
+                            }
+                            
+                            if (user["data"] != nil) {
+                                UserDefaults.standard.set(user["data"], forKey: "data")
+                            }
+                            if (user["desiredGoals"] != nil) {
+                                UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
+                            }
+                        }
+                    }
                     completion()
                 case .failure(let error):
                     print(error)

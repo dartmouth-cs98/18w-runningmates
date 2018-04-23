@@ -65,13 +65,23 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         print(self.appDelegate.didSignUpWithStrava)
         if (self.appDelegate.didSignUpWithStrava == 1) {
             getUserRequest(completion: {_ in })
-        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateInfoFromUserDefaults() {
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName")
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data")
+        if (firstName != nil) {
+            nameTextView.text = firstName
+        }
+        if (data["totalMilesRun"] != nil) {
+            totalMilesTextField.text = data["totalMilesRun"]
+        }
     }
     
     // The number of columns of data

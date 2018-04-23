@@ -78,10 +78,12 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                         switch response.result {
                         case .success:
                             print("Post Successful")
+
                             self.appDelegate.didSignUpWithStrava = 1
                             let user = response.result.value as? [String:Any]!
                             self.appDelegate.userEmail = String(describing: user! ["email"]!)
                             print (self.appDelegate.userEmail)
+
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
@@ -152,7 +154,13 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    completion()
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        let token = (jsonUser["token"] as? [String:Any])
+                        UserDefaults.standard.set(email!, forKey: "email")
+                        UserDefaults.standard.set(token, forKey: "token")
+                        UserDefaults.standard.set(password!, forKey: "password")
+                        completion()
+                    }
                 case .failure(let error):
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))

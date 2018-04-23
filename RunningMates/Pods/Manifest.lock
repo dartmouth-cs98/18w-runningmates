@@ -1,7 +1,10 @@
 PODS:
   - Alamofire (4.6.0)
   - DLRadioButton (1.4.11)
+  - Koloda (4.3.1):
+    - pop (~> 1.0)
   - OAuthSwift (1.2.0)
+  - pop (1.0.10)
   - Socket.IO-Client-Swift (13.1.1):
     - Starscream (~> 3.0.2)
   - Starscream (3.0.4)
@@ -9,15 +12,19 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - DLRadioButton (~> 1.4)
+  - Koloda
   - OAuthSwift (~> 1.2.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
+  Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+
 
 PODFILE CHECKSUM: 21e8f158e1b797b2789bcb40269185f0f5db6d28
 
