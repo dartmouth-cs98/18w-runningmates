@@ -29,7 +29,7 @@ extension UIViewController {
         var webView: WKWebView!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-//        var rootURl: String = "https://running-mates.herokuapp.com/"
+        var rootURl: String = "https://running-mates.herokuapp.com/"
 //        var rootURl: String = "http://localhost:9090/"
         
         @IBOutlet weak var loginButton: UIButton!
@@ -71,13 +71,12 @@ extension UIViewController {
         
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
 
-        print("requestForLogin")
         
         let params: Parameters = [
             "email": email!,
             "password": password!
         ]
-        
+
         let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
@@ -85,9 +84,10 @@ extension UIViewController {
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:Any])!
                         let token = (jsonUser["token"] as? [String:Any])
-                        UserDefaults.setValue(user["firstName"], forKey: "firstName")
-                        UserDefaults.setValue(user["email"], forKey: "email")
-                        UserDefaults.setValue(token, forKey: "token")
+                        UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                        UserDefaults.standard.set(user["_id"], forKey: "id")
+                        UserDefaults.standard.set(user["email"], forKey: "email")
+                        UserDefaults.standard.set(token, forKey: "token")
                         if (user["lastName"] != nil) {
                             UserDefaults.standard.set(user["lastName"], forKey: "lastName")
                         }
@@ -106,8 +106,8 @@ extension UIViewController {
                         if (user["desiredGoals"] != nil) {
                             UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
                         }
-                        
                     }
+                    completion()
                 case .failure(let error):
                     print(error)
                     let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)
