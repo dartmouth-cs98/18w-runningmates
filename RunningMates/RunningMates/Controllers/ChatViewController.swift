@@ -35,7 +35,9 @@ class CustomMessageCell: UITableViewCell {
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
 //    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
