@@ -37,14 +37,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
+
+    let recipientEmail : String = "drew@test.com"
+    var sentByID : String = ""
+    var recipientID : String = ""
+
     private var chats: [Any] = [Any]()
     private var data = [Message]()  // list of chat objects with chat ID, other user's name
+
     // @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var toolbar: UIToolbar!
 
@@ -64,7 +70,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(data.count)
         return data.count
     }
 
@@ -130,27 +135,35 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //    }
 
 
-    func fetchChats(completion: @escaping ([Any])->()) {
+    func fetchChats(completion: @escaping ([Message])->()) {
 
-        let url = appDelegate.rootUrl + "api/chats"
+        let url = appDelegate.rootUrl + "api/chatHistory"
 
         let params: Parameters = [
-            "user": self.userEmail
+            "chatID": self.chatID
         ]
 
-//        let _request = Alamofire.request(url, method: .get, parameters: params)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    completion(response.result.value as! [Any])
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Fetching Chats", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-        //        debugPrint("whole _request ****",_request)
+        let _request = Alamofire.request(url, method: .get, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                if let jsonResult = response.result.value as? [[String:Any]] {
+                    var msgsList : [Message] = []
+                    for jsonMsg in jsonResult {
+                        let msg = Message(json: (jsonMsg as? [String:Any])!)
+                        if (msg != nil) {
+                            msgsList.append(msg!)
+                        } else {
+                            print("nil")
+                        }
+                    }
+                    completion(msgsList)
+                }
+                case .failure(let error):
+                    print("failure")
+                    print(error)
+                }
+        }
     }
 
     override func viewDidLoad() {
@@ -186,12 +199,30 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.delegate = self
         self.tableView.dataSource = self
         //        self.userEmail = appDelegate.userEmail;
-//
-//        fetchChats(completion: { chats in
-//            self.data = chats
-//            self.tableView.dataSource = self
-//            self.tableView.reloadData()
-//        })
+
+        let group = DispatchGroup()
+        
+        group.enter()
+        group.enter()
+        
+        getUserId(email: self.userEmail, completion: {id in
+            self.sentByID = id
+            group.leave()
+        })
+        
+        getUserId(email: self.recipientEmail, completion: {id in
+            self.recipientID = id
+            group.leave()
+        })
+        
+        group.notify(queue: DispatchQueue.main) {
+            self.fetchChats(completion: { chats in
+                self.data = chats
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+            })
+        }
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
 
@@ -203,30 +234,30 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print(self.chatInput.text!)
 
         print("email: " + String(describing: self.userEmail))
-        
-        var message : [String: Any]
 
+        var message : [String: Any] = [:]
+ 
         if (self.chatID != nil) {
             message = [
                 "message": self.chatInput.text!,
-                "sentBy": self.userEmail,
-                "recipient": "drew@test.com",
+                "sentBy": self.sentByID,
+                "recipient": self.recipientID,
                 "chatID": self.chatID
                 // "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
             ]
         } else {
             message = [
                 "message": self.chatInput.text!,
-                "sentBy": self.userEmail,
-                "recipient": "drew@test.com"
+                "sentBy": self.sentByID,
+                "recipient": self.recipientID
             ]
         }
         print(message)
 
-
         let socket = manager.defaultSocket
         socket.emit("chat message", message)
         self.chatInput.text = ""
+
     }
 
     func recieveMessage(message_data: [Any]){
@@ -234,7 +265,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("message recieved******")
         let message = message_data[0] as! [String:String]
-        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], sentTo: appDelegate.userEmail, ChatID: "3420938423" )
+        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], time: message["time"], ChatID: "3420938423" )
 
         if(message_to_display.messageText != ""){
             data.append(message_to_display);
@@ -246,4 +277,58 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
 
-}
+    func getUserId(email: String, completion: @escaping (String)->()) {
+        let rootUrl: String = appDelegate.rootUrl
+        let url: String = rootUrl + "api/user/" + email
+        
+        let params : [String:Any] = [
+            "email": email
+        ]
+        let _request = Alamofire.request(url, method: .get, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        do {
+                            let user = try User(json: (jsonUser as [String:Any]))
+                            if (user != nil) {
+                                completion((user?.id)!)
+                            } else {
+                                print("nil")
+                            }
+                        } catch UserInitError.invalidId {
+                            print("invalid id")
+                        } catch UserInitError.invalidFirstName {
+                            print("invalid first name")
+                        } catch UserInitError.invalidLastName {
+                            print("invalid last name")
+                        } catch UserInitError.invalidImageURL {
+                            print("invalid image url")
+                        } catch UserInitError.invalidBio {
+                            print("invalid bio")
+                        } catch UserInitError.invalidGender {
+                            print("invalid gender")
+                        } catch UserInitError.invalidAge {
+                            print("invalid age")
+                        } catch UserInitError.invalidLocation {
+                            print("invalid location")
+                        } catch UserInitError.invalidEmail {
+                            print("invalid email")
+                        } catch UserInitError.invalidPassword {
+                            print("invalid password")
+                        } catch {
+                            print("other error")
+                        }
+                    } else {
+                        print("error creating user for user id")
+                    }
+                    
+                case .failure(let error):
+                    print("failure: error creating user for user id")
+                    print(error)
+                }
+            }
+        }
+
+    }
+
