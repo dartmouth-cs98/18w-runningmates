@@ -55,6 +55,12 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
+        let url = URL(string: message["imageURL"] as! String)
+        let imgData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+
+        let image = UIImage(data: imgData!)
+        cell.imageView?.image = image
+        
         cell.nameLabel?.text = displayedMembers
         cell.contentPreviewLabel?.text = content
         cell.dateLabel?.text = time

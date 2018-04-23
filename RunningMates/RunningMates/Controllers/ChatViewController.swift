@@ -37,8 +37,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
