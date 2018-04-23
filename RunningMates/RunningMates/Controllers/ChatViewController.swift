@@ -137,25 +137,33 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func fetchChats(completion: @escaping ([Message])->()) {
 
-        let url = appDelegate.rootUrl + "api/chats"
+        let url = appDelegate.rootUrl + "api/chatHistory"
 
         let params: Parameters = [
-            "user": self.userEmail
+            "chatID": self.chatID
         ]
 
-//        let _request = Alamofire.request(url, method: .get, parameters: params)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    completion(response.result.value as! [Any])
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Fetching Chats", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-        //        debugPrint("whole _request ****",_request)
+        let _request = Alamofire.request(url, method: .get, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                if let jsonResult = response.result.value as? [[String:Any]] {
+                    var msgsList : [Message] = []
+                    for jsonMsg in jsonResult {
+                        let msg = Message(json: (jsonMsg as? [String:Any])!)
+                        if (msg != nil) {
+                            msgsList.append(msg!)
+                        } else {
+                            print("nil")
+                        }
+                    }
+                    completion(msgsList)
+                }
+                case .failure(let error):
+                    print("failure")
+                    print(error)
+                }
+        }
     }
 
     override func viewDidLoad() {
@@ -257,7 +265,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("message recieved******")
         let message = message_data[0] as! [String:String]
-        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], sentTo: appDelegate.userEmail, ChatID: "3420938423" )
+        let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], time: message["time"], ChatID: "3420938423" )
 
         if(message_to_display.messageText != ""){
             data.append(message_to_display);
