@@ -51,12 +51,24 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
+        updateInfoFromUserDefaults()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateInfoFromUserDefaults() {
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName")
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data")
+        if (firstName != nil) {
+            nameTextView.text = firstName
+        }
+        if (data["totalMilesRun"] != nil) {
+            totalMilesTextField.text = data["totalMilesRun"]
+        }
     }
     
     // The number of columns of data
