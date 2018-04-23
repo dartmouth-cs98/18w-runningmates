@@ -16,33 +16,43 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var averagePaceTextField: UITextField!
-   // @IBOutlet weak var bioTextView: UITextField!
+    @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var totalElevationTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
-//    var rootURl: String = "http://localhost:9090/"
+
+    var rootURl: String = "https://running-mates.herokuapp.com/"
+    // var rootURl: String = "http://localhost:9090/"
+    @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var longestRunTextView: UITextField!
+    @IBOutlet weak var racesDoneTextView: UITextView!
+    @IBOutlet weak var frequentSegmentsTextView: UITextView!
+    @IBOutlet weak var KOMsTextField: UITextField!
+    @IBOutlet weak var runsPerWeekTextField: UITextField!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var userEmail: String = ""
+    
     var pickerOptions: [String] = [String]()
     var imagePicker: UIImagePickerController = UIImagePickerController()
+    
+    var newUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
+        self.userEmail = appDelegate.userEmail
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        //bioTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         nameTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        averagePaceTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        milesPerWeekTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
-       // bioTextView.clipsToBounds = true
         nameTextView.clipsToBounds = true
-        averagePaceTextField.clipsToBounds = true
+        milesPerWeekTextField.clipsToBounds = true
         totalMilesTextField.clipsToBounds = true
         totalElevationTextField.clipsToBounds = true
         
@@ -51,7 +61,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
-        updateInfoFromUserDefaults()
+        print("did sign up with strava: ")
+        print(self.appDelegate.didSignUpWithStrava)
+        if (self.appDelegate.didSignUpWithStrava == 1) {
+            getUserRequest(completion: {_ in })
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,9 +116,122 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         dismiss(animated:true, completion: nil)
     }
     
+    
+    
     @IBAction func saveButtonClicked(_ sender: Any) {
-        //check if enough data has been entered, save user and send to matching page
+        //check if enough data has been entered
+        if ((nameTextView.text! == "") || (bioTextView.text! == "") || (milesPerWeekTextField.text! == "") || (runsPerWeekTextField.text! == "")) {
+        let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        }
+        
+        backendSaveRequest(completion: { title, message in
+            //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        })
+        
+
     }
     
-    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the image uploading and strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
+    
+    // needs to be called  only when navigated not from a new user
+    func getUserRequest( completion: @escaping ([String:Any])->()){
+        let rootUrl: String = appDelegate.rootUrl
+        print("in get user")
+        
+        let params : [String: Any]
+        params = [
+            "email": self.userEmail
+        ]
+        
+        let email: String = self.userEmail
+        let url = rootUrl + "api/users/" + email
+        
+        var headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let _request = Alamofire.request(url, method: .get, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    print("success")
+                    let user = response.result.value as? [String:Any]!
+                    let data = user!["data"] as? [String:Any]?
+                    print(user)
+                    let urlString = String (describing: user! ["imageURL"]!)
+                    let url = URL(string: urlString)
+                    let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                    let image = UIImage(data: imagedata!)
+                    self.profileImage.image = image
+                    self.nameTextView.text = String(describing: user! ["firstName"]!)
+                    self.bioTextView.text = String(describing: user! ["bio"]!)
+                    self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
+                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+                    self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
+                    self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
+                    completion(user!)
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
+        debugPrint("whole _request ****",_request)
+    }
+
+    
+    func backendSaveRequest(completion: @escaping (String, String)-> ()){
+        
+        let rootUrl: String = appDelegate.rootUrl
+        
+        let params : [String: Any]
+        
+            params = [
+                "email": self.userEmail,
+                "firstName": nameTextView.text!,
+                "bio": bioTextView.text!,
+                "location": locationTextView.text!,
+                "milesPerWeek": milesPerWeekTextField.text!,
+                "totalElevation": totalElevationTextField.text!,
+                "totalMiles": totalMilesTextField.text!,
+                "longestRun": longestRunTextView.text!,
+                "racesDone": racesDoneTextView.text!,
+                "runsPerWeek": runsPerWeekTextField.text!,
+                "kom": KOMsTextField.text!,
+                "frequentSegments": frequentSegmentsTextView.text!
+            ]
+        
+        let email: String = self.userEmail
+        let url = rootUrl + "api/user/" + email
+        
+        var title = ""
+        var message = ""
+        
+        var headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let responseDictionary = response.result.value as! [String:Any]
+                    if (String(describing: responseDictionary["response"]!) == "updated user") {
+                        title = "You Have Updated Your Profile"
+                        message = "Find Some New RunningMates!"
+                    }
+                    print("*** success in update*** ")
+                case .failure(let error):
+                    print("*error posting profile updates*")
+                    print(error)
+                }
+                completion(title, message)
+        }
+         debugPrint("whole _request ****",_request)
+    }
 }

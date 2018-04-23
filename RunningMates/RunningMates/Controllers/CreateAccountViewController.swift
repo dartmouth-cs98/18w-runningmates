@@ -45,7 +45,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBAction func didTapStrava(_ sender: Any) {
         let rootUrl: String = appDelegate.rootUrl
 //        var user = User()
-        
         print("did tap strava")
         let oauthswift = OAuth2Swift(
             consumerKey:    "23426",
@@ -60,12 +59,12 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         
         let handle = oauthswift.authorize(
             
-            withCallbackURL: URL(string: "RunningMates://" + rootUrl)!,
+            withCallbackURL: URL(string: "RunningMates://" + "localhost:9090")!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
-                self.present(createProfileVC, animated: true, completion: nil)
+//                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+//                self.present(createProfileVC, animated: true, completion: nil)
                 
                 print(credential.oauthToken)
                 let params: Parameters = [
@@ -75,26 +74,20 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
+                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
-                            // Save some strava data locally in UserDefaults
-                            if let jsonResult = response.result.value as? [[String:Any]] {
-                                var user = (jsonUser["user"] as? [String:Any])!
-                                let token = (jsonUser["token"] as? [String:Any])
-                                    UserDefaults.standard.set(user["firstName"], forKey: "firstName")
-                                    UserDefaults.standard.set(user["email"], forKey: "email")
-                                    UserDefaults.standard.set(token, forKey: "token")
-                                    if (user["lastName"] != nil) {
-                                        UserDefaults.standard.set(user["lastName"], forKey: "lastName")
-                                    }
-                                    if (user["data"] != nil) {
-                                        UserDefaults.standard.set(user["data"], forKey: "data")
-                                    }
-                            }
+
+                            self.appDelegate.didSignUpWithStrava = 1
+                            let user = response.result.value as? [String:Any]!
+                            self.appDelegate.userEmail = String(describing: user! ["email"]!)
+                            print (self.appDelegate.userEmail)
+
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
+                            print("failure in creating profile")
                             print(error)
                         }
                 }
