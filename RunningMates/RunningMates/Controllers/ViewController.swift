@@ -40,8 +40,23 @@ extension UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            passTextField.borderStyle = UITextBorderStyle.roundedRect
-            emailTextField.borderStyle = UITextBorderStyle.roundedRect
+          //  passTextField.borderStyle = UITextBorderStyle.roundedRect
+          //  emailTextField.borderStyle = UITextBorderStyle.roundedRect
+            passTextField.layer.cornerRadius = 5
+            passTextField.layer.borderWidth = 1
+            passTextField.layer.borderColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0).cgColor
+            
+            emailTextField.layer.cornerRadius = 5
+            emailTextField.layer.borderWidth = 1
+            emailTextField.layer.borderColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0).cgColor
+            
+            loginButton.layer.cornerRadius = 5
+            loginButton.layer.borderWidth = 1
+            
+
+            createAccountButton.layer.cornerRadius = 5
+            createAccountButton.layer.borderWidth = 1
+
             
             self.hideKeyboardOnBackgroundTap()
         }
