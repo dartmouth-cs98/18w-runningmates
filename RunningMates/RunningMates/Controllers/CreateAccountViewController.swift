@@ -63,8 +63,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
-                self.present(createProfileVC, animated: true, completion: nil)
+//                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+//                self.present(createProfileVC, animated: true, completion: nil)
                 
                 print(credential.oauthToken)
                 let params: Parameters = [
@@ -74,13 +74,18 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
+                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
                             self.appDelegate.didSignUpWithStrava = 1
+                            let user = response.result.value as? [String:Any]!
+                            self.appDelegate.userEmail = String(describing: user! ["email"]!)
+                            print (self.appDelegate.userEmail)
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
+                            print("failure in creating profile")
                             print(error)
                         }
                 }
