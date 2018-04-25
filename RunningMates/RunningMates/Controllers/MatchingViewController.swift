@@ -101,15 +101,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         getUserId(completion: {id in
             self.userId = id
         })
-        
-        let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MatchingViewController.swipeNewMatch(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-
-        let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-
-        self.view.addGestureRecognizer(swipeLeft)
-        self.view.addGestureRecognizer(swipeRight)
 
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
