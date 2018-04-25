@@ -65,6 +65,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         print(self.appDelegate.didSignUpWithStrava)
         if (self.appDelegate.didSignUpWithStrava == 1) {
             getUserRequest(completion: {_ in })
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,14 +75,14 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func updateInfoFromUserDefaults() {
-        var firstName: String = UserDefaults.standard.value(forKey: "firstName")
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data")
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String as! String
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         if (firstName != nil) {
             nameTextView.text = firstName
         }
-        if (data["totalMilesRun"] != nil) {
-            totalMilesTextField.text = data["totalMilesRun"]
-        }
+//        if (data["totalMilesRun"] != nil) {
+//            totalMilesTextField.text = data["totalMilesRun"]
+//        }
     }
     
     // The number of columns of data
