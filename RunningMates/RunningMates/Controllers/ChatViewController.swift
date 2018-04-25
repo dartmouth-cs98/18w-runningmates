@@ -37,8 +37,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
@@ -180,7 +180,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let socket = manager.defaultSocket
 
         socket.on(clientEvent: .connect) {data, ack in
-            print("socket connected")
+            socket.emit("join room", self.chatID)
         }
 
             socket.on("chat message") {data, ack in
@@ -188,6 +188,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
 
         socket.connect()
+        
 
         if (self.chatID != nil) {
             print("chat id: " + self.chatID)
