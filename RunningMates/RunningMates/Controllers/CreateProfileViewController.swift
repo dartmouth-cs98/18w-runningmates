@@ -22,8 +22,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
 
-    // var rootURl: String = "https://running-mates.herokuapp.com/"
-    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
+    // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var longestRunTextView: UITextField!
     @IBOutlet weak var racesDoneTextView: UITextView!
@@ -61,6 +61,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
+        print("did sign up with strava: ")
+        print(self.appDelegate.didSignUpWithStrava)
         if (self.appDelegate.didSignUpWithStrava == 1) {
             getUserRequest(completion: {_ in })
         }
@@ -70,6 +72,17 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateInfoFromUserDefaults() {
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String as! String
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        if (firstName != nil) {
+            nameTextView.text = firstName
+        }
+//        if (data["totalMilesRun"] != nil) {
+//            totalMilesTextField.text = data["totalMilesRun"]
+//        }
     }
     
     // The number of columns of data
@@ -130,6 +143,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     // needs to be called  only when navigated not from a new user
     func getUserRequest( completion: @escaping ([String:Any])->()){
         let rootUrl: String = appDelegate.rootUrl
+        print("in get user")
         
         let params : [String: Any]
         params = [
@@ -146,15 +160,23 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             .responseJSON { response in
                 switch response.result {
                 case .success:
+                    print("success")
                     let user = response.result.value as? [String:Any]!
+                    let data = user!["data"] as? [String:Any]?
+                    print(user)
+                    let urlString = String (describing: user! ["imageURL"]!)
+                    let url = URL(string: urlString)
+                    let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                    let image = UIImage(data: imagedata!)
+                    self.profileImage.image = image
                     self.nameTextView.text = String(describing: user! ["firstName"]!)
                     self.bioTextView.text = String(describing: user! ["bio"]!)
-                    self.milesPerWeekTextField.text = String (describing: user! ["milesPerWeek"])
-                    self.totalElevationTextField.text = String (describing: user! ["totalElevation"])
-                    self.totalMilesTextField.text = String (describing: user! ["totalMiles"])
-                    self.longestRunTextView.text = String (describing: user! ["longestRun"])
-                    self.racesDoneTextView.text = String (describing: user! ["racesDone"])
-                    self.runsPerWeekTextField.text = String (describing: user! ["runsPerWeek"])
+                    self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
+                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+                    self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
+                    self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
                     completion(user!)
                 case .failure(let error):
                     print("error fetching users")

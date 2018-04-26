@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A5f-KQ-epo">
-                                <rect key="frame" x="16" y="8" width="343" height="595"/>
+                                <rect key="frame" x="16" y="55" width="343" height="548"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -70,6 +70,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyY-od-xRu">
+                                <rect key="frame" x="108" y="10" width="158" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-Jy-0Qk">
+                                <rect key="frame" x="16" y="10" width="62" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="AM7-eT-ZtH"/>
@@ -77,24 +88,13 @@
                     <connections>
                         <outlet property="chatInput" destination="D2u-6m-D9C" id="J0l-2V-CJh"/>
                         <outlet property="tableView" destination="A5f-KQ-epo" id="Cad-RP-QLS"/>
+                        <outlet property="userImage" destination="zRd-Jy-0Qk" id="YAd-HH-jAV"/>
+                        <outlet property="userLabel" destination="TyY-od-xRu" id="IMB-Ka-wZ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXe-Ev-dDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1040.8" y="-94.002998500749626"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="tlv-jZ-K9W">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ueC-zU-0gu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="HfQ-PG-aMR" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R3s-PT-zah">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-            </objects>
         </scene>
     </scenes>
 </document>
