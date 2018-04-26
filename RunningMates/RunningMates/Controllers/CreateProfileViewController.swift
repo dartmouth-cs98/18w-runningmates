@@ -22,8 +22,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
 
-    // var rootURl: String = "https://running-mates.herokuapp.com/"
-    var rootURl: String = "http://localhost:9090/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
+    // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var longestRunTextView: UITextField!
     @IBOutlet weak var racesDoneTextView: UITextView!
@@ -61,12 +61,28 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
+        print("did sign up with strava: ")
+        print(self.appDelegate.didSignUpWithStrava)
+        if (self.appDelegate.didSignUpWithStrava == 1) {
+            getUserRequest(completion: {_ in })
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateInfoFromUserDefaults() {
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String as! String
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        if (firstName != nil) {
+            nameTextView.text = firstName
+        }
+//        if (data["totalMilesRun"] != nil) {
+//            totalMilesTextField.text = data["totalMilesRun"]
+//        }
     }
     
     // The number of columns of data
@@ -110,40 +126,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         }
-//        let json: [String: Any] = ["firstName": nameTextView.text!,
-//                                   "bio": bioTextView.text!,
-//                                   "location": locationTextView.text!,
-//                                   "milesPerWeek": milesPerWeekTextField.text!,
-//                                   "totalElevation": totalElevationTextField.text!,
-//                                   "totalMiles": totalMilesTextField.text!,
-//                                   "longestRun": longestRunTextView.text!,
-//                                   "racesDone": racesDoneTextView.text!,
-//                                   "runsPerWeek": runsPerWeekTextField.text!,
-//                                   "kom": KOMsTextField.text!,
-//                                   "frequentSegments": frequentSegmentsTextView.text!
-//        ]
-        
-    
-
-       
-        //var user: User = try! User.init(json: json) as! User
-        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // appDelegate.userData = user! // format of key value pairs
-
-        
-//        let user: [String: Any] = ["firstName": nameTextView.text!,
-//                                   "imageURL": profileImage.image!,
-//                                   "bio": bioTextView.text!,
-//                                   "location": locationTextView.text!]
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(user, toFile: User.ArchiveURL.path)
-//        if isSuccessfulSave {
-//            print("User successfully saved.")
-//        } else {
-//            print("Failed to save User...")
-//        }
-        
-        // save user and send to matching page
-        // backend save and local save
         
         backendSaveRequest(completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
@@ -161,18 +143,12 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     // needs to be called  only when navigated not from a new user
     func getUserRequest( completion: @escaping ([String:Any])->()){
         let rootUrl: String = appDelegate.rootUrl
+        print("in get user")
         
         let params : [String: Any]
-        
-        if (rootUrl == "http://localhost:9090/") {
-            params = [
-                "email": self.userEmail
-            ]
-        } else {
-            params = [
-                "email": self.userEmail
-            ]
-        }
+        params = [
+            "email": self.userEmail
+        ]
         
         let email: String = self.userEmail
         let url = rootUrl + "api/users/" + email
@@ -184,15 +160,23 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             .responseJSON { response in
                 switch response.result {
                 case .success:
+                    print("success")
                     let user = response.result.value as? [String:Any]!
+                    let data = user!["data"] as? [String:Any]?
+                    print(user)
+                    let urlString = String (describing: user! ["imageURL"]!)
+                    let url = URL(string: urlString)
+                    let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                    let image = UIImage(data: imagedata!)
+                    self.profileImage.image = image
                     self.nameTextView.text = String(describing: user! ["firstName"]!)
                     self.bioTextView.text = String(describing: user! ["bio"]!)
-                    self.milesPerWeekTextField.text = String (describing: user! ["milesPerWeek"])
-                    self.totalElevationTextField.text = String (describing: user! ["totalElevation"])
-                    self.totalMilesTextField.text = String (describing: user! ["totalMiles"])
-                    self.longestRunTextView.text = String (describing: user! ["longestRun"])
-                    self.racesDoneTextView.text = String (describing: user! ["racesDone"])
-                    self.runsPerWeekTextField.text = String (describing: user! ["runsPerWeek"])
+                    self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
+                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+                    self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
+                    self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
                     completion(user!)
                 case .failure(let error):
                     print("error fetching users")
@@ -209,7 +193,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         let params : [String: Any]
         
-        if (rootUrl == "http://localhost:9090/") {
             params = [
                 "email": self.userEmail,
                 "firstName": nameTextView.text!,
@@ -224,22 +207,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 "kom": KOMsTextField.text!,
                 "frequentSegments": frequentSegmentsTextView.text!
             ]
-        } else {
-            params = [
-                "email": self.userEmail,
-                "firstName": nameTextView.text!,
-                "bio": bioTextView.text!,
-                "location": locationTextView.text!,
-                "milesPerWeek": milesPerWeekTextField.text!,
-                "totalElevation": totalElevationTextField.text!,
-                "totalMiles": totalMilesTextField.text!,
-                "longestRun": longestRunTextView.text!,
-                "racesDone": racesDoneTextView.text!,
-                "runsPerWeek": runsPerWeekTextField.text!,
-                "kom": KOMsTextField.text!,
-                "frequentSegments": frequentSegmentsTextView.text!
-            ]
-        }
         
         let email: String = self.userEmail
         let url = rootUrl + "api/user/" + email
@@ -268,31 +235,4 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
          debugPrint("whole _request ****",_request)
     }
-    
-//    func backendSaveProfile( json: json?, completion: @escaping ()->()) {
-//
-//        let params: Parameters = [
-//            "email": json.email!,
-//            "firstName": json.firstName!,
-//            "imageURL": json.imageURL!,
-//            "bio": json.bio!,
-//            "location": json.location!
-//        ]
-//
-//        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    completion(t)
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Updating Profile", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
-    
-    // TODO: Figure out how to set the default in the picker and change the font size. Continue messing with UI to make it look better. More importantly, for functionality I still need to implement the strava data integration. Finally, when the save button is clicked, user profile data should be saved and segue to matching view.
 }

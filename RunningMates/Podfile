@@ -6,8 +6,9 @@ target 'RunningMates' do
 # Pods for RunningMates
     pod 'Alamofire', '~> 4.5'
     pod 'DLRadioButton', '~> 1.4'
+    pod 'Koloda'
     pod 'OAuthSwift', '~> 1.2.0'
     pod 'Socket.IO-Client-Swift', '~> 13.1.0'
-    pod 'Chatto', '= 3.3.0'
-    pod 'ChattoAdditions', '= 3.3.0' # if you want to use the cells or the input component
-  end
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
+end

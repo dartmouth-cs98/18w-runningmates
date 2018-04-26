@@ -59,12 +59,12 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         
         let handle = oauthswift.authorize(
             
-            withCallbackURL: URL(string: "RunningMates://" + rootUrl)!,
+            withCallbackURL: URL(string: "RunningMates://" + "localhost:9090")!,
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
-                self.present(createProfileVC, animated: true, completion: nil)
+//                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+//                self.present(createProfileVC, animated: true, completion: nil)
                 
                 print(credential.oauthToken)
                 let params: Parameters = [
@@ -74,64 +74,20 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
+                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
-                            // Brians edits
-//                            print(response.result.value.data)
-//                            // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                            appDelegate.userData = response.result.value.data! // format of key value pairs
-//                            appDelegate.firstName = response.result.value.firstName.text!
-//                            appDelegate.lastName = response.result.value.lastName.text!
-//                            appDelegate.age = response.result.value.age.int!
-//                            appDelegate.email = response.result.value.email.text!
-                            
-                            // first name last name bio age email data
-                            
-                            // or is it like this
-//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//
-//                            if let jsonResult = response.result.value as? [[String:Any]] {
-//                                do {
-//                                    let user1 = try User(json: (jsonUser["user"] as? [String:Any])!)
-//                                    if (user != nil) {
-//                                        print("User")
-//                                        print(user!)
-//                                        user = user1
-//                                        completion((user?.id)!) // what does this do
-//                                    } else {
-//                                        print("nil")
-//                                    }
-//                                } catch UserInitError.invalidId {
-//                                    print("invalid id")
-//                                } catch UserInitError.invalidFirstName {
-//                                    print("invalid first name")
-//                                } catch UserInitError.invalidLastName {
-//                                    print("invalid last name")
-//                                } catch UserInitError.invalidImageURL {
-//                                    print("invalid image url")
-//                                } catch UserInitError.invalidBio {
-//                                    print("invalid bio")
-//                                } catch UserInitError.invalidGender {
-//                                    print("invalid gender")
-//                                } catch UserInitError.invalidAge {
-//                                    print("invalid age")
-//                                } catch UserInitError.invalidLocation {
-//                                    print("invalid location")
-//                                } catch UserInitError.invalidEmail {
-//                                    print("invalid email")
-//                                } catch UserInitError.invalidPassword {
-//                                    print("invalid password")
-//                                } catch {
-//                                    print("other error")
-//                                }
-//                            }
-                            
-                            // need to pass the user object to the next screen
-                            
+
+                            self.appDelegate.didSignUpWithStrava = 1
+                            let user = response.result.value as? [String:Any]!
+                            self.appDelegate.userEmail = String(describing: user! ["email"]!)
+                            print (self.appDelegate.userEmail)
+
                             let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
+                            print("failure in creating profile")
                             print(error)
                         }
                 }
@@ -198,7 +154,13 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    completion()
+                    if let jsonUser = response.result.value as? [String:Any] {
+                        let token = (jsonUser["token"] as? [String:Any])
+                        UserDefaults.standard.set(email!, forKey: "email")
+                        UserDefaults.standard.set(token, forKey: "token")
+                        UserDefaults.standard.set(password!, forKey: "password")
+                        completion()
+                    }
                 case .failure(let error):
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
