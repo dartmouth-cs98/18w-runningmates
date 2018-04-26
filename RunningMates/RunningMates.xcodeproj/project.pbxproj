@@ -15,6 +15,7 @@
 		2B16D04D204C8B5200DFFBEF /* line.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D043204C8B5200DFFBEF /* line.jpg */; };
 		2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D04E204C966700DFFBEF /* profile_default.jpg */; };
 		2B16D051204C985000DFFBEF /* plus_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D050204C985000DFFBEF /* plus_sign.png */; };
+		2B7B918720927CF400B2EA07 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B917F20927CF300B2EA07 /* plus.png */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -25,7 +26,6 @@
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
-		F8BF962A20917222004A2E30 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F8BF962920917221004A2E30 /* plus.png */; };
 		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
 		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
@@ -164,6 +164,7 @@
 		2B6483CA2037918400092C12 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2B6483CB2037918400092C12 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		2B6483CC2037918400092C12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2B7B917F20927CF300B2EA07 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
@@ -173,7 +174,6 @@
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
-		F8BF962920917221004A2E30 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = ../../../plus.png; sourceTree = "<group>"; };
 		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
 		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F8BF962920917221004A2E30 /* plus.png */,
+				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
 				2B16CFD2203CE74200DFFBEF /* logo_strava.png */,
@@ -636,13 +636,13 @@
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
-				F8BF962A20917222004A2E30 /* plus.png in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
 				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
+				2B7B918720927CF400B2EA07 /* plus.png in Resources */,
 				FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */,
 				2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */,
 			);
