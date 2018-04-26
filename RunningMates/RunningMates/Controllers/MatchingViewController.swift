@@ -61,7 +61,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
                 if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
                     UIApplication.shared.open(URL(string: "\(url)")!)
-                    
                 }
             }
             alertController.addAction(openAction)
