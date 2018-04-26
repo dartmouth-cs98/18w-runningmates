@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="725" y="-285"/>
         </scene>
-        <!--EditProfile-->
+        <!--CreateProfile-->
         <scene sceneID="udI-zh-p5z">
             <objects>
-                <viewControllerPlaceholder storyboardName="EditProfile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CreateProfile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ao-Mb-TuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="892" y="-86"/>
