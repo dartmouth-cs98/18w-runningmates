@@ -36,6 +36,7 @@
 		FA38B38E204E0476003626F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA38B38D204E0476003626F6 /* Images.xcassets */; };
 		FA3CC5E02091684600FE0199 /* SafeTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */; };
 		FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */; };
+		FA3CC5E52092065600FE0199 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5E42092065600FE0199 /* DashboardViewController.swift */; };
 		FA4006DC208937DE0054DAEE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4006DB208937DE0054DAEE /* Message.swift */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
@@ -182,6 +183,7 @@
 		FA38B38D204E0476003626F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTrackViewController.swift; sourceTree = "<group>"; };
 		FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SafeTrack.storyboard; sourceTree = "<group>"; };
+		FA3CC5E42092065600FE0199 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		FA4006DB208937DE0054DAEE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5711042021208D005792CB /* ViewController.swift */,
+				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
 				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
@@ -743,6 +746,7 @@
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 				FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */,
 				2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */,
+				FA3CC5E52092065600FE0199 /* DashboardViewController.swift in Sources */,
 				FAB5A7C3206F174F00DDE1E9 /* ChatViewController.swift in Sources */,
 				FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */,
 			);
