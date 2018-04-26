@@ -51,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
       //  SocketIOManager.sharedInstance.establishConnection()
+        let defaults = UserDefaults.standard
+        if (defaults.string(forKey: "email") != nil) {
+            userEmail = defaults.string(forKey: "email")!
+            print("when app becomes active: ")
+            print(userEmail)
+        }
 
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
