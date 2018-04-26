@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSt-Pd-RT9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSt-Pd-RT9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +56,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YFA-H8-k5R" kind="show" id="Ebv-8N-39A"/>
+                                    <segue destination="YFA-H8-k5R" kind="popoverPresentation" popoverAnchorView="dxB-la-yED" id="Ebv-8N-39A">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="bzu-TH-ZZZ">
@@ -147,13 +149,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="communityButton" destination="a1c-wR-XE0" id="kKe-gr-50L"/>
-                        <outlet property="creditButton" destination="3Cq-eU-O8W" id="OMh-57-53R"/>
-                        <outlet property="notificationButton" destination="eVI-ov-eZp" id="kgv-Ra-bKJ"/>
-                        <outlet property="privacyButton" destination="bfh-if-QRT" id="uku-AI-ki4"/>
-                        <outlet property="safetyButton" destination="dxB-la-yED" id="EPk-Se-0Tf"/>
+                        <outlet property="communityButton" destination="a1c-wR-XE0" id="EBM-by-ko2"/>
+                        <outlet property="creditButton" destination="3Cq-eU-O8W" id="tOP-gJ-1ZH"/>
+                        <outlet property="notificationButton" destination="eVI-ov-eZp" id="xcD-22-hOR"/>
+                        <outlet property="privacyButton" destination="bfh-if-QRT" id="d4y-hQ-yQe"/>
+                        <outlet property="safetyButton" destination="dxB-la-yED" id="5IK-SY-yXY"/>
                         <outlet property="signOutButton" destination="WL1-DH-Ei9" id="aWk-xd-uP5"/>
-                        <outlet property="termsButton" destination="JpK-Ie-hUk" id="nl3-c4-hqH"/>
+                        <outlet property="termsButton" destination="JpK-Ie-hUk" id="zf8-uQ-xMB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocw-5t-S4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
