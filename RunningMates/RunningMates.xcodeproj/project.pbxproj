@@ -37,6 +37,8 @@
 		FA3CC5E02091684600FE0199 /* SafeTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */; };
 		FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */; };
 		FA3CC5E52092065600FE0199 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5E42092065600FE0199 /* DashboardViewController.swift */; };
+		FA3CC5E720922C5E00FE0199 /* EmergencyContactFullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */; };
+		FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CC5EA20922F8300FE0199 /* EmergencyContact.swift */; };
 		FA4006DC208937DE0054DAEE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4006DB208937DE0054DAEE /* Message.swift */; };
 		FA5711032021208D005792CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711022021208D005792CB /* AppDelegate.swift */; };
 		FA5711052021208D005792CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5711042021208D005792CB /* ViewController.swift */; };
@@ -184,6 +186,8 @@
 		FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeTrackViewController.swift; sourceTree = "<group>"; };
 		FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SafeTrack.storyboard; sourceTree = "<group>"; };
 		FA3CC5E42092065600FE0199 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactFullViewController.swift; sourceTree = "<group>"; };
+		FA3CC5EA20922F8300FE0199 /* EmergencyContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContact.swift; sourceTree = "<group>"; };
 		FA4006DB208937DE0054DAEE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		FA5710FF2021208D005792CB /* RunningMates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunningMates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5711022021208D005792CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 				FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */,
 				F8BEE1EC203B0E2C00274660 /* User.swift */,
 				FA4006DB208937DE0054DAEE /* Message.swift */,
+				FA3CC5EA20922F8300FE0199 /* EmergencyContact.swift */,
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
@@ -437,6 +442,7 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
@@ -741,9 +747,11 @@
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
+				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
+				FA3CC5E720922C5E00FE0199 /* EmergencyContactFullViewController.swift in Sources */,
 				FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */,
 				2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */,
 				FA3CC5E52092065600FE0199 /* DashboardViewController.swift in Sources */,
