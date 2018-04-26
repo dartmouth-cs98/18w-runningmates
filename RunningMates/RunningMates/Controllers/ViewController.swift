@@ -77,7 +77,8 @@ extension UIViewController {
         requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
             
             self.appDelegate.userEmail = self.emailTextField.text!
-            print(self.appDelegate.userEmail)
+            
+            // https://www.ios-blog.com/tutorials/swift/using-nsuserdefaults-with-swift/
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
