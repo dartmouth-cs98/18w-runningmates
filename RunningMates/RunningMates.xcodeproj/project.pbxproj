@@ -25,6 +25,9 @@
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
+		F8BF962A20917222004A2E30 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F8BF962920917221004A2E30 /* plus.png */; };
+		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
+		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
@@ -167,6 +170,9 @@
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		F8BF962920917221004A2E30 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = ../../../plus.png; sourceTree = "<group>"; };
+		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
+		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +260,7 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F8BF962920917221004A2E30 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
 				2B16CFD2203CE74200DFFBEF /* logo_strava.png */,
@@ -431,6 +438,7 @@
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
+				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
 				FAFE988F20796699008B56BA /* FullChatViewController.swift */,
@@ -454,6 +462,7 @@
 				2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */,
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
 			);
@@ -612,11 +621,13 @@
 				FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
+				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
 				88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */,
 				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
+				F8BF962A20917222004A2E30 /* plus.png in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
@@ -723,6 +734,7 @@
 				2B16CFF2204884AB00DFFBEF /* CreateProfileViewController.swift in Sources */,
 				FA4006DC208937DE0054DAEE /* Message.swift in Sources */,
 				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
+				F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
