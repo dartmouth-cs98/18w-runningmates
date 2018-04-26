@@ -23,7 +23,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
 //    var rootURl: String = "https://running-mates.herokuapp.com/"
-    var userId: String = UserDefaults.standard.string(forKey: "id")!
+    var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = UserDefaults.standard.string(forKey: "email")!
     @IBOutlet weak var locationLabel: UILabel!
