@@ -9,4 +9,6 @@ target 'RunningMates' do
     pod 'Koloda'
     pod 'OAuthSwift', '~> 1.2.0'
     pod 'Socket.IO-Client-Swift', '~> 13.1.0'
-  end
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
+end
