@@ -95,6 +95,14 @@
                                     <segue destination="kV8-ES-nIY" kind="show" id="W6N-DB-7am"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hI5-Yx-p6U">
+                                <rect key="frame" x="37" y="49" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="dashboard"/>
+                                <connections>
+                                    <segue destination="Gwq-AC-a86" kind="show" id="Sbp-l2-WxX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
@@ -120,6 +128,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpj-FS-zYR" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="reM-BU-qbo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="Gwq-AC-a86" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PaY-M1-tlt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="-191"/>
         </scene>
         <!--FullChatView-->
         <scene sceneID="qiS-JO-Tjk">

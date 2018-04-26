@@ -13,7 +13,6 @@ class SettingsViewController: UIViewController {
     // MARK: Properties
     
     @IBOutlet weak var privacyButton: UIButton!
-
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var communityButton: UIButton!
@@ -60,13 +59,6 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Actions
-    
-    //@IBAction func matchButton(_ sender: UIButton) {
-    
-    //  nameLabel.text = "Divya Kalidindi"
-    //}
-    //        addSubview(matchingView)
-    
+
 }
 

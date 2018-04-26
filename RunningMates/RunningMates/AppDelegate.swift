@@ -8,6 +8,7 @@
 
 import UIKit
 import OAuthSwift
+import GoogleMaps
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,16 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    var rootUrl: String = "https://running-mates.herokuapp.com/"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        window?.backgroundColor = UIColor.white
-//
-//        // Allocate memory for an instance of the 'MainViewController' class
-//        let mainViewController = MyViewController()
-//
-//        // Set the root view controller of the app's window
-//        window!.rootViewController = mainViewController
-//
-//        // Make the window visible
-        //window!.makeKeyAndVisible()
+        GMSServices.provideAPIKey("AIzaSyDAHpVdfOCgiKATZ3wtKetImiYfcz-E15c")
         return true
     }
 
