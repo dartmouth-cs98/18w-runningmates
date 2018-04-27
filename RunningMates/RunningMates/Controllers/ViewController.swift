@@ -107,6 +107,9 @@ extension UIViewController {
                             UserDefaults.standard.set(user["firstName"], forKey: "firstName")
                             UserDefaults.standard.set(user["email"], forKey: "email")
                             UserDefaults.standard.set(token, forKey: "token")
+                            if (user["_id"] != nil) {
+                                UserDefaults.standard.set(user["_id"], forKey: "id")
+                            }
                             if (user["lastName"] != nil) {
                                 UserDefaults.standard.set(user["lastName"], forKey: "lastName")
                             }
