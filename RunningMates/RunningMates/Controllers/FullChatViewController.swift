@@ -114,6 +114,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         
         getUserId(email: self.userEmail, completion: {id in
             self.userID = id
+            print("ID IS")
+            print(id)
             
             self.fetchChats(completion: { chats in
                 
