@@ -24,7 +24,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
 //    var rootURl: String = "https://running-mates.herokuapp.com/"
-    var userId: String = UserDefaults.standard.string(forKey: "id")!
+    var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = UserDefaults.standard.string(forKey: "email")!
     @IBOutlet weak var locationLabel: UILabel!
@@ -81,23 +81,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
        // Do any additional setup after loading the view, typically from a nib.
 
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
         
-//        getUserId(completion: {id in
-//            self.userId = id
-//        })
-//        
-//        let swipeLeft : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
-//        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-//
-//        let swipeRight : UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "swipeNewMatch:")
-//        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-//
-//        self.view.addGestureRecognizer(swipeLeft)
-//        self.view.addGestureRecognizer(swipeRight)
 
         getUserId(completion: {id in
             self.userId = id

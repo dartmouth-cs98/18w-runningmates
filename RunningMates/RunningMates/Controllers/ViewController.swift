@@ -77,7 +77,8 @@ extension UIViewController {
         requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
             
             self.appDelegate.userEmail = self.emailTextField.text!
-            print(self.appDelegate.userEmail)
+            
+            // https://www.ios-blog.com/tutorials/swift/using-nsuserdefaults-with-swift/
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
@@ -101,7 +102,7 @@ extension UIViewController {
                         
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
-                        let prevToken = String(describing: UserDefaults.standard.value(forKey: "token")!)
+                        let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
                         // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
                         if !(token == prevToken) {
                             UserDefaults.standard.set(user["firstName"], forKey: "firstName")
@@ -128,9 +129,10 @@ extension UIViewController {
                             if (user["desiredGoals"] != nil) {
                                 UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
                             }
+
                         }
-                    }
                     completion()
+                    }
                 case .failure(let error):
                     print(error)
                     let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)
