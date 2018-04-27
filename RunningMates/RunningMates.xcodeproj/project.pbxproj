@@ -25,6 +25,8 @@
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
+		F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */; };
+		F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
 		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
 		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
@@ -173,6 +175,8 @@
 		B5AB06653744964379D2084B /* Pods-RunningMates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.debug.xcconfig"; sourceTree = "<group>"; };
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
 		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
@@ -465,6 +470,7 @@
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FAFE988D2079665A008B56BA /* FullChatView.storyboard */,
+				F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
 				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
@@ -636,6 +642,8 @@
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
+				F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */,
+				F8BF962A20917222004A2E30 /* plus.png in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
@@ -734,6 +742,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
+				F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */,
 				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
 				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
 				FA3CC5E02091684600FE0199 /* SafeTrackViewController.swift in Sources */,
