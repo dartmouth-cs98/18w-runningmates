@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -100,13 +101,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ECCell" id="upY-3K-Rma" customClass="EmergencyContactCell" customModule="RunningMates" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ECCell" rowHeight="80" id="upY-3K-Rma" customClass="EmergencyContactCell" customModule="RunningMates" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="upY-3K-Rma" id="VHf-cn-2z4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmV-kY-vOf">
+                                            <rect key="frame" x="16" y="11" width="343" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AmV-kY-vOf" firstAttribute="trailing" secondItem="VHf-cn-2z4" secondAttribute="trailingMargin" id="OgM-Je-Azy"/>
+                                        <constraint firstItem="AmV-kY-vOf" firstAttribute="leading" secondItem="VHf-cn-2z4" secondAttribute="leadingMargin" id="S38-4m-fTo"/>
+                                        <constraint firstItem="AmV-kY-vOf" firstAttribute="bottom" secondItem="VHf-cn-2z4" secondAttribute="bottomMargin" id="Vxh-hi-9K9"/>
+                                        <constraint firstItem="AmV-kY-vOf" firstAttribute="top" secondItem="VHf-cn-2z4" secondAttribute="topMargin" id="fsb-W2-3uf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contactName" destination="AmV-kY-vOf" id="NWi-SN-Vuv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

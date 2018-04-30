@@ -46,7 +46,7 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
 //        let rating = ratingControl.rating
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
-        contact = EmergencyContact(FirstName: self.FirstName.text, LastName: self.LastName.text, phoneNumber: self.phoneNum.text)
+        contact = EmergencyContact(FirstName: self.FirstName.text!, LastName: self.LastName.text!, phoneNumber: self.phoneNum.text!)
         print("now save this:", contact)
     }
     
