@@ -84,7 +84,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                             self.appDelegate.userEmail = String(describing: user! ["email"]!)
                             print (self.appDelegate.userEmail)
 
-                            let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                            let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
                             self.present(createProfileVC, animated: true, completion: nil)
                         case .failure(let error):
                             print("failure in creating profile")
@@ -137,7 +137,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.userEmail = self.emailTextField.text!
                 // If the account creation was successful, send user to create profile page
-                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
+                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
                 self.present(createProfileVC, animated: true, completion: nil)
             })
         }
