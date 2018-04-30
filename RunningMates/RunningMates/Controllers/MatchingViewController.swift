@@ -12,6 +12,7 @@ import CoreLocation
 import Koloda
 
 
+
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
    // MARK: Properties
