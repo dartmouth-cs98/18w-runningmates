@@ -21,15 +21,15 @@ import UIKit
 import Foundation
 import Alamofire
 import os.log
-
+import MessageUI
 
 class EmergencyContactCell: UITableViewCell {
-
+    @IBOutlet weak var contactName: UILabel!
 }
 
 
-class EmergencyContactFullViewController:UITableViewController {
-    
+class EmergencyContactFullViewController:UITableViewController
+{
     //MARK: Properties
     
     var contacts = [EmergencyContact]()
@@ -40,8 +40,10 @@ class EmergencyContactFullViewController:UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        // Load the sample data.
-      //  loadSampleMeals()
+        if let savedContacts = loadContacts() {
+            contacts += savedContacts
+        }
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,12 +71,9 @@ class EmergencyContactFullViewController:UITableViewController {
             fatalError("The dequeued cell is not an instance of ECCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
+        // Fetches the appropriate contact for the data source layout.
         let contact = contacts[indexPath.row]
-        
-//        cell.nameLabel.text = meal.name
-//        cell.photoImageView.image = meal.photo
-//        cell.ratingControl.rating = meal.rating
+        cell.contactName.text = contact.FirstName;
         
         return cell
     }
@@ -94,6 +93,7 @@ class EmergencyContactFullViewController:UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             contacts.remove(at: indexPath.row)
+            saveContact()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -101,33 +101,15 @@ class EmergencyContactFullViewController:UITableViewController {
     }
     
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    
     //MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
             
         case "AddItem":
-            os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+            os_log("Adding a new contact.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
             guard let EmergencyContactViewController = segue.destination as? EmergencyContactViewController else {
@@ -157,41 +139,31 @@ class EmergencyContactFullViewController:UITableViewController {
         if let sourceViewController = sender.source as? EmergencyContactViewController, let contact = sourceViewController.contact {
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
                 contacts[selectedIndexPath.row] = contact
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
-                // Add a new meal.
                 let newIndexPath = IndexPath(row: contacts.count, section: 0)
                 
                 contacts.append(contact)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            saveContact()
         }
     }
     
-    //MARK: Private Methods
-    
-  //  private func loadSampleMeals() {
-//
-//        let photo1 = UIImage(named: "meal1")
-//        let photo2 = UIImage(named: "meal2")
-//        let photo3 = UIImage(named: "meal3")
-//
-//        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4) else {
-//            fatalError("Unable to instantiate meal1")
-//        }
-//
-//        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
-//            fatalError("Unable to instantiate meal2")
-//        }
-//
-//        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
-//            fatalError("Unable to instantiate meal2")
-//        }
-//
-//        meals += [meal1, meal2, meal3]
-//    }
-//
+    private func saveContact() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(contacts, toFile: EmergencyContact.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("cpmtact successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save contact...", log: OSLog.default, type: .error)
+        }
+        
+ 
+    }
+    private func loadContacts() -> [EmergencyContact]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: EmergencyContact.ArchiveURL.path) as? [EmergencyContact]
+    }
+
 }
