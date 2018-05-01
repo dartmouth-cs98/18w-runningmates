@@ -38,7 +38,7 @@ class EmergencyContactFullViewController:UITableViewController
         super.viewDidLoad()
         
         // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem
+      
         
         if let savedContacts = loadContacts() {
             contacts += savedContacts
@@ -126,6 +126,11 @@ class EmergencyContactFullViewController:UITableViewController
             
             let selectedContact = contacts[indexPath.row]
             EmergencyContactViewController.contact = selectedContact
+            
+        case "Back":
+
+            os_log("going back.", log: OSLog.default, type: .debug)
+
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

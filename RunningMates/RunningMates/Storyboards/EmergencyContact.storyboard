@@ -92,12 +92,20 @@
             </objects>
             <point key="canvasLocation" x="1199.2" y="190.25487256371815"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="10a-4m-1Cn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="IO2-T6-4Tu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="icy-of-tQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-666" y="436"/>
+        </scene>
         <!--Your Emergency Contacts-->
         <scene sceneID="qFC-9U-edd">
             <objects>
                 <tableViewController id="zJR-Rv-Hek" customClass="EmergencyContactFullViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ndn-Ou-2xe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -132,13 +140,20 @@
                             <outlet property="delegate" destination="zJR-Rv-Hek" id="xE2-gW-sGQ"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Your Emergency Contacts" id="Y9N-Gc-J3t">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Nqm-CF-TYl">
+                            <connections>
+                                <segue destination="x2s-hG-QaZ" kind="showDetail" identifier="Back" id="MHm-KI-N1z"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QnQ-Hk-8aQ">
                             <connections>
                                 <segue destination="T6S-NU-jUF" kind="presentation" identifier="AddItem" id="VZM-OV-Tlt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWG-Vt-4d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,6 +176,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Z5-jh-BAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1329" y="206"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="wvc-cb-033">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="x2s-hG-QaZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dvk-p6-GM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-722" y="-361"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cmv-PG-xzV">
