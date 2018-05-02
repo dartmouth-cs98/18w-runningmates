@@ -34,7 +34,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Dashboard" id="jmt-zi-wp0">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="5zq-6z-2Ee"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="5zq-6z-2Ee">
+                                            <connections>
+                                                <segue destination="b9Y-hh-b9L" kind="showDetail" id="aSH-WT-bCL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -81,7 +85,6 @@
                         <outlet property="profPic" destination="DFa-Kt-x20" id="xzr-S0-vSc"/>
                         <outlet property="secondView" destination="0G2-MF-KKM" id="CxK-7M-mwV"/>
                         <outlet property="settingsButton" destination="BwM-nB-mNs" id="GJG-QD-NXZ"/>
-                        <segue destination="b9Y-hh-b9L" kind="show" id="WO4-A4-HPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yo-dl-TvA" userLabel="First Responder" sceneMemberID="firstResponder"/>
