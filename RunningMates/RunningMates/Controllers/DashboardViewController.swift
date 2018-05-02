@@ -15,9 +15,10 @@ class DashboardViewController: UIViewController {
 
     @IBOutlet weak var secondView: UIImageView!
     @IBOutlet weak var profPic: UIImageView!
-    @IBOutlet weak var settingsButton: UIImageView!
-    @IBOutlet weak var editProfButton: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var safetrackButton: UIButton!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -44,10 +45,16 @@ class DashboardViewController: UIViewController {
 
 
         
-        self.editProfButton.layer.cornerRadius = self.editProfButton.frame.size.width / 2;
-        self.editProfButton.clipsToBounds = true;
-               self.settingsButton.layer.borderColor = UIColor.black.cgColor
-        self.editProfButton.layer.borderWidth = 1
+        self.editButton.layer.cornerRadius = self.editButton.frame.size.width / 2;
+        self.editButton.clipsToBounds = true;
+               self.editButton.layer.borderColor = UIColor.black.cgColor
+        self.editButton.layer.borderWidth = 1
+        
+        self.safetrackButton.layer.cornerRadius = 10;
+        self.safetrackButton.clipsToBounds = true;
+        self.safetrackButton.layer.borderColor = UIColor.black.cgColor
+        self.safetrackButton.layer.borderWidth = 1
+
 
         //TO-DO make this first name
         self.name.text = appDelegate.userEmail
