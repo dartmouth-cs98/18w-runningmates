@@ -11,6 +11,7 @@ import ContactsUI
 
 class EmergencyContactViewController: UIViewController,UINavigationControllerDelegate, CNContactPickerDelegate {
     
+    @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var FirstName: UITextField!
     
     @IBOutlet weak var LastName: UITextField!
@@ -24,12 +25,34 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
     var contact: EmergencyContact?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-
+        super.viewDidLoad()
+        navigationBar.leftBarButtonItem?.width = 100;
+       // navigationItem.delegate = self
+        if let contact = contact {
+            navigationBar.title = "Edit"
+            FirstName.text = contact.FirstName
+            LastName.text = contact.LastName
+            phoneNum.text = contact.phoneNumber
+        }
         // Handle the text field’s user input through delegate callbacks.
     }
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddContactMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+        }
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

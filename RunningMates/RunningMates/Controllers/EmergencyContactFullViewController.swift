@@ -112,7 +112,7 @@ class EmergencyContactFullViewController:UITableViewController
             os_log("Adding a new contact.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
-            guard let EmergencyContactViewController = segue.destination as? EmergencyContactViewController else {
+            guard let emergencyContactVC = segue.destination as? EmergencyContactViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -125,13 +125,31 @@ class EmergencyContactFullViewController:UITableViewController
             }
             
             let selectedContact = contacts[indexPath.row]
-            EmergencyContactViewController.contact = selectedContact
+            emergencyContactVC.contact = selectedContact
             
         case "Back":
 
             os_log("going back.", log: OSLog.default, type: .debug)
 
             
+//        case "ContactSelected":
+//            guard let EmergencyContactViewController = segue.destination as? EmergencyContactViewController else {
+//                fatalError("Unexpected destination: \(segue.destination)")
+//            }
+//            
+//            guard let selectedCell = sender as? EmergencyContactCell else {
+//                fatalError("Unexpected sender: \(sender)")
+//            }
+//            
+//            guard let indexPath = tableView.indexPath(for: selectedCell) else {
+//                fatalError("The selected cell is not being displayed by the table")
+//            }
+//            
+//            let selectedContact = contacts[indexPath.row]
+//            EmergencyContactViewController.contact = selectedContact
+//            
+//           // let chatViewController = segue.destination as! ChatViewController
+
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
