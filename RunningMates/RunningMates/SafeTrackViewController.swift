@@ -14,6 +14,9 @@ class SafeTrackViewController: UIViewController {
     // You don't need to modify the default init(nibName:bundle:) method.
     
     @IBOutlet weak var mapViewArea: UIView!
+    @IBOutlet weak var unsafeButton: UIButton!
+    @IBOutlet weak var safeButton: UIButton!
+    @IBOutlet weak var runCompleteButton: UIButton!
     
     override func loadView() {
         // Create a GMSCameraPosition that tells the map to display the
@@ -36,5 +39,22 @@ class SafeTrackViewController: UIViewController {
         marker.title = "Sydney"
         marker.snippet = "Australia"
         marker.map = mapView
+        
+        self.unsafeButton.layer.cornerRadius = 20;
+        self.unsafeButton.clipsToBounds = true;
+        self.unsafeButton.layer.borderColor = UIColor.black.cgColor
+        self.unsafeButton.layer.borderWidth = 1
+
+        self.safeButton.layer.cornerRadius = 20;
+        self.safeButton.clipsToBounds = true;
+        self.safeButton.layer.borderColor = UIColor.black.cgColor
+        self.safeButton.layer.borderWidth = 1
+
+        
+        self.runCompleteButton.layer.cornerRadius = 20;
+        self.runCompleteButton.clipsToBounds = true;
+        self.runCompleteButton.layer.borderColor = UIColor.black.cgColor
+        self.runCompleteButton.layer.borderWidth = 1
+
     }
 }
