@@ -79,7 +79,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <size key="titleShadowOffset" width="0.0" height="60"/>
-                                <state key="normal" title="   Community Rules">
+                                <state key="normal" title="Community Rules">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
