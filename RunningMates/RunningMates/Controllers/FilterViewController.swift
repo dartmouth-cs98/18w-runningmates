@@ -26,12 +26,15 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var minDistSelected: UITextField!
     @IBOutlet weak var maxDistSelected: UITextField!
     
-    var genderPref = ""
+    var genderPref = [String]()
     @IBOutlet weak var femaleButton: DLRadioButton!
     var femaleButtonSwitch = 1
     // MARK: Properties
     @IBOutlet weak var maleButton: DLRadioButton!
     var maleButtonSwitch = 1
+
+    @IBOutlet weak var nonBinaryButton: DLRadioButton!
+    var nonBinaryButtonSwitch = 1
 
     @IBOutlet weak var maxProximitySelected: UITextField!
     
@@ -65,14 +68,26 @@ class FilterViewController: UIViewController {
             }
     
     @IBAction func savePrefs(_ sender: Any) {
-        if (femaleButton.isSelected && maleButton.isSelected) {
-            genderPref = "All"
+        if (femaleButton.isSelected && maleButton.isSelected && nonBinaryButton.isSelected) {
+            genderPref = ["Female", "Male", "Non-Binary"]
         }
-        else if (femaleButton.isSelected) {
-            genderPref = "female"
+        else if (femaleButton.isSelected && maleButton.isSelected) {
+            genderPref = ["Female", "Male"]
+        }
+        else if (femaleButton.isSelected && nonBinaryButton.isSelected) {
+            genderPref = ["Female", "Non-Binary"]
+        }
+        else if (maleButton.isSelected && nonBinaryButton.isSelected) {
+            genderPref = ["Male", "Non-Binary"]
         }
         else if (maleButton.isSelected) {
-            genderPref = "male"
+            genderPref = ["Male"]
+        }
+        else if (femaleButton.isSelected) {
+            genderPref = ["Female"]
+        }
+        else if (nonBinaryButton.isSelected) {
+            genderPref = ["Non-Binary"]
         }
         else {
             print("You must select a gender preference.")
@@ -197,6 +212,16 @@ class FilterViewController: UIViewController {
             femaleButton.isSelected = false
         }else{
             femaleButton.isSelected = true
+        }
+    }
+    
+    @IBAction func nonBinaryButtonSelected(_ sender: Any) {
+        
+        nonBinaryButtonSwitch = nonBinaryButtonSwitch * -1;
+        if nonBinaryButtonSwitch > 0{
+            nonBinaryButton.isSelected = false
+        }else{
+            nonBinaryButton.isSelected = true
         }
     }
     
