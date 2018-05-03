@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEL-EL-cpp">
-                                <rect key="frame" x="58" y="478" width="85" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="CtX-dj-tz6" kind="show" id="wAQ-9g-hzY"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Community" translatesAutoresizingMaskIntoConstraints="NO" id="DFa-Kt-x20">
                                 <rect key="frame" x="54" y="99" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -34,16 +27,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Dashboard" id="jmt-zi-wp0">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="5zq-6z-2Ee"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="5zq-6z-2Ee">
+                                            <connections>
+                                                <segue destination="b9Y-hh-b9L" kind="showDetail" id="aSH-WT-bCL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-dN-SrH">
-                                <rect key="frame" x="213" y="478" width="85" height="86"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timberly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJw-II-nOP">
-                                <rect key="frame" x="79" y="389" width="243" height="53"/>
+                                <rect key="frame" x="66" y="382" width="243" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -54,34 +47,59 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syv-0o-m6y">
-                                <rect key="frame" x="59" y="583" width="82" height="27"/>
+                                <rect key="frame" x="66" y="518" width="82" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eW-9N-zGm">
-                                <rect key="frame" x="234" y="583" width="43" height="24"/>
+                                <rect key="frame" x="224" y="519" width="43" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="settings" translatesAutoresizingMaskIntoConstraints="NO" id="BwM-nB-mNs">
-                                <rect key="frame" x="59" y="478" width="85" height="86"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nu8-rA-caB">
+                                <rect key="frame" x="72" y="443" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="settings"/>
+                                <connections>
+                                    <segue destination="CtX-dj-tz6" kind="show" id="BTx-1a-A5k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbY-3S-puO">
+                                <rect key="frame" x="210" y="443" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="edit"/>
+                                <connections>
+                                    <segue destination="7n4-fg-LUi" kind="show" id="9m1-H0-e0s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0c-en-Ejd">
+                                <rect key="frame" x="69" y="572" width="220" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="SafeTrack">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Gcr-qE-K61" kind="show" id="bX4-vX-mn0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="1Oa-Qk-aNk"/>
                     </view>
                     <connections>
-                        <outlet property="editProfButton" destination="UNc-dN-SrH" id="PO4-KN-blm"/>
+                        <outlet property="editButton" destination="kbY-3S-puO" id="y4f-H0-jLt"/>
                         <outlet property="name" destination="AJw-II-nOP" id="YPj-rc-Wvd"/>
                         <outlet property="profPic" destination="DFa-Kt-x20" id="xzr-S0-vSc"/>
+                        <outlet property="safetrackButton" destination="N0c-en-Ejd" id="vzW-gt-PdY"/>
                         <outlet property="secondView" destination="0G2-MF-KKM" id="CxK-7M-mwV"/>
-                        <outlet property="settingsButton" destination="BwM-nB-mNs" id="GJG-QD-NXZ"/>
-                        <segue destination="b9Y-hh-b9L" kind="show" id="WO4-A4-HPH"/>
+                        <outlet property="settingsButton" destination="nu8-rA-caB" id="srN-e4-Otz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yo-dl-TvA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,6 +129,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3m-fQ-dVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="798" y="27"/>
+        </scene>
+        <!--SafeTrack-->
+        <scene sceneID="432-nf-ojg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SafeTrack" id="Gcr-qE-K61" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6H-Ec-abh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="185"/>
         </scene>
     </scenes>
     <resources>

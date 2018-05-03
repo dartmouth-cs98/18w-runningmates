@@ -11,24 +11,48 @@ import ContactsUI
 
 class EmergencyContactViewController: UIViewController,UINavigationControllerDelegate, CNContactPickerDelegate {
     
-    @IBOutlet weak var firstName: UILabel!
-    @IBOutlet weak var lastName: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var FirstName: UITextField!
     
-    @IBOutlet weak var phoneNum: UILabel!
+    @IBOutlet weak var LastName: UITextField!
+
+    @IBOutlet weak var phoneNum: UITextField!
     
-    @IBOutlet weak var emailAddr: UILabel!
-    
+    @IBOutlet weak var addToContacts: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var nameToSave = ""
     var contact: EmergencyContact?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
+        navigationBar.leftBarButtonItem?.width = 100;
+       // navigationItem.delegate = self
+        if let contact = contact {
+            navigationBar.title = "Edit"
+            FirstName.text = contact.FirstName
+            LastName.text = contact.LastName
+            phoneNum.text = contact.phoneNumber
+        }
         // Handle the text field’s user input through delegate callbacks.
     }
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddContactMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+        }
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -45,7 +69,7 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
 //        let rating = ratingControl.rating
         
         // Set the meal to be passed to MealTableViewController after the unwind segue.
-        contact = EmergencyContact(FirstName: self.firstName.text, LastName: self.lastName.text, phoneNumber: self.phoneNum.text)
+        contact = EmergencyContact(FirstName: self.FirstName.text!, LastName: self.LastName.text!, phoneNumber: self.phoneNum.text!)
         print("now save this:", contact)
     }
     
@@ -123,12 +147,13 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
                         //Get the string value of the phone number like this:
                         //self.numeroADiscar = actualNumber.stringValue
                         
-                        self.firstName.text = contact.givenName
-                        self.lastName.text = contact.familyName
-                        self.phoneNum.text = phoneNumberLabel
-                        
-                        self.firstName.textColor = UIColor.black
-                        self.lastName.textColor = UIColor.black
+                        self.FirstName.text = contact.givenName
+                        self.LastName.text = contact.familyName
+                       //https://stackoverflow.com/questions/36343312/how-to-get-a-cncontact-phone-numbers-as-string-in-swift
+                        self.phoneNum.text = (actualNumber as! CNPhoneNumber).value(forKey: "digits") as! String
+                      
+                        self.FirstName.textColor = UIColor.black
+                        self.LastName.textColor = UIColor.black
                         self.phoneNum.textColor = UIColor.black
                         print(contact.givenName, contact.familyName, self.nameToSave)
                         
@@ -193,12 +218,14 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
                     print(contact.givenName, "given name")
                     print(contact.familyName, "family name")
                     
-                    self.firstName.text = contact.givenName
-                    self.lastName.text = contact.familyName
-                    self.phoneNum.text = phoneNumberLabel
+                    self.FirstName.text = contact.givenName
+                    self.LastName.text = contact.familyName
+                    //https://stackoverflow.com/questions/36343312/how-to-get-a-cncontact-phone-numbers-as-string-in-swift
+                    self.phoneNum.text = (actualNumber as! CNPhoneNumber).value(forKey: "digits") as! String
                     
-                    self.firstName.textColor = UIColor.black
-                    self.lastName.textColor = UIColor.black
+                    
+                    self.FirstName.textColor = UIColor.black
+                    self.LastName.textColor = UIColor.black
                     self.phoneNum.textColor = UIColor.black
                 //    self.numeroADiscar = actualNumber.stringValue
                     

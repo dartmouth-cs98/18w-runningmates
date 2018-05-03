@@ -11,10 +11,27 @@ import OAuthSwift
 import Alamofire
 import WebKit
 
+
+struct signedUrlObject {
+    var signedRequest: String
+    var url: String
+}
+
 class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
+    var profileImages: [Int: UIImageView] = [:]
+    var profileImageNames: [Int: String] = [:]
+    var profileImageUrls: [Int: String] = [:]
+    var signUrls: [signedUrlObject] = []
+    @IBOutlet weak var profileImage_0: UIImageView!
+    @IBOutlet weak var profileImage_1: UIImageView!
+    @IBOutlet weak var profileImage_2: UIImageView!
+    @IBOutlet weak var profileImage_3: UIImageView!
+    @IBOutlet weak var profileImage_4: UIImageView!
+    @IBOutlet weak var profileImage_5: UIImageView!
+   
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var totalElevationTextField: UITextField!
@@ -31,7 +48,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var KOMsTextField: UITextField!
     @IBOutlet weak var runsPerWeekTextField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var userEmail: String = ""
+    
+    var userId: String = UserDefaults.standard.string(forKey: "id")!
+    var userEmail: String = UserDefaults.standard.string(forKey: "email")!
+
     
     var pickerOptions: [String] = [String]()
     var imagePicker: UIImagePickerController = UIImagePickerController()
@@ -110,13 +130,54 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
-    // In the delegate method, set the profile image to the image the user picked
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    // In the delegate method, set the profile image to the image the user picked based on the image icon clicked
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any], imageNumber: Int) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        profileImage.image = image
+        let tempImage = UIImageView()
+        tempImage.image = image
+        let imageName = self.userId + "_" + String(imageNumber) + "_" + self.userId
+        profileImages.updateValue(tempImage, forKey: imageNumber)
+        profileImageNames.updateValue(imageName, forKey: imageNumber)
+
         dismiss(animated:true, completion: nil)
     }
     
+//    func imagePickerControllerZero(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_0.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
+//    func imagePickerControllerOne(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_1.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
+//    func imagePickerControllerTwo(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_2.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
+//    func imagePickerControllerThree(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_3.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
+//    func imagePickerControllerFour(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_4.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
+//    func imagePickerControllerFive(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        profileImage_5.image = image
+//        dismiss(animated:true, completion: nil)
+//    }
+//
     
     
     @IBAction func saveButtonClicked(_ sender: Any) {
@@ -127,15 +188,18 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.present(alert, animated: true, completion: nil)
         }
         
-        backendSaveRequest(completion: { title, message in
-            //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+        imageURLsRequest(completion: {  // Get signed URL requests from backend
+            self.awsUpload(completion: { // Upload images to aws
+                self.backendSaveRequest(completion: { title, message in
+                    //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                })
+            })
         })
-        
 
     }
     
@@ -197,7 +261,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 "email": self.userEmail,
                 "firstName": nameTextView.text!,
                 "bio": bioTextView.text!,
-                "location": locationTextView.text!,
+                "images": self.profileImageUrls,
                 "milesPerWeek": milesPerWeekTextField.text!,
                 "totalElevation": totalElevationTextField.text!,
                 "totalMiles": totalMilesTextField.text!,
@@ -214,25 +278,73 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var title = ""
         var message = ""
         
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
         let _request = Alamofire.request(url, method: .post, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .success:
                     let responseDictionary = response.result.value as! [String:Any]
-                    if (String(describing: responseDictionary["response"]!) == "updated user") {
-                        title = "You Have Updated Your Profile"
-                        message = "Find Some New RunningMates!"
+                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
+                        if (String(describing: responseDictionary["response"]!) == "updated user") {
+                            title = "You Have Updated Your Profile"
+                            message = "Find Some New RunningMates!"
+                        }
+                        completion(title, message)
+                        print("*** success in update*** ")
                     }
-                    print("*** success in update*** ")
                 case .failure(let error):
                     print("*error posting profile updates*")
                     print(error)
                 }
-                completion(title, message)
         }
          debugPrint("whole _request ****",_request)
+    }
+    
+    func awsUpload(completion: @escaping ()->()){
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "image/jpeg"
+        ]
+        
+        for (key, imageObject) in self.profileImages {
+            let image = imageObject.image
+            let imageData = UIImageJPEGRepresentation(image!, 0.7)
+            let request = Alamofire.upload(imageData!, to: self.signUrls[key].signedRequest, method: .put, headers: headers)
+                .responseData {
+                    response in
+                    if response.response != nil {
+                        self.profileImageUrls.updateValue(self.signUrls[key].url, forKey: key)
+                        
+                    }
+                    else {
+                        print("Something went wrong uploading")
+                    }
+                    
+                }
+        }
+        completion()
+    }
+    func imageURLsRequest (completion: @escaping ()-> ()){
+        
+        let rootUrl: String = appDelegate.rootUrl
+        let Url = rootUrl + "/sign-s3"
+        
+        let params: Parameters = [
+            "file-names": self.profileImageUrls,
+            "file-type": "image/jpeg",
+        ]
+        
+        let _request = Alamofire.request(Url, method: .get, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonSignedUrls = response.result.value as? [signedUrlObject] {
+                        self.signUrls = jsonSignedUrls
+                    }
+                    
+                case .failure(let error):
+                    print("Error getting signed URLs")
+                    print(error)
+                }
+        }
     }
 }

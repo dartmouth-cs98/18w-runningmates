@@ -74,7 +74,7 @@ extension UIViewController {
         
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
-        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
+        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: { id in
             
             self.appDelegate.userEmail = self.emailTextField.text!
             
@@ -82,10 +82,13 @@ extension UIViewController {
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
-            })
+            
+            print("before socket")
+            SocketIOManager.instance.login(userID: id)
+        })
     }
         
-    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
+        func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
 
         
         let params: Parameters = [
@@ -102,33 +105,38 @@ extension UIViewController {
                         
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
+
                         let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
                         // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
-                            if !(token == prevToken) {
-                                UserDefaults.standard.set(user["firstName"], forKey: "firstName")
-                                UserDefaults.standard.set(user["email"], forKey: "email")
-                                UserDefaults.standard.set(token, forKey: "token")
-                                if (user["lastName"] != nil) {
-                                    UserDefaults.standard.set(user["lastName"], forKey: "lastName")
-                                }
-                                
-                                if (user["imageURL"] != nil) {
-                                    UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
-                                }
-                                
-                                if (user["images"] != nil) {
-                                    UserDefaults.standard.set(user["images"], forKey: "images")
-                                }
-                                
-                                if (user["data"] != nil) {
-                                    UserDefaults.standard.set(user["data"], forKey: "data")
-                                }
-                                if (user["desiredGoals"] != nil) {
-                                    UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
-                                }
+                        if !(token == prevToken) {
+                            UserDefaults.standard.set(user["firstName"], forKey: "firstName")
+                            UserDefaults.standard.set(user["email"], forKey: "email")
+                            UserDefaults.standard.set(token, forKey: "token")
+                            if (user["_id"] != nil) {
+                                UserDefaults.standard.set(user["_id"], forKey: "id")
                             }
+                            if (user["lastName"] != nil) {
+                                UserDefaults.standard.set(user["lastName"], forKey: "lastName")
+                            }
+                            
+                            if (user["imageURL"] != nil) {
+                                UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
+                            }
+                            
+                            if (user["images"] != nil) {
+                                UserDefaults.standard.set(user["images"], forKey: "images")
+                            }
+                            
+                            if (user["data"] != nil) {
+                                UserDefaults.standard.set(user["data"], forKey: "data")
+                            }
+                            if (user["desiredGoals"] != nil) {
+                                UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
+                            }
+
                         }
-                    completion()
+                        completion(user["_id"] as! String)
+                    }
                 case .failure(let error):
                     print(error)
                     let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)

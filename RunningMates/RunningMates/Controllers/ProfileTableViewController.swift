@@ -12,10 +12,12 @@ import ExpyTableView
 //https://github.com/okhanokbay/ExpyTableView
 class ProfileTableViewController: UIViewController {
     
-    let sampleData = [["Basic information about yourself (click me!) ", "Choose Photo", "Name", "Age", "Gender"],
-                      ["Write a blurb about yourself", "Text here"],
-                      ["Enter running metrics below", "Strava item1", "Strava item2", "TBD based on what we decide to show @jongonz @brian"],
-                      ["Misc stuff below", "hi fam"]]
+    let sampleData = [
+        ["Choose up to 4 photos", "Photo1", "Photo2", "Photo3", "Photo4"],
+        ["Enter your basic information", "First", "Last", "Gender", "DOB"],
+        ["Tell us about yourself", "text box here"],
+        ["Enter your running data", "Miles/week", "Runs/week", "Races Done"]
+    ]
     
     
     @IBOutlet weak var expandableTableView: ExpyTableView!
@@ -87,16 +89,16 @@ extension ProfileTableViewController: ExpyTableViewDelegate {
 extension ProfileTableViewController {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (section == 0) {
-            return "Basic Info"
+            return "Choose Photos"
         }
         if (section == 1) {
-                return "About"
+                return "Basic Info"
         }
         if (section == 2) {
-            return "Strava"
+            return "About me"
         }
         else {
-            return "Other misc. stuff?"
+            return "Running Stats"
         }
     }
 }

@@ -18,6 +18,9 @@
 		2B7B918720927CF400B2EA07 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B917F20927CF300B2EA07 /* plus.png */; };
 		2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */; };
 		2B7B91A12097AFEE00B2EA07 /* MatchingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */; };
+
+		8869231F209A238300269557 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869231E209A238300269557 /* SocketIOManager.swift */; };
+
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -174,6 +177,7 @@
 		2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingCardView.xib; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
@@ -427,6 +431,7 @@
 				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FAFE988920786040008B56BA /* Settings.swift */,
+				8869231E209A238300269557 /* SocketIOManager.swift */,
 				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
 				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
@@ -765,6 +770,7 @@
 				FA4006DC208937DE0054DAEE /* Message.swift in Sources */,
 				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
 				F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */,
+				8869231F209A238300269557 /* SocketIOManager.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,

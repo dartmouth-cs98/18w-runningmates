@@ -102,6 +102,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(FullChatViewController.handleMessageNotification(_:)), name: NSNotification.Name(rawValue: "messageNotification"), object: nil)
+        
         view.bringSubview(toFront: toolbar)
         
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
@@ -114,6 +116,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         
         getUserId(email: self.userEmail, completion: {id in
             self.userID = id
+            print("ID IS")
+            print(id)
             
             self.fetchChats(completion: { chats in
                 
@@ -199,6 +203,17 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
                     print(error)
                 }
         }
+    }
+    
+    // https://www.twilio.com/blog/2016/09/getting-started-with-socket-io-in-swift-on-ios.html
+    @objc func handleMessageNotification(_ notification: Notification) {
+        print("-----HANDLING MESSAGE-----")
+        
+        self.fetchChats(completion: { chats in
+            self.data = chats
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        })
     }
     
 }
