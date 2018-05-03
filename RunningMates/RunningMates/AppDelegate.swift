@@ -9,6 +9,7 @@
 import UIKit
 import OAuthSwift
 import GoogleMaps
+import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootUrl: String = "https://running-mates.herokuapp.com/"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        GMSPlacesClient.provideAPIKey("AIzaSyDAHpVdfOCgiKATZ3wtKetImiYfcz-E15c")
         GMSServices.provideAPIKey("AIzaSyDAHpVdfOCgiKATZ3wtKetImiYfcz-E15c")
         return true
     }
