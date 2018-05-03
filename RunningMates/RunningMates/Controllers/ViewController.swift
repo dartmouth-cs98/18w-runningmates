@@ -74,7 +74,7 @@ extension UIViewController {
         
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
-        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
+        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: { id in
             
             self.appDelegate.userEmail = self.emailTextField.text!
             
@@ -82,10 +82,13 @@ extension UIViewController {
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
-            })
+            
+            print("before socket")
+            SocketIOManager.instance.login(userID: id)
+        })
     }
         
-    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
+        func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
 
         
         let params: Parameters = [
@@ -132,7 +135,7 @@ extension UIViewController {
                             }
 
                         }
-                    completion()
+                        completion(user["_id"] as! String)
                     }
                 case .failure(let error):
                     print(error)

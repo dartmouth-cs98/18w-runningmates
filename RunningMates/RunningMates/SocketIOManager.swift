@@ -19,6 +19,12 @@ class SocketIOManager: NSObject {
     
     override init() {
         self.socket = manager.defaultSocket
+        
+        self.socket.on("message") {dataArray, ack in
+            print("you got a message!")
+            NotificationCenter.default
+            .post(name: Notification.Name(rawValue: "messageNotification"), object: dataArray[0] as? [String: AnyObject])
+        }
     }
     
     func connect() {
@@ -27,5 +33,13 @@ class SocketIOManager: NSObject {
     
     func disconnect() {
         socket.disconnect()
+    }
+    
+    func login(userID: String) {
+        socket.emit("login", userID)
+    }
+    
+    func logout(userID: String) {
+        socket.emit("logout", userID)
     }
 }

@@ -425,6 +425,7 @@
 				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FAFE988920786040008B56BA /* Settings.swift */,
+				8869231E209A238300269557 /* SocketIOManager.swift */,
 				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
 				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
@@ -434,7 +435,6 @@
 				FA57110E2021208E005792CB /* Info.plist */,
 				FA5711162021208E005792CB /* RunningMatesTests */,
 				FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */,
-				8869231E209A238300269557 /* SocketIOManager.swift */,
 			);
 			path = RunningMates;
 			sourceTree = "<group>";
