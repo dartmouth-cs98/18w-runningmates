@@ -12,6 +12,11 @@ import CoreLocation
 import Koloda
 
 
+struct sortedUser {
+    var user: User
+    var matchReason: String
+    var score: Int
+}
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
@@ -34,7 +39,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var avgPaceLabel: UILabel!
     
 
-    var userList = [User]()
+    var userList = [sortedUser]()
 
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,7 +100,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         self.userList = getUsers(completion: { list in
-            print("list is: ", list)
             self.userList = list
             self.kolodaView?.reloadData()
 
@@ -126,10 +130,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     }
 
-    func getUsers( completion: @escaping ([User])->()) -> [User]{
+    func getUsers( completion: @escaping ([sortedUser])->()) -> [sortedUser]{
         let rootUrl: String = appDelegate.rootUrl
         
-        var usersList = [User]()
+        var usersList = [sortedUser]()
         
         let params : [String: Any]
         
@@ -163,8 +167,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                         for jsonUser in jsonResult {
                             do {
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
+                                let matchReason = (jsonUser["matchReason"] as! String)
+                                print("MATCH REASON FOR " + (user?.email)! + ":  ", matchReason)
+                                let score = (jsonUser["score"] as! Int)
+
+                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason, score: score)
+        
                                 if (user != nil) {
-                                    usersList.append(user!)
+                                    usersList.append(sortUserInstance)
                                 } else {
                                     print("nil")
                                 }
@@ -342,7 +352,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // alamofire request
         let params: [String: Any] = [
             "userId": self.userId,
-            "targetId": userList[current_index].id!
+            "targetId": userList[current_index].user.id!
         ]
         
         let url = rootUrl + "api/match"
@@ -356,10 +366,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 case .success:
                     let responseDictionary = response.result.value as! [String:Any]
                     if (String(describing: responseDictionary["response"]!) == "match") {
-                        title = "You matched with \(self.userList[self.current_index].firstName!)"
+                        title = "You matched with \(self.userList[self.current_index].user.firstName!)"
                         message = "Go to your chat to say hello!"
                     } else {
-                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
+                        title = "Your request to \(self.userList[self.current_index].user.firstName!) has been sent!"
                         message = "Keep running!"
                     }
                 case .failure(let error):
@@ -472,30 +482,36 @@ extension MatchingViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         // Need to create UIImage from URL string
         // let url = URL(string: self.userList[index].imageURL)
-        let url = URL(string: userList[index].imageURL)
+        let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: photoData!)
-        let nameAge = ("\n " + String(userList[index].firstName!) + ", " + String(userList[index].age))
-        let location = ("\n Location: " + String(describing: userList[index].location))
-        let bio = ("\n Bio: " + String(userList[index].bio))
-        let data = (self.userList[index].data as! [String:Any]?)
+        let nameAge = ("\n " + String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
+        let location = ("\n Location: " + String(describing: userList[index].user.location))
+        let bio = ("\n Bio: " + String(userList[index].user.bio))
+        let data = (self.userList[index].user.data as! [String:Any]?)
 
-        let  totalMiles: String, averageRunLength: String
-        
+        let  totalMiles: String, averageRunLength: String, matchReason: String
         if (data!["totalMilesRun"] != nil) {
-            totalMiles = (" \n Total Miles: " + String(describing: userList[index].data!["totalMilesRun"]!))
+            totalMiles = (" \n Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!))
         } else {
             totalMiles = "\n No info to show"
         }
 
         if (data!["averageRunLength"] != nil) {
-            averageRunLength = ("\n Avg. Run Length: " + String(describing: userList[index].data!["averageRunLength"]!))
+            averageRunLength = ("\n Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!))
         } else {
             averageRunLength = "\n Avg. Run Length: No info to show"
         }
         
-        let userText = nameAge + location + bio + totalMiles + averageRunLength
+        
+        if (userList[index].matchReason != nil) {
+            matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
+        } else {
+            matchReason = "\n"
+        }
+        
+        let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
         let point = CGPoint(x: 0, y: 100)
         print(userText)
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
