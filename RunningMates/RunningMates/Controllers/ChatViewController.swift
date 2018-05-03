@@ -39,8 +39,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userImage: UIImageView!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
@@ -182,7 +182,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let socket = manager.defaultSocket
 
         socket.on(clientEvent: .connect) {data, ack in
-            socket.emit("join room", self.chatID)
+            if (self.chatID != nil) {
+                socket.emit("join room", self.chatID)
+            }
         }
 
             socket.on("chat message") {data, ack in
@@ -210,11 +212,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         getUserId(email: self.userEmail, completion: {id in
             self.sentByID = id
+            print("sentByID: " + String(describing: id))
             group.leave()
         })
         
         getUserId(email: self.recipientEmail, completion: {id in
             self.recipientID = id
+            print("recipientID: " + String(describing: id))
             group.leave()
         })
         
@@ -281,6 +285,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func getUserId(email: String, completion: @escaping (String)->()) {
+        print("in getUserID")
+        
         let rootUrl: String = appDelegate.rootUrl
         let url: String = rootUrl + "api/user/" + email
         
