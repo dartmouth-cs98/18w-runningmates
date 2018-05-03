@@ -368,29 +368,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
         
     }
-    
-    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.black
-        let textFont = UIFont(name: "Helvetica Bold", size: 14)!
-        
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-        
-        let textFontAttributes = [
-            NSAttributedStringKey.font: textFont,
-            NSAttributedStringKey.foregroundColor: textColor,
-            ] as [NSAttributedStringKey : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        
-        let rect = CGRect(origin: point, size: image.size)
-        text.draw(in: rect, withAttributes: textFontAttributes)
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage!
-    }
-
 
     @IBAction func matchButton(_ sender: UIButton) {
 
@@ -417,35 +394,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             })
         }
     }
-
-//    func fetchUsers() {
-//
-//        //var dic=NSDictionary()
-//
-////        let params: Parameters = [
-////            "email": email!,
-////            "username": username!,
-////            "password": password!
-////        ]
-//
-//        let _request = Alamofire.request(Url, method: .g, parameters: params, encoding: URLEncoding.httpBody)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    print("Post Successful")
-//                    //dic=(response.result.value) as! NSDictionary
-//
-//                    //var error = NSInteger()
-//                    //error=dic.object(forKey: "error") as! NSInteger
-//
-//                case .failure(let error):
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
-
-
 }
 
 extension MatchingViewController: KolodaViewDelegate {
@@ -494,9 +442,6 @@ extension MatchingViewController: KolodaViewDataSource {
         }
         
         let userText = nameAge + location + bio + totalMiles + averageRunLength
-        let point = CGPoint(x: 0, y: 100)
-        print(userText)
-        let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
         
         let view: MatchingCardView = MatchingCardView.init(coder: NSCoder.init())!
         view.commonInit(userInfo: userText, userImage: image!)
@@ -504,8 +449,6 @@ extension MatchingViewController: KolodaViewDataSource {
         print("card rendered")
         
         return view
-        //return UIImageView(image: userCardImage)
-        //loadXibWithName("string identifier")
     }
     
 }
