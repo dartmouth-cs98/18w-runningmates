@@ -13,9 +13,7 @@ import Koloda
 
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
-
    // MARK: Properties
-
     var locationManager: CLLocationManager!
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -496,7 +494,13 @@ extension MatchingViewController: KolodaViewDataSource {
         let point = CGPoint(x: 0, y: 100)
         print(userText)
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
-        return UIImageView(image: userCardImage)
+        
+        let view: MatchingCardView
+        view.commonInit(userInfo: userText, userImage: image!)
+        
+        return view
+        //return UIImageView(image: userCardImage)
+        //loadXibWithName("string identifier")
     }
     
 }

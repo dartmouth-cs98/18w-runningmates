@@ -16,6 +16,8 @@
 		2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D04E204C966700DFFBEF /* profile_default.jpg */; };
 		2B16D051204C985000DFFBEF /* plus_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D050204C985000DFFBEF /* plus_sign.png */; };
 		2B7B918720927CF400B2EA07 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B917F20927CF300B2EA07 /* plus.png */; };
+		2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */; };
+		2B7B91A12097AFEE00B2EA07 /* MatchingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -168,6 +170,8 @@
 		2B6483CB2037918400092C12 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		2B6483CC2037918400092C12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2B7B917F20927CF300B2EA07 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCardView.swift; sourceTree = "<group>"; };
+		2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingCardView.xib; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
+				2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */,
 				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
 				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
@@ -478,6 +483,7 @@
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
 				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
 				2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */,
+				2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */,
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				FA5711062021208D005792CB /* Main.storyboard */,
 				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
@@ -652,6 +658,7 @@
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
 				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
+				2B7B91A12097AFEE00B2EA07 /* MatchingCardView.xib in Resources */,
 				2B7B918720927CF400B2EA07 /* plus.png in Resources */,
 				FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */,
 				2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */,
@@ -763,6 +770,7 @@
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
+				2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 				FA3CC5E720922C5E00FE0199 /* EmergencyContactFullViewController.swift in Sources */,
