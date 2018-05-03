@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.6.0)
   - DLRadioButton (1.4.11)
+  - ExpyTableView (1.0)
   - GoogleMaps (2.6.0):
     - GoogleMaps/Maps (= 2.6.0)
   - GoogleMaps/Base (2.6.0)
@@ -19,6 +20,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - DLRadioButton (~> 1.4)
+  - ExpyTableView
   - GoogleMaps
   - GooglePlaces
   - Koloda
@@ -28,6 +30,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
+  ExpyTableView: 75fe6494d4613fd3dc4bd965cce6e14cec7e2223
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
   Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
@@ -36,6 +39,6 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
 
-PODFILE CHECKSUM: efea836531e333fb5f10fe99a035b54f374dc21f
+PODFILE CHECKSUM: 4db8060592252880b3f98c7ec6f33b08c8eb2f22
 
 COCOAPODS: 1.4.0

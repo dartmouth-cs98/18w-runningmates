@@ -11,4 +11,5 @@ target 'RunningMates' do
     pod 'Socket.IO-Client-Swift', '~> 13.1.0'
     pod 'GoogleMaps'
     pod 'GooglePlaces'
+    pod 'ExpyTableView'
 end

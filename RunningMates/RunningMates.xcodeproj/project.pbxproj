@@ -15,6 +15,8 @@
 		2B16D04D204C8B5200DFFBEF /* line.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D043204C8B5200DFFBEF /* line.jpg */; };
 		2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D04E204C966700DFFBEF /* profile_default.jpg */; };
 		2B16D051204C985000DFFBEF /* plus_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D050204C985000DFFBEF /* plus_sign.png */; };
+		2B7B918720927CF400B2EA07 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B917F20927CF300B2EA07 /* plus.png */; };
+		8869231F209A238300269557 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869231E209A238300269557 /* SocketIOManager.swift */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -24,8 +26,10 @@
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
+		F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */; };
+		F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */; };
+		F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
-		F8BF962A20917222004A2E30 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = F8BF962920917221004A2E30 /* plus.png */; };
 		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
 		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
@@ -164,16 +168,20 @@
 		2B6483CA2037918400092C12 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2B6483CB2037918400092C12 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		2B6483CC2037918400092C12 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2B7B917F20927CF300B2EA07 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
 		B5AB06653744964379D2084B /* Pods-RunningMates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.debug.xcconfig"; sourceTree = "<group>"; };
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableClasses.swift; sourceTree = "<group>"; };
+		F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
-		F8BF962920917221004A2E30 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = ../../../plus.png; sourceTree = "<group>"; };
 		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
 		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -266,7 +274,7 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F8BF962920917221004A2E30 /* plus.png */,
+				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
 				2B16CFD2203CE74200DFFBEF /* logo_strava.png */,
@@ -426,6 +434,7 @@
 				FA57110E2021208E005792CB /* Info.plist */,
 				FA5711162021208E005792CB /* RunningMatesTests */,
 				FA2267552045E04500BDB545 /* RunningMates-Bridging-Header.h */,
+				8869231E209A238300269557 /* SocketIOManager.swift */,
 			);
 			path = RunningMates;
 			sourceTree = "<group>";
@@ -442,6 +451,8 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
+				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
@@ -465,6 +476,7 @@
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
 				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FAFE988D2079665A008B56BA /* FullChatView.storyboard */,
+				F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
 				FA050D55203761B00025DAEE /* Dashboard.storyboard */,
 				FAD70D38203A38CE0081C71E /* Matching.storyboard */,
@@ -636,13 +648,14 @@
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
-				F8BF962A20917222004A2E30 /* plus.png in Resources */,
+				F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
 				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
+				2B7B918720927CF400B2EA07 /* plus.png in Resources */,
 				FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */,
 				2B16D04F204C966700DFFBEF /* profile_default.jpg in Resources */,
 			);
@@ -705,6 +718,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
+				"${BUILT_PRODUCTS_DIR}/ExpyTableView/ExpyTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
@@ -715,6 +729,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpyTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
@@ -734,6 +749,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
+				F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */,
+				F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */,
 				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
 				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
 				FA3CC5E02091684600FE0199 /* SafeTrackViewController.swift in Sources */,
@@ -744,6 +761,7 @@
 				FA4006DC208937DE0054DAEE /* Message.swift in Sources */,
 				FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */,
 				F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */,
+				8869231F209A238300269557 /* SocketIOManager.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
