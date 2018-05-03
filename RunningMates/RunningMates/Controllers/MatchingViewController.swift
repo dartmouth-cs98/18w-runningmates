@@ -20,7 +20,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
 //    var rootURl: String = "http://localhost:9090/"
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+  //  var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = UserDefaults.standard.string(forKey: "email")!
@@ -495,8 +495,10 @@ extension MatchingViewController: KolodaViewDataSource {
         print(userText)
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
         
-        let view: MatchingCardView
+        let view: MatchingCardView = MatchingCardView.init(coder: NSCoder.init())!
         view.commonInit(userInfo: userText, userImage: image!)
+        
+        print("card rendered")
         
         return view
         //return UIImageView(image: userCardImage)

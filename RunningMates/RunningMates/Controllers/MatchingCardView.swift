@@ -13,16 +13,9 @@ class MatchingCardView: UIView {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userInfoText: UILabel!
     
-    init(frame: CGRect, userInfo: String, userImage: UIImage) { // for using CustomView in code
+    override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)
-        commonInit(userInfo: userInfo, userImage: userImage)
         fromNib()
-    }
-    
-    required init?(coder aDecoder: NSCoder, userInfo: String, userImage: UIImage) { // for using CustomView in IB
-        super.init(coder: aDecoder)
-        fromNib()
-        commonInit(userInfo: userInfo, userImage: userImage)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +41,6 @@ extension UIView {
         self.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
        // contentView.layoutAttachAll(to: self)
-        return contentView 
+        return contentView
     }
 }
