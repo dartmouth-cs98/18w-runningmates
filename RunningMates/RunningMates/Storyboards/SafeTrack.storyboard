@@ -75,7 +75,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mapViewArea" destination="djf-oS-HNV" id="UQ8-Vo-Sv7"/>
+                        <outlet property="mapView" destination="djf-oS-HNV" id="Tck-1f-LJO"/>
                         <outlet property="runCompleteButton" destination="yde-zu-RwY" id="sou-qw-mZ6"/>
                         <outlet property="safeButton" destination="rg5-Xq-3uI" id="K1i-jc-YMw"/>
                         <outlet property="unsafeButton" destination="ZIN-cD-QDg" id="rDs-8s-anY"/>
