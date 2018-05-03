@@ -74,7 +74,7 @@ extension UIViewController {
         
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
-        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: {
+        requestForLogin(Url: rootUrl + "api/signin", password: pass, email: email, completion: { id in
             
             self.appDelegate.userEmail = self.emailTextField.text!
             
@@ -82,10 +82,13 @@ extension UIViewController {
             
             let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
             self.present(matchingVC, animated: true, completion: nil)
-            })
+            
+            print("before socket")
+            SocketIOManager.instance.login(userID: id)
+        })
     }
         
-    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
+        func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
 
         
         let params: Parameters = [
@@ -102,6 +105,7 @@ extension UIViewController {
                         
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
+
                         let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
                         // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
                         if !(token == prevToken) {
@@ -131,7 +135,7 @@ extension UIViewController {
                             }
 
                         }
-                    completion()
+                        completion(user["_id"] as! String)
                     }
                 case .failure(let error):
                     print(error)

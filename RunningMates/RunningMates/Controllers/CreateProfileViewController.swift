@@ -283,16 +283,18 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 switch response.result {
                 case .success:
                     let responseDictionary = response.result.value as! [String:Any]
-                    if (String(describing: responseDictionary["response"]!) == "updated user") {
-                        title = "You Have Updated Your Profile"
-                        message = "Find Some New RunningMates!"
+                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
+                        if (String(describing: responseDictionary["response"]!) == "updated user") {
+                            title = "You Have Updated Your Profile"
+                            message = "Find Some New RunningMates!"
+                        }
+                        completion(title, message)
+                        print("*** success in update*** ")
                     }
-                    print("*** success in update*** ")
                 case .failure(let error):
                     print("*error posting profile updates*")
                     print(error)
                 }
-                completion(title, message)
         }
          debugPrint("whole _request ****",_request)
     }

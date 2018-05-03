@@ -208,20 +208,22 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     
     func getUserId( completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
-        let url = rootUrl + "api/getuser"
+        let url = rootUrl + "api/user/" + self.userEmail
         
         let params : [String:Any] = [
-            "email": userEmail
+            "email": self.userEmail
         ]
-        let _request = Alamofire.request(url, method: .post, parameters: params)
+        let _request = Alamofire.request(url, method: .get, parameters: params)
             .responseJSON { response in
+                print("RESPONSE")
+                print(response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                             do {
                                 let user = try User(json: (jsonUser as [String:Any]))
                                 if (user != nil) {
-                                    print("user")
+                                    print("USER")
                                     print(user!)
                                     completion((user?.id)!)
                                 } else {
