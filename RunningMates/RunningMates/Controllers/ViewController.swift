@@ -29,8 +29,6 @@ extension UIViewController {
         var webView: WKWebView!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         var rootURl: String = ""
-//        var rootURl: String = "https://running-mates.herokuapp.com/"
-//        var rootURl: String = "http://localhost:9090/"
         
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var passTextField: UITextField!
@@ -96,64 +94,6 @@ extension UIViewController {
             }
         })
     }
-        
-//    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
-//
-//
-//        let params: Parameters = [
-//            "email": email!,
-//            "password": password!
-//        ]
-//
-//        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    if let jsonUser = response.result.value as? [String:Any] {
-//                        var user = (jsonUser["user"] as? [String:Any])!
-//
-//                        // Check token and prevToken storage and comparison if any errors occur
-//                        let token = (jsonUser["token"] as? String)
-//
-//                        let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
-//                        // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
-//                        if !(token == prevToken) {
-//                            UserDefaults.standard.set(user["firstName"], forKey: "firstName")
-//                            UserDefaults.standard.set(user["email"], forKey: "email")
-//                            UserDefaults.standard.set(token, forKey: "token")
-//                            if (user["_id"] != nil) {
-//                                UserDefaults.standard.set(user["_id"], forKey: "id")
-//                            }
-//                            if (user["lastName"] != nil) {
-//                                UserDefaults.standard.set(user["lastName"], forKey: "lastName")
-//                            }
-//
-//                            if (user["imageURL"] != nil) {
-//                                UserDefaults.standard.set(user["imageURL"], forKey: "imageURL")
-//                            }
-//
-//                            if (user["images"] != nil) {
-//                                UserDefaults.standard.set(user["images"], forKey: "images")
-//                            }
-//
-//                            if (user["data"] != nil) {
-//                                UserDefaults.standard.set(user["data"], forKey: "data")
-//                            }
-//                            if (user["desiredGoals"] != nil) {
-//                                UserDefaults.standard.set(user["desiredGoals"], forKey: "desiredGoals")
-//                            }
-//
-//                        }
-//                        completion(user["_id"] as! String)
-//                    }
-//                case .failure(let error):
-//                    print(error)
-//                    let alert = UIAlertController(title: "Error Logging In", message: "Email or password is incorrect", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//        }
-//    }
 }
 
 

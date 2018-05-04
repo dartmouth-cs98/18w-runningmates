@@ -24,8 +24,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     var alertView: UIAlertController?
     var webView: WKWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
-//    var rootURl: String = "http://localhost:9090/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,32 +147,4 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             })
         }
     }
-    
-//    func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping ()->()) {
-//
-//        let params: Parameters = [
-//            "email": email!,
-//            "password": password!
-//        ]
-//
-//        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    if let jsonUser = response.result.value as? [String:Any] {
-//                        let token = (jsonUser["token"] as? [String:Any])
-//                        UserDefaults.standard.set(email!, forKey: "email")
-//                        UserDefaults.standard.set(token, forKey: "token")
-//                        UserDefaults.standard.set(password!, forKey: "password")
-//                        completion()
-//                    }
-//                case .failure(let error):
-//                    let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
 }
