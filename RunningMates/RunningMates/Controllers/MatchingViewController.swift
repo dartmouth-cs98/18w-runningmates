@@ -12,12 +12,6 @@ import CoreLocation
 import Koloda
 
 
-struct sortedUser {
-    var user: User
-    var matchReason: String
-    var score: Int
-}
-
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 
    // MARK: Properties
@@ -27,8 +21,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index = 0
-//    var rootURl: String = "http://localhost:9090/"
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail: String = UserDefaults.standard.string(forKey: "email")!
@@ -93,16 +86,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
         
 
-        getUserId(completion: {id in
-            self.userId = id
+        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+            self.userId = user.id!
         })
 
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
-        self.userList = getUsers(completion: { list in
+        UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [-147.349442, 64.751114], completion: { list in
             self.userList = list
             self.kolodaView?.reloadData()
-
         })
    }
 
@@ -128,145 +120,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         task.resume()
 
-    }
-
-    func getUsers( completion: @escaping ([sortedUser])->()) -> [sortedUser]{
-        let rootUrl: String = appDelegate.rootUrl
-        
-        var usersList = [sortedUser]()
-        
-        let params : [String: Any]
-        
-        if (rootUrl == "http://localhost:9090/") {
-           params = [
-                "email": self.userEmail,
-                "location": [                    -147.349442,
-                                                 64.751114]
-            ]
-        } else {
-            params = [
-                "email": self.userEmail,
-                "location": [
-                    -147.349442,
-                    64.751114
-                ],
-            ]
-        }
- 
-        let url = rootUrl + "api/users"
-
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        let request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-   
-                    if let jsonResult = response.result.value as? [[String:Any]] {
-                        for jsonUser in jsonResult {
-                            do {
-                                let user = try User(json: (jsonUser["user"] as? [String:Any])!)
-                                let matchReason = (jsonUser["matchReason"] as! String)
-                                print("MATCH REASON FOR " + (user?.email)! + ":  ", matchReason)
-                                let score = (jsonUser["score"] as! Int)
-
-                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason, score: score)
-        
-                                if (user != nil) {
-                                    usersList.append(sortUserInstance)
-                                } else {
-                                    print("nil")
-                                }
-                            } catch UserInitError.invalidId {
-                                print("invalid id")
-                            } catch UserInitError.invalidFirstName {
-                                print("invalid first name")
-                            } catch UserInitError.invalidLastName {
-                                print("invalid last name")
-                            } catch UserInitError.invalidImageURL {
-                                print("invalid image url")
-                            } catch UserInitError.invalidBio {
-                                print("invalid bio")
-                            } catch UserInitError.invalidGender {
-                                print("invalid gender")
-                            } catch UserInitError.invalidAge {
-                                print("invalid age")
-                            } catch UserInitError.invalidLocation {
-                                print("invalid location")
-                            } catch UserInitError.invalidEmail {
-                                print("invalid email")
-                            } catch UserInitError.invalidPassword {
-                                print("invalid password")
-                            } catch {
-                                print("other error")
-                            }
-                        }
-                        completion(usersList)
-                    } else {
-                        print("error creating user")
-                    }
-
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        }
-        return usersList
-    }
-    
-    
-    func getUserId( completion: @escaping (String)->()) {
-        let rootUrl: String = appDelegate.rootUrl
-        let url = rootUrl + "api/user/" + self.userEmail
-        
-        let params : [String:Any] = [
-            "email": self.userEmail
-        ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    if let jsonUser = response.result.value as? [String:Any] {
-                            do {
-                                let user = try User(json: (jsonUser as [String:Any]))
-                                if (user != nil) {
-                                    completion((user?.id)!)
-                                } else {
-                                    print("nil")
-                                }
-                            } catch UserInitError.invalidId {
-                                print("invalid id")
-                            } catch UserInitError.invalidFirstName {
-                                print("invalid first name")
-                            } catch UserInitError.invalidLastName {
-                                print("invalid last name")
-                            } catch UserInitError.invalidImageURL {
-                                print("invalid image url")
-                            } catch UserInitError.invalidBio {
-                                print("invalid bio")
-                            } catch UserInitError.invalidGender {
-                                print("invalid gender")
-                            } catch UserInitError.invalidAge {
-                                print("invalid age")
-                            } catch UserInitError.invalidLocation {
-                                print("invalid location")
-                            } catch UserInitError.invalidEmail {
-                                print("invalid email")
-                            } catch UserInitError.invalidPassword {
-                                print("invalid password")
-                            } catch {
-                                print("other error")
-                            }
-                    } else {
-                        print("error creating user for user id")
-                    }
-                    
-                case .failure(let error):
-                    print("failure: error creating user for user id")
-                    print(error)
-                }
-        }
     }
 
    override func didReceiveMemoryWarning() {
@@ -340,42 +193,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        }
 //        }
 //    }
-    
-    func sendRequest(completion: @escaping (String, String)->()) {
-        
-        let rootUrl: String = appDelegate.rootUrl
-        
-        // alamofire request
-        let params: [String: Any] = [
-            "userId": self.userId,
-            "targetId": userList[current_index].user.id!
-        ]
-        
-        let url = rootUrl + "api/match"
-        
-        var title = ""
-        var message = ""
-        
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    let responseDictionary = response.result.value as! [String:Any]
-                    if (String(describing: responseDictionary["response"]!) == "match") {
-                        title = "You matched with \(self.userList[self.current_index].user.firstName!)"
-                        message = "Go to your chat to say hello!"
-                    } else {
-                        title = "Your request to \(self.userList[self.current_index].user.firstName!) has been sent!"
-                        message = "Keep running!"
-                    }
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        completion(title, message)
-        }
-        
-    }
+
     
     func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
@@ -415,7 +233,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
         else {
         
-        sendRequest(completion: { title, message in
+            UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[current_index].user.id!, firstName: self.userList[self.current_index].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)

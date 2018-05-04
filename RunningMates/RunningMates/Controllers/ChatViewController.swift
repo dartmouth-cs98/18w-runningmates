@@ -39,14 +39,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userImage: UIImageView!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    var manager: SocketManager?
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
 //    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
 
-    let recipientEmail : String = "brian99@test.com"
+    let recipientEmail : String = "jon@test.com"
     var sentByID : String = ""
     var recipientID : String = ""
 
@@ -176,10 +177,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            self.tableView.reloadData()
 //        })
 
-
+        manager = SocketManager(socketURL: URL(string: appDelegate.rootUrl)!)
 
         self.userEmail = appDelegate.userEmail
-        let socket = manager.defaultSocket
+        let socket = manager!.defaultSocket
 
         socket.on(clientEvent: .connect) {data, ack in
             if (self.chatID != nil) {
@@ -261,7 +262,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         print(message)
 
-        let socket = manager.defaultSocket
+        let socket = manager!.defaultSocket
         socket.emit("chat message", message)
         self.chatInput.text = ""
 

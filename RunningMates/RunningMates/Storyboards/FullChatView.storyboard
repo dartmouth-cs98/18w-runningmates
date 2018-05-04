@@ -90,7 +90,7 @@
                                 <items>
                                     <barButtonItem title="Profile" id="FRg-wX-ySh">
                                         <connections>
-                                            <segue destination="1lC-rg-AJS" kind="show" id="f20-Sq-Cdb"/>
+                                            <segue destination="G4d-bH-tgj" kind="show" id="QDh-EG-Dkp"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="Image-1" width="234" id="2ra-kI-ePz">
@@ -130,14 +130,6 @@
             </objects>
             <point key="canvasLocation" x="21.600000000000001" y="844.22788605697156"/>
         </scene>
-        <!--CreateProfile-->
-        <scene sceneID="O8S-RB-V5P">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CreateProfile" id="1lC-rg-AJS" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0E6-Hg-vbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-348" y="1273"/>
-        </scene>
         <!--Matching-->
         <scene sceneID="QDg-bq-zCN">
             <objects>
@@ -153,6 +145,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODI-vO-lGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1121" y="1480"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="faR-Gx-pqM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="G4d-bH-tgj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kv-iS-w6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-369" y="1284"/>
         </scene>
         <!--FilterStoryboard-->
         <scene sceneID="MKO-HT-iso">

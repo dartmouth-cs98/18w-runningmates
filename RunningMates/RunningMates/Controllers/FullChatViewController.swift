@@ -161,6 +161,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         ]
         let _request = Alamofire.request(url, method: .get, parameters: params)
             .responseJSON { response in
+                print("RESPONSE")
+                print(response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
