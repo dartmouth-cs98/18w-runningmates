@@ -11,7 +11,8 @@ import SocketIO
 
 class SocketIOManager: NSObject {
     static let instance = SocketIOManager()
-    var manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+//    var manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
+    var manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
     
     var socket : SocketIOClient
   

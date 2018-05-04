@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var userEmail: String = "brian@test.com"
+    var userEmail: String = "drew@test.com"
 
     var didSignUpWithStrava: Int = 0
 

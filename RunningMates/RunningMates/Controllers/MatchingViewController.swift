@@ -95,7 +95,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         self.userList = getUsers(completion: { list in
-            print("list is: ", list)
             self.userList = list
             self.kolodaView?.reloadData()
 
@@ -215,16 +214,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         ]
         let _request = Alamofire.request(url, method: .get, parameters: params)
             .responseJSON { response in
-                print("RESPONSE")
-                print(response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                             do {
                                 let user = try User(json: (jsonUser as [String:Any]))
                                 if (user != nil) {
-                                    print("USER")
-                                    print(user!)
                                     completion((user?.id)!)
                                 } else {
                                     print("nil")
@@ -459,8 +454,6 @@ extension MatchingViewController: KolodaViewDelegate {
 extension MatchingViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-        print(userList)
-        print(self.userList)
         return userList.count
         
     }
@@ -497,7 +490,7 @@ extension MatchingViewController: KolodaViewDataSource {
         
         let userText = nameAge + location + bio + totalMiles + averageRunLength
         let point = CGPoint(x: 0, y: 100)
-        print(userText)
+  
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
         return UIImageView(image: userCardImage)
     }
