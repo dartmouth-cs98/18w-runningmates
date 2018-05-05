@@ -246,6 +246,55 @@ class UserManager: NSObject {
     
     
     
+    func requestUserUpdate(userEmail: String, params: [String:Any], completion: @escaping (String, String)-> ()){
+        
+        let rootUrl: String = appDelegate.rootUrl
+        
+//        let params : [String: Any]
+        
+//        params = [
+//            "email": self.userEmail,
+//            "firstName": nameTextView.text!,
+//            "bio": bioTextView.text!,
+//            "images": self.profileImageUrls,
+//            "milesPerWeek": milesPerWeekTextField.text!,
+//            "totalElevation": totalElevationTextField.text!,
+//            "totalMiles": totalMilesTextField.text!,
+//            "longestRun": longestRunTextView.text!,
+//            "racesDone": racesDoneTextView.text!,
+//            "runsPerWeek": runsPerWeekTextField.text!,
+//            "kom": KOMsTextField.text!,
+//            "frequentSegments": frequentSegmentsTextView.text!
+//        ]
+        
+        let url = rootUrl + "api/user/" + userEmail
+        
+        var title = ""
+        var message = ""
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let responseDictionary = response.result.value as! [String:Any]
+                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
+                        if (String(describing: responseDictionary["response"]!) == "updated user") {
+                            title = "You Have Updated Your Profile"
+                            message = "Find Some New RunningMates!"
+                        }
+                        completion(title, message)
+                        print("*** success in update*** ")
+                    }
+                case .failure(let error):
+                    print("*error posting profile updates*")
+                    print(error)
+                }
+        }
+        debugPrint("whole _request ****",_request)
+    }
+    
+    
+    
     func logout(userID: String) {
         
     }

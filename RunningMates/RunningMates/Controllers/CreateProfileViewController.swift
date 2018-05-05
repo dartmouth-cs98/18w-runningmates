@@ -190,7 +190,23 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         imageURLsRequest(completion: {  // Get signed URL requests from backend
             self.awsUpload(completion: { // Upload images to aws
-                self.backendSaveRequest(completion: { title, message in
+                
+                let params: [String:Any] = [
+                    "email": self.userEmail,
+                    "firstName": self.nameTextView.text!,
+                    "bio": self.bioTextView.text!,
+                    "images": self.profileImageUrls,
+                    "milesPerWeek": self.milesPerWeekTextField.text!,
+                    "totalElevation": self.totalElevationTextField.text!,
+                    "totalMiles": self.totalMilesTextField.text!,
+                    "longestRun": self.longestRunTextView.text!,
+                    "racesDone": self.racesDoneTextView.text!,
+                    "runsPerWeek": self.runsPerWeekTextField.text!,
+                    "kom": self.KOMsTextField.text!,
+                    "frequentSegments": self.frequentSegmentsTextView.text!
+                ]
+                
+                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
@@ -251,53 +267,51 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
 
     
-    func backendSaveRequest(completion: @escaping (String, String)-> ()){
-        
-        let rootUrl: String = appDelegate.rootUrl
-        
-        let params : [String: Any]
-        
-            params = [
-                "email": self.userEmail,
-                "firstName": nameTextView.text!,
-                "bio": bioTextView.text!,
-                "images": self.profileImageUrls,
-                "milesPerWeek": milesPerWeekTextField.text!,
-                "totalElevation": totalElevationTextField.text!,
-                "totalMiles": totalMilesTextField.text!,
-                "longestRun": longestRunTextView.text!,
-                "racesDone": racesDoneTextView.text!,
-                "runsPerWeek": runsPerWeekTextField.text!,
-                "kom": KOMsTextField.text!,
-                "frequentSegments": frequentSegmentsTextView.text!
-            ]
-        
-        let email: String = self.userEmail
-        let url = rootUrl + "api/user/" + email
-        
-        var title = ""
-        var message = ""
-        
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    let responseDictionary = response.result.value as! [String:Any]
-                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
-                        if (String(describing: responseDictionary["response"]!) == "updated user") {
-                            title = "You Have Updated Your Profile"
-                            message = "Find Some New RunningMates!"
-                        }
-                        completion(title, message)
-                        print("*** success in update*** ")
-                    }
-                case .failure(let error):
-                    print("*error posting profile updates*")
-                    print(error)
-                }
-        }
-         debugPrint("whole _request ****",_request)
-    }
+//    func backendSaveRequest(completion: @escaping (String, String)-> ()){
+//
+//        let rootUrl: String = appDelegate.rootUrl
+//
+//        let params: [String:Any] = [
+//                "email": self.userEmail,
+//                "firstName": nameTextView.text!,
+//                "bio": bioTextView.text!,
+//                "images": self.profileImageUrls,
+//                "milesPerWeek": milesPerWeekTextField.text!,
+//                "totalElevation": totalElevationTextField.text!,
+//                "totalMiles": totalMilesTextField.text!,
+//                "longestRun": longestRunTextView.text!,
+//                "racesDone": racesDoneTextView.text!,
+//                "runsPerWeek": runsPerWeekTextField.text!,
+//                "kom": KOMsTextField.text!,
+//                "frequentSegments": frequentSegmentsTextView.text!
+//            ]
+//
+//        let email: String = self.userEmail
+//        let url = rootUrl + "api/user/" + email
+//
+//        var title = ""
+//        var message = ""
+//
+//        let _request = Alamofire.request(url, method: .post, parameters: params)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    let responseDictionary = response.result.value as! [String:Any]
+//                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
+//                        if (String(describing: responseDictionary["response"]!) == "updated user") {
+//                            title = "You Have Updated Your Profile"
+//                            message = "Find Some New RunningMates!"
+//                        }
+//                        completion(title, message)
+//                        print("*** success in update*** ")
+//                    }
+//                case .failure(let error):
+//                    print("*error posting profile updates*")
+//                    print(error)
+//                }
+//        }
+//         debugPrint("whole _request ****",_request)
+//    }
     
     func awsUpload(completion: @escaping ()->()){
         
