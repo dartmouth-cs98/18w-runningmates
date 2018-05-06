@@ -56,17 +56,17 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXy-6D-fRU">
-                                <rect key="frame" x="23" y="167" width="222.5" height="34"/>
+                                <rect key="frame" x="23" y="167" width="319" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Female   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WC-vS-0ub">
-                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Female:  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WC-vS-0ub">
+                                        <rect key="frame" x="0.0" y="0.0" width="69" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3J-Ez-kVs" customClass="DLRadioButton">
-                                        <rect key="frame" x="76.5" y="0.0" width="30" height="34"/>
+                                        <rect key="frame" x="69" y="0.0" width="30" height="34"/>
                                         <color key="tintColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -93,17 +93,14 @@
                                             <action selector="femaleButtonSelected:" destination="2mX-mE-oR2" eventType="touchUpInside" id="V9e-IL-ViU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMm-2e-Ndw">
-                                        <rect key="frame" x="106.5" y="0.0" width="30" height="34"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Male   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FL-v6-7FH">
-                                        <rect key="frame" x="136.5" y="0.0" width="56" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Male:  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FL-v6-7FH">
+                                        <rect key="frame" x="99" y="0.0" width="55" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="230-B6-Egs" customClass="DLRadioButton">
-                                        <rect key="frame" x="192.5" y="0.0" width="30" height="34"/>
+                                        <rect key="frame" x="154" y="0.0" width="30" height="34"/>
                                         <color key="tintColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                         <state key="normal">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -113,7 +110,7 @@
                                                 <real key="value" value="30"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
-                                                <color key="value" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="1" green="0.71211987733840942" blue="0.4233015775680542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
                                                 <integer key="value" value="20"/>
@@ -128,6 +125,40 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="maleButtonSelected:" destination="2mX-mE-oR2" eventType="touchUpInside" id="sxD-ZV-e47"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" Non-Binary:  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcr-JE-KPI">
+                                        <rect key="frame" x="184" y="0.0" width="105" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMm-2e-Ndw" customClass="DLRadioButton">
+                                        <rect key="frame" x="289" y="0.0" width="30" height="34"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.039383083581924438" green="0.035720806568861008" blue="0.01074657216668129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                                <color key="value" red="0.97558683156967163" green="0.6624111533164978" blue="0.021093638613820076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="iconStrokeWidth">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="nonBinaryButtonSelected:" destination="2mX-mE-oR2" eventType="touchUpInside" id="g3G-d6-oF8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -226,6 +257,7 @@
                         <outlet property="maxProximitySelected" destination="Tid-fM-70a" id="EJV-kL-YA3"/>
                         <outlet property="minAgeSelected" destination="MQt-zc-gwF" id="w1O-bY-GeY"/>
                         <outlet property="minDistSelected" destination="vg0-TU-1GY" id="jAh-M8-RQX"/>
+                        <outlet property="nonBinaryButton" destination="EMm-2e-Ndw" id="jbm-oH-d9S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dS-ca-M5j" userLabel="First Responder" sceneMemberID="firstResponder"/>

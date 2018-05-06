@@ -35,22 +35,22 @@
                                                     <rect key="frame" x="2" y="2" width="80" height="80"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-NA-3cf">
-                                                    <rect key="frame" x="90" y="47" width="247" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-NA-3cf">
+                                                    <rect key="frame" x="90" y="37" width="247" height="40"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
-                                                    <rect key="frame" x="254" y="8" width="83" height="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
+                                                    <rect key="frame" x="90" y="8" width="151" height="25"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
-                                                    <rect key="frame" x="90" y="8" width="156" height="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
+                                                    <rect key="frame" x="254" y="8" width="83" height="25"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -63,8 +63,9 @@
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="bottom" constant="8" id="Jsv-z2-uO0"/>
                                                 <constraint firstAttribute="trailing" secondItem="wid-Ee-1a8" secondAttribute="trailing" constant="2" id="KVF-TA-RTP"/>
                                                 <constraint firstItem="0C6-s8-UYU" firstAttribute="leading" secondItem="74O-ws-bNl" secondAttribute="leading" constant="2" id="Nfy-bZ-aWl"/>
-                                                <constraint firstItem="xdM-co-IPl" firstAttribute="leading" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="8" id="PTn-4P-pAc"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="8" id="QJK-41-hKT"/>
                                                 <constraint firstItem="wid-Ee-1a8" firstAttribute="leading" secondItem="xdM-co-IPl" secondAttribute="trailing" constant="3" id="Tgn-wg-C6h"/>
+                                                <constraint firstItem="xdM-co-IPl" firstAttribute="leading" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="2" id="Y8L-j8-bQJ"/>
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="wid-Ee-1a8" secondAttribute="bottom" constant="8" id="kPm-Wy-Gh2"/>
                                                 <constraint firstAttribute="bottom" secondItem="QMy-NA-3cf" secondAttribute="bottom" constant="8" id="lZN-Ln-3is"/>
                                                 <constraint firstItem="xdM-co-IPl" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="8" id="nkZ-6p-i0G"/>
@@ -90,7 +91,7 @@
                                 <items>
                                     <barButtonItem title="Profile" id="FRg-wX-ySh">
                                         <connections>
-                                            <segue destination="1lC-rg-AJS" kind="show" id="f20-Sq-Cdb"/>
+                                            <segue destination="G4d-bH-tgj" kind="show" id="QDh-EG-Dkp"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="Image-1" width="234" id="2ra-kI-ePz">
@@ -130,14 +131,6 @@
             </objects>
             <point key="canvasLocation" x="21.600000000000001" y="844.22788605697156"/>
         </scene>
-        <!--CreateProfile-->
-        <scene sceneID="O8S-RB-V5P">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CreateProfile" id="1lC-rg-AJS" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0E6-Hg-vbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-348" y="1273"/>
-        </scene>
         <!--Matching-->
         <scene sceneID="QDg-bq-zCN">
             <objects>
@@ -153,6 +146,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODI-vO-lGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1121" y="1480"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="faR-Gx-pqM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="G4d-bH-tgj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kv-iS-w6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-369" y="1284"/>
         </scene>
         <!--FilterStoryboard-->
         <scene sceneID="MKO-HT-iso">
