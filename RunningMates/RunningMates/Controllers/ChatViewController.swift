@@ -46,7 +46,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var chatID: String!
     var userEmail: String!
 
-    let recipientEmail : String = "drew@test.com"
+    let recipientEmail : String = "brian@test.com"
     var sentByID : String = ""
     var recipientID : String = ""
 

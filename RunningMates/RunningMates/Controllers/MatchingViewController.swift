@@ -21,7 +21,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    var current_index = 0
+    var current_index: Int!
 //    var rootURl: String = "http://localhost:9090/"
 //    var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
@@ -194,7 +194,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                         }
                         completion(usersList)
                     } else {
-                        print("error creating user")
+                        print("error getting matches")
+                        print(response.result.value)
                     }
 
                 case .failure(let error):
@@ -271,11 +272,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
    //MARK: Actions
     
     @IBAction func leftButtonTapped() {
+        print("swipe left")
         kolodaView?.swipe(.left)
+
     }
     
     @IBAction func rightButtonTapped() {
+        print("swipe right")
         kolodaView?.swipe(.right)
+  
     }
     
     @IBAction func undoButtonTapped() {
@@ -396,7 +401,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     @IBAction func matchButton(_ sender: UIButton) {
 
-        print("You clicked match.")
+        print("You clicked match on index", current_index)
         
         if (current_index > userList.count || userList.count == 0) {
             let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
@@ -460,6 +465,10 @@ extension MatchingViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
         print(userList)
+    
+        for user in userList{
+            print(user.firstName)
+        }
         print(self.userList)
         return userList.count
         
@@ -470,8 +479,11 @@ extension MatchingViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        print("the current index is", current_index)
         // Need to create UIImage from URL string
         // let url = URL(string: self.userList[index].imageURL)
+        //var user: Int;
+
         let url = URL(string: userList[index].imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
@@ -499,6 +511,23 @@ extension MatchingViewController: KolodaViewDataSource {
         let point = CGPoint(x: 0, y: 100)
         print(userText)
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
+        
+        if (index == 0){
+            current_index = userList.count - 1
+        }
+        else if (index == 1){
+            current_index = userList.count - 2
+        }
+        else if (index == userList.count - 1){
+            current_index = 0
+        }
+        else if (index == userList.count - 2){
+            current_index = 1
+        }
+        else{
+            current_index = index - 2
+        }
+
         return UIImageView(image: userCardImage)
     }
     
