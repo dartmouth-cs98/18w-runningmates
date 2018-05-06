@@ -114,11 +114,9 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         self.tableView.estimatedRowHeight = 150.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         
-        getUserId(email: self.userEmail, completion: {id in
-            self.userID = id
-            print("ID IS")
-            print(id)
-            
+        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+            self.userID = user.id!
+
             self.fetchChats(completion: { chats in
                 
                 self.data = chats
@@ -151,60 +149,7 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
 //        debugPrint("whole _request ****",_request)
     }
     
-    
-    func getUserId(email: String, completion: @escaping (String)->()) {
-        let rootUrl: String = appDelegate.rootUrl
-        let url: String = rootUrl + "api/user/" + email
-        
-        let params : [String:Any] = [
-            "email": email
-        ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    if let jsonUser = response.result.value as? [String:Any] {
-                        do {
-                            let user = try User(json: (jsonUser as [String:Any]))
-                            if (user != nil) {
-                                completion((user?.id)!)
-                            } else {
-                                print("nil")
-                            }
-                        } catch UserInitError.invalidId {
-                            print("invalid id")
-                        } catch UserInitError.invalidFirstName {
-                            print("invalid first name")
-                        } catch UserInitError.invalidLastName {
-                            print("invalid last name")
-                        } catch UserInitError.invalidImageURL {
-                            print("invalid image url")
-                        } catch UserInitError.invalidBio {
-                            print("invalid bio")
-                        } catch UserInitError.invalidGender {
-                            print("invalid gender")
-                        } catch UserInitError.invalidAge {
-                            print("invalid age")
-                        } catch UserInitError.invalidLocation {
-                            print("invalid location")
-                        } catch UserInitError.invalidEmail {
-                            print("invalid email")
-                        } catch UserInitError.invalidPassword {
-                            print("invalid password")
-                        } catch {
-                            print("other error")
-                        }
-                    } else {
-                        print("error creating user for user id")
-                    }
-                    
-                case .failure(let error):
-                    print("failure: error creating user for user id")
-                    print(error)
-                }
-        }
-    }
-    
+
     // https://www.twilio.com/blog/2016/09/getting-started-with-socket-io-in-swift-on-ios.html
     @objc func handleMessageNotification(_ notification: Notification) {
         print("-----HANDLING MESSAGE-----")

@@ -17,6 +17,7 @@
 		2B16D051204C985000DFFBEF /* plus_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16D050204C985000DFFBEF /* plus_sign.png */; };
 		2B7B918720927CF400B2EA07 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B917F20927CF300B2EA07 /* plus.png */; };
 		8869231F209A238300269557 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869231E209A238300269557 /* SocketIOManager.swift */; };
+		88692322209CC5ED00269557 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88692321209CC5ED00269557 /* UserManager.swift */; };
 		88C0AF9A20291C2B0008F5B5 /* Matching.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88C0AF9920291C2B0008F5B5 /* Matching.xib */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
 		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
@@ -172,6 +173,7 @@
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		88692321209CC5ED00269557 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		88C0AF9920291C2B0008F5B5 /* Matching.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Matching.xib; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FAFE988920786040008B56BA /* Settings.swift */,
 				8869231E209A238300269557 /* SocketIOManager.swift */,
+				88692321209CC5ED00269557 /* UserManager.swift */,
 				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
 				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
@@ -750,6 +753,7 @@
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
 				F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */,
+				88692322209CC5ED00269557 /* UserManager.swift in Sources */,
 				F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */,
 				FA2A5326204B3A01002F515E /* RangeSliderTrackLayer.swift in Sources */,
 				FA2A5320204B339B002F515E /* RangeSliderThumbLayer.swift in Sources */,
