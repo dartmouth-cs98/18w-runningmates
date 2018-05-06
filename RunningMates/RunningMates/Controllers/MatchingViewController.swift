@@ -34,7 +34,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
 
     var userList = [sortedUser]()
-
+    
 
     override func viewDidAppear(_ animated: Bool) {
 
@@ -123,7 +123,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     }
 
-<<<<<<< HEAD
     func getUsers( completion: @escaping ([User])->()) -> [User]{
         let rootUrl: String = appDelegate.rootUrl
 
@@ -201,6 +200,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                     print(error)
                 }
         }
+        
         return usersList
     }
 
@@ -262,8 +262,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
     }
 
-=======
->>>>>>> 88d4032ff4c98d6f800a3d23ff5852f3444e87eb
    override func didReceiveMemoryWarning() {
        super.didReceiveMemoryWarning()
        // Dispose of any resources that can be recreated.
@@ -272,7 +270,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
    //MARK: Actions
 
     @IBAction func leftButtonTapped() {
-        print("swipe left")
+        print("swipe left", current_index, userList[current_index].user.firstName)
+        
+//        if (current_index > 0) {
+//            current_index = current_index - 1
+//        }
+//        else {
+//            current_index = userList.count - 1
+//        }
+        
         kolodaView?.swipe(.left)
 
     }
@@ -429,15 +435,6 @@ extension MatchingViewController: KolodaViewDelegate {
 extension MatchingViewController: KolodaViewDataSource {
 
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-<<<<<<< HEAD
-        print(userList)
-
-        for user in userList{
-            print(user.firstName)
-        }
-        print(self.userList)
-=======
->>>>>>> 88d4032ff4c98d6f800a3d23ff5852f3444e87eb
         return userList.count
 
     }
@@ -447,16 +444,14 @@ extension MatchingViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        print("the current index is", current_index)
+        print("the current index is", index)
+        print(userList[index].user.firstName)
         // Need to create UIImage from URL string
         // let url = URL(string: self.userList[index].imageURL)
-<<<<<<< HEAD
         //var user: Int;
 
-        let url = URL(string: userList[index].imageURL)
-=======
+
         let url = URL(string: userList[index].user.imageURL)
->>>>>>> 88d4032ff4c98d6f800a3d23ff5852f3444e87eb
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: photoData!)
@@ -490,23 +485,35 @@ extension MatchingViewController: KolodaViewDataSource {
 
         let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
 
-        if (index == 0){
-            current_index = userList.count - 1
-        }
-        else if (index == 1){
-            current_index = userList.count - 2
-        }
-        else if (index == userList.count - 1){
-            current_index = 0
-        }
-        else if (index == userList.count - 2){
-            current_index = 1
-        }
-        else{
-            current_index = index - 2
-        }
+//        if (index == 0){
+//            current_index = userList.count - 1
+//        }
+//        else if (index == 1){
+//            current_index = userList.count - 2
+//        }
+//        else if (index == userList.count - 1){
+//            current_index = 0
+//        }
+//        else if (index == userList.count - 2){
+//            current_index = 1
+//        }
+//        else{
+//            current_index = index - 2
+//        }
+       // current_index = index
 
         return UIImageView(image: userCardImage)
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
+            print("swiped card at", index, "in direction", direction)
+            if (index < userList.count - 1) {
+                current_index = index + 1
+            }
+            else{
+                current_index = 0
+            }
+        print("currently looking at", userList[current_index].user.firstName)
     }
 
 }
