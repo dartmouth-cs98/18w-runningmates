@@ -8,6 +8,11 @@
 
 import GoogleMaps
 import GooglePlaces
+
+import Foundation
+import Alamofire
+
+
 //https://developers.google.com/maps/documentation/ios-sdk/current-place-tutorial?_ga=2.22727355.1009863734.1525292435-164906073.1524505865
 //https://developers.google.com/maps/documentation/ios-sdk/start
 //https://stackoverflow.com/questions/44847866/swift-3-google-maps-how-to-update-marker-on-the-map
@@ -106,5 +111,26 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
 }
+    @IBAction func didTapStartTracking(_ sender: Any) {
+        print("sending text")
+        if let accountSID = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"],
+            let authToken = ProcessInfo.processInfo.environment["TWILIO_AUTH_TOKEN"] {
+
+            
+            //api.twilio.com/2010-04-01/Accounts/ACd59f65f36043c6351d2728c7a7a829da/Messages.json
+            let url = "https://api.twilio.com/2010-04-01/Accounts/\(accountSID)/Messages"
+            let parameters = ["From": "19789653630", "To": "16032039303", "Body": "Hello from Swift!"]
+            
+            Alamofire.request(url, method: .post, parameters: parameters)
+                .authenticate(user: accountSID, password: authToken)
+                .responseJSON { response in
+                    debugPrint(response)
+            }
+            
+            RunLoop.main.run()
+        }
+    }
+    
+    
     
 }

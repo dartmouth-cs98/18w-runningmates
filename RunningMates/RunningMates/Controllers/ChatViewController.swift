@@ -37,7 +37,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    
+
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
 //    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
@@ -71,7 +71,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -110,8 +110,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         //cell.textLabel?.text = displayedMembers
 
-    
-    
+
+
 
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -193,7 +193,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
 
         socket.connect()
-        
+
 
         if (self.chatID != nil) {
             print("chat id: " + self.chatID)
@@ -207,20 +207,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //        self.userEmail = appDelegate.userEmail;
 
         let group = DispatchGroup()
-        
+
         group.enter()
         group.enter()
-        
+
         UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
             self.sentByID = user.id!
             group.leave()
         })
-        
+
         UserManager.instance.requestUserObject(userEmail: self.recipientEmail, completion: {user in
             self.recipientID = user.id!
             group.leave()
         })
-        
+
         group.notify(queue: DispatchQueue.main) {
             self.fetchChats(completion: { chats in
                 self.data = chats
@@ -228,7 +228,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             })
         }
-        
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
 
@@ -242,7 +242,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("email: " + String(describing: self.userEmail))
 
         var message : [String: Any] = [:]
- 
+
         if (self.chatID != nil) {
             message = [
                 "message": self.chatInput.text!,
@@ -268,14 +268,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func recieveMessage(message_data: [Any]){
 
-        
+
         print("message recieved******")
         let message = message_data[0] as! [String:String]
         let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], time: message["time"], ChatID: "3420938423" )
 
         if(message_to_display.messageText != ""){
             data.append(message_to_display);
-    
+
             print("data array", data)
             self.tableView.reloadData()
             scrollToBottom()
@@ -283,4 +283,3 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
 }
-
