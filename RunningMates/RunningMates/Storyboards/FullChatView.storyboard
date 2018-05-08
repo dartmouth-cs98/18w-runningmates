@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="btf-nf-jZN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-oM-Bwy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Full Chat View Controller-->
+        <!--Chat-->
         <scene sceneID="H8D-Ci-wa5">
             <objects>
-                <viewController id="cfY-oM-Bwy" customClass="FullChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Chat" id="cfY-oM-Bwy" customClass="FullChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PU2-xE-opP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="150" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WMK-9F-nhc">
-                                <rect key="frame" x="16" y="20" width="343" height="495"/>
+                                <rect key="frame" x="16" y="20" width="343" height="636"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -42,14 +41,14 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
                                                     <rect key="frame" x="90" y="8" width="151" height="25"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
                                                     <rect key="frame" x="254" y="8" width="83" height="25"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -71,7 +70,6 @@
                                                 <constraint firstItem="xdM-co-IPl" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="8" id="nkZ-6p-i0G"/>
                                                 <constraint firstAttribute="trailing" secondItem="QMy-NA-3cf" secondAttribute="trailing" constant="2" id="xNd-U4-cZ6"/>
                                                 <constraint firstAttribute="bottom" secondItem="0C6-s8-UYU" secondAttribute="bottom" constant="2" id="xYk-7W-svv"/>
-                                                <constraint firstItem="xdM-co-IPl" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="topMargin" constant="8" id="yG6-GU-plS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -85,37 +83,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOG-XA-Yxa">
-                                <rect key="frame" x="-1" y="579" width="377" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Profile" id="FRg-wX-ySh">
-                                        <connections>
-                                            <segue destination="G4d-bH-tgj" kind="show" id="QDh-EG-Dkp"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Item" image="Image-1" width="234" id="2ra-kI-ePz">
-                                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <segue destination="Cav-TD-9ej" kind="show" id="z1C-gf-dMD"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Matching" id="LBP-FJ-kib">
-                                        <connections>
-                                            <segue destination="ext-VA-Add" kind="show" id="k5I-6v-p4S"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0xP-Qy-sgZ">
-                                <rect key="frame" x="1" y="523" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="go to chat"/>
-                                <connections>
-                                    <segue destination="6NN-lO-wJQ" kind="show" id="Kaw-YB-021"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OEO-EJ-blz"/>
@@ -123,45 +90,12 @@
                     <navigationItem key="navigationItem" id="Wgd-kN-3Cx"/>
                     <connections>
                         <outlet property="tableView" destination="WMK-9F-nhc" id="ozr-s0-o4e"/>
-                        <outlet property="toolbar" destination="cOG-XA-Yxa" id="hz5-IM-f8L"/>
                         <outlet property="view" destination="PU2-xE-opP" id="PN2-De-42Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9h-Yg-DKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="21.600000000000001" y="844.22788605697156"/>
-        </scene>
-        <!--Matching-->
-        <scene sceneID="QDg-bq-zCN">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Matching" id="ext-VA-Add" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZzI-h3-NfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="470" y="1244"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="cg7-L5-Z6W">
-            <objects>
-                <viewControllerPlaceholder id="wvW-9N-nNN" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ODI-vO-lGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1121" y="1480"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="faR-Gx-pqM">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="G4d-bH-tgj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kv-iS-w6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-369" y="1284"/>
-        </scene>
-        <!--FilterStoryboard-->
-        <scene sceneID="MKO-HT-iso">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FilterStoryboard" id="Cav-TD-9ej" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="knE-3M-yGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="27" y="1306"/>
         </scene>
         <!--ChatViewController-->
         <scene sceneID="09v-uO-H3o">
@@ -171,37 +105,5 @@
             </objects>
             <point key="canvasLocation" x="849" y="891"/>
         </scene>
-        <!--chat-->
-        <scene sceneID="D0f-h2-KuW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="chat" id="9Nq-JQ-AYc" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sOE-AF-65G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="783" y="1061"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="XU8-wg-kb6">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="btf-nf-jZN" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P7G-FN-OsN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cfY-oM-Bwy" kind="relationship" relationship="rootViewController" id="yIa-7L-toO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1By-YM-fB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-948" y="98"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="Image-1" width="339" height="271"/>
-    </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="yB8-aW-2T3"/>
-    </inferredMetricsTieBreakers>
 </document>
