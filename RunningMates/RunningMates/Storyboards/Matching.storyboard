@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Matching View Controller-->
+        <!--Matching-->
         <scene sceneID="3a7-pd-PHN">
             <objects>
-                <viewController storyboardIdentifier="matchingView" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="matchingView" title="Matching" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hEu-Oc-4T3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>

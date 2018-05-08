@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Full Chat View Controller-->
+        <!--Chat-->
         <scene sceneID="H8D-Ci-wa5">
             <objects>
-                <viewController id="cfY-oM-Bwy" customClass="FullChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Chat" id="cfY-oM-Bwy" customClass="FullChatViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PU2-xE-opP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
