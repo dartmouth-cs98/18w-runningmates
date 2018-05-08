@@ -6,9 +6,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Chat-->
         <scene sceneID="H8D-Ci-wa5">
@@ -23,56 +30,68 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" rowHeight="84" id="rCy-8S-8p3" customClass="ChatPreviewCell" customModule="RunningMates" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="84"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" rowHeight="76" id="rCy-8S-8p3" customClass="ChatPreviewCell" customModule="RunningMates" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rCy-8S-8p3" id="74O-ws-bNl">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="83.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="rCy-8S-8p3" id="74O-ws-bNl">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0C6-s8-UYU">
-                                                    <rect key="frame" x="2" y="2" width="80" height="80"/>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C6-s8-UYU">
+                                                    <rect key="frame" x="3" y="2" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="x0r-hR-hK0"/>
+                                                    </constraints>
+                                                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-NA-3cf">
-                                                    <rect key="frame" x="90" y="37" width="247" height="40"/>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
-                                                    <rect key="frame" x="90" y="8" width="151" height="25"/>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdM-co-IPl">
+                                                    <rect key="frame" x="76" y="11" width="163" height="19"/>
+                                                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
-                                                    <rect key="frame" x="254" y="8" width="83" height="25"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-NA-3cf">
+                                                    <rect key="frame" x="76" y="34" width="259" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="999" constant="261" id="gC3-yN-VTX"/>
+                                                        <constraint firstAttribute="height" constant="27" id="kia-0Q-T2j"/>
+                                                    </constraints>
+                                                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
+                                                    <rect key="frame" x="247" y="11" width="88" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="999" constant="88" id="q2M-Mh-hAf"/>
+                                                    </constraints>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0C6-s8-UYU" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="2" id="2hD-rR-zbw"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="8" id="IJN-Dt-mPf"/>
-                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="bottom" constant="8" id="Jsv-z2-uO0"/>
-                                                <constraint firstAttribute="trailing" secondItem="wid-Ee-1a8" secondAttribute="trailing" constant="2" id="KVF-TA-RTP"/>
-                                                <constraint firstItem="0C6-s8-UYU" firstAttribute="leading" secondItem="74O-ws-bNl" secondAttribute="leading" constant="2" id="Nfy-bZ-aWl"/>
-                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="8" id="QJK-41-hKT"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="leading" secondItem="xdM-co-IPl" secondAttribute="trailing" constant="3" id="Tgn-wg-C6h"/>
-                                                <constraint firstItem="xdM-co-IPl" firstAttribute="leading" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="2" id="Y8L-j8-bQJ"/>
-                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="wid-Ee-1a8" secondAttribute="bottom" constant="8" id="kPm-Wy-Gh2"/>
-                                                <constraint firstAttribute="bottom" secondItem="QMy-NA-3cf" secondAttribute="bottom" constant="8" id="lZN-Ln-3is"/>
-                                                <constraint firstItem="xdM-co-IPl" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="8" id="nkZ-6p-i0G"/>
-                                                <constraint firstAttribute="trailing" secondItem="QMy-NA-3cf" secondAttribute="trailing" constant="2" id="xNd-U4-cZ6"/>
-                                                <constraint firstAttribute="bottom" secondItem="0C6-s8-UYU" secondAttribute="bottom" constant="2" id="xYk-7W-svv"/>
+                                                <constraint firstAttribute="bottom" secondItem="0C6-s8-UYU" secondAttribute="bottom" constant="5.5" id="6QM-xJ-PaG"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="35" id="BUT-co-HAO"/>
+                                                <constraint firstItem="xdM-co-IPl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="4" id="EGe-9f-UcU"/>
+                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="top" id="Fe5-tZ-ml5"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" secondItem="xdM-co-IPl" secondAttribute="leading" id="JSz-Nb-Klm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QMy-NA-3cf" secondAttribute="bottom" constant="3" id="LeZ-c7-XOR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QMy-NA-3cf" secondAttribute="trailing" constant="7" id="M26-AZ-a2g"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="trailing" secondItem="wid-Ee-1a8" secondAttribute="trailing" id="MUm-Tn-aez"/>
+                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="baseline" secondItem="xdM-co-IPl" secondAttribute="baseline" id="Mda-UM-fs9"/>
+                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xdM-co-IPl" secondAttribute="trailing" constant="2" id="Yed-Fi-ATx"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="bottom" constant="5" id="cDW-fu-b6M"/>
+                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="4" id="e8T-iC-ird"/>
+                                                <constraint firstItem="0C6-s8-UYU" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" id="frR-pI-74P"/>
+                                                <constraint firstItem="0C6-s8-UYU" firstAttribute="leading" secondItem="74O-ws-bNl" secondAttribute="leadingMargin" id="qcy-Ul-PyL"/>
+                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="topMargin" id="unk-oD-oCW"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <connections>
                                             <outlet property="contentPreviewLabel" destination="QMy-NA-3cf" id="6LG-5a-HJo"/>
                                             <outlet property="dateLabel" destination="wid-Ee-1a8" id="VIh-XH-LIn"/>
