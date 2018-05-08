@@ -104,7 +104,7 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         
         NotificationCenter.default.addObserver(self, selector: #selector(FullChatViewController.handleMessageNotification(_:)), name: NSNotification.Name(rawValue: "messageNotification"), object: nil)
         
-        view.bringSubview(toFront: toolbar)
+      //  view.bringSubview(toFront: toolbar)
         
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,7 +73,7 @@
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9d5-rT-gyh" kind="show" id="Evd-Yb-qMH"/>
+                                    <segue destination="Gcr-qE-K61" kind="show" id="ktg-rQ-O2d"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -126,85 +125,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6H-Ec-abh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="899.20000000000005" y="184.40779610194903"/>
-        </scene>
-        <!--Safe Track View Controller-->
-        <scene sceneID="foH-jl-B7B">
-            <objects>
-                <viewController id="9d5-rT-gyh" customClass="SafeTrackViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3ak-zc-uRV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" restorationIdentifier="mapViewArea" translatesAutoresizingMaskIntoConstraints="NO" id="zfu-QF-wun" customClass="GMSMapView">
-                                <rect key="frame" x="13" y="29" width="343" height="378"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgo-Bd-X3V">
-                                <rect key="frame" x="60" y="428" width="249" height="70"/>
-                                <color key="backgroundColor" red="1" green="0.22128293930000001" blue="0.22812172459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="GWX-aI-wUf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="Start SafeTack Alerts">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapStartTracking:" destination="9d5-rT-gyh" eventType="touchUpInside" id="pdl-1x-tON"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fjd-34-m0r">
-                                <rect key="frame" x="201" y="513" width="160" height="80"/>
-                                <color key="backgroundColor" red="1" green="0.65490196079999996" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="Run Complete">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6Bi-be-n27">
-                                <rect key="frame" x="13" y="513" width="160" height="80"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="Hj3-h8-2Sk"/>
-                                    <constraint firstAttribute="height" constant="80" id="Uce-CX-UGm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="End SafeTrack Alerts">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="B8K-6U-CyR" firstAttribute="trailing" secondItem="zfu-QF-wun" secondAttribute="trailing" constant="19" id="DBc-uC-YVK"/>
-                            <constraint firstItem="6Bi-be-n27" firstAttribute="top" secondItem="Tgo-Bd-X3V" secondAttribute="bottom" constant="15" id="DhL-NP-8qQ"/>
-                            <constraint firstItem="Tgo-Bd-X3V" firstAttribute="leading" secondItem="B8K-6U-CyR" secondAttribute="leading" constant="60" id="H8l-Eh-zGQ"/>
-                            <constraint firstItem="fjd-34-m0r" firstAttribute="leading" secondItem="6Bi-be-n27" secondAttribute="trailing" constant="28" id="HWm-jU-26M"/>
-                            <constraint firstItem="zfu-QF-wun" firstAttribute="top" secondItem="B8K-6U-CyR" secondAttribute="top" constant="9" id="SmE-mY-dba"/>
-                            <constraint firstItem="Tgo-Bd-X3V" firstAttribute="top" secondItem="zfu-QF-wun" secondAttribute="bottom" constant="21" id="WCc-T8-v3k"/>
-                            <constraint firstItem="6Bi-be-n27" firstAttribute="top" secondItem="fjd-34-m0r" secondAttribute="top" id="e7p-0e-JlP"/>
-                            <constraint firstItem="zfu-QF-wun" firstAttribute="centerX" secondItem="Tgo-Bd-X3V" secondAttribute="centerX" id="gLp-Pb-Mce"/>
-                            <constraint firstItem="6Bi-be-n27" firstAttribute="baseline" secondItem="fjd-34-m0r" secondAttribute="firstBaseline" id="hRD-ko-d3g"/>
-                            <constraint firstItem="B8K-6U-CyR" firstAttribute="bottom" secondItem="6Bi-be-n27" secondAttribute="bottom" constant="74" id="ixi-KO-fd7"/>
-                            <constraint firstItem="zfu-QF-wun" firstAttribute="leading" secondItem="B8K-6U-CyR" secondAttribute="leading" constant="13" id="jhl-hv-g9c"/>
-                            <constraint firstItem="B8K-6U-CyR" firstAttribute="trailing" secondItem="fjd-34-m0r" secondAttribute="trailing" constant="14" id="vdU-q2-a2E"/>
-                            <constraint firstItem="zfu-QF-wun" firstAttribute="leading" secondItem="6Bi-be-n27" secondAttribute="leading" id="wn3-6x-0O5"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="B8K-6U-CyR"/>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="zfu-QF-wun" id="1v4-aJ-5Zf"/>
-                        <outlet property="runCompleteButton" destination="fjd-34-m0r" id="eXu-2h-CtY"/>
-                        <outlet property="safeButton" destination="6Bi-be-n27" id="rIb-k5-7Kb"/>
-                        <outlet property="unsafeButton" destination="Tgo-Bd-X3V" id="cml-5f-9aM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HBo-eV-qzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2022" y="1060"/>
         </scene>
     </scenes>
     <resources>
