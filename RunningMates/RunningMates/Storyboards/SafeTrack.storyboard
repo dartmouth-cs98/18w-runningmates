@@ -13,8 +13,8 @@
         <!--Dashboard-->
         <scene sceneID="ef6-l0-SHI">
             <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="w9O-KI-jvY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MP5-qP-e7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="w9O-KI-jvY" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="774" y="-63"/>
         </scene>
@@ -91,6 +91,7 @@
         <!--Navigation Controller-->
         <scene sceneID="NRa-r2-Nq5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s88-mB-CUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XgS-lN-GhZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xx4-bh-QZJ">
@@ -102,7 +103,6 @@
                         <segue destination="gCF-w1-wzQ" kind="relationship" relationship="rootViewController" id="FUC-b2-eJj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s88-mB-CUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1356" y="111"/>
         </scene>

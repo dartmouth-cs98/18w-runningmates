@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ago-c8-JKF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Matching View Controller-->
         <scene sceneID="3a7-pd-PHN">
             <objects>
-                <viewController storyboardIdentifier="matching" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="matchingView" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hEu-Oc-4T3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -37,7 +37,7 @@
                                 <items>
                                     <barButtonItem title="Profile" id="NGa-nT-MwV">
                                         <connections>
-                                            <segue destination="WjL-MO-6jI" kind="show" id="m3t-9a-cBe"/>
+                                            <segue destination="R0D-EK-oUE" kind="show" id="Jyx-7V-yt5"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="Image-1" width="234" id="73I-q6-GJx">
@@ -81,22 +81,6 @@
             </objects>
             <point key="canvasLocation" x="2472.8000000000002" y="155.17241379310346"/>
         </scene>
-        <!--Main-->
-        <scene sceneID="T0z-6S-fsC">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="npJ-cA-tpA" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0u5-0h-48p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3028" y="-267"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="vHX-v9-lkX">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="ZTv-9W-bOi" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SI1-fG-zmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3162" y="-207"/>
-        </scene>
         <!--FullChatView-->
         <scene sceneID="pTn-tk-e9g">
             <objects>
@@ -113,26 +97,19 @@
             </objects>
             <point key="canvasLocation" x="3206.4000000000001" y="102.54872563718142"/>
         </scene>
-        <!--Settings-->
+        <!--Dashboard-->
         <scene sceneID="2I0-U5-6ES">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="R0D-EK-oUE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="R0D-EK-oUE" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="3427" y="295"/>
         </scene>
-        <!--Dashboard-->
-        <scene sceneID="0pu-SM-I3d">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="WjL-MO-6jI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PDp-YF-HsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3185" y="375"/>
-        </scene>
-        <!--Navigation Controller-->
+        <!--Matching-->
         <scene sceneID="HlG-C0-ney">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="SLy-yC-Sbj" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oej-es-Mwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="matching" title="Matching" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="SLy-yC-Sbj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="krc-st-WTX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -147,9 +124,8 @@
                         <segue destination="ago-c8-JKF" kind="relationship" relationship="rootViewController" id="HGK-uy-ZLu"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oej-es-Mwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526" y="155"/>
+            <point key="canvasLocation" x="1343" y="203"/>
         </scene>
     </scenes>
     <resources>

@@ -82,12 +82,20 @@ extension UIViewController {
             } else {
             
                 self.appDelegate.userEmail = self.emailTextField.text!
+            
+                let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
+                let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+               /// vc.teststring = "hello"
+                
+                let navigationController = UINavigationController(rootViewController: vc)
+                
+                self.present(navigationController, animated: true, completion: nil)
                 
                 // https://www.ios-blog.com/tutorials/swift/using-nsuserdefaults-with-swift/
-                
-                let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
-                self.present(matchingVC, animated: true, completion: nil)
-                
+//
+//                let  matchingVC = self.storyboard?.instantiateViewController(withIdentifier: "matching") as! MatchingViewController
+//                self.present(matchingVC, animated: true, completion: nil)
+//
                 print("before socket")
                 SocketIOManager.instance.login(userID: id)
         
