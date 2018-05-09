@@ -26,6 +26,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var minDistSelected: UITextField!
     @IBOutlet weak var maxDistSelected: UITextField!
     
+    @IBOutlet weak var femaleLabel: UILabel!
     var genderPref = [String]()
     @IBOutlet weak var femaleButton: DLRadioButton!
     var femaleButtonSwitch = 1
@@ -33,9 +34,11 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var maleButton: DLRadioButton!
     var maleButtonSwitch = 1
 
+    @IBOutlet weak var maleLabel: UILabel!
     @IBOutlet weak var nonBinaryButton: DLRadioButton!
     var nonBinaryButtonSwitch = 1
 
+    @IBOutlet weak var nonBinaryLabel: UILabel!
     @IBOutlet weak var maxProximitySelected: UITextField!
     
     //@IBOutlet weak var nameLabel: UILabel!
@@ -44,10 +47,24 @@ class FilterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//
+//        self.femaleLabel.layer.masksToBounds = true
+//        self.maleLabel.layer.masksToBounds = true
+//        self.nonBinaryLabel.layer.masksToBounds = true
+
+        self.femaleButton.layer.cornerRadius = 15
+        self.maleButton.layer.cornerRadius = 15
+        self.nonBinaryButton.layer.cornerRadius = 15
+        
+        self.femaleButton.layer.masksToBounds = true
+        self.maleButton.layer.masksToBounds = true
+        self.nonBinaryButton.layer.masksToBounds = true
+
         view.addSubview(ageSlide)
         view.addSubview(distSlide)
         view.addSubview(proxSlide)
 
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.userEmail = appDelegate.userEmail
         self.rootUrl = appDelegate.rootUrl
@@ -200,8 +217,12 @@ class FilterViewController: UIViewController {
         maleButtonSwitch = maleButtonSwitch * -1;
         if maleButtonSwitch > 0{
             maleButton.isSelected = false
+            maleLabel.textColor = UIColor.black
+
         }else{
             maleButton.isSelected = true
+            maleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            
         }
     }
     
@@ -210,8 +231,11 @@ class FilterViewController: UIViewController {
         femaleButtonSwitch = femaleButtonSwitch * -1;
         if femaleButtonSwitch > 0{
             femaleButton.isSelected = false
+            femaleLabel.textColor = UIColor.black
         }else{
             femaleButton.isSelected = true
+            femaleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            
         }
     }
     
@@ -220,8 +244,11 @@ class FilterViewController: UIViewController {
         nonBinaryButtonSwitch = nonBinaryButtonSwitch * -1;
         if nonBinaryButtonSwitch > 0{
             nonBinaryButton.isSelected = false
+            nonBinaryLabel.textColor = UIColor.black
+
         }else{
             nonBinaryButton.isSelected = true
+                    nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
         }
     }
     
