@@ -27,38 +27,47 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var maxDistSelected: UITextField!
     
     @IBOutlet weak var femaleLabel: UILabel!
-    var genderPref = [String]()
-    @IBOutlet weak var femaleButton: DLRadioButton!
-    var femaleButtonSwitch = 1
-    // MARK: Properties
-    @IBOutlet weak var maleButton: DLRadioButton!
-    var maleButtonSwitch = 1
-
     @IBOutlet weak var maleLabel: UILabel!
-    @IBOutlet weak var nonBinaryButton: DLRadioButton!
-    var nonBinaryButtonSwitch = 1
-
     @IBOutlet weak var nonBinaryLabel: UILabel!
+
+    @IBOutlet weak var femaleButton: DLRadioButton!
+    @IBOutlet weak var maleButton: DLRadioButton!
+    @IBOutlet weak var nonBinaryButton: DLRadioButton!
+
+    var femaleButtonSwitch = 1
+    var maleButtonSwitch = 1
+    var nonBinaryButtonSwitch = 1
+    
+    var genderPref = [String]()
+
     @IBOutlet weak var maxProximitySelected: UITextField!
     
-    //@IBOutlet weak var nameLabel: UILabel!
-    
-  //  @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var ageBox: UILabel!
+    @IBOutlet weak var distanceBox: UILabel!
+    @IBOutlet weak var mileageBox: UILabel!
+
+    @IBOutlet weak var ageSelectedLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var mileageLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-//        self.femaleLabel.layer.masksToBounds = true
-//        self.maleLabel.layer.masksToBounds = true
-//        self.nonBinaryLabel.layer.masksToBounds = true
-
+        
         self.femaleButton.layer.cornerRadius = 15
         self.maleButton.layer.cornerRadius = 15
         self.nonBinaryButton.layer.cornerRadius = 15
+        self.ageBox.layer.cornerRadius = 15
+        self.distanceBox.layer.cornerRadius = 15
+        self.mileageBox.layer.cornerRadius = 15
         
         self.femaleButton.layer.masksToBounds = true
         self.maleButton.layer.masksToBounds = true
         self.nonBinaryButton.layer.masksToBounds = true
+        self.ageBox.layer.masksToBounds = true
+        self.distanceBox.layer.masksToBounds = true
+        self.mileageBox.layer.masksToBounds = true
+
 
         view.addSubview(ageSlide)
         view.addSubview(distSlide)
@@ -78,13 +87,9 @@ class FilterViewController: UIViewController {
         distSlide.configRangeSlider(id: 2)
         proxSlide.configRangeSlider(id: 3)
 
-        
-//        paceSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
-//        proxSlide.addTarget(self, action: Selector(("paceSliderValueChanged:")), for: .valueChanged)
-
-            }
+        }
     
-    @IBAction func savePrefs(_ sender: Any) {
+       func savePrefs() {
         if (femaleButton.isSelected && maleButton.isSelected && nonBinaryButton.isSelected) {
             genderPref = ["Female", "Male", "Non-Binary"]
         }
@@ -109,13 +114,13 @@ class FilterViewController: UIViewController {
         else {
             print("You must select a gender preference.")
         }
-//        print(genderPref)
-//        print("AGE")
-//        print (ageSlide.lowerValue, ageSlide.upperValue)
-//        print("DIST")
-//        print(distSlide.lowerValue, distSlide.upperValue)
-//        print("Prox")
-//        print(proxSlide.upperValue)
+        print(genderPref)
+        print("AGE")
+        print (ageSlide.lowerValue, ageSlide.upperValue)
+        print("DIST")
+        print(distSlide.lowerValue, distSlide.upperValue)
+        print("Prox")
+        print(proxSlide.upperValue)
         
         let runLength = (distSlide.lowerValue, distSlide.upperValue)
         let age = (ageSlide.lowerValue, ageSlide.upperValue)
@@ -150,66 +155,61 @@ class FilterViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         let margin: CGFloat = 20.0
         let width = view.bounds.width - 2.0 * margin
-        ageSlide.frame = CGRect(x: margin, y: 250.0 + topLayoutGuide.length,
-                                   width: width, height: 31.0)
-        distSlide.frame = CGRect(x: margin, y: 375.0 + topLayoutGuide.length,
-                            width: width, height: 31.0)
-        proxSlide.frame = CGRect(x: margin, y: 500.0 + topLayoutGuide.length,
-                                 width: width, height: 31.0)
+        ageSlide.frame = CGRect(x: margin, y: self.ageBox.frame.origin.y + 30,
+                                   width: width, height: 30)
+        
+        proxSlide.frame = CGRect(x: margin, y: self.distanceBox.frame.origin.y + 30, width: width, height: 30.0)
+        
+       distSlide.frame = CGRect(x: margin, y: self.mileageBox.frame.origin.y + 30, width: width, height: 30.0)
+        
+      
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Actions
-//    func rangeSliderValueChanged(rangeSlider: RangeSlider) {
-//        print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
-//    }
-//
-    @objc func rangeSliderValueChanged(rangeSlider: RangeSlider) {
-       // print("Range slider value changed: (\(rangeSlider.lowerValue) \(rangeSlider.upperValue))")
-    }
+
     @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
-//        print("Age slider value changed: (\(ageSlide.lowerValue) \(ageSlide.upperValue))")
-        self.minAgeSelected.text = String(Int(round(ageSlide.lowerValue)));
-        self.maxAgeSelected.text = String(Int(round(ageSlide.upperValue)));
-        
+        let lowAge = String(Int(round(ageSlide.lowerValue)));
+        let highAge = String(Int(round(ageSlide.upperValue)));
+        ageSelectedLabel.text = "Between " + lowAge
+        + " and " + highAge
     }
     
     
     @objc func distSliderValueChanged(rangeSlider: RangeSlider) {
-//        print("Dist slider value changed: (\(distSlide.lowerValue) \(distSlide.upperValue))")
         
        //https://stackoverflow.com/questions/28447732/checking-if-a-double-value-is-an-integer-swift
         let roundMin = round(distSlide.lowerValue/0.5)*0.5
         let minIsInteger = roundMin.truncatingRemainder(dividingBy: 1.0) == 0.0
+       
+        var selectedMin = "";
         if (minIsInteger){
-            self.minDistSelected.text = String(Int(roundMin)) + "mi";
-
+           selectedMin = String(Int(roundMin))
         }
         else{
-            self.minDistSelected.text = String(roundMin) + "mi";
+            selectedMin = String(roundMin)
+
         }
-        
+
         let roundMax = round(distSlide.upperValue/0.5)*0.5
         let maxIsInteger = roundMax.truncatingRemainder(dividingBy: 1.0) == 0.0
+        var selectedMax = "";
+        print("roundmax", roundMax, maxIsInteger)
 
         if (maxIsInteger){
-            self.maxDistSelected.text = String(Int(roundMax)) + "mi";
-            
+            selectedMax = String(Int(roundMax))
         }
         else{
-            self.maxDistSelected.text = String(roundMax) + "mi";
+           selectedMax = String(roundMax)
         }
+        mileageLabel.text = "Between " + selectedMin + " and " + selectedMax + " miles"
         
     }
     
     @objc func proxSliderValueChanged(rangeSlider: RangeSlider) {
-//        print("Prox slider value changed: (\(proxSlide.lowerValue) \(proxSlide.upperValue))")
-        
-        self.maxProximitySelected.text = String(Int(proxSlide.upperValue)) + "mi"
+                distanceLabel.text = "Up to " + String(Int(proxSlide.upperValue)) + " miles away"
         
     }
     
@@ -253,6 +253,39 @@ class FilterViewController: UIViewController {
     }
     
     
-
+    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        
+        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+        
+            if isPresentingInAddContactMode {
+                dismiss(animated: true, completion: nil)
+            }
+            else if let owningNavigationController = navigationController{
+                owningNavigationController.popViewController(animated: true)
+            }
+            else {
+                fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+            }
+        
     
+        }
+    
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        
+        savePrefs()
+        
+        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddContactMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+        }
+        
+    }
+  
 }

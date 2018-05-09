@@ -43,13 +43,14 @@ class RangeSlider: UIControl {
         }
     }
     
-    var trackHighlightTintColor: UIColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0) {
+    var trackHighlightTintColor: UIColor =  UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+        {
         didSet {
             trackLayer.setNeedsDisplay()
         }
     }
     
-    var thumbTintColor: UIColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0){
+    var thumbTintColor: UIColor =  UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0){
         didSet {
             lowerThumbLayer.setNeedsDisplay()
             upperThumbLayer.setNeedsDisplay()
@@ -113,8 +114,7 @@ class RangeSlider: UIControl {
         lowerThumbLayer.setNeedsDisplay()
         
         let upperThumbCenter = CGFloat(positionForValue(value: upperValue))
-        upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth / 2.0, y: 0.0,
-                                       width: thumbWidth, height: thumbWidth)
+        upperThumbLayer.frame = CGRect(x: upperThumbCenter - thumbWidth / 2.0, y: 0.0, width: thumbWidth, height: thumbWidth)
         upperThumbLayer.setNeedsDisplay()
        
         self.sendActions(for: .valueChanged)
