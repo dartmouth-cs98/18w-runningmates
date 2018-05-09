@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//https://blog.supereasyapps.com/how-to-create-round-buttons-using-ibdesignable-on-ios-11/
 
 import UIKit
 
@@ -18,7 +18,7 @@ import UIKit
             refreshCorners(value: cornerRadius)
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()
@@ -41,3 +41,4 @@ import UIKit
         layer.cornerRadius = value
     }
 }
+
