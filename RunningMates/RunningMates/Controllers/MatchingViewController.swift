@@ -24,7 +24,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
   //  var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var userEmail: String = UserDefaults.standard.string(forKey: "email")!
+    var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
+    var userEmail: String = ""
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -42,6 +43,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        
+        if (userEmail1 == nil) {
+            userEmail = ""
+        } else {
+            userEmail = userEmail1!
+        }
         
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
