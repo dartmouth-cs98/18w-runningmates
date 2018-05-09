@@ -19,7 +19,10 @@ class RangeSliderTrackLayer: CALayer {
         if let slider = rangeSlider {
             // Clip
             let cornerRadius = bounds.height * slider.curvaceousness / 5.0
-            let path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
+            let customBounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: bounds.width, height: 5)
+            
+    
+            let path = UIBezierPath(roundedRect: customBounds, cornerRadius: cornerRadius)
             ctx.addPath(path.cgPath)
             
             // Fill the track
@@ -32,7 +35,8 @@ class RangeSliderTrackLayer: CALayer {
           //  print("fillding highlighted range")
             let lowerValuePosition = CGFloat(slider.positionForValue(value: slider.lowerValue))
             let upperValuePosition = CGFloat(slider.positionForValue(value: slider.upperValue))
-            let rect = CGRect(x: lowerValuePosition, y: 0.0, width: upperValuePosition - lowerValuePosition, height: bounds.height)
+            let rect = CGRect(x: lowerValuePosition, y: 0.0, width: upperValuePosition - lowerValuePosition, height: 5 )
+            
             ctx.fill(rect)
         }
     }

@@ -44,7 +44,7 @@
                                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <segue destination="bZu-eF-9dI" kind="show" id="c2e-J7-coF"/>
+                                            <segue destination="bZu-eF-9dI" kind="presentation" id="c2e-J7-coF"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="Image-2" id="TNV-gT-Go4">
@@ -100,15 +100,14 @@
         <!--Dashboard-->
         <scene sceneID="2I0-U5-6ES">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Dashboard" id="R0D-EK-oUE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oka-9i-owb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3427" y="295"/>
         </scene>
         <!--Matching-->
         <scene sceneID="HlG-C0-ney">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oej-es-Mwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="matching" title="Matching" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="SLy-yC-Sbj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="krc-st-WTX">
@@ -124,6 +123,7 @@
                         <segue destination="ago-c8-JKF" kind="relationship" relationship="rootViewController" id="HGK-uy-ZLu"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oej-es-Mwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1343" y="203"/>
         </scene>
