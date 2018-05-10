@@ -474,7 +474,7 @@ extension MatchingViewController: KolodaViewDataSource {
         }
 
 
-        if (userList[index].matchReason != nil) {
+        if (userList[index].matchReason != "") {
             matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
         } else {
             matchReason = "\n"
