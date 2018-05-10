@@ -20,6 +20,8 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var safetrackButton: UIButton!
     
+    @IBOutlet weak var metricCirc2: UIView!
+    @IBOutlet weak var metricCirc: UIView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -28,34 +30,19 @@ class DashboardViewController: UIViewController {
         //https://www.appcoda.com/ios-programming-circular-image-calayer/
         self.profPic.layer.cornerRadius = self.profPic.frame.size.width / 2;
         self.profPic.clipsToBounds = true;
-        self.profPic.layer.borderWidth = 1
-        self.profPic.layer.borderColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0).cgColor
-
-        self.secondView.layer.cornerRadius = secondView.frame.size.height/2
-        self.secondView.clipsToBounds = true;
-        self.secondView.layer.borderWidth = 4
-        self.secondView.layer.borderColor = UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0).cgColor
-
-
+        self.profPic.layer.borderWidth = 2.5;
+        self.profPic.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        self.settingsButton.layer.cornerRadius = self.settingsButton.frame.size.width / 2;
-        self.settingsButton.clipsToBounds = true;
-        self.settingsButton.layer.borderColor = UIColor.black.cgColor
-        self.settingsButton.layer.borderWidth = 1
-
-
+        self.metricCirc.layer.cornerRadius = self.metricCirc.frame.size.width / 2;
+        self.metricCirc.clipsToBounds = true;
+        self.metricCirc.layer.borderWidth = 1.5;
+        self.metricCirc.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        self.editButton.layer.cornerRadius = self.editButton.frame.size.width / 2;
-        self.editButton.clipsToBounds = true;
-               self.editButton.layer.borderColor = UIColor.black.cgColor
-        self.editButton.layer.borderWidth = 1
+        self.metricCirc2.layer.cornerRadius = self.metricCirc2.frame.size.width / 2;
+        self.metricCirc2.clipsToBounds = true;
+        self.metricCirc2.layer.borderWidth = 1.5;
+        self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        self.safetrackButton.layer.cornerRadius = 10;
-        self.safetrackButton.clipsToBounds = true;
-        self.safetrackButton.layer.borderColor = UIColor.black.cgColor
-        self.safetrackButton.layer.borderWidth = 1
-
-
         //TO-DO make this first name
         self.name.text = appDelegate.userEmail
     }
