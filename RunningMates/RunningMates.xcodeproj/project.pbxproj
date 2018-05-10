@@ -422,7 +422,6 @@
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
-				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FAFE988920786040008B56BA /* Settings.swift */,
 				8869231E209A238300269557 /* SocketIOManager.swift */,
@@ -451,6 +450,7 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
 				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
