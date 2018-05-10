@@ -59,8 +59,15 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         let imgData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: imgData!)
-        cell.imageView?.image = image
-        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.size.height)! / 2;
+        cell.userImg.image = image
+        
+        cell.userImg.contentMode = UIViewContentMode.scaleAspectFit
+//        cell.userImg.layoutIfNeeded()
+        cell.userImg.layer.borderWidth = 1
+        cell.userImg.layer.masksToBounds = true
+        cell.userImg.layer.borderColor = UIColor.white.cgColor
+        cell.userImg.layer.cornerRadius = (cell.userImg.frame.size.width) / 2
+        cell.userImg.clipsToBounds = true
         
         cell.nameLabel?.text = displayedMembers
         cell.contentPreviewLabel?.text = content
