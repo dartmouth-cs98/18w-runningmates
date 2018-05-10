@@ -90,7 +90,7 @@ class FilterViewController: UIViewController {
         distSlide.configRangeSlider(id: 2)
         proxSlide.configRangeSlider(id: 3)
         
-        if (self.userPref["gender"] != nil) {
+        if ((self.userPref["gender"] as! [String]).isEmpty == false) {
             let userGenderPref = self.userPref["gender"] as! [String]
             let userRunLengthPref = self.userPref["runLength"] as! [Double]
             let userAgePref = self.userPref["age"] as! [Double]
