@@ -20,7 +20,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var imageView: UIImageView!
     var current_index: Int!
 //    var rootURl: String = "http://localhost:9090/"
-  //  var rootURl: String = "https://running-mates.herokuapp.com/"
+    var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
@@ -93,6 +93,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
 
 
+        print(userEmail)
         UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
             self.userId = user.id!
         })
@@ -352,41 +353,41 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        }
 //    }
 
-    func sendRequest(completion: @escaping (String, String)->()) {
-
-        let rootUrl: String = appDelegate.rootUrl
-
-        // alamofire request
-        let params: [String: Any] = [
-            "userId": self.userId,
-            "targetId": userList[current_index].id!
-        ]
-
-        let url = rootUrl + "api/match"
-
-        var title = ""
-        var message = ""
-
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    let responseDictionary = response.result.value as! [String:Any]
-                    if (String(describing: responseDictionary["response"]!) == "match") {
-                        title = "You matched with \(self.userList[self.current_index].firstName!)"
-                        message = "Go to your chat to say hello!"
-                    } else {
-                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
-                        message = "Keep running!"
-                    }
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        completion(title, message)
-        }
-
-    }
+//    func sendRequest(completion: @escaping (String, String)->()) {
+//
+//        let rootUrl: String = appDelegate.rootUrl
+//
+//        // alamofire request
+//        let params: [String: Any] = [
+//            "userId": self.userId,
+//            "targetId": userList[current_index].id!
+//        ]
+//
+//        let url = rootUrl + "api/match"
+//
+//        var title = ""
+//        var message = ""
+//
+//        let _request = Alamofire.request(url, method: .post, parameters: params)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    let responseDictionary = response.result.value as! [String:Any]
+//                    if (String(describing: responseDictionary["response"]!) == "match") {
+//                        title = "You matched with \(self.userList[self.current_index].firstName!)"
+//                        message = "Go to your chat to say hello!"
+//                    } else {
+//                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
+//                        message = "Keep running!"
+//                    }
+//                case .failure(let error):
+//                    print("error fetching users")
+//                    print(error)
+//                }
+//        completion(title, message)
+//        }
+//
+//    }
 
     @IBAction func matchButton(_ sender: UIButton) {
 
@@ -401,7 +402,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             //static right now,
             // will add a GET request when "refresh user" is clicked once backend is fixed
         }
-        else {
+    else {
 
             UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[current_index].user.id!, firstName: self.userList[self.current_index].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
@@ -478,10 +479,10 @@ extension MatchingViewController: KolodaViewDataSource {
             matchReason = "\n"
         }
 
-        let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
-        let point = CGPoint(x: 0, y: 100)
+      //  let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
+      //  let point = CGPoint(x: 0, y: 100)
 
-        let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
+       // let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
 
 //        if (index == 0){
 //            current_index = userList.count - 1
