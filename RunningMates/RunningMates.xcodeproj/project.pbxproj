@@ -28,6 +28,8 @@
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
 		F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */; };
 		F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F177C20A3A42D003E1C91 /* RoundButton.swift */; };
+		F888D6FC20A4833100714314 /* cog-16.png in Resources */ = {isa = PBXBuildFile; fileRef = F888D6FB20A4833100714314 /* cog-16.png */; };
+		F888D70320A4892A00714314 /* map-5-24.png in Resources */ = {isa = PBXBuildFile; fileRef = F888D70220A4892900714314 /* map-5-24.png */; };
 		F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */; };
 		F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */; };
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
@@ -181,6 +183,8 @@
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableClasses.swift; sourceTree = "<group>"; };
 		F86F177C20A3A42D003E1C91 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		F888D6FB20A4833100714314 /* cog-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cog-16.png"; path = "../../../cog-16.png"; sourceTree = "<group>"; };
+		F888D70220A4892900714314 /* map-5-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map-5-24.png"; path = "../../../map-5-24.png"; sourceTree = "<group>"; };
 		F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F888D70220A4892900714314 /* map-5-24.png */,
+				F888D6FB20A4833100714314 /* cog-16.png */,
 				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
@@ -424,7 +430,6 @@
 				2B6483902037918400092C12 /* OAuthSwift */,
 				FA5711022021208D005792CB /* AppDelegate.swift */,
 				FA2A5325204B39FD002F515E /* RangeSliderTrackLayer.swift */,
-				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				FA2A5310204B3357002F515E /* RangeSliderThumbLayer.swift */,
 				FAFE988920786040008B56BA /* Settings.swift */,
 				8869231E209A238300269557 /* SocketIOManager.swift */,
@@ -453,6 +458,7 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
 				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
@@ -641,12 +647,14 @@
 			files = (
 				F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */,
 				2B16D04D204C8B5200DFFBEF /* line.jpg in Resources */,
+				F888D70320A4892A00714314 /* map-5-24.png in Resources */,
 				2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */,
 				FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
 				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
+				F888D6FC20A4833100714314 /* cog-16.png in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
