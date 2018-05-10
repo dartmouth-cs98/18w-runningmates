@@ -15,32 +15,34 @@ class MatchingCardView: UIView {
     
     override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)
-        fromNib()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        fromNib()
     }
     
-    func commonInit(userInfo: String, userImage: UIImage) {
-        profileImage.image = userImage
-        userInfoText.text = userInfo
-    }
+//    func commonInit(userInfo: String, userImage: UIImage) {
+//        profileImage.image = userImage
+//        userInfoText.text = userInfo
+//    }
     
 }
 
+// This helped me here: https://medium.com/theappspace/swift-custom-uiview-with-xib-file-211bb8bbd6eb
 extension UIView {
     
     @discardableResult
-    func fromNib<T : UIView>() -> T? {
-        guard let contentView = Bundle(for: type(of: self)).loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)?.first as? T else {
-            // xib not loaded, or its top view is of the wrong type
-            return nil
-        }
+    func fromNib() -> UIView? {
+        let bundle = Bundle(for: type(of: self))
+        let nibName = type(of: self).description().components(separatedBy: ".").last!
+        print("nibname = " + nibName)
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        let contentView = nib.instantiate(withOwner: self, options: nil).first as! MatchingCardView
+ //       contentView.commonInit(userInfo: userInfo, userImage: userImage)
         self.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
        // contentView.layoutAttachAll(to: self)
+       
         return contentView
     }
 }

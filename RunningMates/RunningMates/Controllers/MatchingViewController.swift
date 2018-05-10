@@ -23,8 +23,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     var rootURl: String = "https://running-mates.herokuapp.com/"
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
-    var userEmail: String = ""
+    // var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
+    var userEmail: String! = UserDefaults.standard.string(forKey: "email")
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -43,10 +43,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         locationManager = CLLocationManager()
         locationManager.delegate = self
 
-        if (userEmail1 == nil) {
-            userEmail = ""
-        } else {
-            userEmail = userEmail1!
+        if (self.userEmail == nil) {
+            self.userEmail = "brian@test.com"
         }
 
 
@@ -92,8 +90,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
 
+        if (self.userEmail == nil) {
+            self.userEmail = "brian@test.com"
+        }
 
-        print(userEmail)
+        print(self.userEmail)
         UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
             self.userId = user.id!
         })
@@ -264,6 +265,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
                 case .failure(let error):
                     print("failure: error creating user for user id")
+                    print("email: " + self.userEmail)
                     print(error)
                 }
         }
@@ -436,10 +438,6 @@ extension MatchingViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         print("the current index is", index)
         print(userList[index].user.firstName)
-        // Need to create UIImage from URL string
-        // let url = URL(string: self.userList[index].imageURL)
-        //var user: Int;
-
 
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
@@ -465,19 +463,22 @@ extension MatchingViewController: KolodaViewDataSource {
 
         let userText = nameAge + location + bio + totalMiles + averageRunLength
 
-        let view: MatchingCardView = MatchingCardView.init(coder: NSCoder.init())!
-        view.commonInit(userInfo: userText, userImage: image!)
-
+        let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
+        
+        view.profileImage.image = image!
+        view.userInfoText.text = userText
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.clipsToBounds = true
+        
         print("card rendered")
-
-        return view
-
 
         if (userList[index].matchReason != "") {
             matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
         } else {
             matchReason = "\n"
         }
+        
+        return view
 
       //  let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
       //  let point = CGPoint(x: 0, y: 100)
@@ -515,4 +516,7 @@ extension MatchingViewController: KolodaViewDataSource {
         print("currently looking at", userList[current_index].user.firstName)
     }
 
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return Bundle.main.loadNibNamed("MatchingCardOverlay", owner: self, options: nil)?[0] as? OverlayView
+    }
 }
