@@ -39,7 +39,6 @@ extension UIViewController {
             super.viewDidLoad()
             
             rootURl = appDelegate.rootUrl;
-
             self.hideKeyboardOnBackgroundTap()
         }
     

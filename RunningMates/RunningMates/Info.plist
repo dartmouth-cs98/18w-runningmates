@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>In order to optimize your matching experience please enable location services</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>In order to optimize your matching experience please enable location services</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>In order to optimize your matching experience please enable location services</string>
-	<key>NSLocationUsageDescription</key>
-	<string>In order to optimize your matching experience please enable location services</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -25,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.01</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,7 +30,12 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>14</string>
+	<string>17</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -46,6 +43,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>In order to optimize your matching experience please enable location services</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>In order to optimize your matching experience please enable location services</string>
+	<key>NSLocationUsageDescription</key>
+	<string>In order to optimize your matching experience please enable location services</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>In order to optimize your matching experience please enable location services</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allows you to choose a new photo for your profile</string>
 	<key>UILaunchStoryboardName</key>
@@ -71,10 +76,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>googlechromes</string>
-    <string>comgooglemaps</string>
-</array>
 </dict>
 </plist>

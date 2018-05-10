@@ -106,7 +106,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OEO-EJ-blz"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Wgd-kN-3Cx"/>
+                    <navigationItem key="navigationItem" title="Chat" id="Wgd-kN-3Cx"/>
                     <connections>
                         <outlet property="tableView" destination="WMK-9F-nhc" id="ozr-s0-o4e"/>
                         <outlet property="view" destination="PU2-xE-opP" id="PN2-De-42Y"/>
