@@ -37,16 +37,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    
+
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
+    var manager: SocketManager?
+//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
 //    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
     var userEmail: String!
 
-    let recipientEmail : String = "drew@test.com"
+    let recipientEmail : String = "jon@test.com"
     var sentByID : String = ""
     var recipientID : String = ""
 
@@ -70,7 +71,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -109,8 +110,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         //cell.textLabel?.text = displayedMembers
 
-    
-    
+
+
 
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -176,10 +177,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            self.tableView.reloadData()
 //        })
 
-
+        manager = SocketManager(socketURL: URL(string: appDelegate.rootUrl)!)
 
         self.userEmail = appDelegate.userEmail
-        let socket = manager.defaultSocket
+        let socket = manager!.defaultSocket
 
         socket.on(clientEvent: .connect) {data, ack in
             if (self.chatID != nil) {
@@ -192,7 +193,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
 
         socket.connect()
-        
+
 
         if (self.chatID != nil) {
             print("chat id: " + self.chatID)
@@ -206,22 +207,20 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //        self.userEmail = appDelegate.userEmail;
 
         let group = DispatchGroup()
-        
+
         group.enter()
         group.enter()
-        
-        getUserId(email: self.userEmail, completion: {id in
-            self.sentByID = id
-            print("sentByID: " + String(describing: id))
+
+        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+            self.sentByID = user.id!
             group.leave()
         })
-        
-        getUserId(email: self.recipientEmail, completion: {id in
-            self.recipientID = id
-            print("recipientID: " + String(describing: id))
+
+        UserManager.instance.requestUserObject(userEmail: self.recipientEmail, completion: {user in
+            self.recipientID = user.id!
             group.leave()
         })
-        
+
         group.notify(queue: DispatchQueue.main) {
             self.fetchChats(completion: { chats in
                 self.data = chats
@@ -229,7 +228,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.tableView.reloadData()
             })
         }
-        
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
 
@@ -243,7 +242,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("email: " + String(describing: self.userEmail))
 
         var message : [String: Any] = [:]
- 
+
         if (self.chatID != nil) {
             message = [
                 "message": self.chatInput.text!,
@@ -261,7 +260,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         print(message)
 
-        let socket = manager.defaultSocket
+        let socket = manager!.defaultSocket
         socket.emit("chat message", message)
         self.chatInput.text = ""
 
@@ -269,75 +268,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func recieveMessage(message_data: [Any]){
 
-        
+
         print("message recieved******")
         let message = message_data[0] as! [String:String]
         let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], time: message["time"], ChatID: "3420938423" )
 
         if(message_to_display.messageText != ""){
             data.append(message_to_display);
-    
+
             print("data array", data)
             self.tableView.reloadData()
             scrollToBottom()
         }
 
     }
-
-    func getUserId(email: String, completion: @escaping (String)->()) {
-        print("in getUserID")
-        
-        let rootUrl: String = appDelegate.rootUrl
-        let url: String = rootUrl + "api/user/" + email
-        
-        let params : [String:Any] = [
-            "email": email
-        ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    if let jsonUser = response.result.value as? [String:Any] {
-                        do {
-                            let user = try User(json: (jsonUser as [String:Any]))
-                            if (user != nil) {
-                                completion((user?.id)!)
-                            } else {
-                                print("nil")
-                            }
-                        } catch UserInitError.invalidId {
-                            print("invalid id")
-                        } catch UserInitError.invalidFirstName {
-                            print("invalid first name")
-                        } catch UserInitError.invalidLastName {
-                            print("invalid last name")
-                        } catch UserInitError.invalidImageURL {
-                            print("invalid image url")
-                        } catch UserInitError.invalidBio {
-                            print("invalid bio")
-                        } catch UserInitError.invalidGender {
-                            print("invalid gender")
-                        } catch UserInitError.invalidAge {
-                            print("invalid age")
-                        } catch UserInitError.invalidLocation {
-                            print("invalid location")
-                        } catch UserInitError.invalidEmail {
-                            print("invalid email")
-                        } catch UserInitError.invalidPassword {
-                            print("invalid password")
-                        } catch {
-                            print("other error")
-                        }
-                    } else {
-                        print("error creating user for user id")
-                    }
-                    
-                case .failure(let error):
-                    print("failure: error creating user for user id")
-                    print(error)
-                }
-            }
-        }
-
-    }
-
+}
