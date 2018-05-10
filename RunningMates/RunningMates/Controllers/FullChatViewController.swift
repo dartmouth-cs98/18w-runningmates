@@ -93,10 +93,24 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             
             let index: IndexPath? = tableView?.indexPath(for: cell!)
             let selectedObj = data[(index?.row)!] as! [String: Any]
+
             let id: String = selectedObj["id"] as! String
+            let imageURL: String = selectedObj["imageURL"] as! String
+             let recipients: [String] = selectedObj["recipients"] as! [String]
+            
+            var displayedMembers: String = ""
+            displayedMembers += recipients[0]
+            
+            for (index, recipient) in recipients.enumerated() {
+                if (index != 0) {
+                    displayedMembers = displayedMembers + ", " + recipient
+                }
+            }
             
             let chatViewController = segue.destination as! ChatViewController
             chatViewController.chatID = id
+            chatViewController.imageURL = imageURL
+            chatViewController.recipientName = displayedMembers
         }
     }
     
