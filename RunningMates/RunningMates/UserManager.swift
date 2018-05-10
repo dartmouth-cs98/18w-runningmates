@@ -47,10 +47,15 @@ class UserManager: NSObject {
                         let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
                         // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
                         if !(token == prevToken) {
-                            let firstName = user["firstName"] as! String
-                            UserDefaults.standard.set(firstName, forKey: "firstName")
-                            UserDefaults.standard.set(user["email"]!, forKey: "email")
                             UserDefaults.standard.set(token, forKey: "token")
+                            if (user["firstName"] != nil) {
+                                let firstName = user["firstName"] as! String
+                                UserDefaults.standard.set(firstName, forKey: "firstName")
+                                
+                            }
+                            if (user["email"] != nil) {
+                                UserDefaults.standard.set(user["email"]!, forKey: "email")
+                            }
                             if (user["_id"] != nil) {
                                 UserDefaults.standard.set(user["_id"]!, forKey: "id")
                             }
