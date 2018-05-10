@@ -36,7 +36,7 @@ class CustomMessageCell: UITableViewCell {
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userImageView: UIImageView!
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
@@ -51,6 +51,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var sentByID : String = ""
     var recipientID : String = ""
 
+    var imageURL: String!
+    var recipientName: String!
+    
     private var chats: [Any] = [Any]()
     private var data = [Message]()  // list of chat objects with chat ID, other user's name
 
@@ -86,7 +89,16 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
         let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
-        cell.contentView.backgroundColor = RM_orange
+        let RM_gray = UIColor.lightGray
+        
+        let messageUserID = data[indexPath.row].sentBy
+        
+        if (messageUserID == self.sentByID) {
+            cell.contentView.backgroundColor = RM_orange
+        } else {
+            cell.contentView.backgroundColor = RM_gray
+        }
+        
         let chat_text : String  = data[indexPath.row].messageText as! String
         cell.layer.cornerRadius = 10;
         cell.layer.borderWidth = 5;
@@ -171,12 +183,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchChats(completion: { chats in
-//            self.chats = chats
-//            self.tableView.dataSource = self
-//            self.tableView.reloadData()
-//        })
 
+        let url = URL(string: self.imageURL)
+        let imgData = try? Data(contentsOf: url!)
+        let image = UIImage(data: imgData!)
+        self.userImageView.image = image
+        
+        self.userImageView.contentMode = UIViewContentMode.scaleAspectFit
+        self.userImageView.layer.borderWidth = 1
+        self.userImageView.layer.masksToBounds = true
+        self.userImageView.layer.borderColor = UIColor.white.cgColor
+        self.userImageView.layer.cornerRadius = (self.userImageView.frame.size.width) / 2
+        self.userImageView.clipsToBounds = true
+        
+        self.userLabel.text = self.recipientName
+        
         manager = SocketManager(socketURL: URL(string: appDelegate.rootUrl)!)
 
         self.userEmail = appDelegate.userEmail
