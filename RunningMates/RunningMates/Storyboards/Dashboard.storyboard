@@ -151,7 +151,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93595141169999996" green="0.030397811930000001" blue="0.1061733861" alpha="0.74232127568493156" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93595141169999996" green="0.039996580945847203" blue="0.058960577828378276" alpha="0.74232127568493156" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
