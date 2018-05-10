@@ -28,10 +28,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
-        
-        passReconfirmTextField.borderStyle = UITextBorderStyle.roundedRect
-        passTextField.borderStyle = UITextBorderStyle.roundedRect
-        emailTextField.borderStyle = UITextBorderStyle.roundedRect
     }
     
     override func didReceiveMemoryWarning() {
