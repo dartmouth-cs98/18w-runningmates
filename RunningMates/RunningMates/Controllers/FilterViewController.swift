@@ -40,7 +40,7 @@ class FilterViewController: UIViewController {
     
     var genderPref = [String]()
     
-    var userPref: [String: Any] = UserDefaults.standard.dictionary(forKey: "preferences")!
+    var userPref: [String: Any] = UserDefaults.standard.dictionary(forKey: "preferences")! as [String : Any]
  
 
     @IBOutlet weak var maxProximitySelected: UITextField!
@@ -92,8 +92,13 @@ class FilterViewController: UIViewController {
         
         if ((self.userPref["gender"] as! [String]).isEmpty == false) {
             let userGenderPref = self.userPref["gender"] as! [String]
-            let userRunLengthPref = self.userPref["runLength"] as! [Double]
-            let userAgePref = self.userPref["age"] as! [Double]
+            let userRunLengthPref = (self.userPref["runLength"] as! [Any])
+            let runLengthLower = (userRunLengthPref[0])
+            let runLengthUpper = (userRunLengthPref[1])
+            let userAgePref = self.userPref["age"] as! [Any]
+            
+            let ageLower = (userAgePref[0])
+            let ageUpper = (userAgePref[1])
      
             if userGenderPref.contains("Female") {
                 self.femaleButton.isSelected = true
@@ -108,11 +113,11 @@ class FilterViewController: UIViewController {
                 self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
             }
         
-            ageSlide.lowerValue = userAgePref[0]
-            ageSlide.upperValue = userAgePref[1]
+            ageSlide.lowerValue = (ageLower as AnyObject).doubleValue
+            ageSlide.upperValue = (ageUpper as AnyObject).doubleValue
         
-            distSlide.lowerValue = userRunLengthPref[0]
-            distSlide.upperValue = userRunLengthPref[1]
+            distSlide.lowerValue = (runLengthLower as AnyObject).doubleValue
+            distSlide.upperValue = (runLengthUpper as AnyObject).doubleValue
 
             var userMetersProx = userPref["proximity"] as! Double
             let userMilesProx = (userMetersProx * 0.000621371192)
@@ -147,36 +152,39 @@ class FilterViewController: UIViewController {
         else {
             print("You must select a gender preference.")
         }
-        print(genderPref)
-        print("AGE")
-        print (ageSlide.lowerValue, ageSlide.upperValue)
-        print("DIST")
-        print(distSlide.lowerValue, distSlide.upperValue)
-        print("Prox")
-        print(proxSlide.upperValue)
+
         
-        let runLength = (distSlide.lowerValue, distSlide.upperValue)
-        let age = (ageSlide.lowerValue, ageSlide.upperValue)
+        let runLength = [Double(distSlide.lowerValue), Double(distSlide.upperValue)]
+        let age = [Double(ageSlide.lowerValue), Double(ageSlide.upperValue)]
         let proximity = proxSlide.upperValue
     
+        self.userPref["gender"] = genderPref as [String]
+        self.userPref["runLength"] = runLength as! [Double]
+        self.userPref["age"] = age
+        self.userPref["proximity"] = proximity * 1609.344 as Double // Meters
+
         
+        var preferences = [String:Any]()
+        
+        preferences["gender"] = genderPref as [String]
+        preferences["runLength"] = runLength as [Double]
+        preferences["age"] = age
+        preferences["proximity"] = proximity * 1609.344 as Double // Meters
+
         // alamofire request
         let params: [String: Any] = [
             "email": self.userEmail,
-            "gender": genderPref,
-            "runLength": runLength,
-            "age": age,
-            "proximity": proximity
+            "preferences": self.userPref,
         ]
-        print(params)
 
-        let url = rootUrl + "/api/prefs"
+        let url = rootUrl + "api/users/" + self.userEmail
 
         let _request = Alamofire.request(url, method: .post, parameters: params)
             .responseString { response in
                 switch response.result {
                 case .success:
                     print("success! response is:")
+                    UserDefaults.standard.set(preferences, forKey: "preferences")
                     print(response)
                 case .failure(let error):
                     print("error fetching users")
@@ -229,7 +237,6 @@ class FilterViewController: UIViewController {
         let roundMax = round(distSlide.upperValue/0.5)*0.5
         let maxIsInteger = roundMax.truncatingRemainder(dividingBy: 1.0) == 0.0
         var selectedMax = "";
-        print("roundmax", roundMax, maxIsInteger)
 
         if (maxIsInteger){
             selectedMax = String(Int(roundMax))
