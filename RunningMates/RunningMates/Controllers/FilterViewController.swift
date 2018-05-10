@@ -90,34 +90,36 @@ class FilterViewController: UIViewController {
         distSlide.configRangeSlider(id: 2)
         proxSlide.configRangeSlider(id: 3)
         
-        let userGenderPref = self.userPref["gender"] as! [String]
-        let userRunLengthPref = self.userPref["runLength"] as! [Double]
-        let userAgePref = self.userPref["age"] as! [Double]
- 
-        if userGenderPref.contains("Female") {
-            self.femaleButton.isSelected = true
-            self.femaleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
-        }
-        if userGenderPref.contains("Male") {
-            self.maleButton.isSelected = true
-            self.maleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
-        }
-        if userGenderPref.contains("Non-Binary") {
-            self.nonBinaryButton.isSelected = true
-            self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
-        }
+        if ((self.userPref["gender"] as! [String]).isEmpty == false) {
+            let userGenderPref = self.userPref["gender"] as! [String]
+            let userRunLengthPref = self.userPref["runLength"] as! [Double]
+            let userAgePref = self.userPref["age"] as! [Double]
+     
+            if userGenderPref.contains("Female") {
+                self.femaleButton.isSelected = true
+                self.femaleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            }
+            if userGenderPref.contains("Male") {
+                self.maleButton.isSelected = true
+                self.maleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            }
+            if userGenderPref.contains("Non-Binary") {
+                self.nonBinaryButton.isSelected = true
+                self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            }
         
-        ageSlide.lowerValue = userAgePref[0]
-        ageSlide.upperValue = userAgePref[1]
+            ageSlide.lowerValue = userAgePref[0]
+            ageSlide.upperValue = userAgePref[1]
         
-        distSlide.lowerValue = userRunLengthPref[0]
-        distSlide.upperValue = userRunLengthPref[1]
+            distSlide.lowerValue = userRunLengthPref[0]
+            distSlide.upperValue = userRunLengthPref[1]
 
-        var userMetersProx = userPref["proximity"] as! Double
-        let userMilesProx = (userMetersProx * 0.000621371192)
-        userMetersProx = userMilesProx * 1609.344
+            var userMetersProx = userPref["proximity"] as! Double
+            let userMilesProx = (userMetersProx * 0.000621371192)
+            userMetersProx = userMilesProx * 1609.344
         
-        proxSlide.upperValue = userMilesProx
+            proxSlide.upperValue = userMilesProx
+        }
         }
     
        func savePrefs() {
