@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,12 +14,12 @@
         <scene sceneID="3a7-pd-PHN">
             <objects>
                 <viewController storyboardIdentifier="matchingView" title="Matching" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mU6-8s-FY8">
+                    <view key="view" contentMode="scaleToFill" id="mU6-8s-FY8" customClass="GradientView" customModule="RunningMates" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjh-96-9Y8">
-                                <rect key="frame" x="-1" y="515" width="377" height="44"/>
+                                <rect key="frame" x="-2" y="515" width="378" height="43"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Profile" image="user-xxlwhite" id="NGa-nT-MwV">
@@ -49,30 +49,21 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guR-iR-FKy" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="30" y="87" width="315" height="381"/>
+                                <rect key="frame" x="30" y="89" width="314" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <viewLayoutGuide key="safeArea" id="NoS-32-pbW"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-SZ-Ahu" customClass="RoundButton" customModule="RunningMates" customModuleProvider="target">
-                                <rect key="frame" x="156" y="493" width="62" height="22"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.5518556993" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Match">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" red="1" green="0.55185569933953382" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="matchButton:" destination="ago-c8-JKF" eventType="touchUpInside" id="l2V-Il-I4I"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WiB-K8-Emr"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.93595141169999996" green="0.039996580949999999" blue="0.058960577829999999" alpha="0.74232127569999995" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.93595141169999996" green="0.039996580949999999" blue="0.058960577829999999" alpha="0.74232127569999995" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="RunningMates" id="MaG-cx-7vr"/>
@@ -81,6 +72,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="kolodaView" destination="guR-iR-FKy" id="BPi-vs-oOn"/>
+                        <outlet property="topView" destination="mU6-8s-FY8" id="ZJj-1Z-9Y8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXk-8W-UZO" userLabel="First Responder" sceneMemberID="firstResponder"/>

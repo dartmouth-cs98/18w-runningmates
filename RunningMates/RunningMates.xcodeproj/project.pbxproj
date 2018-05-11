@@ -20,8 +20,11 @@
 		2B7B91A12097AFEE00B2EA07 /* MatchingCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */; };
 		2B7B91C520A4F5A500B2EA07 /* MatchingCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91C420A4F5A500B2EA07 /* MatchingCardOverlay.swift */; };
 		2B7B91CE20A4F70800B2EA07 /* MatchingCardOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */; };
-		2B7B91D020A4F95F00B2EA07 /* match_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91CF20A4F95F00B2EA07 /* match_image.png */; };
-		2B7B91D220A4F99500B2EA07 /* skip_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91D120A4F99500B2EA07 /* skip_image.png */; };
+		2B7B91DE20A6275300B2EA07 /* thumbsdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91DD20A6275300B2EA07 /* thumbsdown.png */; };
+		2B7B91E020A6281600B2EA07 /* thumbsup.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91DF20A6281600B2EA07 /* thumbsup.png */; };
+		2B7B91E220A62C2B00B2EA07 /* MatchesLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91E120A62C2B00B2EA07 /* MatchesLoadingView.xib */; };
+		2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91E320A62C6C00B2EA07 /* MatchesLoadingView.swift */; };
+		2B7B91EA20A6321D00B2EA07 /* load.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91E920A6321C00B2EA07 /* load.gif */; };
 		8869231F209A238300269557 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869231E209A238300269557 /* SocketIOManager.swift */; };
 		88692322209CC5ED00269557 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88692321209CC5ED00269557 /* UserManager.swift */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
@@ -180,8 +183,11 @@
 		2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingCardView.xib; sourceTree = "<group>"; };
 		2B7B91C420A4F5A500B2EA07 /* MatchingCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCardOverlay.swift; sourceTree = "<group>"; };
 		2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingCardOverlay.xib; sourceTree = "<group>"; };
-		2B7B91CF20A4F95F00B2EA07 /* match_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = match_image.png; sourceTree = "<group>"; };
-		2B7B91D120A4F99500B2EA07 /* skip_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip_image.png; sourceTree = "<group>"; };
+		2B7B91DD20A6275300B2EA07 /* thumbsdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbsdown.png; sourceTree = "<group>"; };
+		2B7B91DF20A6281600B2EA07 /* thumbsup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbsup.png; path = ../../../Desktop/thumbsup.png; sourceTree = "<group>"; };
+		2B7B91E120A62C2B00B2EA07 /* MatchesLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchesLoadingView.xib; sourceTree = "<group>"; };
+		2B7B91E320A62C6C00B2EA07 /* MatchesLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesLoadingView.swift; sourceTree = "<group>"; };
+		2B7B91E920A6321C00B2EA07 /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
@@ -288,8 +294,9 @@
 		2B16CFA3203B7D1200DFFBEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2B7B91D120A4F99500B2EA07 /* skip_image.png */,
-				2B7B91CF20A4F95F00B2EA07 /* match_image.png */,
+				2B7B91E920A6321C00B2EA07 /* load.gif */,
+				2B7B91DF20A6281600B2EA07 /* thumbsup.png */,
+				2B7B91DD20A6275300B2EA07 /* thumbsdown.png */,
 				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
@@ -444,6 +451,7 @@
 				88692321209CC5ED00269557 /* UserManager.swift */,
 				FAB5A7C5206F18CF00DDE1E9 /* Controllers */,
 				2B04C979203B7332008F7E52 /* Gradient.swift */,
+				2B7B91E320A62C6C00B2EA07 /* MatchesLoadingView.swift */,
 				2B7B91C420A4F5A500B2EA07 /* MatchingCardOverlay.swift */,
 				FAB5A7C6206F190D00DDE1E9 /* Storyboards */,
 				FAD3055C2048C1BF00DB682F /* RangeSlider.swift */,
@@ -503,6 +511,7 @@
 				2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */,
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				2B7B91E120A62C2B00B2EA07 /* MatchesLoadingView.xib */,
 				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
 				2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
@@ -661,12 +670,14 @@
 				2B16D04D204C8B5200DFFBEF /* line.jpg in Resources */,
 				2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */,
 				FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */,
+				2B7B91DE20A6275300B2EA07 /* thumbsdown.png in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
+				2B7B91E020A6281600B2EA07 /* thumbsup.png in Resources */,
+				2B7B91E220A62C2B00B2EA07 /* MatchesLoadingView.xib in Resources */,
 				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
-				2B7B91D020A4F95F00B2EA07 /* match_image.png in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				2B7B91CE20A4F70800B2EA07 /* MatchingCardOverlay.xib in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
@@ -674,8 +685,8 @@
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
+				2B7B91EA20A6321D00B2EA07 /* load.gif in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
-				2B7B91D220A4F99500B2EA07 /* skip_image.png in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
 				2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */,
 				2B7B91A12097AFEE00B2EA07 /* MatchingCardView.xib in Resources */,
@@ -789,6 +800,7 @@
 				8869231F209A238300269557 /* SocketIOManager.swift in Sources */,
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
+				2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */,
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,

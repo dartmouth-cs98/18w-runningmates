@@ -30,7 +30,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var avgPaceLabel: UILabel!
-
+    @IBOutlet var topView: GradientView!
 
     var userList = [sortedUser]()
 
@@ -46,7 +46,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         if (self.userEmail == nil) {
             self.userEmail = "brian@test.com"
         }
-
 
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
@@ -100,10 +99,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         })
 
 
+        let view: MatchesLoadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+        topView.addSubview(view)
+        
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [-147.349442, 64.751114], completion: { list in
             self.userList = list
             self.kolodaView?.reloadData()
+            view.removeFromSuperview()
         })
    }
 

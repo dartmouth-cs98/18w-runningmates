@@ -10,8 +10,8 @@
 import UIKit
 import Koloda
 
-private let overlayRightImage = "match_image"
-private let overlayLeftImage = "skip_image"
+private let overlayRightImage = "thumbsup"
+private let overlayLeftImage = "thumbsdown"
 
 class MatchingCardOverlay: OverlayView {
     
