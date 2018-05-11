@@ -39,7 +39,7 @@ class UserManager: NSObject {
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
-                        var user = (jsonUser["user"] as? [String:Any])!
+                        var user = (jsonUser["user"] as? [String:AnyObject])!
                         
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
@@ -72,9 +72,17 @@ class UserManager: NSObject {
                             }
                             
                             if (user["preferences"] != nil) {
-                                print("\n\nHERE FOR PREFERENCES OF LOGIN \n\n ")
-                                print(user["preferences"]!)
-                                UserDefaults.standard.set(user["preferences"]!, forKey: "preferences")
+                                var preferences = [String:Any]()
+                                let genderPref = user["preferences"]!["gender"] as! [String]
+                                let runLengthPref = user["preferences"]!["runLength"]
+                                let agePref = user["preferences"]!["age"]
+                                preferences["gender"] = genderPref
+                                preferences["runLength"] = runLengthPref!
+                                preferences["age"] = agePref
+                                preferences["proximity"] = user["preferences"]!["proximity"]  as! Double
+                                print("PREFERENCESSSSSS: ", preferences)
+
+                                UserDefaults.standard.set(preferences, forKey: "preferences")
                             }
                             
                             if (user["data"] != nil) {
