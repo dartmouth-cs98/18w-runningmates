@@ -34,18 +34,13 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
    
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
-    @IBOutlet weak var totalElevationTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
-    @IBOutlet weak var totalMilesTextField: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
 
     var rootURl: String = "https://running-mates.herokuapp.com/"
     // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
-    @IBOutlet weak var longestRunTextView: UITextField!
     @IBOutlet weak var racesDoneTextView: UITextView!
-    @IBOutlet weak var frequentSegmentsTextView: UITextView!
-    @IBOutlet weak var KOMsTextField: UITextField!
     @IBOutlet weak var runsPerWeekTextField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -67,15 +62,15 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         nameTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         milesPerWeekTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//        totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+//        totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
         nameTextView.clipsToBounds = true
         milesPerWeekTextField.clipsToBounds = true
-        totalMilesTextField.clipsToBounds = true
-        totalElevationTextField.clipsToBounds = true
-        
+//        totalMilesTextField.clipsToBounds = true
+//        totalElevationTextField.clipsToBounds = true
+//
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         imagePicker.delegate = self
@@ -94,12 +89,16 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         // Dispose of any resources that can be recreated.
     }
     
+    
     func updateInfoFromUserDefaults() {
-        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String as! String
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        if (firstName != nil) {
-            nameTextView.text = firstName
-        }
+        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
+        UserDefaults.standard.set(nameTextView.text, forKey: "firstName")
+        var newFirstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
+        //var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+//        if (firstName != nil) {
+//            nameTextView.text = firstName
+//        }
+        
 //        if (data["totalMilesRun"] != nil) {
 //            totalMilesTextField.text = data["totalMilesRun"]
 //        }
@@ -188,6 +187,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.present(alert, animated: true, completion: nil)
         }
         
+        updateInfoFromUserDefaults()
+        
         imageURLsRequest(completion: {  // Get signed URL requests from backend
             self.awsUpload(completion: { // Upload images to aws
                 
@@ -197,13 +198,13 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     "bio": self.bioTextView.text!,
                     "images": self.profileImageUrls,
                     "milesPerWeek": self.milesPerWeekTextField.text!,
-                    "totalElevation": self.totalElevationTextField.text!,
-                    "totalMiles": self.totalMilesTextField.text!,
-                    "longestRun": self.longestRunTextView.text!,
+//                    "totalElevation": self.totalElevationTextField.text!,
+//                    "totalMiles": self.totalMilesTextField.text!,
+//                    "longestRun": self.longestRunTextView.text!,
                     "racesDone": self.racesDoneTextView.text!,
-                    "runsPerWeek": self.runsPerWeekTextField.text!,
-                    "kom": self.KOMsTextField.text!,
-                    "frequentSegments": self.frequentSegmentsTextView.text!
+                    "runsPerWeek": self.runsPerWeekTextField.text!
+//                    "kom": self.KOMsTextField.text!,
+//                    "frequentSegments": self.frequentSegmentsTextView.text!
                 ]
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: { title, message in
@@ -252,9 +253,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     self.nameTextView.text = String(describing: user! ["firstName"]!)
                     self.bioTextView.text = String(describing: user! ["bio"]!)
                     self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
-                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
-                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
-                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+//                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+//                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+//                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
                     self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
                     self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
                     completion(user!)

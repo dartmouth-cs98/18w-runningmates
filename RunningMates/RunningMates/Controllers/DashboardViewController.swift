@@ -22,6 +22,7 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var metricCirc2: UIView!
     @IBOutlet weak var metricCirc: UIView!
+    var secondVCData: String!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -43,14 +44,11 @@ class DashboardViewController: UIViewController {
         self.metricCirc2.layer.borderWidth = 1.5;
         self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        //TO-DO make this first name
-        self.name.text = appDelegate.userEmail
+        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-  
     
 }
