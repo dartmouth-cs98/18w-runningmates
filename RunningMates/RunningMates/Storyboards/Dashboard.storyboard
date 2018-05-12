@@ -162,8 +162,10 @@
                         <outlet property="editButton" destination="kbY-3S-puO" id="y4f-H0-jLt"/>
                         <outlet property="metricCirc" destination="hHd-fc-O0P" id="o49-uP-76m"/>
                         <outlet property="metricCirc2" destination="eNh-Yk-9r4" id="cd8-yY-ltK"/>
+                        <outlet property="milesWkLabel" destination="Gdz-0J-0Bd" id="FWf-5t-etU"/>
                         <outlet property="name" destination="AJw-II-nOP" id="YPj-rc-Wvd"/>
                         <outlet property="profPic" destination="DFa-Kt-x20" id="xzr-S0-vSc"/>
+                        <outlet property="runsWkLabel" destination="eD6-lP-NXo" id="SxU-nW-y9F"/>
                         <outlet property="safetrackButton" destination="N0c-en-Ejd" id="vzW-gt-PdY"/>
                         <outlet property="secondView" destination="0G2-MF-KKM" id="CxK-7M-mwV"/>
                         <outlet property="settingsButton" destination="nu8-rA-caB" id="srN-e4-Otz"/>
