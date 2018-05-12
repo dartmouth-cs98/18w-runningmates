@@ -181,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="1063.2" y="-285.15742128935534"/>
         </scene>
-        <!--Profile-->
+        <!--CreateProfile-->
         <scene sceneID="udI-zh-p5z">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CreateProfile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ao-Mb-TuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1231.2" y="-86.35682158920541"/>
