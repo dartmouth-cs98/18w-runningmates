@@ -22,8 +22,10 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var metricCirc2: UIView!
     @IBOutlet weak var metricCirc: UIView!
-    var secondVCData: String!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    @IBOutlet weak var runsWkLabel: UILabel!
+    @IBOutlet weak var milesWkLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +47,22 @@ class DashboardViewController: UIViewController {
         self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
+        self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
+        self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
     }
     
 }

@@ -37,6 +37,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var nameTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
 
+    
     var rootURl: String = "https://running-mates.herokuapp.com/"
     // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
@@ -44,6 +45,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var runsPerWeekTextField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    @IBOutlet weak var saveProf: UIButton!
     var userId: String = UserDefaults.standard.string(forKey: "id")!
     var userEmail: String = UserDefaults.standard.string(forKey: "email")!
 
@@ -59,18 +61,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.userEmail = appDelegate.userEmail
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        nameTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        locationTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        milesPerWeekTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-//        totalMilesTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-//        totalElevationTextField.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
         nameTextView.clipsToBounds = true
         milesPerWeekTextField.clipsToBounds = true
-//        totalMilesTextField.clipsToBounds = true
-//        totalElevationTextField.clipsToBounds = true
-//
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         imagePicker.delegate = self
@@ -81,6 +75,17 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (self.appDelegate.didSignUpWithStrava == 1) {
             getUserRequest(completion: {_ in })
         }
+        
+        self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
+        self.locationTextView.text = "e.g. city, state"
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        
+        var mpwkText = String(describing: data["milesPerWeek"]!)
+        self.milesPerWeekTextField.text = mpwkText
+        
+        var runsperweekText = String(describing: data["runsPerWeek"]!)
+        self.runsPerWeekTextField.text = runsperweekText
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,19 +95,26 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     
+    
     func updateInfoFromUserDefaults() {
         var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
         UserDefaults.standard.set(nameTextView.text, forKey: "firstName")
         var newFirstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
-        //var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-//        if (firstName != nil) {
-//            nameTextView.text = firstName
-//        }
+        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+
         
-//        if (data["totalMilesRun"] != nil) {
-//            totalMilesTextField.text = data["totalMilesRun"]
-//        }
+        let milespwk:Int? = Int(milesPerWeekTextField.text!)
+        data["milesPerWeek"] = milespwk
+        
+        let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+        data["runsPerWeek"] = runsperWk
+        
+        UserDefaults.standard.set(data, forKey: "data")
+        var newData: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        print(newData)
     }
+    
+    
     
     // The number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -179,12 +191,13 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //
     
     
-    @IBAction func saveButtonClicked(_ sender: Any) {
+    @IBAction func saveClicked(_ sender: Any) {
+
         //check if enough data has been entered
         if ((nameTextView.text! == "") || (bioTextView.text! == "") || (milesPerWeekTextField.text! == "") || (runsPerWeekTextField.text! == "")) {
-        let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         updateInfoFromUserDefaults()
@@ -198,13 +211,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     "bio": self.bioTextView.text!,
                     "images": self.profileImageUrls,
                     "milesPerWeek": self.milesPerWeekTextField.text!,
-//                    "totalElevation": self.totalElevationTextField.text!,
-//                    "totalMiles": self.totalMilesTextField.text!,
-//                    "longestRun": self.longestRunTextView.text!,
                     "racesDone": self.racesDoneTextView.text!,
                     "runsPerWeek": self.runsPerWeekTextField.text!
-//                    "kom": self.KOMsTextField.text!,
-//                    "frequentSegments": self.frequentSegmentsTextView.text!
                 ]
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: { title, message in
@@ -217,8 +225,60 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 })
             })
         })
-
+        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddContactMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("editing profile error.")
+        }
     }
+    
+    
+//    @IBAction func saveButtonClicked(_ sender: Any) {
+//        //check if enough data has been entered
+//        if ((nameTextView.text! == "") || (bioTextView.text! == "") || (milesPerWeekTextField.text! == "") || (runsPerWeekTextField.text! == "")) {
+//        let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//        }
+//
+//        updateInfoFromUserDefaults()
+//
+//        imageURLsRequest(completion: {  // Get signed URL requests from backend
+//            self.awsUpload(completion: { // Upload images to aws
+//
+//                let params: [String:Any] = [
+//                    "email": self.userEmail,
+//                    "firstName": self.nameTextView.text!,
+//                    "bio": self.bioTextView.text!,
+//                    "images": self.profileImageUrls,
+//                    "milesPerWeek": self.milesPerWeekTextField.text!,
+////                    "totalElevation": self.totalElevationTextField.text!,
+////                    "totalMiles": self.totalMilesTextField.text!,
+////                    "longestRun": self.longestRunTextView.text!,
+//                    "racesDone": self.racesDoneTextView.text!,
+//                    "runsPerWeek": self.runsPerWeekTextField.text!
+////                    "kom": self.KOMsTextField.text!,
+////                    "frequentSegments": self.frequentSegmentsTextView.text!
+//                ]
+//
+//                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: { title, message in
+//                    //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+//                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+//                    alertController.addAction(defaultAction)
+//
+//                    self.present(alertController, animated: true, completion: nil)
+//                })
+//            })
+//        })
+//
+//    }
     
     
     // needs to be called  only when navigated not from a new user
