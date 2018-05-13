@@ -101,6 +101,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         let view: MatchesLoadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
         topView.addSubview(view)
+        view.progressIndicator.startAnimating()
         
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [-147.349442, 64.751114], completion: { list in
