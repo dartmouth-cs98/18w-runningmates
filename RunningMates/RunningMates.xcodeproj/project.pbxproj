@@ -21,7 +21,6 @@
 		2B7B91C520A4F5A500B2EA07 /* MatchingCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91C420A4F5A500B2EA07 /* MatchingCardOverlay.swift */; };
 		2B7B91CE20A4F70800B2EA07 /* MatchingCardOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */; };
 		2B7B91DE20A6275300B2EA07 /* thumbsdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91DD20A6275300B2EA07 /* thumbsdown.png */; };
-		2B7B91E020A6281600B2EA07 /* thumbsup.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91DF20A6281600B2EA07 /* thumbsup.png */; };
 		2B7B91E220A62C2B00B2EA07 /* MatchesLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91E120A62C2B00B2EA07 /* MatchesLoadingView.xib */; };
 		2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B91E320A62C6C00B2EA07 /* MatchesLoadingView.swift */; };
 		2B7B91EA20A6321D00B2EA07 /* load.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2B7B91E920A6321C00B2EA07 /* load.gif */; };
@@ -184,7 +183,6 @@
 		2B7B91C420A4F5A500B2EA07 /* MatchingCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCardOverlay.swift; sourceTree = "<group>"; };
 		2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchingCardOverlay.xib; sourceTree = "<group>"; };
 		2B7B91DD20A6275300B2EA07 /* thumbsdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbsdown.png; sourceTree = "<group>"; };
-		2B7B91DF20A6281600B2EA07 /* thumbsup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thumbsup.png; path = ../../../Desktop/thumbsup.png; sourceTree = "<group>"; };
 		2B7B91E120A62C2B00B2EA07 /* MatchesLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchesLoadingView.xib; sourceTree = "<group>"; };
 		2B7B91E320A62C6C00B2EA07 /* MatchesLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesLoadingView.swift; sourceTree = "<group>"; };
 		2B7B91E920A6321C00B2EA07 /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				2B7B91E920A6321C00B2EA07 /* load.gif */,
-				2B7B91DF20A6281600B2EA07 /* thumbsup.png */,
 				2B7B91DD20A6275300B2EA07 /* thumbsdown.png */,
 				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
@@ -674,7 +671,6 @@
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
-				2B7B91E020A6281600B2EA07 /* thumbsup.png in Resources */,
 				2B7B91E220A62C2B00B2EA07 /* MatchesLoadingView.xib in Resources */,
 				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
