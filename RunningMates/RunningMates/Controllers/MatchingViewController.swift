@@ -394,13 +394,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        completion(title, message)
 //        }
 //
-//    }
+//
+    func tryMatch(index currentIndex: Int) {
 
-    @IBAction func matchButton(_ sender: UIButton) {
+        print("You clicked match on index", currentIndex)
 
-        print("You clicked match on index", current_index)
-
-        if (current_index > userList.count || userList.count == 0) {
+        if (currentIndex != nil && currentIndex > userList.count || userList.count == 0) {
             let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Refresh users", style: .default, handler: nil)
             alertController.addAction(defaultAction)
@@ -411,7 +410,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
     else {
 
-            UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[current_index].user.id!, firstName: self.userList[self.current_index].user.firstName!, completion: { title, message in
+            UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
@@ -487,35 +486,15 @@ extension MatchingViewController: KolodaViewDataSource {
         }
         
         return view
-
-      //  let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
-      //  let point = CGPoint(x: 0, y: 100)
-
-       // let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
-
-//        if (index == 0){
-//            current_index = userList.count - 1
-//        }
-//        else if (index == 1){
-//            current_index = userList.count - 2
-//        }
-//        else if (index == userList.count - 1){
-//            current_index = 0
-//        }
-//        else if (index == userList.count - 2){
-//            current_index = 1
-//        }
-//        else{
-//            current_index = index - 2
-//        }
-       // current_index = index
-
-//        return UIImageView(image: userCardImage)
     }
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
             print("swiped card at", index, "in direction", direction)
-            if (index < userList.count - 1) {
+        if (direction == SwipeResultDirection.right) {
+            tryMatch(index: index)
+        }
+        
+        if (index < userList.count - 1) {
                 current_index = index + 1
             }
             else{
