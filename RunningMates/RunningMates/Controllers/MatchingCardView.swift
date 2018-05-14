@@ -11,7 +11,12 @@ import UIKit
 class MatchingCardView: UIView {
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var userInfoText: UILabel!
+   // @IBOutlet weak var userInfoText: UILabel!
+    @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var locationText: UILabel!
+    @IBOutlet weak var bioText: UILabel!
+    @IBOutlet weak var totalMilesText: UILabel!
+    @IBOutlet weak var averageRunLengthText: UILabel!
     
     override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)
@@ -20,12 +25,6 @@ class MatchingCardView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-//    func commonInit(userInfo: String, userImage: UIImage) {
-//        profileImage.image = userImage
-//        userInfoText.text = userInfo
-//    }
-    
 }
 
 // This helped me here: https://medium.com/theappspace/swift-custom-uiview-with-xib-file-211bb8bbd6eb
@@ -35,13 +34,10 @@ extension UIView {
     func fromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
         let nibName = type(of: self).description().components(separatedBy: ".").last!
-        print("nibname = " + nibName)
         let nib = UINib(nibName: nibName, bundle: bundle)
         let contentView = nib.instantiate(withOwner: self, options: nil).first as! UIView
- //       contentView.commonInit(userInfo: userInfo, userImage: userImage)
         self.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
-       // contentView.layoutAttachAll(to: self)
        
         return contentView
     }

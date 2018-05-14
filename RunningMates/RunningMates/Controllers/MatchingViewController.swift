@@ -99,6 +99,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         })
 
 
+        // Show progress view while we wait for matches to load
         let view: MatchesLoadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
         topView.addSubview(view)
         view.progressIndicator.startAnimating()
@@ -441,41 +442,44 @@ extension MatchingViewController: KolodaViewDataSource {
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         print("the current index is", index)
-        print(userList[index].user.firstName)
-
+        print(userList[index].user.firstName!)
+        
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: photoData!)
-        let nameAge = ("\n " + String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
-        let location = ("\n Location: " + String(describing: userList[index].user.location))
-        let bio = ("\n Bio: " + String(userList[index].user.bio))
+        let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
+        let location = ("Location: " + String(describing: userList[index].user.location))
+        let bio = ("Bio: " + String(userList[index].user.bio))
         let data = (self.userList[index].user.data as! [String:Any]?)
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
         if (data!["totalMilesRun"] != nil) {
-            totalMiles = (" \n Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!))
+            totalMiles = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!))
         } else {
-            totalMiles = "\n No info to show"
+            totalMiles = "Total Miles: No info to show"
         }
 
         if (data!["averageRunLength"] != nil) {
-            averageRunLength = ("\n Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!))
+            averageRunLength = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!))
         } else {
-            averageRunLength = "\n Avg. Run Length: No info to show"
+            averageRunLength = "Avg. Run Length: No info to show"
         }
 
-        let userText = nameAge + location + bio + totalMiles + averageRunLength
+        //let userText = nameAge + location + bio + totalMiles + averageRunLength
 
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
         
         view.profileImage.image = image!
-        view.userInfoText.text = userText
+        view.nameText.text! = nameAge
+        view.locationText.text! = location
+        view.bioText.text! = bio
+        view.averageRunLengthText.text! = averageRunLength
+        view.totalMilesText.text! = totalMiles
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
         
-        print("card rendered")
-
+        
         if (userList[index].matchReason != "") {
             matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
         } else {
