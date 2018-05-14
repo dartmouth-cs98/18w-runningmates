@@ -109,6 +109,8 @@ class UserManager: NSObject {
         let rootUrl: String = appDelegate.rootUrl
         let url = rootUrl + "api/user/" + userEmail
         
+        print("user email" + userEmail)
+        
         let params : [String:Any] = [
             "email": userEmail
         ]

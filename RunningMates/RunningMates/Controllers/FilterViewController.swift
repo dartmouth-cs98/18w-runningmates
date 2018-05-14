@@ -45,10 +45,10 @@ class FilterViewController: UIViewController {
 
     @IBOutlet weak var maxProximitySelected: UITextField!
     
-    @IBOutlet weak var ageBox: UILabel!
-    @IBOutlet weak var distanceBox: UILabel!
-    @IBOutlet weak var mileageBox: UILabel!
-
+    @IBOutlet weak var mileageBox: UIView!
+    @IBOutlet weak var distanceBox: UIView!
+    @IBOutlet weak var ageBox: UIView!
+    
     @IBOutlet weak var ageSelectedLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var mileageLabel: UILabel!
@@ -71,7 +71,8 @@ class FilterViewController: UIViewController {
         self.distanceBox.layer.masksToBounds = true
         self.mileageBox.layer.masksToBounds = true
 
-
+        
+        
         view.addSubview(ageSlide)
         view.addSubview(distSlide)
         view.addSubview(proxSlide)

@@ -103,8 +103,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.layer.cornerRadius = 10;
         cell.layer.borderWidth = 5;
         cell.layer.borderColor = UIColor.white.cgColor
+        
+        // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
         cell.textView?.text = chat_text
-
+        let w = (cell.textView?.frame.width)! * 0.7
+        print("-----w-----")
+        print(String(describing: w))
+        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
+        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
+        cell.textView?.frame = newFrame
+        cell.textView?.setNeedsDisplay()
+        
         print("data in cell making func",  data[indexPath.row].messageText )
         return cell
     }
