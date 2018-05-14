@@ -15,7 +15,7 @@ import ExpyTableView
 //https://github.com/okhanokbay/ExpyTableView
 class PhoneNameTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
     
-    @IBOutlet weak var labelPhoneName: UILabel!
+    @IBOutlet weak var labelPhoneName: UILabel! //choose photo
     @IBOutlet weak var imageViewArrow: UIImageView!
     
     func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool) {
@@ -53,7 +53,7 @@ class PhoneNameTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 }
 
 class SpecificationTableViewCell: UITableViewCell {
-    @IBOutlet weak var labelSpecification: UILabel!
+    @IBOutlet weak var labelSpecification: UILabel! //description
 }
 
 class BuyTableViewCell: UITableViewCell {}

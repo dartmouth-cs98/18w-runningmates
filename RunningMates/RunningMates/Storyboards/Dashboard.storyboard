@@ -151,7 +151,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93595141169999996" green="0.030397811930000001" blue="0.1061733861" alpha="0.74232127568493156" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93595141169999996" green="0.039996580945847203" blue="0.058960577828378276" alpha="0.74232127568493156" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,8 +162,10 @@
                         <outlet property="editButton" destination="kbY-3S-puO" id="y4f-H0-jLt"/>
                         <outlet property="metricCirc" destination="hHd-fc-O0P" id="o49-uP-76m"/>
                         <outlet property="metricCirc2" destination="eNh-Yk-9r4" id="cd8-yY-ltK"/>
+                        <outlet property="milesWkLabel" destination="Gdz-0J-0Bd" id="FWf-5t-etU"/>
                         <outlet property="name" destination="AJw-II-nOP" id="YPj-rc-Wvd"/>
                         <outlet property="profPic" destination="DFa-Kt-x20" id="xzr-S0-vSc"/>
+                        <outlet property="runsWkLabel" destination="eD6-lP-NXo" id="SxU-nW-y9F"/>
                         <outlet property="safetrackButton" destination="N0c-en-Ejd" id="vzW-gt-PdY"/>
                         <outlet property="secondView" destination="0G2-MF-KKM" id="CxK-7M-mwV"/>
                         <outlet property="settingsButton" destination="nu8-rA-caB" id="srN-e4-Otz"/>
@@ -181,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1063.2" y="-285.15742128935534"/>
         </scene>
-        <!--Profile-->
+        <!--CreateProfile-->
         <scene sceneID="udI-zh-p5z">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CreateProfile" id="7n4-fg-LUi" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ao-Mb-TuU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1231.2" y="-86.35682158920541"/>
