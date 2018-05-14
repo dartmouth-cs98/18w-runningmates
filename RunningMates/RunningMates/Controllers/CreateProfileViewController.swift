@@ -38,11 +38,14 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var locationTextView: UITextField!
 
     
-    var rootURl: String = "https://running-mates.herokuapp.com/"
-    // var rootURl: String = "http://localhost:9090/"
+//    var rootURl: String = "https://running-mates.herokuapp.com/"
+//    // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var racesDoneTextView: UITextView!
     @IBOutlet weak var runsPerWeekTextField: UITextField!
+    
+    var rootUrl = ""
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var saveProf: UIButton!
@@ -59,6 +62,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewDidLoad()
         self.hideKeyboardOnBackgroundTap()
         self.userEmail = appDelegate.userEmail
+        self.rootUrl = appDelegate.rootUrl
+        
+        
+        
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
@@ -199,8 +206,43 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        
         updateInfoFromUserDefaults()
+        var dataObj: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        
+        let milespwk:Int? = Int(milesPerWeekTextField.text!)
+        
+        let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+        
+        let data: [String: Any] = [
+            "milesPerWeek": milespwk,
+            "runsPerWeek": runsperWk,
+            "totalElevationClimbed": dataObj["totalElevationClimbed"] as! Double,
+            "totalMilesRun": dataObj["totalElevationClimbed"] as! Double,
+            "averageRunLength": dataObj["totalElevationClimbed"] as! Double,
+            ]
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "email": self.userEmail,
+            "firstName": self.nameTextView.text!,
+            "data": data
+            ]
+        
+        let url = rootUrl + "api/users/" + self.userEmail
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params)
+            .responseString { response in
+                switch response.result {
+                case .success:
+                    print("success! response is:")
+                    self.updateInfoFromUserDefaults()
+                    print(response)
+                case .failure(let error):
+                    print("error fetching users")
+                    print(error)
+                }
+        }
+        
         
         imageURLsRequest(completion: {  // Get signed URL requests from backend
             self.awsUpload(completion: { // Upload images to aws
@@ -225,6 +267,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 })
             })
         })
+        
         let isPresentingInAddContactMode = presentingViewController is UINavigationController
         
         if isPresentingInAddContactMode {

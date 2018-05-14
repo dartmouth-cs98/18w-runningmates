@@ -13,7 +13,6 @@ import Alamofire
 struct sortedUser {
     var user: User
     var matchReason: String
-    var score: Float
 }
 
 
@@ -61,6 +60,9 @@ class UserManager: NSObject {
                             }
                             if (user["lastName"] != nil) {
                                 UserDefaults.standard.set(user["lastName"]!, forKey: "lastName")
+                            }
+                            if (user["bio"] != nil) {
+                                UserDefaults.standard.set(user["bio"]!, forKey: "bio")
                             }
                             
                             if (user["imageURL"] != nil) {
@@ -182,11 +184,9 @@ class UserManager: NSObject {
                             do {
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 let matchReason = (jsonUser["matchReason"] as! String)
-                                print(user!)
                                 print(jsonUser)
-                                let score = (jsonUser["score"] as! Float)
                                 
-                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason, score: score)
+                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason);
                                 
                                 if (user != nil) {
                                     usersList.append(sortUserInstance)
