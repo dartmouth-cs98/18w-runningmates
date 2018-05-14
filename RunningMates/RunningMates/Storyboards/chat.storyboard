@@ -29,7 +29,7 @@
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="95" id="wpY-wS-ysK" customClass="CustomMessageCell" customModule="RunningMates" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wpY-wS-ysK" id="YKf-lN-4eF">
+                                        <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wpY-wS-ysK" id="YKf-lN-4eF">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="94.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
