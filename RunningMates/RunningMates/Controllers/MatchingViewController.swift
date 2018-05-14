@@ -455,13 +455,13 @@ extension MatchingViewController: KolodaViewDataSource {
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
         if (data!["totalMilesRun"] != nil) {
-            totalMiles = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!))
+            totalMiles = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
         } else {
             totalMiles = "Total Miles: No info to show"
         }
 
         if (data!["averageRunLength"] != nil) {
-            averageRunLength = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!))
+            averageRunLength = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!) + " mi")
         } else {
             averageRunLength = "Avg. Run Length: No info to show"
         }
