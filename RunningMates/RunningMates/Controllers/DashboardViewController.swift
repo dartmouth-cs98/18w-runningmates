@@ -27,6 +27,8 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var runsWkLabel: UILabel!
     @IBOutlet weak var milesWkLabel: UILabel!
     
+    @IBOutlet weak var bioTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +53,7 @@ class DashboardViewController: UIViewController {
         var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
         self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
-        
+        self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +65,7 @@ class DashboardViewController: UIViewController {
         var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
         self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
+        self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
     }
     
 }

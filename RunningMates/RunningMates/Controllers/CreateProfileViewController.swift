@@ -65,7 +65,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.rootUrl = appDelegate.rootUrl
         
         
-        
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         locationTextView.clipsToBounds = true
@@ -85,10 +84,15 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
         self.locationTextView.text = "e.g. city, state"
+        self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
+        
+       // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
+        
         var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
         var mpwkText = String(describing: data["milesPerWeek"]!)
         self.milesPerWeekTextField.text = mpwkText
+        
         
         var runsperweekText = String(describing: data["runsPerWeek"]!)
         self.runsPerWeekTextField.text = runsperweekText
@@ -116,9 +120,14 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         let runsperWk:Int? = Int(runsPerWeekTextField.text!)
         data["runsPerWeek"] = runsperWk
         
+        let racesDoneArray:String? = racesDoneTextView.text!
+        data["racesDone"] = racesDoneArray
+        
         UserDefaults.standard.set(data, forKey: "data")
         var newData: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        print(newData)
+        
+        UserDefaults.standard.set(bioTextView.text, forKey: "bio")
+        
     }
     
     
@@ -225,6 +234,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         let params: [String: Any] = [
             "email": self.userEmail,
             "firstName": self.nameTextView.text!,
+            "bio":self.bioTextView.text!,
             "data": data
             ]
         
