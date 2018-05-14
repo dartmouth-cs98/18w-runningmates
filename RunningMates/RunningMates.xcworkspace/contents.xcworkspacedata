@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/dali/18w-runningmates/RunningMates/Images/thumbsup.png">
+   </FileRef>
+   <FileRef
       location = "group:RunningMates.xcodeproj">
    </FileRef>
    <FileRef
