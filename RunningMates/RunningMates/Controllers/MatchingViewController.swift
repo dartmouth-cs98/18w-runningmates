@@ -204,63 +204,63 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         return usersList
     }
 
-
-    func getUserId( completion: @escaping (String)->()) {
-        let rootUrl: String = appDelegate.rootUrl
-        let url = rootUrl + "api/user/" + self.userEmail
-
-        let params : [String:Any] = [
-            "email": self.userEmail
-        ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                print("RESPONSE")
-                print(response)
-                switch response.result {
-                case .success:
-                    if let jsonUser = response.result.value as? [String:Any] {
-                            do {
-                                let user = try User(json: (jsonUser as [String:Any]))
-                                if (user != nil) {
-                                    print("USER")
-                                    print(user!)
-                                    completion((user?.id)!)
-                                } else {
-                                    print("nil")
-                                }
-                            } catch UserInitError.invalidId {
-                                print("invalid id")
-                            } catch UserInitError.invalidFirstName {
-                                print("invalid first name")
-                            } catch UserInitError.invalidLastName {
-                                print("invalid last name")
-                            } catch UserInitError.invalidImageURL {
-                                print("invalid image url")
-                            } catch UserInitError.invalidBio {
-                                print("invalid bio")
-                            } catch UserInitError.invalidGender {
-                                print("invalid gender")
-                            } catch UserInitError.invalidAge {
-                                print("invalid age")
-                            } catch UserInitError.invalidLocation {
-                                print("invalid location")
-                            } catch UserInitError.invalidEmail {
-                                print("invalid email")
-                            } catch UserInitError.invalidPassword {
-                                print("invalid password")
-                            } catch {
-                                print("other error")
-                            }
-                    } else {
-                        print("error creating user for user id")
-                    }
-
-                case .failure(let error):
-                    print("failure: error creating user for user id")
-                    print(error)
-                }
-        }
-    }
+//
+//    func getUserId( completion: @escaping (String)->()) {
+//        let rootUrl: String = appDelegate.rootUrl
+//        let url = rootUrl + "api/user/" + self.userEmail
+//
+//        let params : [String:Any] = [
+//            "email": self.userEmail
+//        ]
+//        let _request = Alamofire.request(url, method: .get, parameters: params)
+//            .responseJSON { response in
+//                print("RESPONSE")
+//                print(response)
+//                switch response.result {
+//                case .success:
+//                    if let jsonUser = response.result.value as? [String:Any] {
+//                            do {
+//                                let user = try User(json: (jsonUser as [String:Any]))
+//                                if (user != nil) {
+//                                    print("USER")
+//                                    print(user!)
+//                                    completion((user?.id)!)
+//                                } else {
+//                                    print("nil")
+//                                }
+//                            } catch UserInitError.invalidId {
+//                                print("invalid id")
+//                            } catch UserInitError.invalidFirstName {
+//                                print("invalid first name")
+//                            } catch UserInitError.invalidLastName {
+//                                print("invalid last name")
+//                            } catch UserInitError.invalidImageURL {
+//                                print("invalid image url")
+//                            } catch UserInitError.invalidBio {
+//                                print("invalid bio")
+//                            } catch UserInitError.invalidGender {
+//                                print("invalid gender")
+//                            } catch UserInitError.invalidAge {
+//                                print("invalid age")
+//                            } catch UserInitError.invalidLocation {
+//                                print("invalid location")
+//                            } catch UserInitError.invalidEmail {
+//                                print("invalid email")
+//                            } catch UserInitError.invalidPassword {
+//                                print("invalid password")
+//                            } catch {
+//                                print("other error")
+//                            }
+//                    } else {
+//                        print("error creating user for user id")
+//                    }
+//
+//                case .failure(let error):
+//                    print("failure: error creating user for user id")
+//                    print(error)
+//                }
+//        }
+//    }
 
    override func didReceiveMemoryWarning() {
        super.didReceiveMemoryWarning()
