@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,25 +32,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="94.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="textView" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkL-Hd-Qvk" userLabel="textView">
-                                                    <rect key="frame" x="15" y="13" width="313" height="71"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZT-sf-PnZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="95"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="textView" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkL-Hd-Qvk" userLabel="textView">
+                                                    <rect key="frame" x="15" y="11" width="313" height="73"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="KkL-Hd-Qvk" firstAttribute="centerX" secondItem="YKf-lN-4eF" secondAttribute="centerX" id="3Yr-lg-Wuf"/>
-                                                <constraint firstItem="KkL-Hd-Qvk" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="-1" id="Lsm-Jx-jr6"/>
-                                                <constraint firstItem="KkL-Hd-Qvk" firstAttribute="bottom" secondItem="YKf-lN-4eF" secondAttribute="bottomMargin" id="ckx-83-zFD"/>
-                                                <constraint firstItem="KkL-Hd-Qvk" firstAttribute="top" secondItem="YKf-lN-4eF" secondAttribute="topMargin" constant="2" id="v6G-A7-eIl"/>
-                                            </constraints>
+                                            <color key="backgroundColor" red="1" green="0.24332682291666666" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
                                         </accessibility>
                                         <connections>
+                                            <outlet property="imgView" destination="eZT-sf-PnZ" id="VFh-uZ-frQ"/>
                                             <outlet property="textView" destination="KkL-Hd-Qvk" id="Rr6-Fz-nVn"/>
                                         </connections>
                                     </tableViewCell>

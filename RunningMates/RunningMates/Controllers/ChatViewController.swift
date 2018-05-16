@@ -25,13 +25,65 @@ import UIKit
 import Foundation
 import Alamofire
 
+class PaddingLabel: UILabel {
+    
+    @IBInspectable var topInset: CGFloat = 5.0
+    @IBInspectable var bottomInset: CGFloat = 5.0
+    @IBInspectable var leftInset: CGFloat = 50.0
+    @IBInspectable var rightInset: CGFloat = 5.0
+    
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            var contentSize = super.intrinsicContentSize
+            contentSize.height += topInset + bottomInset
+            contentSize.width += leftInset + rightInset
+            return contentSize
+        }
+    }
+}
+
+class ChatImgView: UIImageView {
+    
+    @IBInspectable var topInset: CGFloat = 5.0
+    @IBInspectable var bottomInset: CGFloat = 5.0
+    @IBInspectable var leftInset: CGFloat = 50.0
+    @IBInspectable var rightInset: CGFloat = 5.0
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        self.layer.cornerRadius = 30
+        self.layer.masksToBounds = true
+        self.clipsToBounds = true
+        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        super.draw(UIEdgeInsetsInsetRect(rect, insets))
+    }
+
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            var contentSize = super.intrinsicContentSize
+            contentSize.height += topInset + bottomInset
+            contentSize.width += leftInset + rightInset
+            return contentSize
+        }
+    }
+}
 
 class CustomMessageCell: UITableViewCell {
     @IBOutlet weak var textView: UILabel!
+
     @IBOutlet weak var imgView: UIImageView!
-
-
+    
 }
+
+
+
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -88,33 +140,38 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
+        //cell.addSubview(cell.imgView)
+        
         let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
         let RM_gray = UIColor.lightGray
         
         let messageUserID = data[indexPath.row].sentBy
         
-        if (messageUserID == self.sentByID) {
-            cell.contentView.backgroundColor = RM_orange
-        } else {
-            cell.contentView.backgroundColor = RM_gray
-        }
+        //message to yourself
+//        if (messageUserID == self.sentByID) {
+//            cell.imgView.backgroundColor = RM_orange
+//        } else {
+//            cell.imgView.backgroundColor = RM_gray
+//        }
         
         let chat_text : String  = data[indexPath.row].messageText as! String
-        cell.layer.cornerRadius = 10;
-        cell.layer.borderWidth = 5;
-        cell.layer.borderColor = UIColor.white.cgColor
+         cell.textView.layer.cornerRadius = 10;
+         cell.textView.layer.borderWidth = 5;
+         cell.textView.layer.borderColor = UIColor.white.cgColor
+       // cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
+        // cell.imgView.frame(forAlignmentRect: CGRect(x: 50, y: 0, width: tableView.frame.size.width, height: 30))
         
         // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
-        cell.textView?.text = chat_text
-        let w = (cell.textView?.frame.width)! * 0.7
-        print("-----w-----")
-        print(String(describing: w))
-        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
-        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
-        cell.textView?.frame = newFrame
-        cell.textView?.setNeedsDisplay()
-        
-        print("data in cell making func",  data[indexPath.row].messageText )
+         cell.textView?.text = chat_text
+//        let w = (cell.textView?.frame.width)! * 0.7
+//        print("-----w-----")
+//        print(String(describing: w))
+//        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
+//        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
+//        cell.textView?.frame = newFrame
+//        cell.textView?.setNeedsDisplay()
+//
+//        print("data in cell making func",  data[indexPath.row].messageText )
         return cell
     }
         //        let message = data[indexPath.row] as! [String:Any]
