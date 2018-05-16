@@ -35,7 +35,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
-    @IBOutlet weak var locationTextView: UITextField!
 
     
 //    var rootURl: String = "https://running-mates.herokuapp.com/"
@@ -64,13 +63,18 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.userEmail = appDelegate.userEmail
         self.rootUrl = appDelegate.rootUrl
         
+        self.nameTextView.layer.cornerRadius = 5
+        self.bioTextView.layer.cornerRadius = 5
+        self.milesPerWeekTextField.layer.cornerRadius = 5
+        self.runsPerWeekTextField.layer.cornerRadius = 5
+        self.racesDoneTextView.layer.cornerRadius = 5
+        
         
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        locationTextView.clipsToBounds = true
         profileImage.clipsToBounds = true
-        nameTextView.clipsToBounds = true
-        milesPerWeekTextField.clipsToBounds = true
+//        nameTextView.clipsToBounds = true
+//        milesPerWeekTextField.clipsToBounds = true
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         imagePicker.delegate = self
@@ -83,7 +87,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
         
         self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
-        self.locationTextView.text = "e.g. city, state"
         self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
         
        // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
