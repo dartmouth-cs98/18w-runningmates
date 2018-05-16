@@ -14,66 +14,65 @@
         <scene sceneID="3a7-pd-PHN">
             <objects>
                 <viewController storyboardIdentifier="matchingView" title="Matching" id="ago-c8-JKF" customClass="MatchingViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hEu-Oc-4T3" customClass="GradientView" customModule="RunningMates" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <view key="view" contentMode="scaleToFill" id="mU6-8s-FY8" customClass="GradientView" customModule="RunningMates" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-SZ-Ahu">
-                                <rect key="frame" x="153" y="516" width="68" height="61"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Match"/>
-                                <connections>
-                                    <action selector="matchButton:" destination="ago-c8-JKF" eventType="touchUpInside" id="l2V-Il-I4I"/>
-                                </connections>
-                            </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cjh-96-9Y8">
-                                <rect key="frame" x="-1" y="579" width="377" height="44"/>
+                                <rect key="frame" x="-2" y="515" width="378" height="43"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Profile" id="NGa-nT-MwV">
+                                    <barButtonItem title="Profile" image="user-xxlwhite" id="NGa-nT-MwV">
+                                        <inset key="imageInsets" minX="-16" minY="1" maxX="0.0" maxY="-3"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="R0D-EK-oUE" kind="show" id="Jyx-7V-yt5"/>
+                                            <segue destination="R0D-EK-oUE" kind="show" id="37K-fI-M4l"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Item" image="Image-1" width="234" id="73I-q6-GJx">
-                                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="24G-AW-BmF"/>
+                                    <barButtonItem title="Settings" image="settings-10-xxl" id="wsj-Kd-B9X">
+                                        <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="-3"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="bZu-eF-9dI" kind="presentation" id="c2e-J7-coF"/>
+                                            <segue destination="bZu-eF-9dI" kind="presentation" id="gcO-WO-vID"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Item" image="Image-2" id="TNV-gT-Go4">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="a1g-qt-pcQ"/>
+                                    <barButtonItem title="Chata" image="chat-4-xxl" id="Bay-TK-ALO">
+                                        <inset key="imageInsets" minX="0.0" minY="2" maxX="-17" maxY="-3"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="enw-5Z-cHv" kind="show" id="naY-Yh-eAO"/>
+                                            <segue destination="enw-5Z-cHv" kind="show" id="JrD-Gd-q53"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guR-iR-FKy" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="30" y="97" width="315" height="411"/>
+                                <rect key="frame" x="30" y="104" width="314" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                                <viewLayoutGuide key="safeArea" id="NoS-32-pbW"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="xuo-33-ZIu"/>
+                        <viewLayoutGuide key="safeArea" id="WiB-K8-Emr"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                <color key="value" red="0.93725490199999995" green="0.031372549020000001" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.93595141169999996" green="0.039996580949999999" blue="0.058960577829999999" alpha="0.74232127569999995" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                <color key="value" red="0.90980392160000001" green="0.36862745099999999" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.93595141169999996" green="0.039996580949999999" blue="0.058960577829999999" alpha="0.74232127569999995" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="MaG-cx-7vr">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" style="plain" id="71T-AJ-ZSV"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="RunningMates" id="MaG-cx-7vr"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="kolodaView" destination="guR-iR-FKy" id="BPi-vs-oOn"/>
+                        <outlet property="topView" destination="mU6-8s-FY8" id="ZJj-1Z-9Y8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXk-8W-UZO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -91,7 +90,7 @@
                 <viewControllerPlaceholder storyboardName="FullChatView" id="enw-5Z-cHv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SCg-WT-rzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3271.1999999999998" y="-84.557721139430285"/>
+            <point key="canvasLocation" x="3251" y="-44"/>
         </scene>
         <!--FilterStoryboard-->
         <scene sceneID="7Xc-qg-bIu">
@@ -133,7 +132,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image-1" width="339" height="271"/>
-        <image name="Image-2" width="677" height="561"/>
+        <image name="chat-4-xxl" width="80" height="80"/>
+        <image name="settings-10-xxl" width="80" height="80"/>
+        <image name="user-xxlwhite" width="80" height="80"/>
     </resources>
 </document>

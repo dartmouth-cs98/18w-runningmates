@@ -13,28 +13,26 @@ import Koloda
 
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
-
    // MARK: Properties
-
     var locationManager: CLLocationManager!
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index: Int!
-//    var rootURl: String = "http://localhost:9090/"
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var userEmail: String = UserDefaults.standard.string(forKey: "email")!
+    // var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
+    var userEmail: String! = UserDefaults.standard.string(forKey: "email")
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var avgPaceLabel: UILabel!
-
+    @IBOutlet var topView: GradientView!
 
     var userList = [sortedUser]()
-    
+
 
     override func viewDidAppear(_ animated: Bool) {
 
@@ -43,6 +41,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
+
+        if (self.userEmail == nil) {
+            self.userEmail = "brian@test.com"
+        }
 
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
@@ -86,16 +88,26 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
 
+        if (self.userEmail == nil) {
+            self.userEmail = "brian@test.com"
+        }
 
+        print(self.userEmail)
         UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
             self.userId = user.id!
         })
 
 
+        // Show progress view while we wait for matches to load
+        let view: MatchesLoadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+        topView.addSubview(view)
+        view.progressIndicator.startAnimating()
+        
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [-147.349442, 64.751114], completion: { list in
             self.userList = list
             self.kolodaView?.reloadData()
+            view.removeFromSuperview()
         })
    }
 
@@ -200,67 +212,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                     print(error)
                 }
         }
-        
+
         return usersList
     }
-
-//
-//    func getUserId( completion: @escaping (String)->()) {
-//        let rootUrl: String = appDelegate.rootUrl
-//        let url = rootUrl + "api/user/" + self.userEmail
-//
-//        let params : [String:Any] = [
-//            "email": self.userEmail
-//        ]
-//        let _request = Alamofire.request(url, method: .get, parameters: params)
-//            .responseJSON { response in
-//                print("RESPONSE")
-//                print(response)
-//                switch response.result {
-//                case .success:
-//                    if let jsonUser = response.result.value as? [String:Any] {
-//                            do {
-//                                let user = try User(json: (jsonUser as [String:Any]))
-//                                if (user != nil) {
-//                                    print("USER")
-//                                    print(user!)
-//                                    completion((user?.id)!)
-//                                } else {
-//                                    print("nil")
-//                                }
-//                            } catch UserInitError.invalidId {
-//                                print("invalid id")
-//                            } catch UserInitError.invalidFirstName {
-//                                print("invalid first name")
-//                            } catch UserInitError.invalidLastName {
-//                                print("invalid last name")
-//                            } catch UserInitError.invalidImageURL {
-//                                print("invalid image url")
-//                            } catch UserInitError.invalidBio {
-//                                print("invalid bio")
-//                            } catch UserInitError.invalidGender {
-//                                print("invalid gender")
-//                            } catch UserInitError.invalidAge {
-//                                print("invalid age")
-//                            } catch UserInitError.invalidLocation {
-//                                print("invalid location")
-//                            } catch UserInitError.invalidEmail {
-//                                print("invalid email")
-//                            } catch UserInitError.invalidPassword {
-//                                print("invalid password")
-//                            } catch {
-//                                print("other error")
-//                            }
-//                    } else {
-//                        print("error creating user for user id")
-//                    }
-//
-//                case .failure(let error):
-//                    print("failure: error creating user for user id")
-//                    print(error)
-//                }
-//        }
-//    }
 
    override func didReceiveMemoryWarning() {
        super.didReceiveMemoryWarning()
@@ -271,14 +225,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     @IBAction func leftButtonTapped() {
         print("swipe left", current_index, userList[current_index].user.firstName)
-        
+
 //        if (current_index > 0) {
 //            current_index = current_index - 1
 //        }
 //        else {
 //            current_index = userList.count - 1
 //        }
-        
+
         kolodaView?.swipe(.left)
 
     }
@@ -346,35 +300,46 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        }
 //    }
 
+//    func sendRequest(completion: @escaping (String, String)->()) {
+//
+//        let rootUrl: String = appDelegate.rootUrl
+//
+//        // alamofire request
+//        let params: [String: Any] = [
+//            "userId": self.userId,
+//            "targetId": userList[current_index].id!
+//        ]
+//
+//        let url = rootUrl + "api/match"
+//
+//        var title = ""
+//        var message = ""
+//
+//        let _request = Alamofire.request(url, method: .post, parameters: params)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    let responseDictionary = response.result.value as! [String:Any]
+//                    if (String(describing: responseDictionary["response"]!) == "match") {
+//                        title = "You matched with \(self.userList[self.current_index].firstName!)"
+//                        message = "Go to your chat to say hello!"
+//                    } else {
+//                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
+//                        message = "Keep running!"
+//                    }
+//                case .failure(let error):
+//                    print("error fetching users")
+//                    print(error)
+//                }
+//        completion(title, message)
+//        }
+//
+//
+    func tryMatch(index currentIndex: Int) {
 
-    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.black
-        let textFont = UIFont(name: "Helvetica Bold", size: 14)!
+        print("You clicked match on index", currentIndex)
 
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-
-        let textFontAttributes = [
-            NSAttributedStringKey.font: textFont,
-            NSAttributedStringKey.foregroundColor: textColor,
-            ] as [NSAttributedStringKey : Any]
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-
-        let rect = CGRect(origin: point, size: image.size)
-        text.draw(in: rect, withAttributes: textFontAttributes)
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage!
-    }
-
-
-    @IBAction func matchButton(_ sender: UIButton) {
-
-        print("You clicked match on index", current_index)
-
-        if (current_index > userList.count || userList.count == 0) {
+        if (currentIndex != nil && currentIndex > userList.count || userList.count == 0) {
             let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Refresh users", style: .default, handler: nil)
             alertController.addAction(defaultAction)
@@ -383,9 +348,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             //static right now,
             // will add a GET request when "refresh user" is clicked once backend is fixed
         }
-        else {
+    else {
 
-            UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[current_index].user.id!, firstName: self.userList[self.current_index].user.firstName!, completion: { title, message in
+            UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
@@ -395,35 +360,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             })
         }
     }
-
-//    func fetchUsers() {
-//
-//        //var dic=NSDictionary()
-//
-////        let params: Parameters = [
-////            "email": email!,
-////            "username": username!,
-////            "password": password!
-////        ]
-//
-//        let _request = Alamofire.request(Url, method: .g, parameters: params, encoding: URLEncoding.httpBody)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    print("Post Successful")
-//                    //dic=(response.result.value) as! NSDictionary
-//
-//                    //var error = NSInteger()
-//                    //error=dic.object(forKey: "error") as! NSInteger
-//
-//                case .failure(let error):
-//                    print(error)
-//                }
-//        }
-//        debugPrint("whole _request ****",_request)
-//    }
-
-
 }
 
 extension MatchingViewController: KolodaViewDelegate {
@@ -445,69 +381,60 @@ extension MatchingViewController: KolodaViewDataSource {
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         print("the current index is", index)
-        print(userList[index].user.firstName)
-        // Need to create UIImage from URL string
-        // let url = URL(string: self.userList[index].imageURL)
-        //var user: Int;
-
-
+        print(userList[index].user.firstName!)
+        
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: photoData!)
-        let nameAge = ("\n " + String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
-        let location = ("\n Location: " + String(describing: userList[index].user.location))
-        let bio = ("\n Bio: " + String(userList[index].user.bio))
+        let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
+        let location = ("Location: " + String(describing: userList[index].user.location))
+        let bio = ("Bio: " + String(userList[index].user.bio))
         let data = (self.userList[index].user.data as! [String:Any]?)
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
         if (data!["totalMilesRun"] != nil) {
-            totalMiles = (" \n Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!))
+            totalMiles = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
         } else {
-            totalMiles = "\n No info to show"
+            totalMiles = "Total Miles: No info to show"
         }
 
         if (data!["averageRunLength"] != nil) {
-            averageRunLength = ("\n Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!))
+            averageRunLength = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!) + " mi")
         } else {
-            averageRunLength = "\n Avg. Run Length: No info to show"
+            averageRunLength = "Avg. Run Length: No info to show"
         }
 
+        //let userText = nameAge + location + bio + totalMiles + averageRunLength
 
+        let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
+        
+        view.profileImage.image = image!
+        view.nameText.text! = nameAge
+        view.locationText.text! = location
+        view.bioText.text! = bio
+        view.averageRunLengthText.text! = averageRunLength
+        view.totalMilesText.text! = totalMiles
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.clipsToBounds = true
+        
+        
         if (userList[index].matchReason != "") {
             matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
         } else {
             matchReason = "\n"
         }
-
-        let userText = nameAge + location + bio + totalMiles + averageRunLength + matchReason
-        let point = CGPoint(x: 0, y: 100)
-
-        let userCardImage = textToImage(drawText:userText, inImage:image!, atPoint:point)
-
-//        if (index == 0){
-//            current_index = userList.count - 1
-//        }
-//        else if (index == 1){
-//            current_index = userList.count - 2
-//        }
-//        else if (index == userList.count - 1){
-//            current_index = 0
-//        }
-//        else if (index == userList.count - 2){
-//            current_index = 1
-//        }
-//        else{
-//            current_index = index - 2
-//        }
-       // current_index = index
-
-        return UIImageView(image: userCardImage)
+        
+        return view
     }
-    
+
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
             print("swiped card at", index, "in direction", direction)
-            if (index < userList.count - 1) {
+        if (direction == SwipeResultDirection.right) {
+            tryMatch(index: index)
+        }
+        
+        if (index < userList.count - 1) {
                 current_index = index + 1
             }
             else{
@@ -516,4 +443,7 @@ extension MatchingViewController: KolodaViewDataSource {
         print("currently looking at", userList[current_index].user.firstName)
     }
 
+    func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
+        return Bundle.main.loadNibNamed("MatchingCardOverlay", owner: self, options: nil)?[0] as? OverlayView
+    }
 }

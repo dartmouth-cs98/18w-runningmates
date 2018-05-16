@@ -13,7 +13,6 @@ import Alamofire
 struct sortedUser {
     var user: User
     var matchReason: String
-    var score: Float
 }
 
 
@@ -39,7 +38,7 @@ class UserManager: NSObject {
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
-                        var user = (jsonUser["user"] as? [String:Any])!
+                        var user = (jsonUser["user"] as? [String:AnyObject])!
                         
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
@@ -62,6 +61,9 @@ class UserManager: NSObject {
                             if (user["lastName"] != nil) {
                                 UserDefaults.standard.set(user["lastName"]!, forKey: "lastName")
                             }
+                            if (user["bio"] != nil) {
+                                UserDefaults.standard.set(user["bio"]!, forKey: "bio")
+                            }
                             
                             if (user["imageURL"] != nil) {
                                 UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
@@ -72,9 +74,17 @@ class UserManager: NSObject {
                             }
                             
                             if (user["preferences"] != nil) {
-                                print("\n\nHERE FOR PREFERENCES OF LOGIN \n\n ")
-                                print(user["preferences"]!)
-                                UserDefaults.standard.set(user["preferences"]!, forKey: "preferences")
+                                var preferences = [String:Any]()
+                                let genderPref = user["preferences"]!["gender"] as! [String]
+                                let runLengthPref = user["preferences"]!["runLength"]
+                                let agePref = user["preferences"]!["age"]
+                                preferences["gender"] = genderPref
+                                preferences["runLength"] = runLengthPref!
+                                preferences["age"] = agePref
+                                preferences["proximity"] = user["preferences"]!["proximity"]  as! Double
+                                print("PREFERENCESSSSSS: ", preferences)
+
+                                UserDefaults.standard.set(preferences, forKey: "preferences")
                             }
                             
                             if (user["data"] != nil) {
@@ -98,6 +108,7 @@ class UserManager: NSObject {
     func requestUserObject(userEmail: String, completion: @escaping (User)->()) {
         let rootUrl: String = appDelegate.rootUrl
         let url = rootUrl + "api/user/" + userEmail
+
         
         // https://stackoverflow.com/questions/47775600/alamofire-post-request-with-headers
 //        let urlString = rootUrl + "api/user/" + userEmail
@@ -107,7 +118,7 @@ class UserManager: NSObject {
 //        urlRequest.httpMethod = HTTPMethod.get.rawValue
 //        urlRequest.addValue("jwt " + userToken, forHTTPHeaderField: "Authorization")
 //        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+    
 
         let params : [String:Any] = [
             "email": userEmail
@@ -184,11 +195,9 @@ class UserManager: NSObject {
                             do {
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 let matchReason = (jsonUser["matchReason"] as! String)
-                                print(user!)
                                 print(jsonUser)
-                                let score = (jsonUser["score"] as! Float)
                                 
-                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason, score: score)
+                                let sortUserInstance = sortedUser(user: user!, matchReason: matchReason);
                                 
                                 if (user != nil) {
                                     usersList.append(sortUserInstance)

@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //  SocketIOManager.sharedInstance.establishConnection()
         let defaults = UserDefaults.standard
         if (defaults.string(forKey: "email") != nil) {
-            userEmail = defaults.string(forKey: "email")!
+           // userEmail = defaults.string(forKey: "email")!
             print("when app becomes active: ")
             print(userEmail)
         }
