@@ -25,61 +25,22 @@ import UIKit
 import Foundation
 import Alamofire
 
-class PaddingLabel: UILabel {
-    
-    @IBInspectable var topInset: CGFloat = 5.0
-    @IBInspectable var bottomInset: CGFloat = 5.0
-    @IBInspectable var leftInset: CGFloat = 50.0
-    @IBInspectable var rightInset: CGFloat = 5.0
-    
-    override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        get {
-            var contentSize = super.intrinsicContentSize
-            contentSize.height += topInset + bottomInset
-            contentSize.width += leftInset + rightInset
-            return contentSize
-        }
-    }
-}
 
-class ChatImgView: UIImageView {
-    
-    @IBInspectable var topInset: CGFloat = 5.0
-    @IBInspectable var bottomInset: CGFloat = 5.0
-    @IBInspectable var leftInset: CGFloat = 50.0
-    @IBInspectable var rightInset: CGFloat = 5.0
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        self.layer.cornerRadius = 30
-        self.layer.masksToBounds = true
-        self.clipsToBounds = true
-        let insets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.draw(UIEdgeInsetsInsetRect(rect, insets))
-    }
 
-    
-    override var intrinsicContentSize: CGSize {
-        get {
-            var contentSize = super.intrinsicContentSize
-            contentSize.height += topInset + bottomInset
-            contentSize.width += leftInset + rightInset
-            return contentSize
-        }
-    }
-}
+
+
+
 
 class CustomMessageCell: UITableViewCell {
-    @IBOutlet weak var textView: UILabel!
+  //  @IBOutlet weak var textView: UILabel!
 
-    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var textView: UILabel!
+    //@IBOutlet weak var textView: UIImageView!
+    @IBOutlet weak var bubbleView: UIImageView!
+   // @IBOutlet weak var imgView: UIImageView!
+   
     
+    @IBOutlet weak var bubbleHeightConstraint: NSLayoutConstraint!
 }
 
 
@@ -130,7 +91,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-
+ 
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
     // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,24 +106,49 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
         let RM_gray = UIColor.lightGray
         
-        let messageUserID = data[indexPath.row].sentBy
-        
-        //message to yourself
-//        if (messageUserID == self.sentByID) {
-//            cell.imgView.backgroundColor = RM_orange
-//        } else {
-//            cell.imgView.backgroundColor = RM_gray
-//        }
-        
+    
+    
+
         let chat_text : String  = data[indexPath.row].messageText as! String
-         cell.textView.layer.cornerRadius = 10;
-         cell.textView.layer.borderWidth = 5;
-         cell.textView.layer.borderColor = UIColor.white.cgColor
+        cell.textView?.text = chat_text
+        
+    let messageUserID = data[indexPath.row].sentBy
+    
+    // message to yourself
+    if (messageUserID == self.sentByID) {
+        let image = UIImage(named: "chat_bubble_sent")
+        cell.bubbleView.image = image?
+        .resizableImage(withCapInsets:
+        UIEdgeInsetsMake(17, 21, 17, 21),
+        resizingMode: .stretch)
+        .withRenderingMode(.alwaysTemplate)
+        // Fallback on earlier versions
+        cell.bubbleView.tintColor = UIColor.yellow
+    //cell.imgView.backgroundColor = RM_orange
+    } else {
+        let image = UIImage(named: "chat_bubble_received")
+        cell.bubbleView.image = image?
+        .resizableImage(withCapInsets:
+        UIEdgeInsetsMake(17, 21, 17, 21),
+        resizingMode: .stretch)
+        .withRenderingMode(.alwaysTemplate)
+        cell.bubbleView.tintColor = UIColor.lightGray
+    }
+
+        print("LINES", cell.textView.calculateMaxLines())
+        let lines = cell.textView.calculateMaxLines()
+        
+        
+        cell.bubbleHeightConstraint.constant = CGFloat(lines*50)
+        print(cell.bubbleHeightConstraint)
+
+        //  cell.textView.layer.cornerRadius = 10;
+        // cell.textView.layer.borderWidth = 5;
+        // cell.textView.layer.borderColor = UIColor.white.cgColor
        // cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
         // cell.imgView.frame(forAlignmentRect: CGRect(x: 50, y: 0, width: tableView.frame.size.width, height: 30))
         
         // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
-         cell.textView?.text = chat_text
 //        let w = (cell.textView?.frame.width)! * 0.7
 //        print("-----w-----")
 //        print(String(describing: w))
@@ -369,4 +355,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
     }
+}
+
+extension UILabel {
+    
+    func calculateMaxLines() -> Int {
+        let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
+        let charSize = font.lineHeight
+        let text = (self.text ?? "") as NSString
+        let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+        let lines = Int(textSize.height/charSize)
+        return lines
+    }
+    
 }
