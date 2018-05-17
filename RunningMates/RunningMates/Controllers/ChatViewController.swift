@@ -99,27 +99,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // CHAT BUBBLE FROM: https://github.com/robkerr/TutorialChatBubble/tree/master/TutorialMessageBubble/Assets.xcassets
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("making a cell")
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-//
-//
-//        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
-        //cell.addSubview(cell.imgView)
-        
-        let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
-        let RM_gray = UIColor.lightGray
-        
-    
-    
-
         let chat_text : String  = data[indexPath.row].messageText as! String
         cell.textView?.text = chat_text
         print("TEXT: ", chat_text)
     let messageUserID = data[indexPath.row].sentBy
-      //  let lines = cell.textView.calculateMaxLines()
-    //   // let screenSize: CGRect = UIScreen.main.bounds
-        
-      //  cell.bubbleView.frame = CGRect(x: 0, y: 0, width: Int(screenSize.width), height: (lines*50))
   print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
    //  message to yourself
     if (messageUserID == self.sentByID) {
@@ -134,7 +118,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.bubbleView.tintColor = UIColor(red:255/255.0, green: 196/255.0, blue: 45/255.0, alpha: 1.0)
 
         cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
-    //cell.imgView.backgroundColor = RM_orange
     } else {
         let image = UIImage(named: "chat_bubble_received")
         cell.bubbleView.image = image?
@@ -146,73 +129,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
 
     }
-//        print("CALCULATED EHIGHT", lines*30)
-        
 
-        //print(cell.bubbleHeightConstraint)
-
-        
-        //  cell.textView.layer.cornerRadius = 10;
-        // cell.textView.layer.borderWidth = 5;
-        // cell.textView.layer.borderColor = UIColor.white.cgColor
         cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
-       //  cell.bubbleView.frame(forAlignmentRect: CGRect(x: 50, y: 0, width: tableView.frame.size.width, height: 30))
-        
-        // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
-//        let w = (cell.textView?.frame.width)! * 0.7
-//        print("-----w-----")
-//        print(String(describing: w))
-//        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
-//        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
-//        cell.textView?.frame = newFrame
-        //cell.textView?.setNeedsDisplay()
-//
-//        print("data in cell making func",  data[indexPath.row].messageText )
-
-        
+  
         return cell
+
     }
-        //        let message = data[indexPath.row] as! [String:Any]
-        //        let recipients: [String] = message["recipients"] as! [String]
-        //
-        //        var displayedMembers: String = ""
-        //        displayedMembers += recipients[0]
-        //
-        //        for (index, recipient) in recipients.enumerated() {
-        //            if (index != 0) {
-        //                displayedMembers = displayedMembers + ", " + recipient
-        //            }
-        //        }
-        //
-        //cell.textLabel?.text = displayedMembers
 
 
-
-
-    // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
-    //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    //        print("selected a cell")
-    //        // Create a variable that you want to send based on the destination view controller
-    //        // You can get a reference to the data by using indexPath shown below
-    //        let selectedObj = data[indexPath.row] as! [String: Any]
-    //        self.selectedChat = selectedObj["id"] as! String
-    //    }
-    //
-    // following function adapted from: https://stackoverflow.com/questions/44790227/pass-multiple-variables-through-segue-in-swift
-    // passes id of the chat pressed to the chatViewController
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "chatPressed" {
-    //            let cell = sender as? UITableViewCell
-    //
-    //            let index: IndexPath? = tableView?.indexPath(for: cell!)
-    //            let selectedObj = data[(index?.row)!] as! [String: Any]
-    //            let id: String = selectedObj["id"] as! String
-    //
-    //            let chatViewController = segue.destination as! ChatViewController
-    //            chatViewController.chatID = id
-    //        }
-    //    }
-
+  
     func getStringHeight(mytext: String, fontSize: CGFloat, width: CGFloat)->CGFloat {
         
         let font = UIFont.systemFont(ofSize: fontSize)
