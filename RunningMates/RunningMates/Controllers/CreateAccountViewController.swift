@@ -129,8 +129,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         } else {
             // If everything looks ok, try to sign them in
                 print("does this work")
-            UserManager.instance.requestForLogin(Url: rootUrl + "api/signup", password: pass, email: email, completion: { response in
-                
+            UserManager.instance.requestForSignup(email: email, password: pass, completion: { response in
                 if (response == "error") {
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
@@ -140,7 +139,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
                     // If the account creation was successful, send user to create profile page
-                    let  createProfileVC : ProfileTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
+                    let  createProfileVC : CreateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! CreateProfileViewController
                     self.present(createProfileVC, animated: true, completion: nil)
                 }
             })

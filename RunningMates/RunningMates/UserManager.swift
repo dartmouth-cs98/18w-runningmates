@@ -26,6 +26,33 @@ class UserManager: NSObject {
 
     }
     
+    func requestForSignup(email: String?, password: String?, completion: @escaping (String)->()) {
+        let rootUrl: String = appDelegate.rootUrl
+        let url = rootUrl + "api/signup"
+        
+        let params: Parameters = [
+            "email": email!,
+            "password": password!
+        ]
+
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+                .responseJSON { response in
+                    switch response.result {
+                        case .success:
+                            if let jsonUser = response.result.value as? [String:Any] {
+                                let token = (jsonUser["token"] as? [String:Any])
+                                UserDefaults.standard.set(email!, forKey: "email")
+                                UserDefaults.standard.set(token, forKey: "token")
+                                UserDefaults.standard.set(password!, forKey: "password")
+                                completion("success")
+                            }
+                        case .failure(let error):
+                            print(error)
+                            completion("error")
+                    }
+            }
+    }
+    
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
         
         let params: Parameters = [
@@ -82,14 +109,19 @@ class UserManager: NSObject {
                                 preferences["gender"] = genderPref
                                 preferences["runLength"] = runLengthPref!
                                 preferences["age"] = agePref
-                                preferences["proximity"] = user["preferences"]!["proximity"]  as! Double
+                                if (user["preferences"] != nil) {
+                                    if let proximityPrefs = (user["preferences"]!["proximity"]  as? Double) {
+                                        preferences["proximity"] = proximityPrefs
+                                    }
+                                }
                                 print("PREFERENCESSSSSS: ", preferences)
 
                                 UserDefaults.standard.set(preferences, forKey: "preferences")
                             }
                             
                             if (user["data"] != nil) {
-                                UserDefaults.standard.set(user["data"]!, forKey: "data")
+                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+                                UserDefaults.standard.set(data, forKey: "data")
                             }
                             if (user["desiredGoals"] != nil) {
                                 UserDefaults.standard.set(user["desiredGoals"]!, forKey: "desiredGoals")
@@ -109,13 +141,22 @@ class UserManager: NSObject {
     func requestUserObject(userEmail: String, completion: @escaping (User)->()) {
         let rootUrl: String = appDelegate.rootUrl
         let url = rootUrl + "api/user/" + userEmail
+
         
-        print("user email" + userEmail)
-        
+        // https://stackoverflow.com/questions/47775600/alamofire-post-request-with-headers
+//        let urlString = rootUrl + "api/user/" + userEmail
+//        let url = URL(string: urlString)
+//        var urlRequest = URLRequest(url: url!)
+//
+//        urlRequest.httpMethod = HTTPMethod.get.rawValue
+//        urlRequest.addValue("jwt " + userToken, forHTTPHeaderField: "Authorization")
+//        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+
         let params : [String:Any] = [
             "email": userEmail
         ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
+        let _request = Alamofire.request(url, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -167,17 +208,21 @@ class UserManager: NSObject {
         
         var usersList = [sortedUser]()
         
-        let params : [String: Any] = [
-            "email": userEmail,
-            "location": location
+//        let params : [String: Any] = [
+//            "email": userEmail,
+//            "location": location
+//        ]
+
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
+        
+        let headers : [String:String] = [
+            "Authorization": "jwt " + userToken,
+            "Content-Type": "application/json"
         ]
         
         let url = rootUrl + "api/users"
         
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        let request = Alamofire.request(url, method: .get, parameters: params)
+        let request = Alamofire.request(url, method: .get, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -273,30 +318,19 @@ class UserManager: NSObject {
     func requestUserUpdate(userEmail: String, params: [String:Any], completion: @escaping (String, String)-> ()){
         
         let rootUrl: String = appDelegate.rootUrl
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
-//        let params : [String: Any]
-        
-//        params = [
-//            "email": self.userEmail,
-//            "firstName": nameTextView.text!,
-//            "bio": bioTextView.text!,
-//            "images": self.profileImageUrls,
-//            "milesPerWeek": milesPerWeekTextField.text!,
-//            "totalElevation": totalElevationTextField.text!,
-//            "totalMiles": totalMilesTextField.text!,
-//            "longestRun": longestRunTextView.text!,
-//            "racesDone": racesDoneTextView.text!,
-//            "runsPerWeek": runsPerWeekTextField.text!,
-//            "kom": KOMsTextField.text!,
-//            "frequentSegments": frequentSegmentsTextView.text!
-//        ]
+        let headers : [String:String] = [
+            "Authorization": "jwt " + userToken,
+            "Content-Type": "application/json"
+        ]
         
         let url = rootUrl + "api/user/" + userEmail
         
         var title = ""
         var message = ""
         
-        let _request = Alamofire.request(url, method: .post, parameters: params)
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -319,7 +353,7 @@ class UserManager: NSObject {
     
     
     
-    func logout(userID: String) {
+    func requestForSignOut(userID: String) {
         
     }
 }

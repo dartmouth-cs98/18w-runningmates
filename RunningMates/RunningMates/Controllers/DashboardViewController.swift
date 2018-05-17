@@ -50,9 +50,10 @@ class DashboardViewController: UIViewController {
         
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
         
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
-        self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
+        
+//        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        
+        setDataTextFields()
         self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
     }
     
@@ -62,10 +63,27 @@ class DashboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
-        self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
+        setDataTextFields()
         self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+    }
+    
+    func setDataTextFields() {
+        if (UserDefaults.standard.value(forKey: "data") != nil) {
+            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            
+            if (data["milesPerWeek"] != nil) {
+                if let mpwkText = (data["milesPerWeek"]! as? String) {
+                    self.milesWkLabel.text = mpwkText
+                }
+            }
+            
+            if (data["runsPerWeek"] != nil) {
+                if let runsperweekText = (data["runsPerWeek"] as? String) {
+                    self.runsWkLabel.text = runsperweekText
+                }
+            }
+        }
     }
     
 }
