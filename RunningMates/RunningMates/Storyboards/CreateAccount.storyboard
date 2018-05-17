@@ -101,6 +101,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="20"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="6s6-S5-xfm"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="______________________________________" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68w-In-JcN">
                                 <rect key="frame" x="47" y="243" width="312" height="21"/>
@@ -167,6 +170,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cancelButton" destination="2YL-sD-or9" id="ILZ-42-GaK"/>
+                        <outlet property="emailTextField" destination="wes-lt-wjT" id="iJ3-t9-Hws"/>
+                        <outlet property="passReconfirmTextField" destination="Fjr-1Y-6rL" id="0fW-y3-0wN"/>
+                        <outlet property="passTextField" destination="ADo-TX-Mku" id="hve-Zz-l0Y"/>
                         <outlet property="stravaButton" destination="lj6-PR-g2b" id="cXD-Dx-fTK"/>
                     </connections>
                 </viewController>
