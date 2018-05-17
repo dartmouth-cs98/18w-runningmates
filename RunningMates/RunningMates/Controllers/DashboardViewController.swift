@@ -48,13 +48,18 @@ class DashboardViewController: UIViewController {
         self.metricCirc2.layer.borderWidth = 1.5;
         self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+            self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        }
         
         
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
         setDataTextFields()
-        self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+        
+        if (UserDefaults.standard.string(forKey: "bio") != nil) {
+            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,9 +67,13 @@ class DashboardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+            self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        }
         setDataTextFields()
-        self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+        if (UserDefaults.standard.string(forKey: "bio") != nil) {
+            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+        }
     }
     
     func setDataTextFields() {

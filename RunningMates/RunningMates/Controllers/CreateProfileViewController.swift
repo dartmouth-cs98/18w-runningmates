@@ -50,9 +50,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var saveProf: UIButton!
-    var userId: String = UserDefaults.standard.string(forKey: "id")!
-    var userEmail: String = UserDefaults.standard.string(forKey: "email")!
-
+    var userId: String? = nil
+    var userEmail: String? = nil
     
     var pickerOptions: [String] = [String]()
     var imagePicker: UIImagePickerController = UIImagePickerController()
@@ -61,6 +60,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.userId = UserDefaults.standard.string(forKey: "id")!
+        self.userEmail = UserDefaults.standard.string(forKey: "email")!
+        
         self.hideKeyboardOnBackgroundTap()
         self.userEmail = appDelegate.userEmail
         self.rootUrl = appDelegate.rootUrl
@@ -92,7 +95,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             self.stravaLogo1.isHidden = false
             self.stravaLogo2.isHidden = false
 //            getUserRequest(completion: {_ in })
-            UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+            UserManager.instance.requestUserObject(userEmail: self.userEmail!, completion: {user in
                 let data : [String:Any] = user.data!
                 print(user)
                 let urlString = String (describing: user.imageURL)
@@ -111,8 +114,12 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             })
         }
         
-        self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
-        self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
+        if (UserDefaults.standard.value(forKey: "firstName") != nil) {
+            self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
+        }
+        if (UserDefaults.standard.value(forKey: "bio") != nil) {
+            self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
+        }
         
        // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
         
@@ -144,24 +151,29 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     func updateInfoFromUserDefaults() {
-        var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
+        if (UserDefaults.standard.value(forKey: "firstName") != nil) {
+            var firstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
+        }
         UserDefaults.standard.set(nameTextView.text, forKey: "firstName")
         var newFirstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-
+//        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        if (UserDefaults.standard.value(forKey: "data") != nil) {
+            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
         
-        let milespwk:Int? = Int(milesPerWeekTextField.text!)
-        data["milesPerWeek"] = milespwk
-        
-        let runsperWk:Int? = Int(runsPerWeekTextField.text!)
-        data["runsPerWeek"] = runsperWk
-        
-        let racesDoneArray:String? = racesDoneTextView.text!
-        data["racesDone"] = racesDoneArray
-        
-        UserDefaults.standard.set(data, forKey: "data")
-        var newData: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        
+            let milespwk:Int? = Int(milesPerWeekTextField.text!)
+            data["milesPerWeek"] = milespwk
+            
+            let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+            data["runsPerWeek"] = runsperWk
+            
+            let racesDoneArray:String? = racesDoneTextView.text!
+            data["racesDone"] = racesDoneArray
+            
+            let archivedData = NSKeyedArchiver.archivedData(withRootObject: data)
+            UserDefaults.standard.set(archivedData, forKey: "data")
+//            var newData: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        }
         UserDefaults.standard.set(bioTextView.text, forKey: "bio")
         
     }
@@ -198,7 +210,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let tempImage = UIImageView()
         tempImage.image = image
-        let imageName = self.userId + "_" + String(imageNumber) + "_" + self.userId
+        let imgName1 = self.userId! + "_"
+        let imgName2 = imgName1 + String(imageNumber)
+        let imageName = imgName2 + "_" + self.userId!
         profileImages.updateValue(tempImage, forKey: imageNumber)
         profileImageNames.updateValue(imageName, forKey: imageNumber)
 
@@ -252,19 +266,31 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             self.present(alert, animated: true, completion: nil)
         }
         updateInfoFromUserDefaults()
-        var dataObj: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
         let milespwk:Int? = Int(milesPerWeekTextField.text!)
-        
         let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+        var elevation: Double? = nil
+        var milesRun: Double? = nil
+        var avgRunLength: Double? = nil
         
+        if (UserDefaults.standard.value(forKey: "data") != nil) {
+            var defaultData: Data = (UserDefaults.standard.value(forKey: "data") as? Data)!
+            var dataObj : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            
+            elevation = dataObj["totalElevationClimbed"] as? Double
+            milesRun = dataObj["totalMilesRun"] as? Double
+            avgRunLength = dataObj["averageRunLength"] as? Double
+        }
+//        var dataObj: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
+        
+
         let data: [String: Any] = [
             "milesPerWeek": milespwk,
             "runsPerWeek": runsperWk,
-            "totalElevationClimbed": dataObj["totalElevationClimbed"] as! Double,
-            "totalMilesRun": dataObj["totalElevationClimbed"] as! Double,
-            "averageRunLength": dataObj["totalElevationClimbed"] as! Double,
-            ]
+            "totalElevationClimbed": elevation,
+            "totalMilesRun": milesRun,
+            "averageRunLength": avgRunLength
+        ]
         
         // alamofire request
         let params: [String: Any] = [
@@ -274,7 +300,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             "data": data
         ]
         
-        UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {title,message in
+        UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
             print("updated user here!")
             self.updateInfoFromUserDefaults()
         })
@@ -306,7 +332,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     "runsPerWeek": self.runsPerWeekTextField.text!
                 ]
                 
-                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: { title, message in
+                UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)

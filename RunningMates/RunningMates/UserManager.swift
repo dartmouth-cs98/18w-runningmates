@@ -39,11 +39,18 @@ class UserManager: NSObject {
                 .responseJSON { response in
                     switch response.result {
                         case .success:
-                            if let jsonUser = response.result.value as? [String:Any] {
-                                let token = (jsonUser["token"] as? [String:Any])
+                            if let jsonObj = response.result.value as? [String:Any] {
+                                let token = (jsonObj["token"] as? [String:Any])
+                                let user = (jsonObj["user"] as? [String:Any])
+                                
                                 UserDefaults.standard.set(email!, forKey: "email")
                                 UserDefaults.standard.set(token, forKey: "token")
                                 UserDefaults.standard.set(password!, forKey: "password")
+                                
+                                if (user!["_id"] != nil) {
+                                    print("-----SETTING ID-----")
+                                    UserDefaults.standard.set(user!["_id"]!, forKey: "id")
+                                }
                                 completion("success")
                             }
                         case .failure(let error):
