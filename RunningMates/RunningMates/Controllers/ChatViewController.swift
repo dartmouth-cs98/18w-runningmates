@@ -94,7 +94,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
  
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
-    // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
+    // and https://www.ralfebert.de/ios-examples/uikit
+    //uitableviewcontroller/#dynamic_data_contents
+    // CHAT BUBBLE FROM: https://github.com/robkerr/TutorialChatBubble/tree/master/TutorialMessageBubble/Assets.xcassets
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("making a cell")
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
