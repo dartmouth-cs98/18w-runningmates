@@ -103,6 +103,14 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUB-a8-KhO">
+                                <rect key="frame" x="16" y="42" width="23" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="arrow-89-xxl"/>
+                                <connections>
+                                    <segue destination="luH-U8-yfo" kind="show" id="G4S-tG-VjG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -117,6 +125,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="yfQ-bg-zSN" id="elg-de-MUf"/>
@@ -128,5 +137,16 @@
             </objects>
             <point key="canvasLocation" x="-122.40000000000001" y="526.6866566716642"/>
         </scene>
+        <!--Main-->
+        <scene sceneID="mSs-Ph-FCe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="luH-U8-yfo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTC-M2-Oxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="510"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="arrow-89-xxl" width="256" height="256"/>
+    </resources>
 </document>
