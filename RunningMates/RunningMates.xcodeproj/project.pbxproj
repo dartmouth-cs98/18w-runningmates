@@ -31,6 +31,8 @@
 		8910FDC916F63FF6F3ACACCE /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		95530D9C585784CC739A51AB /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
+		D3BBB48520AE2B8400BD6CF9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3BBB48420AE2B8400BD6CF9 /* Login.storyboard */; };
+		D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */; };
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
@@ -193,6 +195,8 @@
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
 		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
 		B5AB06653744964379D2084B /* Pods-RunningMates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.debug.xcconfig"; sourceTree = "<group>"; };
+		D3BBB48420AE2B8400BD6CF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableClasses.swift; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
 				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
+				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
+				D3BBB48420AE2B8400BD6CF9 /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -680,6 +686,7 @@
 				F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */,
 				FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */,
 				FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */,
+				D3BBB48520AE2B8400BD6CF9 /* Login.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
 				2B7B91EA20A6321D00B2EA07 /* load.gif in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
@@ -800,6 +807,7 @@
 				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
+				D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */,
 				2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */,
