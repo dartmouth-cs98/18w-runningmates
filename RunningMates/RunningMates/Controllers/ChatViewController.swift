@@ -26,12 +26,26 @@ import Foundation
 import Alamofire
 
 
+
+
+
+
+
 class CustomMessageCell: UITableViewCell {
+  //  @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var bubbleView: UIImageView!
+
     @IBOutlet weak var textView: UILabel!
-    @IBOutlet weak var imgView: UIImageView!
-
-
+    //@IBOutlet weak var textView: UIImageView!
+    //@IBOutlet weak var bubbleView: UIImageView!
+   // @IBOutlet weak var imgView: UIImageView!
+   
+    
+    @IBOutlet weak var bubbleHeightConstraint: NSLayoutConstraint!
 }
+
+
+
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -78,87 +92,69 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-
+ 
     // function written with help from http://www.thomashanning.com/uitableview-tutorial-for-beginners/
-    // and https://www.ralfebert.de/ios-examples/uikit/uitableviewcontroller/#dynamic_data_contents
+    // and https://www.ralfebert.de/ios-examples/uikit
+    //uitableviewcontroller/#dynamic_data_contents
+    // CHAT BUBBLE FROM: https://github.com/robkerr/TutorialChatBubble/tree/master/TutorialMessageBubble/Assets.xcassets
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("making a cell")
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-//
-//
-//        cell.textLabel?.text = "hello"
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
-        let RM_orange =  UIColor(red: 1.0, green: 0.65, blue: 0.35, alpha: 1.0)
-        let RM_gray = UIColor.lightGray
-        
-        let messageUserID = data[indexPath.row].sentBy
-        
-        if (messageUserID == self.sentByID) {
-            cell.contentView.backgroundColor = RM_orange
-        } else {
-            cell.contentView.backgroundColor = RM_gray
-        }
-        
         let chat_text : String  = data[indexPath.row].messageText as! String
-        cell.layer.cornerRadius = 10;
-        cell.layer.borderWidth = 5;
-        cell.layer.borderColor = UIColor.white.cgColor
-        
-        // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
         cell.textView?.text = chat_text
-        let w = (cell.textView?.frame.width)! * 0.7
-        print("-----w-----")
-        print(String(describing: w))
-        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
-        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
-        cell.textView?.frame = newFrame
-        cell.textView?.setNeedsDisplay()
-        
-        print("data in cell making func",  data[indexPath.row].messageText )
-        return cell
+        print("TEXT: ", chat_text)
+    let messageUserID = data[indexPath.row].sentBy
+  print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
+   //  message to yourself
+    if (messageUserID == self.sentByID) {
+        let image = UIImage(named: "chat_bubble_sent")
+    
+        cell.bubbleView.image = image?
+        .resizableImage(withCapInsets:
+        UIEdgeInsetsMake(17, 21, 17, 21),
+        resizingMode: .stretch)
+         .withRenderingMode(.alwaysTemplate)
+        // Fallback on earlier versions
+        cell.bubbleView.tintColor = UIColor(red:255/255.0, green: 196/255.0, blue: 45/255.0, alpha: 1.0)
+
+        cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
+    } else {
+        let image = UIImage(named: "chat_bubble_received")
+        cell.bubbleView.image = image?
+        .resizableImage(withCapInsets:
+        UIEdgeInsetsMake(17, 21, 17, 21),
+        resizingMode: .stretch)
+        .withRenderingMode(.alwaysTemplate)
+        cell.bubbleView.tintColor = UIColor(red: 0.8, green: 0.8, blue:  0.8, alpha: 1.0)
+        cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
+
     }
-        //        let message = data[indexPath.row] as! [String:Any]
-        //        let recipients: [String] = message["recipients"] as! [String]
-        //
-        //        var displayedMembers: String = ""
-        //        displayedMembers += recipients[0]
-        //
-        //        for (index, recipient) in recipients.enumerated() {
-        //            if (index != 0) {
-        //                displayedMembers = displayedMembers + ", " + recipient
-        //            }
-        //        }
-        //
-        //cell.textLabel?.text = displayedMembers
+
+        cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
+  
+        return cell
+
+    }
 
 
-
-
-    // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
-    //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    //        print("selected a cell")
-    //        // Create a variable that you want to send based on the destination view controller
-    //        // You can get a reference to the data by using indexPath shown below
-    //        let selectedObj = data[indexPath.row] as! [String: Any]
-    //        self.selectedChat = selectedObj["id"] as! String
-    //    }
-    //
-    // following function adapted from: https://stackoverflow.com/questions/44790227/pass-multiple-variables-through-segue-in-swift
-    // passes id of the chat pressed to the chatViewController
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "chatPressed" {
-    //            let cell = sender as? UITableViewCell
-    //
-    //            let index: IndexPath? = tableView?.indexPath(for: cell!)
-    //            let selectedObj = data[(index?.row)!] as! [String: Any]
-    //            let id: String = selectedObj["id"] as! String
-    //
-    //            let chatViewController = segue.destination as! ChatViewController
-    //            chatViewController.chatID = id
-    //        }
-    //    }
-
-
+  
+    func getStringHeight(mytext: String, fontSize: CGFloat, width: CGFloat)->CGFloat {
+        
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byWordWrapping;
+        let attributes = [NSAttributedStringKey.font:font,
+                          NSAttributedStringKey.paragraphStyle:paragraphStyle.copy()]
+        
+        let text = mytext as NSString
+        let rect = text.boundingRect(with: size,
+                                     options:.usesLineFragmentOrigin,
+                                     attributes: attributes,
+                                     context:nil)
+        return rect.size.height
+    }
+    
     func fetchChats(completion: @escaping ([Message])->()) {
 
         let url = appDelegate.rootUrl + "api/chatHistory"
@@ -175,7 +171,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     var msgsList : [Message] = []
                     for jsonMsg in jsonResult {
                         let msg = Message(json: (jsonMsg as? [String:Any])!)
-                        if (msg != nil) {
+                        if (msg != nil && msg?.messageText != "") {
                             msgsList.append(msg!)
                         } else {
                             print("nil")
@@ -189,9 +185,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tableView.separatorStyle = .none
+
+      //  self.tableView.rowHeight = UITableViewAutomaticDimension
 
         let url = URL(string: self.imageURL)
         let imgData = try? Data(contentsOf: url!)
@@ -313,3 +314,4 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
 }
+

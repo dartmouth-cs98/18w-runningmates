@@ -105,6 +105,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
+        print(rootUrl, pass, email)
+        
         // Check to make sure user has filled in all textfields
         if ((passTextField.text! == "") || (emailTextField.text! == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
@@ -126,6 +128,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             self.present(alert, animated: true, completion: nil)
         } else {
             // If everything looks ok, try to sign them in
+                print("does this work")
             UserManager.instance.requestForLogin(Url: rootUrl + "api/signup", password: pass, email: email, completion: { response in
                 
                 if (response == "error") {
@@ -133,11 +136,11 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    print("completion")
+                    print("****************** **** **** completion")
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
                     // If the account creation was successful, send user to create profile page
-                    let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
+                    let  createProfileVC : ProfileTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
                     self.present(createProfileVC, animated: true, completion: nil)
                 }
             })

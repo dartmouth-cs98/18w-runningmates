@@ -100,6 +100,7 @@ class UserManager: NSObject {
                             }
                             
                             if (user["preferences"] != nil) {
+        
                                 var preferences = [String:Any]()
                                 let genderPref = user["preferences"]!["gender"] as! [String]
                                 let runLengthPref = user["preferences"]!["runLength"]
