@@ -109,7 +109,11 @@ class UserManager: NSObject {
                                 preferences["gender"] = genderPref
                                 preferences["runLength"] = runLengthPref!
                                 preferences["age"] = agePref
-                                preferences["proximity"] = user["preferences"]!["proximity"]  as! Double
+                                if (user["preferences"] != nil) {
+                                    if let proximityPrefs = (user["preferences"]!["proximity"]  as? Double) {
+                                        preferences["proximity"] = proximityPrefs
+                                    }
+                                }
                                 print("PREFERENCESSSSSS: ", preferences)
 
                                 UserDefaults.standard.set(preferences, forKey: "preferences")
