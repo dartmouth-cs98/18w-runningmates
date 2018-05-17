@@ -31,25 +31,26 @@ class UserManager: NSObject {
         let url = rootUrl + "api/signup"
         
         let params: Parameters = [
-                    "email": email!,
-                    "password": password!
-                ]
-        
-                let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
-                        .responseJSON { response in
-                                switch response.result {
-                                    case .success:
-                                            if let jsonUser = response.result.value as? [String:Any] {
-                                                    let token = (jsonUser["token"] as? [String:Any])
-                                                    UserDefaults.standard.set(email!, forKey: "email")
-                                                    UserDefaults.standard.set(token, forKey: "token")
-                                                    UserDefaults.standard.set(password!, forKey: "password")
-                                                completion("")
-                                                }
-                                    case .failure(let error):
-                                        print(error)
+            "email": email!,
+            "password": password!
+        ]
+
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+                .responseJSON { response in
+                    switch response.result {
+                        case .success:
+                            if let jsonUser = response.result.value as? [String:Any] {
+                                let token = (jsonUser["token"] as? [String:Any])
+                                UserDefaults.standard.set(email!, forKey: "email")
+                                UserDefaults.standard.set(token, forKey: "token")
+                                UserDefaults.standard.set(password!, forKey: "password")
+                                completion("success")
                             }
-        }
+                        case .failure(let error):
+                            print(error)
+                            completion("error")
+                    }
+            }
     }
     
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {

@@ -10,13 +10,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
-        <scene sceneID="Lq6-22-bWa">
+        <!--CreateProfile-->
+        <scene sceneID="giw-Mh-G4d">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Profile" storyboardName="Profile" id="JOH-pa-0pU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GOp-cg-ev7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="Profile" storyboardName="CreateProfile" id="usR-Rr-7LN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26G-LF-Pk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613" y="211"/>
+            <point key="canvasLocation" x="1351" y="133"/>
         </scene>
         <!--Main-->
         <scene sceneID="11G-sR-r0v">

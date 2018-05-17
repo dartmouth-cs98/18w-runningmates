@@ -108,14 +108,22 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
        // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
         
-        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
-        
-        var mpwkText = String(describing: data["milesPerWeek"]!)
-        self.milesPerWeekTextField.text = mpwkText
-        
-        
-        var runsperweekText = String(describing: data["runsPerWeek"]!)
-        self.runsPerWeekTextField.text = runsperweekText
+        if (UserDefaults.standard.value(forKey: "data") != nil) {
+            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            
+            if (data["milesPerWeek"] != nil) {
+                if let mpwkText = (data["milesPerWeek"]! as? String) {
+                    self.milesPerWeekTextField.text = mpwkText
+                }
+            }
+            
+            if (data["runsPerWeek"] != nil) {
+                if let runsperweekText = (data["runsPerWeek"] as? String) {
+                    self.runsPerWeekTextField.text = runsperweekText
+                }
+            }
+        }
         
     }
     
