@@ -33,10 +33,11 @@ import Alamofire
 
 class CustomMessageCell: UITableViewCell {
   //  @IBOutlet weak var textView: UILabel!
+    @IBOutlet weak var bubbleView: UIImageView!
 
     @IBOutlet weak var textView: UILabel!
     //@IBOutlet weak var textView: UIImageView!
-    @IBOutlet weak var bubbleView: UIImageView!
+    //@IBOutlet weak var bubbleView: UIImageView!
    // @IBOutlet weak var imgView: UIImageView!
    
     
@@ -111,19 +112,26 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         let chat_text : String  = data[indexPath.row].messageText as! String
         cell.textView?.text = chat_text
-        
+        print("TEXT: ", chat_text)
     let messageUserID = data[indexPath.row].sentBy
-    
-    // message to yourself
+      //  let lines = cell.textView.calculateMaxLines()
+    //   // let screenSize: CGRect = UIScreen.main.bounds
+        
+      //  cell.bubbleView.frame = CGRect(x: 0, y: 0, width: Int(screenSize.width), height: (lines*50))
+  print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
+   //  message to yourself
     if (messageUserID == self.sentByID) {
         let image = UIImage(named: "chat_bubble_sent")
+    
         cell.bubbleView.image = image?
         .resizableImage(withCapInsets:
         UIEdgeInsetsMake(17, 21, 17, 21),
         resizingMode: .stretch)
-        .withRenderingMode(.alwaysTemplate)
+         .withRenderingMode(.alwaysTemplate)
         // Fallback on earlier versions
-        cell.bubbleView.tintColor = UIColor.yellow
+        cell.bubbleView.tintColor = UIColor(red:255/255.0, green: 196/255.0, blue: 45/255.0, alpha: 1.0)
+
+        cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
     //cell.imgView.backgroundColor = RM_orange
     } else {
         let image = UIImage(named: "chat_bubble_received")
@@ -132,21 +140,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIEdgeInsetsMake(17, 21, 17, 21),
         resizingMode: .stretch)
         .withRenderingMode(.alwaysTemplate)
-        cell.bubbleView.tintColor = UIColor.lightGray
+        cell.bubbleView.tintColor = UIColor(red: 0.8, green: 0.8, blue:  0.8, alpha: 1.0)
+        cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
+
     }
-
-        print("LINES", cell.textView.calculateMaxLines())
-        let lines = cell.textView.calculateMaxLines()
+//        print("CALCULATED EHIGHT", lines*30)
         
-        
-        cell.bubbleHeightConstraint.constant = CGFloat(lines*50)
-        print(cell.bubbleHeightConstraint)
 
+        //print(cell.bubbleHeightConstraint)
+
+        
         //  cell.textView.layer.cornerRadius = 10;
         // cell.textView.layer.borderWidth = 5;
         // cell.textView.layer.borderColor = UIColor.white.cgColor
-       // cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
-        // cell.imgView.frame(forAlignmentRect: CGRect(x: 50, y: 0, width: tableView.frame.size.width, height: 30))
+        cell.textView.layoutMargins = UIEdgeInsetsMake(30, 30, 30, 30)
+       //  cell.bubbleView.frame(forAlignmentRect: CGRect(x: 50, y: 0, width: tableView.frame.size.width, height: 30))
         
         // https://stackoverflow.com/questions/42226933/ios-setting-width-of-textfield-programmatically
 //        let w = (cell.textView?.frame.width)! * 0.7
@@ -155,9 +163,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        let maxSize = CGSize(width: w, height: (cell.textView?.frame.height)!)
 //        let newFrame = CGRect(origin: (cell.textView?.frame.origin)!, size: maxSize)
 //        cell.textView?.frame = newFrame
-//        cell.textView?.setNeedsDisplay()
+        //cell.textView?.setNeedsDisplay()
 //
 //        print("data in cell making func",  data[indexPath.row].messageText )
+
+        
         return cell
     }
         //        let message = data[indexPath.row] as! [String:Any]
@@ -201,7 +211,23 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //        }
     //    }
 
-
+    func getStringHeight(mytext: String, fontSize: CGFloat, width: CGFloat)->CGFloat {
+        
+        let font = UIFont.systemFont(ofSize: fontSize)
+        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byWordWrapping;
+        let attributes = [NSAttributedStringKey.font:font,
+                          NSAttributedStringKey.paragraphStyle:paragraphStyle.copy()]
+        
+        let text = mytext as NSString
+        let rect = text.boundingRect(with: size,
+                                     options:.usesLineFragmentOrigin,
+                                     attributes: attributes,
+                                     context:nil)
+        return rect.size.height
+    }
+    
     func fetchChats(completion: @escaping ([Message])->()) {
 
         let url = appDelegate.rootUrl + "api/chatHistory"
@@ -218,7 +244,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     var msgsList : [Message] = []
                     for jsonMsg in jsonResult {
                         let msg = Message(json: (jsonMsg as? [String:Any])!)
-                        if (msg != nil) {
+                        if (msg != nil && msg?.messageText != "") {
                             msgsList.append(msg!)
                         } else {
                             print("nil")
@@ -232,9 +258,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tableView.separatorStyle = .none
+
+      //  self.tableView.rowHeight = UITableViewAutomaticDimension
 
         let url = URL(string: self.imageURL)
         let imgData = try? Data(contentsOf: url!)
@@ -357,15 +388,3 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 }
 
-extension UILabel {
-    
-    func calculateMaxLines() -> Int {
-        let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
-        let charSize = font.lineHeight
-        let text = (self.text ?? "") as NSString
-        let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
-        let lines = Int(textSize.height/charSize)
-        return lines
-    }
-    
-}
