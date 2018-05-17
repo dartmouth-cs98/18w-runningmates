@@ -26,6 +26,32 @@ class UserManager: NSObject {
 
     }
     
+    func requestForSignup(email: String?, password: String?, completion: @escaping (String)->()) {
+        let rootUrl: String = appDelegate.rootUrl
+        let url = rootUrl + "api/signup"
+        
+        let params: Parameters = [
+                    "email": email!,
+                    "password": password!
+                ]
+        
+                let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+                        .responseJSON { response in
+                                switch response.result {
+                                    case .success:
+                                            if let jsonUser = response.result.value as? [String:Any] {
+                                                    let token = (jsonUser["token"] as? [String:Any])
+                                                    UserDefaults.standard.set(email!, forKey: "email")
+                                                    UserDefaults.standard.set(token, forKey: "token")
+                                                    UserDefaults.standard.set(password!, forKey: "password")
+                                                completion("")
+                                                }
+                                    case .failure(let error):
+                                        print(error)
+                            }
+        }
+    }
+    
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
         
         let params: Parameters = [
@@ -88,7 +114,8 @@ class UserManager: NSObject {
                             }
                             
                             if (user["data"] != nil) {
-                                UserDefaults.standard.set(user["data"]!, forKey: "data")
+                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+                                UserDefaults.standard.set(data, forKey: "data")
                             }
                             if (user["desiredGoals"] != nil) {
                                 UserDefaults.standard.set(user["desiredGoals"]!, forKey: "desiredGoals")
@@ -175,17 +202,21 @@ class UserManager: NSObject {
         
         var usersList = [sortedUser]()
         
-        let params : [String: Any] = [
-            "email": userEmail,
-            "location": location
+//        let params : [String: Any] = [
+//            "email": userEmail,
+//            "location": location
+//        ]
+
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
+        
+        let headers : [String:String] = [
+            "Authorization": "jwt " + userToken,
+            "Content-Type": "application/json"
         ]
         
         let url = rootUrl + "api/users"
         
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        let request = Alamofire.request(url, method: .get, parameters: params)
+        let request = Alamofire.request(url, method: .get, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:

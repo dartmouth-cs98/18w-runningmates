@@ -79,7 +79,24 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         print("did sign up with strava: ")
         print(self.appDelegate.didSignUpWithStrava)
         if (self.appDelegate.didSignUpWithStrava == 1) {
-            getUserRequest(completion: {_ in })
+//            getUserRequest(completion: {_ in })
+            UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+                let data : [String:Any] = user.data!
+                print(user)
+                let urlString = String (describing: user.imageURL)
+                let url = URL(string: urlString)
+                let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                let image = UIImage(data: imagedata!)
+                self.profileImage.image = image
+                self.nameTextView.text = user.firstName
+                self.bioTextView.text = user.bio
+                self.milesPerWeekTextField.text = String (describing: data["milesPerWeek"])
+                //                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+                //                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+                //                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+                self.racesDoneTextView.text = data["racesDone"] as! String
+                self.runsPerWeekTextField.text = data["runsPerWeek"] as! String
+            })
         }
         
         self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
@@ -236,22 +253,25 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             "firstName": self.nameTextView.text!,
             "bio":self.bioTextView.text!,
             "data": data
-            ]
+        ]
         
-        let url = rootUrl + "api/users/" + self.userEmail
+        UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {title,message in
+            print("updated user here!")
+            self.updateInfoFromUserDefaults()
+        })
         
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseString { response in
-                switch response.result {
-                case .success:
-                    print("success! response is:")
-                    self.updateInfoFromUserDefaults()
-                    print(response)
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        }
+//        let _request = Alamofire.request(url, method: .post, parameters: params)
+//            .responseString { response in
+//                switch response.result {
+//                case .success:
+//                    print("success! response is:")
+//                    self.updateInfoFromUserDefaults()
+//                    print(response)
+//                case .failure(let error):
+//                    print("error fetching users")
+//                    print(error)
+//                }
+//        }
         
         
         imageURLsRequest(completion: {  // Get signed URL requests from backend
@@ -335,50 +355,50 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     // needs to be called  only when navigated not from a new user
-    func getUserRequest( completion: @escaping ([String:Any])->()){
-        let rootUrl: String = appDelegate.rootUrl
-        print("in get user")
-        
-        let params : [String: Any]
-        params = [
-            "email": self.userEmail
-        ]
-        
-        let email: String = self.userEmail
-        let url = rootUrl + "api/users/" + email
-        
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        let _request = Alamofire.request(url, method: .get, parameters: params)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    print("success")
-                    let user = response.result.value as? [String:Any]!
-                    let data = user!["data"] as? [String:Any]?
-                    print(user)
-                    let urlString = String (describing: user! ["imageURL"]!)
-                    let url = URL(string: urlString)
-                    let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                    let image = UIImage(data: imagedata!)
-                    self.profileImage.image = image
-                    self.nameTextView.text = String(describing: user! ["firstName"]!)
-                    self.bioTextView.text = String(describing: user! ["bio"]!)
-                    self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
-//                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
-//                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
-//                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
-                    self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
-                    self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
-                    completion(user!)
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        }
-        debugPrint("whole _request ****",_request)
-    }
+//    func getUserRequest( completion: @escaping ([String:Any])->()){
+//        let rootUrl: String = appDelegate.rootUrl
+//        print("in get user")
+//
+//        let params : [String: Any]
+//        params = [
+//            "email": self.userEmail
+//        ]
+//
+//        let email: String = self.userEmail
+//        let url = rootUrl + "api/users/" + email
+//
+//        var headers: HTTPHeaders = [
+//            "Content-Type": "application/json"
+//        ]
+//        let _request = Alamofire.request(url, method: .get, parameters: params)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success:
+//                    print("success")
+//                    let user = response.result.value as? [String:Any]!
+//                    let data = user!["data"] as? [String:Any]?
+//                    print(user)
+//                    let urlString = String (describing: user! ["imageURL"]!)
+//                    let url = URL(string: urlString)
+//                    let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//                    let image = UIImage(data: imagedata!)
+//                    self.profileImage.image = image
+//                    self.nameTextView.text = String(describing: user! ["firstName"]!)
+//                    self.bioTextView.text = String(describing: user! ["bio"]!)
+//                    self.milesPerWeekTextField.text = String (describing: data!! ["milesPerWeek"])
+////                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
+////                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
+////                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
+//                    self.racesDoneTextView.text = String (describing: data!! ["racesDone"])
+//                    self.runsPerWeekTextField.text = String (describing: data!! ["runsPerWeek"])
+//                    completion(user!)
+//                case .failure(let error):
+//                    print("error fetching users")
+//                    print(error)
+//                }
+//        }
+//        debugPrint("whole _request ****",_request)
+//    }
 
     
 //    func backendSaveRequest(completion: @escaping (String, String)-> ()){
