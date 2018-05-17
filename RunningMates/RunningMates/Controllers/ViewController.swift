@@ -44,9 +44,15 @@ extension UIViewController {
     
     @IBAction func didTapCreateAccountButton(_ sender: Any) {
         // Show create account screen
-        let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier:
-            "createAccount") as! CreateAccountViewController
-        self.present(createAccountVC, animated: false, completion: nil)
+        print("here")
+      //  let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier:
+        //    "createAccount") as! CreateAccountViewController
+        
+        let vc : CreateAccountViewController = self.storyboard?.instantiateViewController(withIdentifier: "createAccount") as! CreateAccountViewController
+        /// vc.teststring = "hello"
+        print("here")
+
+        self.present(vc, animated: false, completion: nil)
     }
 
     @IBAction func tryLogin(_ sender: UIButton) {
