@@ -36,8 +36,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
 
+    @IBOutlet weak var stravaLogo1: UIImageView!
+    @IBOutlet weak var stravaLogo2: UIImageView!
     
-//    var rootURl: String = "https://running-mates.herokuapp.com/"
+    //    var rootURl: String = "https://running-mates.herokuapp.com/"
 //    // var rootURl: String = "http://localhost:9090/"
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var racesDoneTextView: UITextView!
@@ -82,7 +84,13 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         //pickerView.selectedRow(inComponent: 3)
         print("did sign up with strava: ")
         print(self.appDelegate.didSignUpWithStrava)
+        if (self.appDelegate.didSignUpWithStrava == 0) {
+            self.stravaLogo1.isHidden = true
+            self.stravaLogo2.isHidden = true
+        }
         if (self.appDelegate.didSignUpWithStrava == 1) {
+            self.stravaLogo1.isHidden = false
+            self.stravaLogo2.isHidden = false
 //            getUserRequest(completion: {_ in })
             UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
                 let data : [String:Any] = user.data!
