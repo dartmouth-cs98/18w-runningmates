@@ -48,7 +48,6 @@ class UserManager: NSObject {
                                 UserDefaults.standard.set(password!, forKey: "password")
                                 
                                 if (user!["_id"] != nil) {
-                                    print("-----SETTING ID-----")
                                     UserDefaults.standard.set(user!["_id"]!, forKey: "id")
                                 }
                                 completion("success")
@@ -223,7 +222,7 @@ class UserManager: NSObject {
         let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
         let headers : [String:String] = [
-            "Authorization": "jwt " + userToken,
+            "Authorization": userToken,
             "Content-Type": "application/json"
         ]
         
@@ -328,16 +327,22 @@ class UserManager: NSObject {
         let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
         let headers : [String:String] = [
-            "Authorization": "jwt " + userToken,
+            "Authorization": userToken,
             "Content-Type": "application/json"
         ]
         
-        let url = rootUrl + "api/user/" + userEmail
+        let url = rootUrl + "api/users/" + userEmail
+        print("url:")
+        print(url)
+        print("params:")
+        print(String(describing: params))
+        print("token:")
+        print(userToken)
         
         var title = ""
         var message = ""
         
-        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+        let _request = Alamofire.request(url, method: .post, parameters: params, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
