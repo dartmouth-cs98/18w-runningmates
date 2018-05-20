@@ -256,7 +256,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        }
+        } else {
         updateInfoFromUserDefaults()
         
         let milespwk:Int = Int(milesPerWeekTextField.text!)!
@@ -351,6 +351,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
         else {
             fatalError("editing profile error.")
+        }
         }
     }
     

@@ -332,17 +332,11 @@ class UserManager: NSObject {
         ]
         
         let url = rootUrl + "api/users/" + userEmail
-        print("url:")
-        print(url)
-        print("params:")
-        print(String(describing: params))
-        print("token:")
-        print(userToken)
         
         var title = ""
         var message = ""
         
-        let _request = Alamofire.request(url, method: .post, parameters: params, headers: headers)
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
