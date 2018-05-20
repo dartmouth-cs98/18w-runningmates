@@ -16,6 +16,7 @@ import WebKit
         var webView: WKWebView!
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         var rootURl: String = ""
+        var userEmail = UserDefaults.standard.string(forKey: "email")!
         
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var passTextField: UITextField!
@@ -46,6 +47,29 @@ import WebKit
         let vc : LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
         /// vc.teststring = "hello"
         print("here")
+        print(UserDefaults.standard.value(forKey: "location"))
+        //temp workaround because location ain't working for anybody
+        if (UserDefaults.standard.value(forKey: "location") == nil) {
+            let url = rootURl + "api/users/" + self.userEmail
+            let location = [-147.349442, 64.751114]
+            let params: [String: Any] = [
+                "location": location
+            ]
+            let _request = Alamofire.request(url, method: .post, parameters: params)
+                .responseString { response in
+                    switch response.result {
+                    case .success:
+                        print("success! response is:")
+                        UserDefaults.standard.set(location, forKey: "location")
+                        print(response)
+                    case .failure(let error):
+                        print("error fetching users")
+                        print(error)
+                    }
+            }
+        }
+        
+       
         
         self.present(vc, animated: false, completion: nil)
     }
