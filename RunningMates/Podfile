@@ -12,4 +12,5 @@ target 'RunningMates' do
     pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'ExpyTableView'
+    pod 'EMAlertController'
 end
