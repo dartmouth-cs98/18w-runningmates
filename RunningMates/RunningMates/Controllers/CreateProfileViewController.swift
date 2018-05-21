@@ -65,7 +65,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
         
         self.hideKeyboardOnBackgroundTap()
-        self.userEmail = appDelegate.userEmail
+//        self.userEmail = appDelegate.userEmail
+        self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
         self.rootUrl = appDelegate.rootUrl
         
         self.nameTextView.layer.cornerRadius = 5

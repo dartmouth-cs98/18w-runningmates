@@ -53,16 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-      //  SocketIOManager.sharedInstance.establishConnection()
-        let defaults = UserDefaults.standard
-        if (defaults.string(forKey: "email") != nil) {
-           // userEmail = defaults.string(forKey: "email")!
-            print("when app becomes active: ")
-            print(userEmail)
-        }
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         SocketIOManager.instance.connect()
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        var locationManager: CLLocationManager!
+        
+        if (UserDefaults.standard.value(forKey: "token") != nil) { // user is signed in
+            let token = UserDefaults.standard.value(forKey: "token")
+            locationManager = CLLocationManager()
+            locationManager.requestLocation()
+        }
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -76,6 +76,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="signOutPressed:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="Vsz-gD-4ci"/>
                                     <segue destination="YFA-H8-k5R" kind="show" id="HJV-vd-qdl"/>
                                 </connections>
                             </button>
@@ -88,6 +89,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutPressed:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="hI2-mQ-WPK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -114,6 +118,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkU-RY-9ci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="113.59999999999999" y="-696.25187406296857"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="y2Q-cn-Hb5">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="0IA-BS-VNK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6K7-TP-FVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="597" y="-561"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="kbf-ib-n0e">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dashboard" id="shZ-e9-lwC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gc4-Sk-Nlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539.20000000000005" y="-1097.4512743628186"/>
         </scene>
     </scenes>
 </document>

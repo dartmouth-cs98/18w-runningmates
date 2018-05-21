@@ -367,8 +367,37 @@ class UserManager: NSObject {
     
     
     
-    func requestForSignOut(userID: String) {
+    func requestForSignOut(completion: @escaping ()->()) {
+        let rootUrl: String = appDelegate.rootUrl
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
+        let headers : [String:String] = [
+            "Authorization": userToken,
+            "Content-Type": "application/json"
+        ]
+        
+        let url = rootUrl + "api/signout"
+
+        let _request = Alamofire.request(url, method: .post, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success: // clear user defaults, route to sign in page
+                    let userID : String = UserDefaults.standard.value(forKey: "id") as! String
+                    SocketIOManager.instance.logout(userID: userID)
+                    self.removeUserDefaults()
+                    completion()
+                case .failure:
+                    print("error signing out")
+                }
+        }
+        debugPrint("whole _request ****",_request)
+    }
+    
+    // https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
+    func removeUserDefaults() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
     }
 }
 

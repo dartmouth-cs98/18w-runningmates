@@ -134,23 +134,15 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        self.userEmail = appDelegate.userEmail;
-        
+
         self.tableView.estimatedRowHeight = 150.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-        
-//        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-//            print("got user object")
-//
-//            self.userID = user.id!
 
-            self.fetchChats(completion: { chats in
-                
-                self.data = chats
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-            })
-//        })
+        self.fetchChats(completion: { chats in
+            self.data = chats
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        })
     }
     
     func fetchChats(completion: @escaping ([Any])->()) {
