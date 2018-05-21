@@ -59,6 +59,13 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func signOutPressed(_ sender: Any) {
+    UserManager.instance.requestForSignOut(completion: {
+        let  mainVC : ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! ViewController
+        self.present(mainVC, animated: true, completion: nil)
+    })
+    }
 
 }
 
