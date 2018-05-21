@@ -22,15 +22,17 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
     var profileImages: [Int: UIImageView] = [:]
+    var imageName = ""
+    var profileImageUrl = ""
     var profileImageNames: [Int: String] = [:]
     var profileImageUrls: [Int: String] = [:]
     var signUrls: [signedUrlObject] = []
-    @IBOutlet weak var profileImage_0: UIImageView!
-    @IBOutlet weak var profileImage_1: UIImageView!
-    @IBOutlet weak var profileImage_2: UIImageView!
-    @IBOutlet weak var profileImage_3: UIImageView!
-    @IBOutlet weak var profileImage_4: UIImageView!
-    @IBOutlet weak var profileImage_5: UIImageView!
+//    @IBOutlet weak var profileImage_0: UIImageView!
+//    @IBOutlet weak var profileImage_1: UIImageView!
+//    @IBOutlet weak var profileImage_2: UIImageView!
+//    @IBOutlet weak var profileImage_3: UIImageView!
+//    @IBOutlet weak var profileImage_4: UIImageView!
+//    @IBOutlet weak var profileImage_5: UIImageView!
    
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
@@ -78,6 +80,17 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         profileImage.layer.borderWidth = 2
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         profileImage.clipsToBounds = true
+        
+        if let userImages = UserDefaults.standard.dictionary(forKey: "images") {
+            let url = URL(string: userImages[String(0)] as! String)
+            
+            
+            if let photoData = try? Data(contentsOf: url!) {
+                let image = UIImage(data: photoData)
+                profileImage.image = image!
+            }
+            
+        }
 //        nameTextView.clipsToBounds = true
 //        milesPerWeekTextField.clipsToBounds = true
         self.pickerView.delegate = self
@@ -200,22 +213,22 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBAction func addImageButtonClicked(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             imagePicker.sourceType = .photoLibrary;
-            imagePicker.allowsEditing = true
+            imagePicker.allowsEditing = true;
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
     // In the delegate method, set the profile image to the image the user picked based on the image icon clicked
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any], imageNumber: Int) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let tempImage = UIImageView()
-        tempImage.image = image
-        let imgName1 = self.userId! + "_"
-        let imgName2 = imgName1 + String(imageNumber)
-        let imageName = imgName2 + "_" + self.userId!
-        profileImages.updateValue(tempImage, forKey: imageNumber)
-        profileImageNames.updateValue(imageName, forKey: imageNumber)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let tempImage = UIImageView()
+            tempImage.image = image
+            imageName = self.userId! + "_0"
+            profileImage.image = image
+            //        profileImages.updateValue(tempImage, forKey: imageNumber)
+            //        profileImageNames.updateValue(imageName, forKey: imageNumber)
 
+        }
         dismiss(animated:true, completion: nil)
     }
     
@@ -328,6 +341,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imageURLsRequest(completion: {  // Get signed URL requests from backend
             self.awsUpload(completion: { // Upload images to aws
                 
+                var userImages = UserDefaults.standard.dictionary(forKey: "images")
+                userImages![String(0)] = self.profileImageUrl;
                 let params: [String:Any] = [
                     "email": self.userEmail,
                     "firstName": self.nameTextView.text!,
@@ -340,7 +355,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                    UserDefaults.standard.set(userImages, forKey: "images")
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    
                     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
                     alertController.addAction(defaultAction)
                     
@@ -504,32 +521,48 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         let headers: HTTPHeaders = [
             "Content-Type": "image/jpeg"
         ]
-        
-        for (key, imageObject) in self.profileImages {
-            let image = imageObject.image
-            let imageData = UIImageJPEGRepresentation(image!, 0.7)
-            let request = Alamofire.upload(imageData!, to: self.signUrls[key].signedRequest, method: .put, headers: headers)
-                .responseData {
-                    response in
-                    if response.response != nil {
-                        self.profileImageUrls.updateValue(self.signUrls[key].url, forKey: key)
-                        
-                    }
-                    else {
-                        print("Something went wrong uploading")
-                    }
-                    
+//
+//        for (key, imageObject) in self.profileImages {
+//            let image = imageObject.image
+//            let imageData = UIImageJPEGRepresentation(image!, 0.7)
+//            let request = Alamofire.upload(imageData!, to: self.signUrls[key].signedRequest, method: .put, headers: headers)
+//                .responseData {
+//                    response in
+//                    if response.response != nil {
+//                        self.profileImageUrls.updateValue(self.signUrls[key].url, forKey: key)
+//
+//                    }
+//                    else {
+//                        print("Something went wrong uploading")
+//                    }
+//
+//                }
+//        }
+        let image = profileImage.image
+        let imageData = UIImageJPEGRepresentation(image!, 0.7)
+        let request = Alamofire.upload(imageData!, to: self.signUrls[0].signedRequest, method: .put, headers: headers)
+            .responseData {
+                response in
+                if response.response != nil {
+                    self.profileImageUrl = self.signUrls[0].url
+
                 }
-        }
+                else {
+                    print("Something went wrong uploading")
+                }
+
+            }
         completion()
     }
     func imageURLsRequest (completion: @escaping ()-> ()){
         
         let rootUrl: String = appDelegate.rootUrl
         let Url = rootUrl + "sign-s3"
-        
+        let fileName = [self.imageName]
+        print(Url)
+        print(fileName)
         let params: Parameters = [
-            "file-names": self.profileImageUrls,
+            "file-names": fileName,
             "file-type": "image/jpeg",
         ]
         
