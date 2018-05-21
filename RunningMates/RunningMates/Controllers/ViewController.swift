@@ -32,21 +32,14 @@ import WebKit
     
     @IBAction func didTapCreateAccountButton(_ sender: Any) {
         // Show create account screen
-        print("here")
-      //  let  createAccountVC = self.storyboard?.instantiateViewController(withIdentifier:
-        //    "createAccount") as! CreateAccountViewController
-        
         let vc : CreateAccountViewController = self.storyboard?.instantiateViewController(withIdentifier: "createAccount") as! CreateAccountViewController
-        /// vc.teststring = "hello"
-        print("here")
 
         self.present(vc, animated: false, completion: nil)
     }
 
     @IBAction func didTapLogIn(_ sender: UIButton) {
         let vc : LoginViewController = self.storyboard?.instantiateViewController(withIdentifier: "login") as! LoginViewController
-        /// vc.teststring = "hello"
-        print("here")
+
 //        print(UserDefaults.standard.value(forKey: "location"))
 //        //temp workaround because location ain't working for anybody
 //        if (UserDefaults.standard.value(forKey: "location") == nil) {
