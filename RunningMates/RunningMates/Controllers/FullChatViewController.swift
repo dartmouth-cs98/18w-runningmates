@@ -125,7 +125,8 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.separatorStyle = .none
+
         NotificationCenter.default.addObserver(self, selector: #selector(FullChatViewController.handleMessageNotification(_:)), name: NSNotification.Name(rawValue: "messageNotification"), object: nil)
         
       //  view.bringSubview(toFront: toolbar)
