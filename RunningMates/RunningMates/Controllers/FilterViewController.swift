@@ -174,24 +174,13 @@ class FilterViewController: UIViewController {
 
         // alamofire request
         let params: [String: Any] = [
-            "email": self.userEmail,
             "preferences": self.userPref,
         ]
-
-        let url = rootUrl + "api/users/" + self.userEmail
-
-        let _request = Alamofire.request(url, method: .post, parameters: params)
-            .responseString { response in
-                switch response.result {
-                case .success:
-                    print("success! response is:")
-                    UserDefaults.standard.set(preferences, forKey: "preferences")
-                    print(response)
-                case .failure(let error):
-                    print("error fetching users")
-                    print(error)
-                }
-        }
+        
+        UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {(title, msg) in
+            
+                print("success updating user preferences")
+            })
     }
     
     override func viewDidLayoutSubviews() {

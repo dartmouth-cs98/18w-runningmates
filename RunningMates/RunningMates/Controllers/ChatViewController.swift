@@ -54,14 +54,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
-//    let manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-//    let manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
 
     var selectedChat: String = ""
     var chatID: String!
-    var userEmail: String!
 
-    let recipientEmail : String = "jon@test.com"
     var sentByID : String = ""
     var recipientID : String = ""
 
@@ -70,16 +66,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var chats: [Any] = [Any]()
     private var data = [Message]()  // list of chat objects with chat ID, other user's name
-
-    // @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var toolbar: UIToolbar!
+    
+    var pageNumber = 1
 
 
     @IBOutlet weak var tableView: UITableView!
-//    self.tableView.rowHeight = UITableViewAutomaticDimension
-//    self.tableView.estimatedRowHeight = 140
     @IBOutlet weak var chatInput: UITextField!
-    //  @IBOutlet weak var sendButton: UIButton!
+
 
    //https://stackoverflow.com/questions/33705371/how-to-scroll-to-the-exact-end-of-the-uitableview
     func scrollToBottom(){
@@ -161,12 +154,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func fetchChats(completion: @escaping ([Message])->()) {
 
         let url = appDelegate.rootUrl + "api/chatHistory"
-
-        let params: Parameters = [
-            "chatID": self.chatID
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
+        
+        let headers : [String:String] = [
+            "Authorization": userToken,
+            "Content-Type": "application/json"
         ]
 
-        let _request = Alamofire.request(url, method: .get, parameters: params)
+        let params: Parameters = [
+            "chatID": self.chatID,
+            "pageNumber": self.pageNumber
+        ]
+
+        let _request = Alamofire.request(url, method: .get, parameters: params, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -213,7 +213,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         manager = SocketManager(socketURL: URL(string: appDelegate.rootUrl)!)
 
-        self.userEmail = appDelegate.userEmail
+        self.sentByID = UserDefaults.standard.string(forKey: "id")!
         let socket = manager!.defaultSocket
 
         socket.on(clientEvent: .connect) {data, ack in
@@ -240,28 +240,28 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self
         //        self.userEmail = appDelegate.userEmail;
 
-        let group = DispatchGroup()
+//        let group = DispatchGroup()
+//
+//        group.enter()
+//        group.enter()
 
-        group.enter()
-        group.enter()
+//        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+//            self.sentByID = user.id!
+//            group.leave()
+//        })
 
-        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-            self.sentByID = user.id!
-            group.leave()
-        })
+//        UserManager.instance.requestUserObject(userEmail: self.recipientEmail, completion: {user in
+//            self.recipientID = user.id!
+//            group.leave()
+//        })
 
-        UserManager.instance.requestUserObject(userEmail: self.recipientEmail, completion: {user in
-            self.recipientID = user.id!
-            group.leave()
-        })
-
-        group.notify(queue: DispatchQueue.main) {
+//        group.notify(queue: DispatchQueue.main) {
             self.fetchChats(completion: { chats in
                 self.data = chats
                 self.tableView.dataSource = self
                 self.tableView.reloadData()
             })
-        }
+//        }
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
@@ -273,8 +273,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func sendMessage(_ sender: Any) {
         print(self.chatInput.text!)
 
-        print("email: " + String(describing: self.userEmail))
-
         var message : [String: Any] = [:]
 
         if (self.chatID != nil) {
@@ -285,6 +283,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 "chatID": self.chatID
                 // "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
             ]
+            print("MESSAGE:")
+            print(message)
         } else {
             message = [
                 "message": self.chatInput.text!,

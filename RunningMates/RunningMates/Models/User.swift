@@ -26,7 +26,7 @@ enum UserInitError: Error {
 class User: NSObject, NSCoding {
     var id: String?
     var firstName: String?
-    var lastName: String
+    var lastName: String?
     var imageURL: String
     var bio: String
     var gender: String
@@ -75,9 +75,7 @@ class User: NSObject, NSCoding {
         guard let firstName = json["firstName"] as! String? else {
             throw UserInitError.invalidFirstName
         }
-        guard let lastName = json["lastName"] as! String? else {
-            throw UserInitError.invalidLastName
-        }
+        let lastName = json["lastName"] as! String?
         guard let imageURL = json["imageURL"] as! String? else {
             throw UserInitError.invalidImageURL
         }

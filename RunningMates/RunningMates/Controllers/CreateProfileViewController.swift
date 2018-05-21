@@ -264,22 +264,28 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-        }
+        } else {
         updateInfoFromUserDefaults()
         
-        let milespwk:Int? = Int(milesPerWeekTextField.text!)
-        let runsperWk:Int? = Int(runsPerWeekTextField.text!)
-        var elevation: Double? = nil
-        var milesRun: Double? = nil
-        var avgRunLength: Double? = nil
+        let milespwk:Int = Int(milesPerWeekTextField.text!)!
+        let runsperWk:Int = Int(runsPerWeekTextField.text!)!
+        var elevation: Double = 0.0
+        var milesRun: Double = 0.0
+        var avgRunLength: Double = 0.0
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
             var defaultData: Data = (UserDefaults.standard.value(forKey: "data") as? Data)!
             var dataObj : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
             
-            elevation = dataObj["totalElevationClimbed"] as? Double
-            milesRun = dataObj["totalMilesRun"] as? Double
-            avgRunLength = dataObj["averageRunLength"] as? Double
+            if (dataObj["totalElevationClimbed"] as? Double != nil) {
+                elevation = (dataObj["totalElevationClimbed"] as? Double)!
+            }
+            if (dataObj["totalMilesRun"] as? Double != nil) {
+                milesRun = (dataObj["totalMilesRun"] as? Double)!
+            }
+            if (dataObj["averageRunLength"] as? Double != nil) {
+                avgRunLength = (dataObj["averageRunLength"] as? Double)!
+            }
         }
 //        var dataObj: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
@@ -294,7 +300,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         // alamofire request
         let params: [String: Any] = [
-            "email": self.userEmail,
+            "email": self.userEmail!,
             "firstName": self.nameTextView.text!,
             "bio":self.bioTextView.text!,
             "data": data
@@ -353,6 +359,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
         else {
             fatalError("editing profile error.")
+        }
         }
     }
     
@@ -519,7 +526,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     func imageURLsRequest (completion: @escaping ()-> ()){
         
         let rootUrl: String = appDelegate.rootUrl
-        let Url = rootUrl + "/sign-s3"
+        let Url = rootUrl + "sign-s3"
         
         let params: Parameters = [
             "file-names": self.profileImageUrls,
