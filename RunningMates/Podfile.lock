@@ -17,6 +17,7 @@ PODS:
   - Socket.IO-Client-Swift (13.1.1):
     - Starscream (~> 3.0.2)
   - Starscream (3.0.4)
+  - UIDropDown (1.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
@@ -28,7 +29,26 @@ DEPENDENCIES:
   - Koloda
   - OAuthSwift (~> 1.2.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
+  - UIDropDown
 
+<<<<<<< HEAD
+=======
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - DLRadioButton
+    - EMAlertController
+    - ExpyTableView
+    - GoogleMaps
+    - GooglePlaces
+    - Koloda
+    - OAuthSwift
+    - pop
+    - Socket.IO-Client-Swift
+    - Starscream
+    - UIDropDown
+
+>>>>>>> b67df1f6d9c5110c8bbf8472bb1f0462776158fd
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
@@ -41,7 +61,8 @@ SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+  UIDropDown: 22e6e3e22d419884c8f21d95ea9be36aac905ed4
 
-PODFILE CHECKSUM: e50531958751d8c6cd271f07f789b695fa0658bd
+PODFILE CHECKSUM: b6f08c2bf02486982b73a22e513e3cd7093d95a0
 
 COCOAPODS: 1.4.0

@@ -91,13 +91,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //uitableviewcontroller/#dynamic_data_contents
     // CHAT BUBBLE FROM: https://github.com/robkerr/TutorialChatBubble/tree/master/TutorialMessageBubble/Assets.xcassets
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("making a cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageCell
         let chat_text : String  = data[indexPath.row].messageText as! String
         cell.textView?.text = chat_text
-        print("TEXT: ", chat_text)
     let messageUserID = data[indexPath.row].sentBy
-  print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
+        
+//  print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
+        
    //  message to yourself
     if (messageUserID == self.sentByID) {
         let image = UIImage(named: "chat_bubble_sent")
@@ -238,30 +238,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        //        self.userEmail = appDelegate.userEmail;
 
-//        let group = DispatchGroup()
-//
-//        group.enter()
-//        group.enter()
-
-//        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-//            self.sentByID = user.id!
-//            group.leave()
-//        })
-
-//        UserManager.instance.requestUserObject(userEmail: self.recipientEmail, completion: {user in
-//            self.recipientID = user.id!
-//            group.leave()
-//        })
-
-//        group.notify(queue: DispatchQueue.main) {
-            self.fetchChats(completion: { chats in
-                self.data = chats
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-            })
-//        }
+        self.fetchChats(completion: { chats in
+            self.data = chats
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        })
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
@@ -281,10 +263,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 "sentBy": self.sentByID,
                 "recipient": self.recipientID,
                 "chatID": self.chatID
-                // "chatID" : "127489djkahd873dbiqehfwyryedhfsui"
             ]
-            print("MESSAGE:")
-            print(message)
         } else {
             message = [
                 "message": self.chatInput.text!,
@@ -302,8 +281,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func recieveMessage(message_data: [Any]){
 
-
-        print("message recieved******")
         let message = message_data[0] as! [String:String]
         let message_to_display = Message(messageText: message["message"], sentBy: message["sentBy"], time: message["time"], ChatID: "3420938423" )
 
