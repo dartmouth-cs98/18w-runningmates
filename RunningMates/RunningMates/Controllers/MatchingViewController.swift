@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import CoreLocation
 import Koloda
+import EMAlertController
 
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
@@ -109,6 +110,25 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             self.kolodaView?.reloadData()
             view.removeFromSuperview()
         })
+        
+        print("current index is ")
+        print(current_index)
+        if (self.current_index != nil && self.current_index > userList.count || userList.count == 0 || self.current_index == nil) {
+            let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
+            let icon = UIImage(named: "thumbsdown")
+            
+            alert.iconImage = icon
+            
+            let cancel = EMAlertAction(title: "Cancel", style: .cancel)
+            let confirm = EMAlertAction(title: "Refresh", style: .normal) {
+                // Perform Action
+            }
+            
+            alert.addAction(action: cancel)
+            alert.addAction(action: confirm)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
    }
 
     func downloadImage(_ uri : String, inView: UIImageView){
