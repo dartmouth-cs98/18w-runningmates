@@ -96,12 +96,13 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
 
             let id: String = selectedObj["id"] as! String
             let imageURL: String = selectedObj["imageURL"] as! String
-             let recipients: [String] = selectedObj["recipients"] as! [String]
+            let recipientNames: [String] = selectedObj["recipients"] as! [String]
+            let recipientIDs: [String] = selectedObj["recipientIDs"] as! [String]
             
             var displayedMembers: String = ""
-            displayedMembers += recipients[0]
+            displayedMembers += recipientNames[0]
             
-            for (index, recipient) in recipients.enumerated() {
+            for (index, recipient) in recipientNames.enumerated() {
                 if (index != 0) {
                     displayedMembers = displayedMembers + ", " + recipient
                 }
@@ -111,6 +112,7 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             chatViewController.chatID = id
             chatViewController.imageURL = imageURL
             chatViewController.recipientName = displayedMembers
+            chatViewController.recipientID = recipientIDs[0]
         }
     }
     
@@ -131,13 +133,15 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.userEmail = appDelegate.userEmail;
+//        self.userEmail = appDelegate.userEmail;
         
         self.tableView.estimatedRowHeight = 150.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         
-        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-            self.userID = user.id!
+//        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+//            print("got user object")
+//
+//            self.userID = user.id!
 
             self.fetchChats(completion: { chats in
                 
@@ -145,18 +149,20 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.tableView.dataSource = self
                 self.tableView.reloadData()
             })
-        })
+//        })
     }
     
     func fetchChats(completion: @escaping ([Any])->()) {
         
         let url = appDelegate.rootUrl + "api/chats"
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
-        let params: Parameters = [
-            "user": self.userID
+        let headers : [String:String] = [
+            "Authorization": userToken,
+            "Content-Type": "application/json"
         ]
         
-        let _request = Alamofire.request(url, method: .get, parameters: params)
+        let _request = Alamofire.request(url, method: .get, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
@@ -168,7 +174,6 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
                     print(error)
                 }
         }
-//        debugPrint("whole _request ****",_request)
     }
     
 

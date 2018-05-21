@@ -288,6 +288,14 @@ class UserManager: NSObject {
         
         let rootUrl: String = appDelegate.rootUrl
         
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
+        
+        let headers : [String:String] = [
+            "Authorization": userToken,
+            "Content-Type": "application/json"
+        ]
+        
+        
         // alamofire request
         let params: [String: Any] = [
             "userId": userId,
@@ -299,7 +307,7 @@ class UserManager: NSObject {
         var title = ""
         var message = ""
         
-        let _request = Alamofire.request(url, method: .post, parameters: params)
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:

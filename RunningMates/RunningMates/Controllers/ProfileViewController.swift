@@ -38,10 +38,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
+        print("canceled")
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print("in imagePickerController")
         
         // The info dictionary may contain multiple representations of the image. You want to use the original.
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
@@ -67,6 +70,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     
     @IBAction func editProfileImage(_ sender: Any) {
+        print("in edit profile image")
         // Hide the keyboard.
         //nameTextField.resignFirstResponder()
         
