@@ -101,17 +101,20 @@ class FilterViewController: UIViewController {
             let ageLower = (userAgePref[0])
             let ageUpper = (userAgePref[1])
      
+            print("GENDER PREFS")
+            print(userGenderPref)
+            
             if userGenderPref.contains("Female") {
                 self.femaleButton.isSelected = true
-                self.femaleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+                self.femaleLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
             }
             if userGenderPref.contains("Male") {
                 self.maleButton.isSelected = true
-                self.maleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+                self.maleLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
             }
             if userGenderPref.contains("Non-Binary") {
                 self.nonBinaryButton.isSelected = true
-                self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+                self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
             }
         
             ageSlide.lowerValue = (ageLower as AnyObject).doubleValue
@@ -251,7 +254,7 @@ class FilterViewController: UIViewController {
 
         }else{
             maleButton.isSelected = true
-            maleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            maleLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
             
         }
     }
@@ -264,13 +267,13 @@ class FilterViewController: UIViewController {
             femaleLabel.textColor = UIColor.black
         }else{
             femaleButton.isSelected = true
-            femaleLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            femaleLabel.textColor = UIColor(red:255.0/255.0, green: 196.0/255.0, blue:46.0/255.0, alpha:1.0)
             
         }
     }
     
     @IBAction func nonBinaryButtonSelected(_ sender: Any) {
-        
+        print("nonbinary button selected")
         nonBinaryButtonSwitch = nonBinaryButtonSwitch * -1;
         if nonBinaryButtonSwitch > 0{
             nonBinaryButton.isSelected = false
@@ -278,7 +281,7 @@ class FilterViewController: UIViewController {
 
         }else{
             nonBinaryButton.isSelected = true
-                    nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+            nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:196/255.0, blue:46.0/255.0, alpha:1.0)
         }
     }
     
