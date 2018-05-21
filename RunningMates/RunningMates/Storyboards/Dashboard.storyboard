@@ -101,7 +101,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SafeTrack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S87-tT-1Qt">
-                                        <rect key="frame" x="232" y="569" width="69" height="21"/>
+                                        <rect key="frame" x="128" y="636" width="69" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0c-en-Ejd">
-                                        <rect key="frame" x="237" y="525" width="58" height="62"/>
+                                        <rect key="frame" x="79" y="595" width="58" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" image="map-5-24.png">
@@ -150,6 +150,10 @@
                                             <segue destination="7n4-fg-LUi" kind="show" id="9m1-H0-e0s"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="verified" translatesAutoresizingMaskIntoConstraints="NO" id="xtV-sj-qQX">
+                                        <rect key="frame" x="241" y="544" width="44" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93595141169999996" green="0.039996580945847203" blue="0.058960577828378276" alpha="0.74232127568493156" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -213,5 +217,6 @@
         <image name="cog-16.png" width="16" height="16"/>
         <image name="map-5-24.png" width="24" height="24"/>
         <image name="profile_default.jpg" width="247" height="247"/>
+        <image name="verified" width="256" height="256"/>
     </resources>
 </document>
