@@ -79,7 +79,8 @@ class FilterViewController: UIViewController {
 
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.userEmail = appDelegate.userEmail
+//        self.userEmail = appDelegate.userEmail
+        self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
         self.rootUrl = appDelegate.rootUrl
         
         ageSlide.addTarget(self, action: #selector(FilterViewController.ageSliderValueChanged), for: .valueChanged)
