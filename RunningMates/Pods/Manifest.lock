@@ -33,22 +33,6 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift (~> 13.1.0)
   - UIDropDown
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - Canvas
-    - DLRadioButton
-    - EMAlertController
-    - ExpyTableView
-    - GoogleMaps
-    - GooglePlaces
-    - Koloda
-    - OAuthSwift
-    - pop
-    - Socket.IO-Client-Swift
-    - Starscream
-    - UIDropDown
-
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
@@ -66,4 +50,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 14776f66b71febe79588c8959c60643428dc53a5
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.4.0

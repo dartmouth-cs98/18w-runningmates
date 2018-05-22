@@ -255,7 +255,7 @@ class FilterViewController: UIViewController {
 
         }else{
             maleButton.isSelected = true
-            maleLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
+            maleLabel.textColor = UIColor(red:255.0/255.0, green: 196.0/255.0, blue:46.0/255.0, alpha:1.0)
             
         }
     }

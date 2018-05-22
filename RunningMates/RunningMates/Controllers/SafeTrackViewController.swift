@@ -22,6 +22,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     // You don't need to modify the default init(nibName:bundle:) method.
     
     
+    @IBOutlet weak var stLabel: UILabel!
     @IBOutlet weak var stButton: DLRadioButton!
     var stSwitch = 1
 
@@ -97,7 +98,16 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     }
     
     @IBAction func didPressSafeTrackButton(_ sender: Any) {
-        
+        stSwitch = stSwitch * -1;
+        print("ST SWIFCH:", stSwitch)
+        if stSwitch > 0{
+            stButton.isSelected = true
+            stLabel.backgroundColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
+        }else{
+                stButton.isSelected = false
+                stLabel.backgroundColor = UIColor(red:244.0/255.0, green:78.0/255.0, blue:86.0/255.0, alpha:1.0)
+            }
+            
     }
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

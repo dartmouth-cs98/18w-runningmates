@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Safe Track View Controller-->
         <scene sceneID="ZrR-fH-J7r">
@@ -26,16 +31,17 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSW-43-Idq" customClass="DLRadioButton">
                                 <rect key="frame" x="69" y="433" width="236" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
-                                        <color key="value" red="0.86138142110000004" green="0.26570638019999998" blue="0.2208116319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didPressSafeTrackButton:" destination="gCF-w1-wzQ" eventType="touchUpInside" id="mN4-Vd-ldH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start SafeTrack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pV-fJ-LKi">
+                                <rect key="frame" x="69" y="433" width="236" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="sHq-a5-dYs"/>
@@ -44,9 +50,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="djf-oS-HNV" id="hY1-K4-L8V"/>
-                        <outlet property="safeTrackButton" destination="qSW-43-Idq" id="4dC-UM-sTx"/>
                         <outlet property="stButton" destination="qSW-43-Idq" id="kje-kE-9qN"/>
-                        <outlet property="whatTHeFUck" destination="qSW-43-Idq" id="ivB-4j-Igd"/>
+                        <outlet property="stLabel" destination="2pV-fJ-LKi" id="0Tv-ze-7xx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ou0-II-UVm" userLabel="First Responder" sceneMemberID="firstResponder"/>

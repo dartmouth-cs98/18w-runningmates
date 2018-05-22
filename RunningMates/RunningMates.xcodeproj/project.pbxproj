@@ -37,7 +37,6 @@
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
 		F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */; };
 		F848C3E720B363BE00F1704D /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3E620B363BE00F1704D /* Welcome.storyboard */; };
-		F848C3E920B3667B00F1704D /* arrow-32-32.png in Resources */ = {isa = PBXBuildFile; fileRef = F848C3E820B3667B00F1704D /* arrow-32-32.png */; };
 		F848C3EB20B3689A00F1704D /* ProfPic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3EA20B3689A00F1704D /* ProfPic.storyboard */; };
 		F848C3ED20B36DAC00F1704D /* BasicInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3EC20B36DAC00F1704D /* BasicInfo.storyboard */; };
 		F848C3EF20B3706700F1704D /* RunData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3EE20B3706700F1704D /* RunData.storyboard */; };
@@ -208,7 +207,6 @@
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableClasses.swift; sourceTree = "<group>"; };
 		F848C3E620B363BE00F1704D /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
-		F848C3E820B3667B00F1704D /* arrow-32-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-32-32.png"; path = "../../../arrow-32-32.png"; sourceTree = "<group>"; };
 		F848C3EA20B3689A00F1704D /* ProfPic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfPic.storyboard; sourceTree = "<group>"; };
 		F848C3EC20B36DAC00F1704D /* BasicInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BasicInfo.storyboard; sourceTree = "<group>"; };
 		F848C3EE20B3706700F1704D /* RunData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunData.storyboard; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 			children = (
 				2B7B91E920A6321C00B2EA07 /* load.gif */,
 				2B7B91DD20A6275300B2EA07 /* thumbsdown.png */,
-				F848C3E820B3667B00F1704D /* arrow-32-32.png */,
 				2B7B917F20927CF300B2EA07 /* plus.png */,
 				2B16D050204C985000DFFBEF /* plus_sign.png */,
 				2B16D04E204C966700DFFBEF /* profile_default.jpg */,
@@ -717,7 +714,6 @@
 				D3BBB48520AE2B8400BD6CF9 /* Login.storyboard in Resources */,
 				FA38B38E204E0476003626F6 /* Images.xcassets in Resources */,
 				2B7B91EA20A6321D00B2EA07 /* load.gif in Resources */,
-				F848C3E920B3667B00F1704D /* arrow-32-32.png in Resources */,
 				F848C3EF20B3706700F1704D /* RunData.storyboard in Resources */,
 				FA5711082021208D005792CB /* Main.storyboard in Resources */,
 				FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */,
