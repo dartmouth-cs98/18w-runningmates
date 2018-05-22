@@ -43,6 +43,7 @@
 		F848C3EF20B3706700F1704D /* RunData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3EE20B3706700F1704D /* RunData.storyboard */; };
 		F848C3F120B371AE00F1704D /* ProfPreference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3F020B371AE00F1704D /* ProfPreference.storyboard */; };
 		F848C3F320B374A600F1704D /* BasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F848C3F220B374A600F1704D /* BasicInfoViewController.swift */; };
+		F84E78B620B3BAA000D49EE5 /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84E78B520B3BAA000D49EE5 /* RunDataViewController.swift */; };
 		F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F177C20A3A42D003E1C91 /* RoundButton.swift */; };
 		F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */; };
 		F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */; };
@@ -213,6 +214,7 @@
 		F848C3EE20B3706700F1704D /* RunData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RunData.storyboard; sourceTree = "<group>"; };
 		F848C3F020B371AE00F1704D /* ProfPreference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfPreference.storyboard; sourceTree = "<group>"; };
 		F848C3F220B374A600F1704D /* BasicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoViewController.swift; sourceTree = "<group>"; };
+		F84E78B520B3BAA000D49EE5 /* RunDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunDataViewController.swift; sourceTree = "<group>"; };
 		F86F177C20A3A42D003E1C91 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
 				F848C3F220B374A600F1704D /* BasicInfoViewController.swift */,
+				F84E78B520B3BAA000D49EE5 /* RunDataViewController.swift */,
 				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
 				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
 			);
@@ -782,6 +785,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Canvas/Canvas.framework",
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/EMAlertController/EMAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/ExpyTableView/ExpyTableView.framework",
@@ -795,6 +799,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Canvas.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EMAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpyTableView.framework",
@@ -818,6 +823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B16CFEC20487B9C00DFFBEF /* CreateAccountViewController.swift in Sources */,
+				F84E78B620B3BAA000D49EE5 /* RunDataViewController.swift in Sources */,
 				F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */,
 				88692322209CC5ED00269557 /* UserManager.swift in Sources */,
 				F8B96DD6209281DF00B0E9B1 /* ProfileTableViewController.swift in Sources */,

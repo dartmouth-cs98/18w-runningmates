@@ -111,7 +111,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="6s6-S5-xfm"/>
-                                    <segue destination="RfX-yd-URn" kind="show" id="gDa-Ef-gut"/>
+                                    <segue destination="RfX-yd-URn" kind="show" id="Qlb-fE-ddb"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="______________________________________" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68w-In-JcN">
