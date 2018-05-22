@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Run Data View Controller-->
         <scene sceneID="4mH-xq-5f4">
             <objects>
-                <viewController id="b24-wm-bOO" sceneMemberID="viewController">
+                <viewController id="b24-wm-bOO" customClass="RunDataViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CFH-NB-h1g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCi-sZ-aTo">
-                                <rect key="frame" x="160" y="149" width="97" height="30"/>
+                                <rect key="frame" x="154" y="151" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P9z-I5-Bd8">
-                                <rect key="frame" x="160" y="241" width="97" height="30"/>
+                                <rect key="frame" x="154" y="238" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -72,13 +72,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="arrow-32-32"/>
                                 <connections>
+                                    <action selector="saveClicked:" destination="b24-wm-bOO" eventType="touchUpInside" id="XpI-AK-sBY"/>
                                     <segue destination="bt8-XN-Y04" kind="show" id="SYw-tv-VPn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="verified" translatesAutoresizingMaskIntoConstraints="NO" id="TUj-Bm-Njj">
+                                <rect key="frame" x="259" y="156" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="verified" translatesAutoresizingMaskIntoConstraints="NO" id="qaZ-wn-aEb">
+                                <rect key="frame" x="259" y="243" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zxT-Sf-dxs"/>
                     </view>
+                    <connections>
+                        <outlet property="milesPerWeek" destination="dCi-sZ-aTo" id="6dc-QH-TwD"/>
+                        <outlet property="racesDone" destination="qSK-5Y-3Fr" id="ISt-66-4zn"/>
+                        <outlet property="runsPerWeek" destination="P9z-I5-Bd8" id="GOz-6G-uv1"/>
+                        <outlet property="saveButton" destination="Hz2-eH-dVl" id="ck5-Yb-150"/>
+                        <outlet property="ver1" destination="TUj-Bm-Njj" id="pG0-rF-mLJ"/>
+                        <outlet property="ver2" destination="qaZ-wn-aEb" id="51U-br-SSX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cF7-1m-qZz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,5 +112,6 @@
     </scenes>
     <resources>
         <image name="arrow-32-32" width="32" height="32"/>
+        <image name="verified" width="256" height="256"/>
     </resources>
 </document>

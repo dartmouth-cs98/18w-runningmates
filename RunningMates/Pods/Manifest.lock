@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.6.0)
+  - Canvas (0.1.2)
   - DLRadioButton (1.4.11)
   - EMAlertController (1.0.1)
   - ExpyTableView (1.0)
@@ -21,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - Canvas
   - DLRadioButton (~> 1.4)
   - EMAlertController
   - ExpyTableView
@@ -34,6 +36,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Canvas
     - DLRadioButton
     - EMAlertController
     - ExpyTableView
@@ -48,6 +51,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
   DLRadioButton: 0d04b8259e7bfd886571a1e9173c73fee7118f50
   EMAlertController: db945aa666b737b86b0d22c9ee464e552fc63bb8
   ExpyTableView: 75fe6494d4613fd3dc4bd965cce6e14cec7e2223
@@ -60,6 +64,6 @@ SPEC CHECKSUMS:
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
   UIDropDown: 22e6e3e22d419884c8f21d95ea9be36aac905ed4
 
-PODFILE CHECKSUM: b6f08c2bf02486982b73a22e513e3cd7093d95a0
+PODFILE CHECKSUM: 14776f66b71febe79588c8959c60643428dc53a5
 
 COCOAPODS: 1.5.2
