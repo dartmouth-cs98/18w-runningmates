@@ -39,9 +39,9 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     override func loadView() {
         super.loadView()
 
-        self.stButton.layer.cornerRadius = 20;
-        self.stButton.clipsToBounds = true;
-      
+        self.stLabel.layer.cornerRadius = 20;
+        //self.stLabel.clipsToBounds = true;
+        
    
 
     }
@@ -103,9 +103,14 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         if stSwitch > 0{
             stButton.isSelected = true
             stLabel.backgroundColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
+            stLabel.textColor = UIColor.black
+            stLabel.text = "Start SafeTrack"
         }else{
                 stButton.isSelected = false
                 stLabel.backgroundColor = UIColor(red:244.0/255.0, green:78.0/255.0, blue:86.0/255.0, alpha:1.0)
+                stLabel.textColor = UIColor.white
+            stLabel.text = "Stop SafeTrack"
+
             }
             
     }
@@ -134,6 +139,9 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func didPressEndRun(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
 }
