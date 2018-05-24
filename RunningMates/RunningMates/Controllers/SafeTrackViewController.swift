@@ -11,6 +11,7 @@ import GooglePlaces
 
 import Foundation
 import Alamofire
+import DLRadioButton
 
 
 //https://developers.google.com/maps/documentation/ios-sdk/current-place-tutorial?_ga=2.22727355.1009863734.1525292435-164906073.1524505865
@@ -20,36 +21,28 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     
     // You don't need to modify the default init(nibName:bundle:) method.
     
-   
-    @IBOutlet weak var unsafeButton: UIButton!
-    @IBOutlet weak var safeButton: UIButton!
-    @IBOutlet weak var runCompleteButton: UIButton!
     
+    @IBOutlet weak var stLabel: UILabel!
+    @IBOutlet weak var stButton: DLRadioButton!
+    var stSwitch = 1
+
+  //  @IBOutlet weak var safeTrackButton: DLRadioButton!
     @IBOutlet weak var mapView: GMSMapView!
+    
     var marker: GMSMarker!
 
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var zoomLevel: Float = 15.0
     
+    
     override func loadView() {
         super.loadView()
 
-        self.unsafeButton.layer.cornerRadius = 20;
-        self.unsafeButton.clipsToBounds = true;
-        self.unsafeButton.layer.borderColor = UIColor.black.cgColor
-        self.unsafeButton.layer.borderWidth = 1
-
-        self.safeButton.layer.cornerRadius = 20;
-        self.safeButton.clipsToBounds = true;
-        self.safeButton.layer.borderColor = UIColor.black.cgColor
-        self.safeButton.layer.borderWidth = 1
-
-        
-        self.runCompleteButton.layer.cornerRadius = 20;
-        self.runCompleteButton.clipsToBounds = true;
-        self.runCompleteButton.layer.borderColor = UIColor.black.cgColor
-        self.runCompleteButton.layer.borderWidth = 1
+        self.stButton.layer.cornerRadius = 20;
+        self.stButton.clipsToBounds = true;
+      
+   
 
     }
     override func viewDidLoad() {
@@ -69,8 +62,6 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         marker.title = "some text"
         marker.map = self.mapView
         marker.opacity = 1.0
-
-    
 }
     
     // Handle incoming location events.
@@ -106,6 +97,18 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func didPressSafeTrackButton(_ sender: Any) {
+        stSwitch = stSwitch * -1;
+        print("ST SWIFCH:", stSwitch)
+        if stSwitch > 0{
+            stButton.isSelected = true
+            stLabel.backgroundColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
+        }else{
+                stButton.isSelected = false
+                stLabel.backgroundColor = UIColor(red:244.0/255.0, green:78.0/255.0, blue:86.0/255.0, alpha:1.0)
+            }
+            
+    }
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()

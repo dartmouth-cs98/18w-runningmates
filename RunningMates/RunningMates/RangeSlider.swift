@@ -43,14 +43,14 @@ class RangeSlider: UIControl {
         }
     }
     
-    var trackHighlightTintColor: UIColor =  UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0)
+    var trackHighlightTintColor: UIColor =  UIColor(red:255.0/255.0, green:196/255.0, blue:46.0/255.0, alpha:1.0)
         {
         didSet {
             trackLayer.setNeedsDisplay()
         }
     }
     
-    var thumbTintColor: UIColor =  UIColor(red:255.0/255.0, green:103/255.0, blue:37.0/255.0, alpha:1.0){
+    var thumbTintColor: UIColor =  UIColor(red:255.0/255.0, green:196/255.0, blue:46.0/255.0, alpha:1.0){
         didSet {
             lowerThumbLayer.setNeedsDisplay()
             upperThumbLayer.setNeedsDisplay()

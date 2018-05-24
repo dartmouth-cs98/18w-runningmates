@@ -327,8 +327,23 @@ extension MatchingViewController: KolodaViewDataSource {
 
         let image = UIImage(data: photoData!)
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
-        let location = ("Location: " + String(describing: userList[index].user.location))
-        let bio = ("Bio: " + String(userList[index].user.bio))
+        var location = ""
+        
+        // Calculate potential match's distance from user
+        var userLocation: [Float] = UserDefaults.standard.value(forKey: "location") as! [Float]
+        var matchLocation: [Float] = userList[index].user.location
+        
+        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
+        
+        var distance = getDistanceInMeters(userLocation: userLocation, matchLocation: matchLocation)
+        if (distance < 1609) {
+            location = "< 1 mi away"
+        } else {
+            let distanceInMi = distance / 1609
+            location = String(round(distanceInMi)) + " mi away"
+        }
+        
+        let bio = (String(userList[index].user.bio))
         let data = (self.userList[index].user.data as! [String:Any]?)
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
@@ -365,6 +380,15 @@ extension MatchingViewController: KolodaViewDataSource {
         }
         
         return view
+    }
+    
+    func getDistanceInMeters(userLocation: [Float], matchLocation: [Float]) -> Double {
+        let coordinate1 = CLLocation(latitude: CLLocationDegrees(userLocation[1]), longitude: CLLocationDegrees(userLocation[0]))
+        let coordinate2 = CLLocation(latitude: CLLocationDegrees(matchLocation[1]), longitude: CLLocationDegrees(matchLocation[0]))
+        
+        
+        let distanceInMeters = coordinate1.distance(from: coordinate2)
+        return distanceInMeters.magnitude
     }
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
