@@ -1039,6 +1039,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "27b64893-80a1-4e59-b2dc-28d7b0131d1b";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development edu.dartmouth.RunningMates";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=*]" = "match Development edu.dartmouth.RunningMates";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunningMates/RunningMates-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

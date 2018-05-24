@@ -92,12 +92,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
-<<<<<<< HEAD
-//        print("did sign up with strava: ")
-//        print(self.appDelegate.didSignUpWithStrava)
-=======
-
->>>>>>> f36aa99d5cb23a90d58ea35dcd0e6198f54aaca1
+        
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true

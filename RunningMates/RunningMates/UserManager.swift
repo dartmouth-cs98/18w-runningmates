@@ -72,10 +72,7 @@ class UserManager: NSObject {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:AnyObject])!
-<<<<<<< HEAD
 
-=======
->>>>>>> f36aa99d5cb23a90d58ea35dcd0e6198f54aaca1
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
                         
@@ -106,10 +103,6 @@ class UserManager: NSObject {
                             }
                             
                             if (user["images"] != nil) {
-<<<<<<< HEAD
-//                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
-=======
->>>>>>> f36aa99d5cb23a90d58ea35dcd0e6198f54aaca1
                                 let images = user["images"] as! [String]
                                 UserDefaults.standard.set(images, forKey: "images")
                             }
