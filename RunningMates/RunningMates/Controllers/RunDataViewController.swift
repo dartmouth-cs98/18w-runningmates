@@ -58,19 +58,16 @@ class RunDataViewController: UIViewController {
         }
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
             
             if (data["milesPerWeek"] != nil) {
-                if let mpwkText = (data["milesPerWeek"]! as? String) {
-                    self.milesPerWeek.text = mpwkText
-                }
+                let mpwkText = String(describing: data["milesPerWeek"]!)
+                self.milesPerWeek.text = mpwkText
             }
             
             if (data["runsPerWeek"] != nil) {
-                if let runsperweekText = (data["runsPerWeek"] as? String) {
-                    self.runsPerWeek.text = runsperweekText
-                }
+                let runsperweekText = String(describing: data["runsPerWeek"]!)
+                self.runsPerWeek.text = runsperweekText
             }
         }
     }
