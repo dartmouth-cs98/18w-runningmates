@@ -145,6 +145,8 @@ class UserManager: NSObject {
 //                                        preferences["proximity"] = proximityPrefs
 //                                    }
 //                                }
+//                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+//                                UserDefaults.standard.set(data, forKey: "data")
                                 UserDefaults.standard.set(user["data"], forKey: "data")
                             }
                             if (user["desiredGoals"] != nil) {
@@ -231,11 +233,6 @@ class UserManager: NSObject {
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
-        
-//        let params : [String: Any] = [
-//            "email": userEmail,
-//            "location": location
-//        ]
 
         let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
@@ -256,8 +253,7 @@ class UserManager: NSObject {
                             do {
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 let matchReason = (jsonUser["matchReason"] as! String)
-                                print(jsonUser)
-                                
+
                                 let sortUserInstance = sortedUser(user: user!, matchReason: matchReason);
                                 
                                 if (user != nil) {

@@ -92,6 +92,8 @@ class DashboardViewController: UIViewController {
     
     func setDataTextFields() {
         if (UserDefaults.standard.value(forKey: "data") != nil) {
+//            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+//            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
             if let data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
                 if (data["milesPerWeek"] != nil) {
                     self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)

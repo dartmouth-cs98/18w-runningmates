@@ -36,9 +36,29 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     var userList = [sortedUser]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getCurrentLocation()
+    }
+
 
     override func viewDidAppear(_ animated: Bool) {
         // Show progress view while we wait for matches to load
+        switch CLLocationManager.authorizationStatus() {
+        //ask for permission. note: iOS only lets you ask once
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            
+        //show an alert if they said no last time
+        case .authorizedWhenInUse, .restricted, .denied:
+            showLocationDisabledPopup()
+            locationManager.startUpdatingLocation()
+            
+        case .authorizedAlways:
+            // just needed something in this switch
+            locationManager.startUpdatingLocation()
+            self.kolodaView?.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -46,12 +66,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        
-        
+
+
         UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
             self.userId = user.id!
         })
-
 
        // Do any additional setup after loading the view, typically from a nib.
 
@@ -61,50 +80,32 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
 
-
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        
-        
-        switch CLLocationManager.authorizationStatus() {
-        //ask for permission. note: iOS only lets you ask once
-        case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
-        //show an alert if they said no last time
-        case .authorizedWhenInUse, .restricted, .denied:
-            let alertController = UIAlertController(
-                title: "Background Location Access Disabled",
-                message: "In order to optimize your matching experience please enable location services",
-                preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(URL(string: "\(url)")!)
-                    
-                }
-            }
-            alertController.addAction(openAction)
-            locationManager.startUpdatingLocation()
-
-            self.present(alertController, animated: true, completion: nil)
-            
-        case .authorizedAlways:
-            // just needed something in this switch
-            locationManager.startUpdatingLocation()
-            self.kolodaView?.reloadData()
-            
+   }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == CLAuthorizationStatus.denied) {
+            // The user denied authorization
+            print("not authorized")
+            showLocationDisabledPopup()
+        } else if (status == CLAuthorizationStatus.authorizedAlways) {
+            print("authorized")
+        } else {
+            print("authorized when in use")
         }
-        
+    }
+    
+    func showForeverAlonePopup() {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
         
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
-    
-        if (self.current_index != nil && self.current_index > userList.count || userList.count == 0 || self.current_index == nil) {
+        print("showing popup")
+        print(self.userList.count)
+        print(self.current_index)
+        
+        if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
             let icon = UIImage(named: "thumbsdown")
             
@@ -119,30 +120,78 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             alert.addAction(action: confirm)
             self.present(alert, animated: true, completion: nil)
         }
-        
-   }
+    }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func showLocationDisabledPopup() {
+        let alertController = UIAlertController(
+            title: "Background Location Access Disabled",
+            message: "In order to optimize your matching experience please enable location services",
+            preferredStyle: .alert)
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+            if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.open(URL(string: "\(url)")!)
+                
+            }
+        }
+        alertController.addAction(openAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    // adapted the following 2 functions from the following URL on 5/21/18:
+    // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+
+    func getCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
         if let location = locations[locations.count - 1] as? CLLocation {
 
-            
+
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
 
                 let testerLocation =  [Double(-147.349442), Double(64.751114)]
+                let params : [String:Any] = [
+                    "location": [
+                        lat,
+                        long
+                    ]
+                ]
+
+                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
+                    (title, message) in
+                    print("updated location")
+                } )
+
                 UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, completion: { list in
                     self.userList = list
                     self.kolodaView?.reloadData()
                     self.loadingView.removeFromSuperview()
-
+                    self.showForeverAlonePopup()
                 })
             } else {
                 print("No coordinates")
             }
         }
-        
+
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        manager.stopUpdatingLocation()
     }
+
 
     func downloadImage(_ uri : String, inView: UIImageView){
 
@@ -186,7 +235,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        }
 
         kolodaView?.swipe(.left)
-
     }
 
     @IBAction func rightButtonTapped() {
@@ -198,98 +246,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
     }
-    // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
-//    @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
-//        let size = userList.count
-//
-//        switch sender.direction {
-//        case UISwipeGestureRecognizerDirection.right:
-//            print("SWIPED right")
-//            if (current_index > 0) {
-//                current_index = current_index - 1
-//            }
-//            else {
-//                current_index = size - 1
-//            }
-//        case UISwipeGestureRecognizerDirection.left:
-//            print("SWIPED left")
-//            if (current_index < size-1) {
-//                current_index = current_index + 1
-//            }
-//            else {
-//                current_index = 0
-//            }
-//
-//        default:
-//            break
-//        }
-//        changeDisplayedUser()
-//
-//    }
-//
-//    func changeDisplayedUser() {
-//        if (current_index >= 0 && current_index < userList.count) {
-//        nameLabel.text = userList[current_index].firstName! + ","
-//        self.downloadImage(userList[current_index].imageURL, inView: imageView)
-//
-//        ageLabel.text = String(describing: userList[current_index].age)
-//        locationLabel.text = String(describing: userList[current_index].location)
-//        bioLabel.text = userList[current_index].bio
-//
-//        let data = (self.userList[self.current_index].data as! [String:Any])
-//
-//        if (data["totalMilesRun"] != nil) {
-//            self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
-//        } else {
-//            self.milesLabel.text = "No info to show"
-//        }
-//
-//        if (data["AveragePace"] != nil) {
-//            self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
-//        } else {
-//            self.avgPaceLabel.text = "No info to show"
-//        }
-//        }
-//    }
 
-//    func sendRequest(completion: @escaping (String, String)->()) {
-//
-//        let rootUrl: String = appDelegate.rootUrl
-//
-//        // alamofire request
-//        let params: [String: Any] = [
-//            "userId": self.userId,
-//            "targetId": userList[current_index].id!
-//        ]
-//
-//        let url = rootUrl + "api/match"
-//
-//        var title = ""
-//        var message = ""
-//
-//        let _request = Alamofire.request(url, method: .post, parameters: params)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    let responseDictionary = response.result.value as! [String:Any]
-//                    if (String(describing: responseDictionary["response"]!) == "match") {
-//                        title = "You matched with \(self.userList[self.current_index].firstName!)"
-//                        message = "Go to your chat to say hello!"
-//                    } else {
-//                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
-//                        message = "Keep running!"
-//                    }
-//                case .failure(let error):
-//                    print("error fetching users")
-//                    print(error)
-//                }
-//        completion(title, message)
-//        }
-//
-//
     func tryMatch(index currentIndex: Int) {
-
-        print("You clicked match on index", currentIndex)
 
         if (currentIndex != nil && currentIndex > userList.count || userList.count == 0) {
             let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
@@ -334,21 +292,21 @@ extension MatchingViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         print("the current index is", index)
         print(userList[index].user.firstName!)
-        
+
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
 
         let image = UIImage(data: photoData!)
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
 
-        
+
         // Calculate potential match's distance from user
         var location = ""
         let userLocation = self.locationCoords
         var matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
-        
+
         print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
-        
+
         var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {
             location = "< 1 mi away"
@@ -356,7 +314,7 @@ extension MatchingViewController: KolodaViewDataSource {
             let distanceInMi = distance / 1609
             location = String(round(distanceInMi)) + " mi away"
         }
-        
+
         let bio = (String(userList[index].user.bio))
         let data = (self.userList[index].user.data )
 
@@ -376,7 +334,7 @@ extension MatchingViewController: KolodaViewDataSource {
         //let userText = nameAge + location + bio + totalMiles + averageRunLength
 
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
-        
+
         view.profileImage.image = image!
         view.nameText.text! = nameAge
         view.bioText.text! = bio
@@ -384,22 +342,22 @@ extension MatchingViewController: KolodaViewDataSource {
         view.totalMilesText.text! = totalMiles
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
-        
-        
+
+
         if (userList[index].matchReason != "") {
             matchReason = ("\n Reason to Match: " + (userList[index].matchReason as! String))
         } else {
             matchReason = "\n"
         }
-        
+
         return view
     }
-    
+
     func getDistanceInMeters(userLocation: [Double], matchLocation: [Double]) -> Double {
         let coordinate1 = CLLocation(latitude: CLLocationDegrees(userLocation[1]), longitude: CLLocationDegrees(userLocation[0]))
         let coordinate2 = CLLocation(latitude: CLLocationDegrees(matchLocation[1]), longitude: CLLocationDegrees(matchLocation[0]))
-        
-        
+
+
         let distanceInMeters = coordinate1.distance(from: coordinate2)
         return distanceInMeters.magnitude
     }
@@ -409,14 +367,15 @@ extension MatchingViewController: KolodaViewDataSource {
         if (direction == SwipeResultDirection.right) {
             tryMatch(index: index)
         }
+
+        current_index = index + 1
+        showForeverAlonePopup()
         
-        if (index < userList.count - 1) {
-                current_index = index + 1
-            }
-            else{
-                current_index = 0
-            }
-        print("currently looking at", userList[current_index].user.firstName)
+        if (index >= userList.count) {
+            current_index = 0
+        }
+//        print("currently looking at", userList[current_index].user.firstName)
+        showForeverAlonePopup()
     }
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
