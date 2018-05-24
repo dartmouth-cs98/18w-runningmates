@@ -44,6 +44,21 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     override func viewDidAppear(_ animated: Bool) {
         // Show progress view while we wait for matches to load
+        switch CLLocationManager.authorizationStatus() {
+        //ask for permission. note: iOS only lets you ask once
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            
+        //show an alert if they said no last time
+        case .authorizedWhenInUse, .restricted, .denied:
+            showLocationDisabledPopup()
+            locationManager.startUpdatingLocation()
+            
+        case .authorizedAlways:
+            // just needed something in this switch
+            locationManager.startUpdatingLocation()
+            self.kolodaView?.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -67,60 +82,64 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
-
-        switch CLLocationManager.authorizationStatus() {
-        //ask for permission. note: iOS only lets you ask once
-        case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
-        //show an alert if they said no last time
-        case .authorizedWhenInUse, .restricted, .denied:
-            let alertController = UIAlertController(
-                title: "Background Location Access Disabled",
-                message: "In order to optimize your matching experience please enable location services",
-                preferredStyle: .alert)
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-
-            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(URL(string: "\(url)")!)
-
-                }
-            }
-            alertController.addAction(openAction)
-            locationManager.startUpdatingLocation()
-
-            self.present(alertController, animated: true, completion: nil)
-
-        case .authorizedAlways:
-            // just needed something in this switch
-            locationManager.startUpdatingLocation()
-            self.kolodaView?.reloadData()
-
+   }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == CLAuthorizationStatus.denied) {
+            // The user denied authorization
+            print("not authorized")
+            showLocationDisabledPopup()
+        } else if (status == CLAuthorizationStatus.authorizedAlways) {
+            print("authorized")
+        } else {
+            print("authorized when in use")
         }
-
+    }
+    
+    func showForeverAlonePopup() {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
-
+        
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
-
-        if (self.current_index != nil && self.current_index > userList.count || userList.count == 0 || self.current_index == nil) {
+        print("showing popup")
+        print(self.userList.count)
+        print(self.current_index)
+        
+        if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
             let icon = UIImage(named: "thumbsdown")
-
+            
             alert.iconImage = icon
-
+            
             let cancel = EMAlertAction(title: "Cancel", style: .cancel)
             let confirm = EMAlertAction(title: "Refresh", style: .normal) {
                 // Perform Action
             }
-
+            
             alert.addAction(action: cancel)
             alert.addAction(action: confirm)
             self.present(alert, animated: true, completion: nil)
         }
-   }
+    }
+    
+    func showLocationDisabledPopup() {
+        let alertController = UIAlertController(
+            title: "Background Location Access Disabled",
+            message: "In order to optimize your matching experience please enable location services",
+            preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+            if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.open(URL(string: "\(url)")!)
+                
+            }
+        }
+        alertController.addAction(openAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     // adapted the following 2 functions from the following URL on 5/21/18:
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
@@ -161,7 +180,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                     self.userList = list
                     self.kolodaView?.reloadData()
                     self.loadingView.removeFromSuperview()
-
+                    self.showForeverAlonePopup()
                 })
             } else {
                 print("No coordinates")
@@ -216,7 +235,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //        }
 
         kolodaView?.swipe(.left)
-
     }
 
     @IBAction func rightButtonTapped() {
@@ -350,13 +368,14 @@ extension MatchingViewController: KolodaViewDataSource {
             tryMatch(index: index)
         }
 
-        if (index < userList.count - 1) {
-                current_index = index + 1
-            }
-            else{
-                current_index = 0
-            }
-        print("currently looking at", userList[current_index].user.firstName)
+        current_index = index + 1
+        showForeverAlonePopup()
+        
+        if (index >= userList.count) {
+            current_index = 0
+        }
+//        print("currently looking at", userList[current_index].user.firstName)
+        showForeverAlonePopup()
     }
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
