@@ -110,6 +110,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
                 stLabel.backgroundColor = UIColor(red:244.0/255.0, green:78.0/255.0, blue:86.0/255.0, alpha:1.0)
                 stLabel.textColor = UIColor.white
             stLabel.text = "Stop SafeTrack"
+            didTapStartTracking()
 
             }
             
@@ -119,11 +120,12 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
 }
-    @IBAction func didTapStartTracking(_ sender: Any) {
-        print("sending text")
+     func didTapStartTracking() {
+        print( ProcessInfo.processInfo.environment["AUTH_SECRET"])
+        print("sending text",  ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"] )
         if let accountSID = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"],
             let authToken = ProcessInfo.processInfo.environment["TWILIO_AUTH_TOKEN"] {
-
+            print("here")
             
             //api.twilio.com/2010-04-01/Accounts/ACd59f65f36043c6351d2728c7a7a829da/Messages.json
             let url = "https://api.twilio.com/2010-04-01/Accounts/\(accountSID)/Messages"
@@ -136,6 +138,9 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
             }
             
             RunLoop.main.run()
+        }
+        else{
+            print("error with tokens")
         }
     }
     
