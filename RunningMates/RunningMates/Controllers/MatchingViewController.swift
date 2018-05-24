@@ -33,6 +33,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet var topView: GradientView!
 
     var userList = [sortedUser]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getCurrentLocation()
+    }
 
 
     override func viewDidAppear(_ animated: Bool) {
@@ -42,10 +47,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
-
-        if (self.userEmail == nil) {
-            self.userEmail = "brian@test.com"
-        }
 
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
@@ -111,7 +112,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             view.removeFromSuperview()
         })
         
-        print("current index is ")
         print(current_index)
         if (self.current_index != nil && self.current_index > userList.count || userList.count == 0 || self.current_index == nil) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
@@ -128,8 +128,52 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             alert.addAction(action: confirm)
             self.present(alert, animated: true, completion: nil)
         }
-        
    }
+    
+    // adapted the following 3 functions from the following URL on 5/21/18:
+    // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
+
+    func getCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        manager.stopUpdatingLocation()
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
+        
+        if (userLocation.coordinate.latitude != nil && userLocation.coordinate.longitude != nil) {
+            let params : [String:Any] = [
+                "location": [
+                    userLocation.coordinate.latitude,
+                    userLocation.coordinate.longitude
+                ]
+            ]
+            
+            UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
+                (title, message) in
+                print("updated location")
+            } )
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+    }
 
     func downloadImage(_ uri : String, inView: UIImageView){
 
@@ -185,98 +229,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBAction func undoButtonTapped() {
         kolodaView?.revertAction()
     }
-    // https://stackoverflow.com/questions/28696008/swipe-back-and-forth-through-array-of-images-swift?rq=1
-//    @IBAction func swipeNewMatch(_ sender: UISwipeGestureRecognizer) {
-//        let size = userList.count
-//
-//        switch sender.direction {
-//        case UISwipeGestureRecognizerDirection.right:
-//            print("SWIPED right")
-//            if (current_index > 0) {
-//                current_index = current_index - 1
-//            }
-//            else {
-//                current_index = size - 1
-//            }
-//        case UISwipeGestureRecognizerDirection.left:
-//            print("SWIPED left")
-//            if (current_index < size-1) {
-//                current_index = current_index + 1
-//            }
-//            else {
-//                current_index = 0
-//            }
-//
-//        default:
-//            break
-//        }
-//        changeDisplayedUser()
-//
-//    }
-//
-//    func changeDisplayedUser() {
-//        if (current_index >= 0 && current_index < userList.count) {
-//        nameLabel.text = userList[current_index].firstName! + ","
-//        self.downloadImage(userList[current_index].imageURL, inView: imageView)
-//
-//        ageLabel.text = String(describing: userList[current_index].age)
-//        locationLabel.text = String(describing: userList[current_index].location)
-//        bioLabel.text = userList[current_index].bio
-//
-//        let data = (self.userList[self.current_index].data as! [String:Any])
-//
-//        if (data["totalMilesRun"] != nil) {
-//            self.milesLabel.text = String(describing: self.userList[self.current_index].data!["totalMilesRun"]!)
-//        } else {
-//            self.milesLabel.text = "No info to show"
-//        }
-//
-//        if (data["AveragePace"] != nil) {
-//            self.avgPaceLabel.text = String(describing: self.userList[self.current_index].data!["AveragePace"]!)
-//        } else {
-//            self.avgPaceLabel.text = "No info to show"
-//        }
-//        }
-//    }
 
-//    func sendRequest(completion: @escaping (String, String)->()) {
-//
-//        let rootUrl: String = appDelegate.rootUrl
-//
-//        // alamofire request
-//        let params: [String: Any] = [
-//            "userId": self.userId,
-//            "targetId": userList[current_index].id!
-//        ]
-//
-//        let url = rootUrl + "api/match"
-//
-//        var title = ""
-//        var message = ""
-//
-//        let _request = Alamofire.request(url, method: .post, parameters: params)
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success:
-//                    let responseDictionary = response.result.value as! [String:Any]
-//                    if (String(describing: responseDictionary["response"]!) == "match") {
-//                        title = "You matched with \(self.userList[self.current_index].firstName!)"
-//                        message = "Go to your chat to say hello!"
-//                    } else {
-//                        title = "Your request to \(self.userList[self.current_index].firstName!) has been sent!"
-//                        message = "Keep running!"
-//                    }
-//                case .failure(let error):
-//                    print("error fetching users")
-//                    print(error)
-//                }
-//        completion(title, message)
-//        }
-//
-//
     func tryMatch(index currentIndex: Int) {
-
-        print("You clicked match on index", currentIndex)
 
         if (currentIndex != nil && currentIndex > userList.count || userList.count == 0) {
             let alertController = UIAlertController(title: "Sorry!", message: "No matches at this time. Try again later", preferredStyle: .alert)
