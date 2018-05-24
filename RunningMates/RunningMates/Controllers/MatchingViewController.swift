@@ -16,6 +16,8 @@ import EMAlertController
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
    // MARK: Properties
     var locationManager: CLLocationManager!
+    var locationCoords: [Double]!
+    var loadingView: MatchesLoadingView!
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -36,17 +38,35 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
 
     override func viewDidAppear(_ animated: Bool) {
+        // Show progress view while we wait for matches to load
+    }
 
-        //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
-        //location services
+    override func viewDidLoad() {
+       super.viewDidLoad()
 
+        kolodaView.dataSource = self
+        kolodaView.delegate = self
+        
+        
+        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
+            self.userId = user.id!
+        })
+
+
+       // Do any additional setup after loading the view, typically from a nib.
+
+        // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
+        // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
+        loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+        topView.addSubview(loadingView)
+        loadingView.progressIndicator.startAnimating()
+
+
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
-
-        if (self.userEmail == nil) {
-            self.userEmail = "brian@test.com"
-        }
-
+        
+        
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
         case .notDetermined:
@@ -57,62 +77,33 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 title: "Background Location Access Disabled",
                 message: "In order to optimize your matching experience please enable location services",
                 preferredStyle: .alert)
-
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
-
+            
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
                 if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
                     UIApplication.shared.open(URL(string: "\(url)")!)
-
+                    
                 }
             }
             alertController.addAction(openAction)
+            locationManager.startUpdatingLocation()
 
             self.present(alertController, animated: true, completion: nil)
-
+            
         case .authorizedAlways:
             // just needed something in this switch
-            print("thanks! for letting us see your location")
+            locationManager.startUpdatingLocation()
+            self.kolodaView?.reloadData()
+            
         }
-
-    }
-
-    override func viewDidLoad() {
-       super.viewDidLoad()
-
-        kolodaView.dataSource = self
-        kolodaView.delegate = self
-
-       // Do any additional setup after loading the view, typically from a nib.
-
-        // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
-        // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
-
-        if (self.userEmail == nil) {
-            self.userEmail = "brian@test.com"
-        }
-
-        print(self.userEmail)
-        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-            self.userId = user.id!
-        })
-
-
-        // Show progress view while we wait for matches to load
-        let view: MatchesLoadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
-        topView.addSubview(view)
-        view.progressIndicator.startAnimating()
         
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
-        UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [-147.349442, 64.751114], completion: { list in
-            self.userList = list
-            self.kolodaView?.reloadData()
-            view.removeFromSuperview()
-        })
         
-        print("current index is ")
-        print(current_index)
+        //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
+        //location services
+    
         if (self.current_index != nil && self.current_index > userList.count || userList.count == 0 || self.current_index == nil) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
             let icon = UIImage(named: "thumbsdown")
@@ -130,6 +121,28 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         }
         
    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if let location = locations[locations.count - 1] as? CLLocation {
+
+            
+            if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
+                self.locationCoords = [lat, long]
+
+                let testerLocation =  [Double(-147.349442), Double(64.751114)]
+                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, completion: { list in
+                    self.userList = list
+                    self.kolodaView?.reloadData()
+                    self.loadingView.removeFromSuperview()
+
+                })
+            } else {
+                print("No coordinates")
+            }
+        }
+        
+    }
 
     func downloadImage(_ uri : String, inView: UIImageView){
 
@@ -327,15 +340,16 @@ extension MatchingViewController: KolodaViewDataSource {
 
         let image = UIImage(data: photoData!)
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
-        var location = ""
+
         
         // Calculate potential match's distance from user
-        var userLocation: [Float] = UserDefaults.standard.value(forKey: "location") as! [Float]
-        var matchLocation: [Float] = userList[index].user.location
+        var location = ""
+        let userLocation = self.locationCoords
+        var matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
         
         print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
         
-        var distance = getDistanceInMeters(userLocation: userLocation, matchLocation: matchLocation)
+        var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {
             location = "< 1 mi away"
         } else {
@@ -344,7 +358,7 @@ extension MatchingViewController: KolodaViewDataSource {
         }
         
         let bio = (String(userList[index].user.bio))
-        let data = (self.userList[index].user.data as! [String:Any]?)
+        let data = (self.userList[index].user.data )
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
         if (data!["totalMilesRun"] != nil) {
@@ -365,7 +379,6 @@ extension MatchingViewController: KolodaViewDataSource {
         
         view.profileImage.image = image!
         view.nameText.text! = nameAge
-        view.locationText.text! = location
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
         view.totalMilesText.text! = totalMiles
@@ -382,7 +395,7 @@ extension MatchingViewController: KolodaViewDataSource {
         return view
     }
     
-    func getDistanceInMeters(userLocation: [Float], matchLocation: [Float]) -> Double {
+    func getDistanceInMeters(userLocation: [Double], matchLocation: [Double]) -> Double {
         let coordinate1 = CLLocation(latitude: CLLocationDegrees(userLocation[1]), longitude: CLLocationDegrees(userLocation[0]))
         let coordinate2 = CLLocation(latitude: CLLocationDegrees(matchLocation[1]), longitude: CLLocationDegrees(matchLocation[0]))
         
