@@ -102,16 +102,15 @@ class RunDataViewController: UIViewController {
             var avgRunLength: Double = 0.0
             
             if (UserDefaults.standard.value(forKey: "data") != nil) {
-                var defaultData: Data = (UserDefaults.standard.value(forKey: "data") as? Data)!
-                var dataObj : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
-                
-                if (dataObj["totalElevationClimbed"] as? Double != nil) {
+                var dataObj = (UserDefaults.standard.value(forKey: "data") as? [String:Any])!
+      
+                if (dataObj["totalElevationClimbed"] as? Int != nil) {
                     elevation = (dataObj["totalElevationClimbed"] as? Double)!
                 }
-                if (dataObj["totalMilesRun"] as? Double != nil) {
+                if (dataObj["totalMilesRun"] as? Int != nil) {
                     milesRun = (dataObj["totalMilesRun"] as? Double)!
                 }
-                if (dataObj["averageRunLength"] as? Double != nil) {
+                if (dataObj["averageRunLength"] as? Int != nil) {
                     avgRunLength = (dataObj["averageRunLength"] as? Double)!
                 }
             }
