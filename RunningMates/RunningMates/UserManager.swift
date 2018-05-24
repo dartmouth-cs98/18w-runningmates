@@ -40,11 +40,14 @@ class UserManager: NSObject {
                     switch response.result {
                         case .success:
                             if let jsonObj = response.result.value as? [String:Any] {
-                                let token = (jsonObj["token"] as? [String:Any])
+                                print("JSON sshit: \n\n", jsonObj)
+                                print("\n\n result isht\n\n", response.result.value)
+                                let token = (jsonObj["token"] as! String)
                                 let user = (jsonObj["user"] as? [String:Any])
                                 
                                 UserDefaults.standard.set(email!, forKey: "email")
                                 UserDefaults.standard.set(token, forKey: "token")
+                                print("TOKEN\n\n", token)
                                 UserDefaults.standard.set(password!, forKey: "password")
                                 
                                 if (user!["_id"] != nil) {
@@ -76,8 +79,9 @@ class UserManager: NSObject {
                         let token = (jsonUser["token"] as? String)
                         
                         let prevToken = String(describing: UserDefaults.standard.value(forKey: "token"))
+                       
                         // Check to see if this user is already saved in the UserDefaults, if so, we don't need to save all of their information again.
-                        if !(token == prevToken) {
+                        if (token != prevToken) {
                             UserDefaults.standard.set(token, forKey: "token")
                             if (user["firstName"] != nil) {
                                 let firstName = user["firstName"] as! String
