@@ -103,11 +103,11 @@ class UserManager: NSObject {
                                 UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
                             }
                             
-                            if (user["images"] != nil) {
-                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
-                                let images = user["images"] as! [String]
-                                UserDefaults.standard.set(images, forKey: "images")
-                            }
+//                            if (user["images"] != nil) {
+//                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
+//                                let images = user["images"] as! [String]
+//                                UserDefaults.standard.set(images, forKey: "images")
+//                            }
                             
                             if (user["preferences"] != nil) {
         

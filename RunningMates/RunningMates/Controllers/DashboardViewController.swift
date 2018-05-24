@@ -13,7 +13,6 @@ class DashboardViewController: UIViewController {
     // MARK: Properties
     
 
-    @IBOutlet weak var secondView: UIImageView!
     @IBOutlet weak var profPic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var editButton: UIButton!
