@@ -101,7 +101,7 @@ class DashboardViewController: UIViewController {
                 
                 if (data["runsPerWeek"] != nil) {
                     
-                    self.runsWkLabel.text = String(describing: data["milesPerWeek"]!)
+                    self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
                 }
             }
           

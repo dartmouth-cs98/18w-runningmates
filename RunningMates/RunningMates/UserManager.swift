@@ -68,12 +68,10 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
-                print("\n\n\n HERES OUR USER RESPONSER \n\n\n", response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:AnyObject])!
-                        print("\n\n\n HERES OUR USER \n\n\n", user)
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
                         
@@ -103,11 +101,10 @@ class UserManager: NSObject {
                                 UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
                             }
                             
-//                            if (user["images"] != nil) {
-//                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
-//                                let images = user["images"] as! [String]
-//                                UserDefaults.standard.set(images, forKey: "images")
-//                            }
+                            if (user["images"] != nil) {
+                                let images = user["images"] as! [String]
+                                UserDefaults.standard.set(images, forKey: "images")
+                            }
                             
                             if (user["preferences"] != nil) {
         

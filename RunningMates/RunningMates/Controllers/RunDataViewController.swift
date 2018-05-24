@@ -77,20 +77,18 @@ class RunDataViewController: UIViewController {
     
     func updateInfoFromUserDefaults() {
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            //            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+            //            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
+            if var data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
+                    let milespwk:Int? = Int(milesPerWeek.text!)
+                    data["milesPerWeek"] = milespwk
+                    let runsperWk:Int? = Int(runsPerWeek.text!)
+                    data["runsPerWeek"] = runsperWk
+                    let racesDoneArray:String? = racesDone.text!
+                    data["racesDone"] = [racesDoneArray]
             
-            let milespwk:Int? = Int(milesPerWeek.text!)
-            data["milesPerWeek"] = milespwk
-            
-            let runsperWk:Int? = Int(runsPerWeek.text!)
-            data["runsPerWeek"] = runsperWk
-            
-            let racesDoneArray:String? = racesDone.text!
-            data["racesDone"] = racesDoneArray
-            
-            let archivedData = NSKeyedArchiver.archivedData(withRootObject: data)
-            UserDefaults.standard.set(archivedData, forKey: "data")
+                UserDefaults.standard.set(data, forKey: "data")
+                }
         }
     }
         
