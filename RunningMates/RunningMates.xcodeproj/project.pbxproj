@@ -26,7 +26,6 @@
 		8869231F209A238300269557 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869231E209A238300269557 /* SocketIOManager.swift */; };
 		88692322209CC5ED00269557 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88692321209CC5ED00269557 /* UserManager.swift */; };
 		88C0AFD6202CE3B50008F5B5 /* MatchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */; };
-		88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C0AFD7203247E00008F5B5 /* MatchingView.swift */; };
 		8910FDC916F63FF6F3ACACCE /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		95530D9C585784CC739A51AB /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
 		C39CCE5C2F4486110A37E4FD /* Pods_RunningMates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */; };
@@ -192,7 +191,6 @@
 		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		88692321209CC5ED00269557 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
-		88C0AFD7203247E00008F5B5 /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
 		B5AB06653744964379D2084B /* Pods-RunningMates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.debug.xcconfig"; sourceTree = "<group>"; };
 		D3BBB48420AE2B8400BD6CF9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -476,25 +474,24 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
-				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
-				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
-				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
-				FA5711042021208D005792CB /* ViewController.swift */,
-				F86F177C20A3A42D003E1C91 /* RoundButton.swift */,
+				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
+				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
+				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
-				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
-				2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */,
-				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
+				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
-				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
 				FAFE988F20796699008B56BA /* FullChatViewController.swift */,
-				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
-				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
-				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
-				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
 				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
+				2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */,
+				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
+				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
+				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
+				F81510CB203638E400E9A2C5 /* ProfileViewController.swift */,
+				F86F177C20A3A42D003E1C91 /* RoundButton.swift */,
+				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
+				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
+				FA5711042021208D005792CB /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -806,7 +803,6 @@
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */,
-				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
 				D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */,
