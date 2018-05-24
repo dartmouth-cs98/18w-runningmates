@@ -32,6 +32,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         //https://www.appcoda.com/ios-programming-circular-image-calayer/
         self.profPic.layer.cornerRadius = self.profPic.frame.size.width / 2;
         self.profPic.clipsToBounds = true;
@@ -51,6 +52,20 @@ class DashboardViewController: UIViewController {
         if (UserDefaults.standard.string(forKey: "firstName") != nil) {
             self.name.text = UserDefaults.standard.string(forKey: "firstName")!
         }
+        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
+        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
+            let url = URL(string: userImages[0] as! String)
+            
+            
+            if let photoData = try? Data(contentsOf: url!) {
+                let image = UIImage(data: photoData)
+                self.profPic.image = image!
+            }
+            
+        }
+       
+        //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        
         
         
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
@@ -78,20 +93,19 @@ class DashboardViewController: UIViewController {
     
     func setDataTextFields() {
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
-            
-            if (data["milesPerWeek"] != nil) {
-                if let mpwkText = (data["milesPerWeek"]! as? String) {
-                    self.milesWkLabel.text = mpwkText
+//            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+//            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
+            if let data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
+                if (data["milesPerWeek"] != nil) {
+                    self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
+                }
+                
+                if (data["runsPerWeek"] != nil) {
+                    
+                    self.runsWkLabel.text = String(describing: data["milesPerWeek"]!)
                 }
             }
-            
-            if (data["runsPerWeek"] != nil) {
-                if let runsperweekText = (data["runsPerWeek"] as? String) {
-                    self.runsWkLabel.text = runsperweekText
-                }
-            }
+          
         }
     }
     

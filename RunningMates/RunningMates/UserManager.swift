@@ -68,11 +68,12 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
+                print("\n\n\n HERES OUR USER RESPONSER \n\n\n", response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:AnyObject])!
-                        
+                        print("\n\n\n HERES OUR USER \n\n\n", user)
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
                         
@@ -103,7 +104,9 @@ class UserManager: NSObject {
                             }
                             
                             if (user["images"] != nil) {
-                                UserDefaults.standard.set(user["images"]!, forKey: "images")
+                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
+                                let images = user["images"] as! [String]
+                                UserDefaults.standard.set(images, forKey: "images")
                             }
                             
                             if (user["preferences"] != nil) {
@@ -120,14 +123,31 @@ class UserManager: NSObject {
                                         preferences["proximity"] = proximityPrefs
                                     }
                                 }
-                                print("PREFERENCESSSSSS: ", preferences)
-
                                 UserDefaults.standard.set(preferences, forKey: "preferences")
                             }
                             
                             if (user["data"] != nil) {
-                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
-                                UserDefaults.standard.set(data, forKey: "data")
+
+//                                var data = [String:Any]()
+//                                let totalMilesRun = user["data"]!["totalMilesRun"] as! Int
+//                                let totalElevationClimbed = user["data"]!["totalElevationClimbed"]
+//                                let runsPerWeek = user["data"]!["runsPerWeek"]
+//                                let milesPerWeek = user["data"]!["milesPerWeek"]
+//                                let racesDone = user[
+//                                racesDone: [],
+//                                averageRunLength: { type: Number, default: 0 },
+//                                longestRun: { type: String, default: '' },
+//                                preferences["gender"] = genderPref
+//                                preferences["runLength"] = runLengthPref!
+//                                preferences["age"] = agePref
+//                                if (user["preferences"] != nil) {
+//                                    if let proximityPrefs = (user["preferences"]!["proximity"]  as? Double) {
+//                                        preferences["proximity"] = proximityPrefs
+//                                    }
+//                                }
+//                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+//                                UserDefaults.standard.set(data, forKey: "data")
+                                UserDefaults.standard.set(user["data"], forKey: "data")
                             }
                             if (user["desiredGoals"] != nil) {
                                 UserDefaults.standard.set(user["desiredGoals"]!, forKey: "desiredGoals")
@@ -209,7 +229,7 @@ class UserManager: NSObject {
     }
     
     
-    func requestPotentialMatches(userEmail: String, location: [Float], completion: @escaping ([sortedUser])->()){
+    func requestPotentialMatches(userEmail: String, location: [Double], completion: @escaping ([sortedUser])->()){
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
@@ -348,15 +368,9 @@ class UserManager: NSObject {
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    let responseDictionary = response.result.value as! [String:Any]
-                    if (responseDictionary != nil && responseDictionary["response"] != nil) {
-                        if (String(describing: responseDictionary["response"]!) == "updated user") {
-                            title = "You Have Updated Your Profile"
-                            message = "Find Some New RunningMates!"
-                        }
+                        title = "You Have Updated Your Profile"
+                        message = "Find Some New RunningMates!"
                         completion(title, message)
-                        print("*** success in update*** ")
-                    }
                 case .failure(let error):
                     print("*error posting profile updates*")
                     print(error)
