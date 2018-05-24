@@ -82,18 +82,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         profileImage.clipsToBounds = true
         
-        
-        if (UserDefaults.standard.value(forKey: "firstName") != nil) {
-            if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
-                let url = URL(string: userImages[0])
-                
-                
-                if let photoData = try? Data(contentsOf: url!) {
-                    let image = UIImage(data: photoData)
-                    profileImage.image = image!
-                }
-            }
-        }
        
 
         
@@ -104,11 +92,53 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
-        print("did sign up with strava: ")
-        print(self.appDelegate.didSignUpWithStrava)
+
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true
+            
+            
+            if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
+                let url = URL(string: userImages[0])
+                
+                
+                if let photoData = try? Data(contentsOf: url!) {
+                    let image = UIImage(data: photoData)
+                    profileImage.image = image!
+                }
+            }
+            
+            if (UserDefaults.standard.value(forKey: "firstName") != nil) {
+                self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
+            }
+            if (UserDefaults.standard.value(forKey: "bio") != nil) {
+                self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
+            }
+            
+            // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
+            
+            if (UserDefaults.standard.value(forKey: "data") != nil) {
+                //            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+                //            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+                var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
+                if (data["milesPerWeek"] != nil) {
+                    let mpwkText = String(describing: data["milesPerWeek"]!)
+                    print("\n\n user current mpk: \n\n", mpwkText)
+                    self.milesPerWeekTextField.text = mpwkText
+                }
+                
+                if (data["runsPerWeek"] != nil) {
+                    let runsperweekText = String(describing: data["runsPerWeek"]!)
+                    self.runsPerWeekTextField.text = runsperweekText
+                }
+                if (data["racesDone"] != nil) {
+                    let racesDoneText = data["racesDone"] as! [String]
+                    if racesDoneText.count > 0 {
+                        self.racesDoneTextView.text = racesDoneText[0]
+
+                    }
+                }
+            }
         }
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.stravaLogo1.isHidden = false
@@ -133,32 +163,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             })
         }
         
-        if (UserDefaults.standard.value(forKey: "firstName") != nil) {
-            self.nameTextView.text = UserDefaults.standard.value(forKey: "firstName") as! String
-        }
-        if (UserDefaults.standard.value(forKey: "bio") != nil) {
-            self.bioTextView.text = UserDefaults.standard.value(forKey: "bio") as! String
-        }
-        
-       // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
-        
-        if (UserDefaults.standard.value(forKey: "data") != nil) {
-//            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-//            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
-            var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
-            
-            if (data["milesPerWeek"] != nil) {
-                if let mpwkText = (data["milesPerWeek"]! as? String) {
-                    self.milesPerWeekTextField.text = mpwkText
-                }
-            }
-            
-            if (data["runsPerWeek"] != nil) {
-                if let runsperweekText = (data["runsPerWeek"] as? String) {
-                    self.runsPerWeekTextField.text = runsperweekText
-                }
-            }
-        }
         
     }
     
