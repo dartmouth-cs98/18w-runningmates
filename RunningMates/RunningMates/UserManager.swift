@@ -40,19 +40,81 @@ class UserManager: NSObject {
                     switch response.result {
                         case .success:
                             if let jsonObj = response.result.value as? [String:Any] {
-                                print("JSON sshit: \n\n", jsonObj)
-                                print("\n\n result isht\n\n", response.result.value)
+
                                 let token = (jsonObj["token"] as! String)
-                                let user = (jsonObj["user"] as? [String:Any])
+                                let user = (jsonObj["user"] as? [String:Any])!
                                 
                                 UserDefaults.standard.set(email!, forKey: "email")
                                 UserDefaults.standard.set(token, forKey: "token")
-                                print("TOKEN\n\n", token)
+
                                 UserDefaults.standard.set(password!, forKey: "password")
                                 
-                                if (user!["_id"] != nil) {
-                                    UserDefaults.standard.set(user!["_id"]!, forKey: "id")
+                                if (user["firstName"] != nil) {
+                                    let firstName = user["firstName"] as! String
+                                    UserDefaults.standard.set(firstName, forKey: "firstName")
+                                    
                                 }
+                                if (user["email"] != nil) {
+                                    UserDefaults.standard.set(user["email"]!, forKey: "email")
+                                }
+                                if (user["_id"] != nil) {
+                                    UserDefaults.standard.set(user["_id"]!, forKey: "id")
+                                }
+                                if (user["lastName"] != nil) {
+                                    UserDefaults.standard.set(user["lastName"]!, forKey: "lastName")
+                                }
+                                if (user["bio"] != nil) {
+                                    UserDefaults.standard.set(user["bio"]!, forKey: "bio")
+                                }
+                                
+                                if (user["imageURL"] != nil) {
+                                    UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
+                                }
+                                
+                                if (user["images"] != nil) {
+                                    let images = user["images"] as! [String]
+                                    UserDefaults.standard.set(images, forKey: "images")
+                                }
+                                
+                                if (user["preferences"] != nil) {
+                                    
+                                    var preferences = (user["preferences"] as? [String:Any])!
+                                    if let proximityPrefs = (preferences["proximity"]  as? Double) {
+                                        preferences["proximity"] = proximityPrefs
+                                    }
+                                    UserDefaults.standard.set(preferences, forKey: "preferences")
+                                }
+                                
+                                if (user["data"] != nil) {
+                                    
+                                    //                                var data = [String:Any]()
+                                    //                                let totalMilesRun = user["data"]!["totalMilesRun"] as! Int
+                                    //                                let totalElevationClimbed = user["data"]!["totalElevationClimbed"]
+                                    //                                let runsPerWeek = user["data"]!["runsPerWeek"]
+                                    //                                let milesPerWeek = user["data"]!["milesPerWeek"]
+                                    //                                let racesDone = user[
+                                    //                                racesDone: [],
+                                    //                                averageRunLength: { type: Number, default: 0 },
+                                    //                                longestRun: { type: String, default: '' },
+                                    //                                preferences["gender"] = genderPref
+                                    //                                preferences["runLength"] = runLengthPref!
+                                    //                                preferences["age"] = agePref
+                                    //                                if (user["preferences"] != nil) {
+                                    //                                    if let proximityPrefs = (user["preferences"]!["proximity"]  as? Double) {
+                                    //                                        preferences["proximity"] = proximityPrefs
+                                    //                                    }
+                                    //                                }
+                                    //                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+                                    //                                UserDefaults.standard.set(data, forKey: "data")
+                                    UserDefaults.standard.set(user["data"], forKey: "data")
+                                }
+                                if (user["desiredGoals"] != nil) {
+                                    UserDefaults.standard.set(user["desiredGoals"]!, forKey: "desiredGoals")
+                                }
+                                if (user["_id"] != nil) {
+                                    UserDefaults.standard.set(user["_id"]!, forKey: "id")
+                                }
+                                
                                 completion("success")
                             }
                         case .failure(let error):

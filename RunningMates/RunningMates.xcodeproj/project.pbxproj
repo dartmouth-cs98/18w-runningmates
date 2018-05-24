@@ -48,6 +48,7 @@
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
 		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
 		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
+		F8C2051720B76940002812FF /* ProfPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C2051620B76940002812FF /* ProfPicViewController.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
@@ -217,6 +218,7 @@
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
 		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
+		F8C2051620B76940002812FF /* ProfPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfPicViewController.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -488,18 +490,15 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
-				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
-				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				FAFE988F20796699008B56BA /* FullChatViewController.swift */,
 				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
-				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
 				F848C3F220B374A600F1704D /* BasicInfoViewController.swift */,
+				F8C2051620B76940002812FF /* ProfPicViewController.swift */,
 				F84E78B520B3BAA000D49EE5 /* RunDataViewController.swift */,
 				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
 				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
@@ -838,12 +837,12 @@
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */,
-				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				F848C3F320B374A600F1704D /* BasicInfoViewController.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
 				D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */,
 				2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */,
+				F8C2051720B76940002812FF /* ProfPicViewController.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
