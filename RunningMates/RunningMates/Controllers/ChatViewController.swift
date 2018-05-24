@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
+    @IBOutlet weak var myStupidView: UIView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
 

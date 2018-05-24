@@ -13,7 +13,6 @@ class DashboardViewController: UIViewController {
     // MARK: Properties
     
 
-    @IBOutlet weak var secondView: UIImageView!
     @IBOutlet weak var profPic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var editButton: UIButton!
@@ -102,7 +101,7 @@ class DashboardViewController: UIViewController {
                 
                 if (data["runsPerWeek"] != nil) {
                     
-                    self.runsWkLabel.text = String(describing: data["milesPerWeek"]!)
+                    self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
                 }
             }
           
