@@ -82,16 +82,21 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         profileImage.clipsToBounds = true
         
-        if let userImages = UserDefaults.standard.dictionary(forKey: "images") {
-            let url = URL(string: userImages[String(0)] as! String)
-            
-            
-            if let photoData = try? Data(contentsOf: url!) {
-                let image = UIImage(data: photoData)
-                profileImage.image = image!
+        
+        if (UserDefaults.standard.value(forKey: "firstName") != nil) {
+            if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
+                let url = URL(string: userImages[0])
+                
+                
+                if let photoData = try? Data(contentsOf: url!) {
+                    let image = UIImage(data: photoData)
+                    profileImage.image = image!
+                }
             }
-            
         }
+       
+
+        
 //        nameTextView.clipsToBounds = true
 //        milesPerWeekTextField.clipsToBounds = true
         self.pickerView.delegate = self
@@ -138,8 +143,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
        // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
             
             if (data["milesPerWeek"] != nil) {
                 if let mpwkText = (data["milesPerWeek"]! as? String) {
@@ -172,20 +176,20 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var newFirstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            if var data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
+                let milespwk:Int? = Int(milesPerWeekTextField.text!)
+                data["milesPerWeek"] = milespwk
+                
+                let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+                data["runsPerWeek"] = runsperWk
+                
+                let racesDoneArray:String? = racesDoneTextView.text!
+                data["racesDone"] = [racesDoneArray]
+                
+                UserDefaults.standard.set(data, forKey: "data")
+            }
         
-            let milespwk:Int? = Int(milesPerWeekTextField.text!)
-            data["milesPerWeek"] = milespwk
-            
-            let runsperWk:Int? = Int(runsPerWeekTextField.text!)
-            data["runsPerWeek"] = runsperWk
-            
-            let racesDoneArray:String? = racesDoneTextView.text!
-            data["racesDone"] = racesDoneArray
-            
-            let archivedData = NSKeyedArchiver.archivedData(withRootObject: data)
-            UserDefaults.standard.set(archivedData, forKey: "data")
+           
 //            var newData: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         }
         UserDefaults.standard.set(bioTextView.text, forKey: "bio")
@@ -288,18 +292,19 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var avgRunLength: Double = 0.0
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = (UserDefaults.standard.value(forKey: "data") as? Data)!
-            var dataObj : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
+            if var dataObj = (UserDefaults.standard.value(forKey: "data") as? [String:Any]) {
+                if (dataObj["totalElevationClimbed"] as? Double != nil) {
+                    elevation = (dataObj["totalElevationClimbed"] as? Double)!
+                }
+                if (dataObj["totalMilesRun"] as? Double != nil) {
+                    milesRun = (dataObj["totalMilesRun"] as? Double)!
+                }
+                if (dataObj["averageRunLength"] as? Double != nil) {
+                    avgRunLength = (dataObj["averageRunLength"] as? Double)!
+                }
+            }
             
-            if (dataObj["totalElevationClimbed"] as? Double != nil) {
-                elevation = (dataObj["totalElevationClimbed"] as? Double)!
-            }
-            if (dataObj["totalMilesRun"] as? Double != nil) {
-                milesRun = (dataObj["totalMilesRun"] as? Double)!
-            }
-            if (dataObj["averageRunLength"] as? Double != nil) {
-                avgRunLength = (dataObj["averageRunLength"] as? Double)!
-            }
+           
         }
 //        var dataObj: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
@@ -339,24 +344,32 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        }
         
         
-        imageURLsRequest(completion: {  // Get signed URL requests from backend
-            self.awsUpload(completion: { // Upload images to aws
-                
-                var userImages = UserDefaults.standard.dictionary(forKey: "images")
-                userImages![String(0)] = self.profileImageUrl;
+        imageURLsRequest(completion: {
+            successUrlRequest in// Get signed URL requests from backend
+            self.awsUpload(userImageUpdateUrlObject: successUrlRequest, completion: { // Upload images to aws
+                awsUrl in
+                var userImages = [String]()
+                userImages.append(awsUrl);
                 let params: [String:Any] = [
                     "email": self.userEmail,
                     "firstName": self.nameTextView.text!,
                     "bio": self.bioTextView.text!,
-                    "images": self.profileImageUrls,
-                    "milesPerWeek": self.milesPerWeekTextField.text!,
-                    "racesDone": self.racesDoneTextView.text!,
-                    "runsPerWeek": self.runsPerWeekTextField.text!
+                    "images": userImages,
+                    "milesPerWeek": Int(self.milesPerWeekTextField.text!),
+                    "racesDone": [self.racesDoneTextView.text!],
+                    "runsPerWeek": Int(self.runsPerWeekTextField.text!)
                 ]
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                    print("\n\n user images: \n\n", userImages)
                     UserDefaults.standard.set(userImages, forKey: "images")
+                    UserDefaults.standard.set(self.bioTextView.text!, forKey: "bio")
+                    UserDefaults.standard.set(Int(self.milesPerWeekTextField.text!), forKey: "milesPerWeek")
+                    UserDefaults.standard.set([self.racesDoneTextView.text!], forKey: "racesDone")
+                    UserDefaults.standard.set(Int(self.runsPerWeekTextField.text!), forKey: "runsPerWeek")
+                    UserDefaults.standard.synchronize()
+
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     
                     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
@@ -517,7 +530,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //         debugPrint("whole _request ****",_request)
 //    }
     
-    func awsUpload(completion: @escaping ()->()){
+    func awsUpload(userImageUpdateUrlObject: [AnyObject], completion: @escaping (String)->()){
         
         let headers: HTTPHeaders = [
             "Content-Type": "image/jpeg"
@@ -541,24 +554,27 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        }
         let image = profileImage.image
         let imageData = UIImageJPEGRepresentation(image!, 0.7)
-        let signedOb = self.signUrls[0]["signedRequest"] as? String
-        let request = Alamofire.upload(imageData!, to: signedOb!, method: .put, headers: headers)
-            .responseData {
-                response in
-                if response.response != nil {
-                    let awsUrl = self.signUrls[0]["url"] as? String
-
-                    self.profileImageUrl = awsUrl!
-
-                }
-                else {
-                    print("Something went wrong uploading")
-                }
-
+        print("signed object: \n\n\n ", userImageUpdateUrlObject)
+        if let signedOb = userImageUpdateUrlObject[0]["signedRequest"] as? String {
+            let request = Alamofire.upload(imageData!, to: signedOb, method: .put, headers: headers)
+                .responseData {
+                    response in
+                    if response.response != nil {
+                        let awsUrl = userImageUpdateUrlObject[0]["url"] as? String
+                        
+                        self.profileImageUrl = awsUrl!
+                        completion(awsUrl!)
+                        
+                    }
+                    else {
+                        print("Something went wrong uploading")
+                    }
+                    
             }
-        completion()
+
+        }
     }
-    func imageURLsRequest (completion: @escaping ()-> ()){
+    func imageURLsRequest (completion: @escaping ([AnyObject])-> ()){
         
         let rootUrl: String = appDelegate.rootUrl
         let Url = rootUrl + "api/sign-s3"
@@ -576,6 +592,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     if let jsonSignedUrls = response.result.value as? [AnyObject] {
                         
                         self.signUrls = jsonSignedUrls
+
+                        completion(jsonSignedUrls)
                     }
                     
                 case .failure(let error):
@@ -583,7 +601,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     print(error)
                 }
         }
-        completion()
 
     }
 }

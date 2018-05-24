@@ -52,8 +52,9 @@ class DashboardViewController: UIViewController {
         if (UserDefaults.standard.string(forKey: "firstName") != nil) {
             self.name.text = UserDefaults.standard.string(forKey: "firstName")!
         }
-        if let userImages = UserDefaults.standard.dictionary(forKey: "images") {
-            let url = URL(string: userImages[String(0)] as! String)
+        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
+        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
+            let url = URL(string: userImages[0] as! String)
             
             
             if let photoData = try? Data(contentsOf: url!) {
@@ -92,20 +93,17 @@ class DashboardViewController: UIViewController {
     
     func setDataTextFields() {
         if (UserDefaults.standard.value(forKey: "data") != nil) {
-            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
-            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
-            
-            if (data["milesPerWeek"] != nil) {
-                if let mpwkText = (data["milesPerWeek"]! as? String) {
-                    self.milesWkLabel.text = mpwkText
+            if let data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
+                if (data["milesPerWeek"] != nil) {
+                    self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
+                }
+                
+                if (data["runsPerWeek"] != nil) {
+                    
+                    self.runsWkLabel.text = String(describing: data["milesPerWeek"]!)
                 }
             }
-            
-            if (data["runsPerWeek"] != nil) {
-                if let runsperweekText = (data["runsPerWeek"] as? String) {
-                    self.runsWkLabel.text = runsperweekText
-                }
-            }
+          
         }
     }
     
