@@ -26,7 +26,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     var profileImageUrl = ""
     var profileImageNames: [Int: String] = [:]
     var profileImageUrls: [Int: String] = [:]
-    var signUrls: [signedUrlObject] = []
+    var signUrls: [AnyObject] = []
 //    @IBOutlet weak var profileImage_0: UIImageView!
 //    @IBOutlet weak var profileImage_1: UIImageView!
 //    @IBOutlet weak var profileImage_2: UIImageView!
@@ -540,11 +540,14 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        }
         let image = profileImage.image
         let imageData = UIImageJPEGRepresentation(image!, 0.7)
-        let request = Alamofire.upload(imageData!, to: self.signUrls[0].signedRequest, method: .put, headers: headers)
+        let signedOb = self.signUrls[0]["signedRequest"] as? String
+        let request = Alamofire.upload(imageData!, to: signedOb!, method: .put, headers: headers)
             .responseData {
                 response in
                 if response.response != nil {
-                    self.profileImageUrl = self.signUrls[0].url
+                    let awsUrl = self.signUrls[0]["url"] as? String
+
+                    self.profileImageUrl = awsUrl!
 
                 }
                 else {
@@ -557,20 +560,20 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     func imageURLsRequest (completion: @escaping ()-> ()){
         
         let rootUrl: String = appDelegate.rootUrl
-        let Url = rootUrl + "sign-s3"
+        let Url = rootUrl + "api/sign-s3"
         let fileName = [self.imageName]
-        print(Url)
-        print(fileName)
+
         let params: Parameters = [
-            "file-names": fileName,
-            "file-type": "image/jpeg",
+            "fileNames": fileName,
+            "fileType": "image/jpeg",
         ]
         
-        let _request = Alamofire.request(Url, method: .get, parameters: params, encoding: JSONEncoding.default)
+        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
                 case .success:
-                    if let jsonSignedUrls = response.result.value as? [signedUrlObject] {
+                    if let jsonSignedUrls = response.result.value as? [AnyObject] {
+                        
                         self.signUrls = jsonSignedUrls
                     }
                     
@@ -579,5 +582,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     print(error)
                 }
         }
+        completion()
+
     }
 }
