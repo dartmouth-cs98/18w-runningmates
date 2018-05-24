@@ -143,6 +143,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
        // self.racesDoneTextView.text = UserDefaults.standard.value(forKey: "racesDone") as! String
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
+//            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+//            var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any]
             var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
             
             if (data["milesPerWeek"] != nil) {
@@ -176,6 +178,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var newFirstName: String = UserDefaults.standard.value(forKey: "firstName") as! String
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         if (UserDefaults.standard.value(forKey: "data") != nil) {
+//            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
+//            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
             if var data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
                 let milespwk:Int? = Int(milesPerWeekTextField.text!)
                 data["milesPerWeek"] = milespwk
@@ -292,6 +296,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var avgRunLength: Double = 0.0
         
         if (UserDefaults.standard.value(forKey: "data") != nil) {
+//            var defaultData: Data = (UserDefaults.standard.value(forKey: "data") as? Data)!
+//            if var dataObj : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
             if var dataObj = (UserDefaults.standard.value(forKey: "data") as? [String:Any]) {
                 if (dataObj["totalElevationClimbed"] as? Double != nil) {
                     elevation = (dataObj["totalElevationClimbed"] as? Double)!

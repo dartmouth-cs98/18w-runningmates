@@ -103,11 +103,11 @@ class UserManager: NSObject {
                                 UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
                             }
                             
-                            if (user["images"] != nil) {
-                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
-                                let images = user["images"] as! [String]
-                                UserDefaults.standard.set(images, forKey: "images")
-                            }
+//                            if (user["images"] != nil) {
+//                                print("\n\nWE HAVE IMAGES \n\n", user["images"])
+//                                let images = user["images"] as! [String]
+//                                UserDefaults.standard.set(images, forKey: "images")
+//                            }
                             
                             if (user["preferences"] != nil) {
         
@@ -145,6 +145,8 @@ class UserManager: NSObject {
 //                                        preferences["proximity"] = proximityPrefs
 //                                    }
 //                                }
+//                                let data = NSKeyedArchiver.archivedData(withRootObject: user["data"])
+//                                UserDefaults.standard.set(data, forKey: "data")
                                 UserDefaults.standard.set(user["data"], forKey: "data")
                             }
                             if (user["desiredGoals"] != nil) {
@@ -231,11 +233,6 @@ class UserManager: NSObject {
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
-        
-//        let params : [String: Any] = [
-//            "email": userEmail,
-//            "location": location
-//        ]
 
         let userToken: String = UserDefaults.standard.string(forKey: "token")!
         
@@ -256,8 +253,7 @@ class UserManager: NSObject {
                             do {
                                 let user = try User(json: (jsonUser["user"] as? [String:Any])!)
                                 let matchReason = (jsonUser["matchReason"] as! String)
-                                print(jsonUser)
-                                
+
                                 let sortUserInstance = sortedUser(user: user!, matchReason: matchReason);
                                 
                                 if (user != nil) {
