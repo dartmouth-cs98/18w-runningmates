@@ -25,10 +25,6 @@
                                 <color key="textColor" red="1" green="0.65656852663338117" blue="0.17974369078588293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-gi-7T1">
-                                <rect key="frame" x="87" y="233" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZN-G1-dba">
                                 <rect key="frame" x="170" y="512" width="34" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -38,12 +34,25 @@
                                     <segue destination="iUD-t5-fHV" kind="show" id="qC3-iw-0ym"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-go-RKb">
+                                <rect key="frame" x="93" y="210" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="add image"/>
+                                <connections>
+                                    <action selector="addImageButton:" destination="0hZ-os-hCh" eventType="touchUpInside" id="Q9r-23-cI0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-gi-7T1">
+                                <rect key="frame" x="93" y="210" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="9xV-lf-wqn"/>
                     </view>
                     <connections>
-                        <outlet property="profPic" destination="dJd-gi-7T1" id="Bmo-eM-iZw"/>
+                        <outlet property="addImageButton" destination="dnC-go-RKb" id="M8K-sJ-ero"/>
+                        <outlet property="profileImage" destination="dJd-gi-7T1" id="wVd-Tq-5TD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8d-53-MNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
