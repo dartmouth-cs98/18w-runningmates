@@ -1,3 +1,4 @@
+
 PODS:
   - Alamofire (4.6.0)
   - Canvas (0.1.2)
@@ -31,10 +32,7 @@ DEPENDENCIES:
   - Koloda
   - OAuthSwift (~> 1.2.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
-<<<<<<< HEAD
-=======
   - UIDropDown
->>>>>>> 4fc5ce4ee3c09feada76aa9050a4fcb87d6530da
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
