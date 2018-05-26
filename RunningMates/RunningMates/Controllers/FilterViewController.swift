@@ -39,10 +39,7 @@ class FilterViewController: UIViewController {
     var nonBinaryButtonSwitch = 1
     
     var genderPref = [String]()
-    
-    var userPref: [String: Any] = UserDefaults.standard.dictionary(forKey: "preferences")! as [String : Any]
- 
-
+    var userPref: [String: Any]?
     @IBOutlet weak var maxProximitySelected: UITextField!
     
     @IBOutlet weak var mileageBox: UIView!
@@ -92,21 +89,18 @@ class FilterViewController: UIViewController {
         distSlide.configRangeSlider(id: 2)
         proxSlide.configRangeSlider(id: 3)
         
-        if ((self.userPref["gender"] as! [String]).isEmpty == false) {
-            let userGenderPref = self.userPref["gender"] as! [String]
-            let userRunLengthPref = (self.userPref["runLength"] as! [Any])
+        if var currPref = UserDefaults.standard.value(forKey: "preferences") as? [String : Any] {
+            let userGenderPref = currPref["gender"] as! [String]
+            let userRunLengthPref = (currPref["runLength"] as! [Any])
             let runLengthLower = (userRunLengthPref[0])
             let runLengthUpper = (userRunLengthPref[1])
-            let userAgePref = self.userPref["age"] as! [Any]
+            let userAgePref = currPref["age"] as! [Any]
             
             
             let ageLower = (userAgePref[0])
             print(ageLower, "ARE LOWER")
             let ageUpper = (userAgePref[1])
      
-            print("GENDER PREFS")
-            print(userGenderPref)
-            
             if userGenderPref.contains("Female") {
                 self.femaleButton.isSelected = true
                 self.femaleLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
@@ -126,11 +120,13 @@ class FilterViewController: UIViewController {
             distSlide.lowerValue = (runLengthLower as AnyObject).doubleValue
             distSlide.upperValue = (runLengthUpper as AnyObject).doubleValue
 
-            var userMetersProx = userPref["proximity"] as! Double
+            var userMetersProx = currPref["proximity"] as! Double
             let userMilesProx = (userMetersProx * 0.000621371192)
             userMetersProx = userMilesProx * 1609.344
         
             proxSlide.upperValue = userMilesProx
+            
+            self.userPref = currPref
         }
         }
     
@@ -165,27 +161,21 @@ class FilterViewController: UIViewController {
         let age = [Double(ageSlide.lowerValue), Double(ageSlide.upperValue)]
         let proximity = proxSlide.upperValue
     
-        self.userPref["gender"] = genderPref as [String]
-        self.userPref["runLength"] = runLength as! [Double]
-        self.userPref["age"] = age
-        self.userPref["proximity"] = proximity * 1609.344 as Double // Meters
-
-        
         var preferences = [String:Any]()
         
-        preferences["gender"] = genderPref as [String]
+        preferences["gender"] = genderPref
         preferences["runLength"] = runLength as [Double]
         preferences["age"] = age
         preferences["proximity"] = proximity * 1609.344 as Double // Meters
 
         // alamofire request
         let params: [String: Any] = [
-            "preferences": self.userPref,
+            "preferences": preferences,
         ]
         
         UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {(title, msg) in
-            
-                print("success updating user preferences")
+                UserDefaults.standard.set(preferences, forKey: "preferences")
+
             })
     }
     

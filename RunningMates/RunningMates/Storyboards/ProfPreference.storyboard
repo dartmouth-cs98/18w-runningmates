@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Prof Pref View Controller-->
         <scene sceneID="tRL-Hu-Ery">
             <objects>
-                <viewController id="PA4-Mm-ez4" sceneMemberID="viewController">
+                <viewController id="PA4-Mm-ez4" customClass="ProfPrefViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QL1-yg-dpZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,6 +32,7 @@
                                     <color key="titleColor" red="1" green="0.65656852659999998" blue="0.17974369079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="saveClick:" destination="PA4-Mm-ez4" eventType="touchUpInside" id="zPg-uj-wf0"/>
                                     <segue destination="DoP-Nb-TbU" kind="show" id="ngS-pg-DJA"/>
                                 </connections>
                             </button>
@@ -57,6 +58,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="sKG-Q0-dSc"/>
                     </view>
+                    <connections>
+                        <outlet property="bioTextView" destination="29F-nB-AQ8" id="5Ue-zW-Iyj"/>
+                        <outlet property="pickerView" destination="55U-MM-I6g" id="aCq-as-pyB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLD-6S-Rd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

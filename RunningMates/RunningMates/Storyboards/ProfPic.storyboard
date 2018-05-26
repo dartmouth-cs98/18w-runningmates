@@ -10,37 +10,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Prof Pic View Controller-->
         <scene sceneID="mbx-dr-rCi">
             <objects>
-                <viewController id="0hZ-os-hCh" sceneMemberID="viewController">
+                <viewController id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2TW-SY-lSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1. Choose a Profile Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeO-UH-Gw8">
-                                <rect key="frame" x="33" y="47" width="308" height="21"/>
+                                <rect key="frame" x="33" y="95" width="308" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.65656852663338117" blue="0.17974369078588293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-gi-7T1">
-                                <rect key="frame" x="87" y="233" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZN-G1-dba">
-                                <rect key="frame" x="170" y="512" width="34" height="33"/>
+                                <rect key="frame" x="170" y="467" width="34" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Button" image="arrow-32-32"/>
                                 <connections>
+                                    <action selector="nextButton:" destination="0hZ-os-hCh" eventType="touchUpInside" id="xls-oh-jYb"/>
                                     <segue destination="iUD-t5-fHV" kind="show" id="qC3-iw-0ym"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-gi-7T1">
+                                <rect key="frame" x="61" y="162" width="253" height="262"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-go-RKb">
+                                <rect key="frame" x="61" y="162" width="253" height="262"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <state key="normal" title="add image"/>
+                                <connections>
+                                    <action selector="addImageButton:" destination="0hZ-os-hCh" eventType="touchUpInside" id="Q9r-23-cI0"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93595141169999996" green="0.030397811930000001" blue="0.1061733861" alpha="0.74232127569999995" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="9xV-lf-wqn"/>
                     </view>
+                    <connections>
+                        <outlet property="addImageButton" destination="dnC-go-RKb" id="M8K-sJ-ero"/>
+                        <outlet property="profileImage" destination="dJd-gi-7T1" id="wVd-Tq-5TD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8d-53-MNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
