@@ -43,7 +43,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="sendMail:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="P9V-6D-dUk"/>
+                                    <action selector="sendMail:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="SUf-6x-jgj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-8c-lhz">
@@ -76,8 +76,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="signOutPressed:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="Vsz-gD-4ci"/>
-                                    <segue destination="YFA-H8-k5R" kind="show" id="HJV-vd-qdl"/>
+                                    <segue destination="YFA-H8-k5R" kind="show" id="Mg8-67-flt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5a7-6F-090">
@@ -90,7 +89,7 @@
                                     <color key="titleShadowColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="signOutPressed:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="hI2-mQ-WPK"/>
+                                    <action selector="signOutPressed:" destination="aSt-Pd-RT9" eventType="touchUpInside" id="2IZ-is-cs1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -119,21 +118,6 @@
             </objects>
             <point key="canvasLocation" x="113.59999999999999" y="-696.25187406296857"/>
         </scene>
-        <!--Main-->
-        <scene sceneID="y2Q-cn-Hb5">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="0IA-BS-VNK" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6K7-TP-FVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="597" y="-561"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="kbf-ib-n0e">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="shZ-e9-lwC" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gc4-Sk-Nlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="539.20000000000005" y="-1097.4512743628186"/>
-        </scene>
     </scenes>
+    <color key="tintColor" red="0.95497936009999995" green="0.30671489239999999" blue="0.33837935330000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

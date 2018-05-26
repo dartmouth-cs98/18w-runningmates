@@ -55,16 +55,6 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wid-Ee-1a8">
-                                                    <rect key="frame" x="247" y="11" width="88" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" priority="999" constant="88" id="q2M-Mh-hAf"/>
-                                                    </constraints>
-                                                    <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0C6-s8-UYU">
                                                     <rect key="frame" x="5" y="2" width="70" height="70"/>
                                                     <constraints>
@@ -78,25 +68,19 @@
                                                 <constraint firstAttribute="bottom" secondItem="0C6-s8-UYU" secondAttribute="bottom" constant="5.5" id="6QM-xJ-PaG"/>
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" constant="35" id="BUT-co-HAO"/>
                                                 <constraint firstItem="xdM-co-IPl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="4" id="EGe-9f-UcU"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="top" id="Fe5-tZ-ml5"/>
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" secondItem="xdM-co-IPl" secondAttribute="leading" id="JSz-Nb-Klm"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="QMy-NA-3cf" secondAttribute="bottom" constant="3" id="LeZ-c7-XOR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="QMy-NA-3cf" secondAttribute="trailing" constant="7" id="M26-AZ-a2g"/>
-                                                <constraint firstItem="QMy-NA-3cf" firstAttribute="trailing" secondItem="wid-Ee-1a8" secondAttribute="trailing" id="MUm-Tn-aez"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="baseline" secondItem="xdM-co-IPl" secondAttribute="baseline" id="Mda-UM-fs9"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xdM-co-IPl" secondAttribute="trailing" constant="2" id="Yed-Fi-ATx"/>
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="top" secondItem="xdM-co-IPl" secondAttribute="bottom" constant="5" id="cDW-fu-b6M"/>
                                                 <constraint firstItem="QMy-NA-3cf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0C6-s8-UYU" secondAttribute="trailing" constant="4" id="e8T-iC-ird"/>
                                                 <constraint firstItem="0C6-s8-UYU" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="top" id="frR-pI-74P"/>
                                                 <constraint firstItem="0C6-s8-UYU" firstAttribute="leading" secondItem="74O-ws-bNl" secondAttribute="leadingMargin" id="qcy-Ul-PyL"/>
-                                                <constraint firstItem="wid-Ee-1a8" firstAttribute="top" secondItem="74O-ws-bNl" secondAttribute="topMargin" id="unk-oD-oCW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         <connections>
                                             <outlet property="contentPreviewLabel" destination="QMy-NA-3cf" id="6LG-5a-HJo"/>
-                                            <outlet property="dateLabel" destination="wid-Ee-1a8" id="VIh-XH-LIn"/>
                                             <outlet property="nameLabel" destination="xdM-co-IPl" id="xNR-cn-43m"/>
                                             <outlet property="userImg" destination="0C6-s8-UYU" id="2IA-PR-1Rq"/>
                                             <segue destination="6NN-lO-wJQ" kind="show" identifier="chatPressed" id="yB8-aW-2T3"/>

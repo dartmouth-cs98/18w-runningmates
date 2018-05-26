@@ -70,7 +70,8 @@ class DashboardViewController: UIViewController {
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
         setDataTextFields()
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         if (UserDefaults.standard.string(forKey: "bio") != nil) {
             self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
         }

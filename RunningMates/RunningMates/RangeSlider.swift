@@ -168,9 +168,7 @@ class RangeSlider: UIControl {
             //lowerThumbLayer.setNeedsDisplay()
             lowerThumbLayer.removeFromSuperlayer()
    
-
-
-            
+        
         }
     }
     
