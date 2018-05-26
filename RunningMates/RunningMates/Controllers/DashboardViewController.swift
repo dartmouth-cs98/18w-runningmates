@@ -81,8 +81,9 @@ class DashboardViewController: UIViewController {
         let url = URL(string: userImages![0] as! String)
         let photoData = try? Data(contentsOf: url!)
         let image = UIImage(data: photoData!)
-        self.view.backgroundColor = UIColor(patternImage: image!)
-        
+        //self.view.backgroundColor = UIColor(patternImage: image!)
+        self.view.layer.contents = image?.cgImage
+                
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
