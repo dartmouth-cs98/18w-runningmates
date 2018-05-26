@@ -8,21 +8,156 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 
 
-class ProfPicViewController: UIViewController {
+class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     
-
+    @IBOutlet weak var addImageButton: UIButton!
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    var userId: String? = nil
+    var userEmail: String? = nil
+    var pickerOptions: [String] = [String]()
+    var imagePicker = UIImagePickerController()
+    
+    var profileImages: [Int: UIImageView] = [:]
+    var imageName = ""
+    var profileImageUrl = ""
+    var profileImageNames: [Int: String] = [:]
+    var profileImageUrls: [Int: String] = [:]
+    
+    var signUrls: [AnyObject] = []
+    var rootUrl = ""
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var newUser: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.userId = UserDefaults.standard.string(forKey: "id")!
+        self.userEmail = UserDefaults.standard.string(forKey: "email")!
+        
+        profileImage.layer.borderWidth = 2
+        profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        profileImage.clipsToBounds = true
         
         
-    }
-    
-    @IBOutlet weak var profPic: UIImageView!
-    @IBAction func nextButton(_ sender: Any) {
+        self.hideKeyboardOnBackgroundTap()
+        self.userEmail = UserDefaults.standard.value(forKey: "email") as? String
+        self.rootUrl = appDelegate.rootUrl
+        imagePicker.delegate = self
         
     }
 
+    @IBAction func addImageButton(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true;
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    // In the delegate method, set the profile image to the image the user picked based on the image icon clicked
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let tempImage = UIImageView()
+            tempImage.image = image
+            imageName = self.userId! + "_0"
+            profileImage.image = image
+            
+        }
+        dismiss(animated:true, completion: nil)
+    }
+    
+    func awsUpload(userImageUpdateUrlObject: [AnyObject], completion: @escaping (String)->()){
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "image/jpeg"
+        ]
+        let image = profileImage.image
+        let imageData = UIImageJPEGRepresentation(image!, 0.7)
+        print("signed object: \n\n\n ", userImageUpdateUrlObject)
+        if let signedOb = userImageUpdateUrlObject[0]["signedRequest"] as? String {
+            let request = Alamofire.upload(imageData!, to: signedOb, method: .put, headers: headers)
+                .responseData {
+                    response in
+                    if response.response != nil {
+                        let awsUrl = userImageUpdateUrlObject[0]["url"] as? String
+                        
+                        self.profileImageUrl = awsUrl!
+                        completion(awsUrl!)
+                        
+                    }
+                    else {
+                        print("Something went wrong uploading")
+                    }
+                    
+            }
+            
+        }
+    }
+    
+    func imageURLsRequest (completion: @escaping ([AnyObject])-> ()){
+        
+        let rootUrl: String = appDelegate.rootUrl
+        let Url = rootUrl + "api/sign-s3"
+        let fileName = [self.imageName]
+        
+        let params: Parameters = [
+            "fileNames": fileName,
+            "fileType": "image/jpeg",
+            ]
+        
+        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonSignedUrls = response.result.value as? [AnyObject] {
+                        
+                        self.signUrls = jsonSignedUrls
+                        
+                        completion(jsonSignedUrls)
+                    }
+                    
+                case .failure(let error):
+                    print("Error getting signed URLs")
+                    print(error)
+                }
+        }
+        
+    }
+    
+    @IBAction func nextButton(_ sender: Any) {
+        
+        //check if enough data has been entered
+        imageURLsRequest(completion: {
+            successUrlRequest in// Get signed URL requests from backend
+            self.awsUpload(userImageUpdateUrlObject: successUrlRequest, completion: { // Upload images to aws
+                awsUrl in
+                var userImages = [String]()
+                userImages.append(awsUrl);
+                let params: [String:Any] = [
+                    "email": self.userEmail,
+                    "images": userImages,
+                ]
+                
+                UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
+                    //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                    print("\n\n user images: \n\n", userImages)
+                    UserDefaults.standard.set(userImages, forKey: "images")
+                    UserDefaults.standard.synchronize()
+                    
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    
+                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                })
+            })
+        })
+    }
+    
 }

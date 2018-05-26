@@ -21,12 +21,12 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
-    var profileImages: [Int: UIImageView] = [:]
-    var imageName = ""
-    var profileImageUrl = ""
-    var profileImageNames: [Int: String] = [:]
-    var profileImageUrls: [Int: String] = [:]
-    var signUrls: [AnyObject] = []
+        var profileImages: [Int: UIImageView] = [:]
+        var imageName = ""
+        var profileImageUrl = ""
+        var profileImageNames: [Int: String] = [:]
+        var profileImageUrls: [Int: String] = [:]
+        var signUrls: [AnyObject] = []
 //    @IBOutlet weak var profileImage_0: UIImageView!
 //    @IBOutlet weak var profileImage_1: UIImageView!
 //    @IBOutlet weak var profileImage_2: UIImageView!

@@ -48,9 +48,11 @@ class DashboardViewController: UIViewController {
         self.metricCirc2.layer.borderWidth = 1.5;
         self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
-            self.name.text = UserDefaults.standard.string(forKey: "firstName")!
-        }
+//        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        print("HELLO THERE WTF\n\n\n")
+        print(UserDefaults.standard.string(forKey: "firstName")!)
+        
         print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
         if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
             let url = URL(string: userImages[0] as! String)
