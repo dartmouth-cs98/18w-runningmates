@@ -12,7 +12,8 @@ class DashboardViewController: UIViewController {
     
     // MARK: Properties
     
-
+    @IBOutlet weak var infoView: UIView!
+    
     @IBOutlet weak var profPic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var editButton: UIButton!
@@ -29,9 +30,9 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        
-        
+     
         //https://www.appcoda.com/ios-programming-circular-image-calayer/
         self.profPic.layer.cornerRadius = self.profPic.frame.size.width / 2;
         self.profPic.clipsToBounds = true;
@@ -76,6 +77,18 @@ class DashboardViewController: UIViewController {
         if (UserDefaults.standard.string(forKey: "bio") != nil) {
             self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
         }
+        let userImages = UserDefaults.standard.stringArray(forKey: "images")
+        let url = URL(string: userImages![0] as! String)
+        let photoData = try? Data(contentsOf: url!)
+        let image = UIImage(data: photoData!)
+        self.view.backgroundColor = UIColor(patternImage: image!)
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.addSubview(infoView)
     }
     
     override func didReceiveMemoryWarning() {

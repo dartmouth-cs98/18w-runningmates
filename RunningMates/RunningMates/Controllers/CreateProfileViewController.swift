@@ -27,13 +27,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var profileImageNames: [Int: String] = [:]
         var profileImageUrls: [Int: String] = [:]
         var signUrls: [AnyObject] = []
-//    @IBOutlet weak var profileImage_0: UIImageView!
-//    @IBOutlet weak var profileImage_1: UIImageView!
-//    @IBOutlet weak var profileImage_2: UIImageView!
-//    @IBOutlet weak var profileImage_3: UIImageView!
-//    @IBOutlet weak var profileImage_4: UIImageView!
-//    @IBOutlet weak var profileImage_5: UIImageView!
-   
+
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!

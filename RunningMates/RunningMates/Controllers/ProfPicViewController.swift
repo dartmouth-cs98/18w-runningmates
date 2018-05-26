@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
-
-
+import EMAlertController
 
 class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -34,15 +33,17 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var newUser: User!
+    var didChooseImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
-        
-        profileImage.layer.borderWidth = 2
-        profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        profileImage.clipsToBounds = true
+                
+        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+        self.profileImage.clipsToBounds = true;
+        self.profileImage.layer.borderWidth = 2.5;
+        self.profileImage.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
         
         self.hideKeyboardOnBackgroundTap()
@@ -66,7 +67,9 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
             tempImage.image = image
             imageName = self.userId! + "_0"
             profileImage.image = image
-            
+            self.didChooseImage = true
+            addImageButton.isHidden = true
+        
         }
         dismiss(animated:true, completion: nil)
     }
@@ -130,34 +133,40 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        
-        //check if enough data has been entered
-        imageURLsRequest(completion: {
-            successUrlRequest in// Get signed URL requests from backend
-            self.awsUpload(userImageUpdateUrlObject: successUrlRequest, completion: { // Upload images to aws
-                awsUrl in
-                var userImages = [String]()
-                userImages.append(awsUrl);
-                let params: [String:Any] = [
-                    "email": self.userEmail,
-                    "images": userImages,
-                ]
-                
-                UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
-                    //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-                    print("\n\n user images: \n\n", userImages)
-                    UserDefaults.standard.set(userImages, forKey: "images")
-                    UserDefaults.standard.synchronize()
+        if (self.didChooseImage == false) {
+            let alert = EMAlertController(title: "Uh oh!", message: "Looks like you didn't choose a picture! We get it, sometimes following simple instructions is hard.")
+            let cancel = EMAlertAction(title: "Got it!", style: .cancel)
+            alert.addAction(action: cancel)
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            //check if enough data has been entered
+            imageURLsRequest(completion: {
+                successUrlRequest in// Get signed URL requests from backend
+                self.awsUpload(userImageUpdateUrlObject: successUrlRequest, completion: { // Upload images to aws
+                    awsUrl in
+                    var userImages = [String]()
+                    userImages.append(awsUrl);
+                    let params: [String:Any] = [
+                        "email": self.userEmail,
+                        "images": userImages,
+                        ]
                     
-                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
+                        //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                        print("\n\n user images: \n\n", userImages)
+                        UserDefaults.standard.set(userImages, forKey: "images")
+                        UserDefaults.standard.synchronize()
+                        
+                        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                        
+                        let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                        alertController.addAction(defaultAction)
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    })
                 })
             })
-        })
+        }
     }
-    
 }
