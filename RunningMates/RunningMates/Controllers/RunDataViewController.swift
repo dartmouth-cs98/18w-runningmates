@@ -121,7 +121,7 @@ class RunDataViewController: UIViewController {
                 "runsPerWeek": runsperWk,
                 "totalElevationClimbed": elevation,
                 "totalMilesRun": milesRun,
-                "averageRunLength": avgRunLength
+                "averageRunLength": avgRunLength,
             ]
             
             // alamofire request
