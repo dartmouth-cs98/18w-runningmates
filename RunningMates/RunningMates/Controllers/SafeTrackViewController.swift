@@ -115,33 +115,41 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
             }
             
     }
+    
+    
+    private func loadContacts() -> [EmergencyContact]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: EmergencyContact.ArchiveURL.path) as? [EmergencyContact]
+    }
+    
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
 }
      func didTapStartTracking() {
-        print( ProcessInfo.processInfo.environment["AUTH_SECRET"])
-        print("sending text",  ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"] )
-        if let accountSID = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"],
-            let authToken = ProcessInfo.processInfo.environment["TWILIO_AUTH_TOKEN"] {
-            print("here")
-            
-            //api.twilio.com/2010-04-01/Accounts/ACd59f65f36043c6351d2728c7a7a829da/Messages.json
-            let url = "https://api.twilio.com/2010-04-01/Accounts/\(accountSID)/Messages"
-            let parameters = ["From": "19789653630", "To": "16032039303", "Body": "Hello from Swift!"]
-            
-            Alamofire.request(url, method: .post, parameters: parameters)
-                .authenticate(user: accountSID, password: authToken)
-                .responseJSON { response in
-                    debugPrint(response)
-            }
-            
-            RunLoop.main.run()
-        }
-        else{
-            print("error with tokens")
-        }
+        var contacts = loadContacts()
+        print(contacts)
+//        print( ProcessInfo.processInfo.environment["AUTH_SECRET"])
+//        print("sending text",  ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"] )
+//        if let accountSID = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"],
+//            let authToken = ProcessInfo.processInfo.environment["TWILIO_AUTH_TOKEN"] {
+//            print("here")
+//
+//            //api.twilio.com/2010-04-01/Accounts/ACd59f65f36043c6351d2728c7a7a829da/Messages.json
+//            let url = "https://api.twilio.com/2010-04-01/Accounts/\(accountSID)/Messages"
+//            let parameters = ["From": "19789653630", "To": "16032039303", "Body": "Hello from Swift!"]
+//
+//            Alamofire.request(url, method: .post, parameters: parameters)
+//                .authenticate(user: accountSID, password: authToken)
+//                .responseJSON { response in
+//                    debugPrint(response)
+//            }
+        
+//            RunLoop.main.run()
+//        }
+//        else{
+//            print("error with tokens")
+//        }
     }
     
     @IBAction func didPressEndRun(_ sender: Any) {
