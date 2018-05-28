@@ -36,9 +36,18 @@ import WebKit
                 self.present(navigationController, animated: true, completion: nil)
             }
         }
-        
+      
         override func viewDidLoad() {
             super.viewDidLoad()
+            view.addBackground()
+            self.createAccountButton.backgroundColor = .clear
+            self.createAccountButton.layer.borderWidth = 1.5
+            self.createAccountButton.layer.borderColor = UIColor.white.cgColor
+            
+            self.loginButton.backgroundColor = .clear
+            self.loginButton.layer.borderWidth = 1.5
+            self.loginButton.layer.borderColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1.0).cgColor
+            self.loginButton.setTitleColor(UIColor(red: 1, green: 0.8, blue: 0, alpha: 1.0), for: .normal)
             
             rootURl = appDelegate.rootUrl;
             self.hideKeyboardOnBackgroundTap()
