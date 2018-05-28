@@ -143,6 +143,7 @@ class UserManager: NSObject {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
                         var user = (jsonUser["user"] as? [String:AnyObject])!
+
                         // Check token and prevToken storage and comparison if any errors occur
                         let token = (jsonUser["token"] as? String)
                         
@@ -449,7 +450,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
+//        debugPrint("whole _request ****",_request)
     }
     
     
@@ -477,7 +478,7 @@ class UserManager: NSObject {
                     print("error signing out")
                 }
         }
-        debugPrint("whole _request ****",_request)
+//        debugPrint("whole _request ****",_request)
     }
     
     // https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift

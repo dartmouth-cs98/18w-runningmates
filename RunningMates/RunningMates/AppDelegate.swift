@@ -10,6 +10,8 @@ import UIKit
 import OAuthSwift
 import GoogleMaps
 import GooglePlaces
+import UserNotifications
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,12 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var didSignUpWithStrava: Int = 0
 
-     var rootUrl: String = "http://localhost:9090/"
-     // var rootUrl: String = "https://running-mates.herokuapp.com/"
+//     var rootUrl: String = "http://localhost:9090/"
+    var rootUrl: String = "https://running-mates.herokuapp.com/"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSPlacesClient.provideAPIKey("AIzaSyDAHpVdfOCgiKATZ3wtKetImiYfcz-E15c")
         GMSServices.provideAPIKey("AIzaSyDAHpVdfOCgiKATZ3wtKetImiYfcz-E15c")
+//        registerForPushNotifications()
         return true
     }
 
@@ -63,5 +66,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    // https://www.raywenderlich.com/156966/push-notifications-tutorial-getting-started
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+            
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    // https://www.raywenderlich.com/156966/push-notifications-tutorial-getting-starteds
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    // https://www.raywenderlich.com/156966/push-notifications-tutorial-getting-starteds
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    // https://www.raywenderlich.com/156966/push-notifications-tutorial-getting-starteds
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
 }

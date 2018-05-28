@@ -12,6 +12,8 @@ import Alamofire
 import WebKit
 import os.log
 
+
+
 class CreateAccountViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -21,12 +23,22 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     
+    @IBOutlet weak var infoView: UIView!
     var alertView: UIAlertController?
     var webView: WKWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addBackground()
+        
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//
+//        view.addSubview(blurEffectView)
+//        view.addSubview(infoView)
         self.hideKeyboardOnBackgroundTap()
     }
     
@@ -68,7 +80,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
-                        print(response)
+//                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
@@ -105,7 +117,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
-        
         // Check to make sure user has filled in all textfields
         if ((passTextField.text! == "") || (emailTextField.text! == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
@@ -135,7 +146,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    print("****************** **** **** completion")
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
 //                     If the account creation was successful, send user to create profile page
@@ -144,5 +154,26 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 }
             })
         }
+    }
+}
+
+extension UIView {
+    func addBackground(imageName: String = "running1", contentMode: UIViewContentMode = .scaleAspectFill) {
+        // setup the UIImageView
+        let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImageView.image = UIImage(named: imageName)
+        backgroundImageView.contentMode = contentMode
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(backgroundImageView)
+        sendSubview(toBack: backgroundImageView)
+        
+        // adding NSLayoutConstraints
+        let leadingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        let trailingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
 }

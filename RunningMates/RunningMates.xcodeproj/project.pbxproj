@@ -199,6 +199,7 @@
 		2B7B91E920A6321C00B2EA07 /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8820381720B7450D00EA8A8C /* RunningMates.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunningMates.entitlements; sourceTree = "<group>"; };
 		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		88692321209CC5ED00269557 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +458,7 @@
 		FA5711012021208D005792CB /* RunningMates */ = {
 			isa = PBXGroup;
 			children = (
+				8820381720B7450D00EA8A8C /* RunningMates.entitlements */,
 				FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */,
 				F8BEE1EC203B0E2C00274660 /* User.swift */,
 				FA4006DB208937DE0054DAEE /* Message.swift */,
@@ -605,6 +607,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					FA5711122021208E005792CB = {
 						CreatedOnToolsVersion = 9.2;
@@ -1043,6 +1050,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "27b64893-80a1-4e59-b2dc-28d7b0131d1b";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development edu.dartmouth.RunningMates";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=*]" = "match Development edu.dartmouth.RunningMates";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunningMates/RunningMates-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
