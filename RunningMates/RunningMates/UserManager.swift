@@ -180,7 +180,6 @@ class UserManager: NSObject {
                             }
                             
                             if (user["requestsReceived"] != nil) {
-                                print("WE HAVE STORED REQUESTS", user["requestsReceived"])
                                 var requestsReceived = (user["requestsReceived"] as? [String:Any])!
                                 UserDefaults.standard.set(requestsReceived, forKey: "requestsReceived")
                             }

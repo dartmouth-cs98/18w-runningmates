@@ -168,7 +168,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 //                        long
 //                    ],
 //                ]
-
+                    self.locationCoords = testerLocation
 //                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
 //                    (title, message) in
 //                    print("updated location")
@@ -343,7 +343,6 @@ extension MatchingViewController: KolodaViewDataSource {
     func getDistanceInMeters(userLocation: [Double], matchLocation: [Double]) -> Double {
         let coordinate1 = CLLocation(latitude: CLLocationDegrees(userLocation[1]), longitude: CLLocationDegrees(userLocation[0]))
         let coordinate2 = CLLocation(latitude: CLLocationDegrees(matchLocation[1]), longitude: CLLocationDegrees(matchLocation[0]))
-
 
         let distanceInMeters = coordinate1.distance(from: coordinate2)
         return distanceInMeters.magnitude

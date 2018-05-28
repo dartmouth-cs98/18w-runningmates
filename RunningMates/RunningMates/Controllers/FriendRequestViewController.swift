@@ -84,7 +84,6 @@ class FriendRequestViewController: UIViewController, UITableViewDataSource, UITa
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendRequestLabelCell", for: indexPath) as! FriendRequestPreviewCell
         let friendRequests = UserDefaults.standard.value(forKey: "requestsReceived") as? [String: Any]
         if data.count > 0 && friendRequests!.count > 0{
-            print("DDATA \n\n\n", data)
             cell.delegate = self
             let userRequesting = data[indexPath.row] as! [String:Any]
             let images: [String] = userRequesting["images"] as! [String]
@@ -220,7 +219,6 @@ class FriendRequestViewController: UIViewController, UITableViewDataSource, UITa
                 .responseJSON { response in
                     switch response.result {
                     case .success:
-                        print("successfylly got friend reqeusts\n\n\n")
                         completion(response.result.value as! [Any])
                     case .failure(let error):
                         let alert = UIAlertController(title: "Error Fetching Chats", message: "Please try again later.", preferredStyle: UIAlertControllerStyle.alert)

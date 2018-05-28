@@ -122,17 +122,17 @@
             </objects>
             <point key="canvasLocation" x="1314.4000000000001" y="392.65367316341832"/>
         </scene>
-        <!--Mates Tab Bar-->
+        <!--Mates-->
         <scene sceneID="ZUB-Iq-Kci">
             <objects>
-                <tabBarController title="Mates Tab Bar" id="Grt-Ch-s28" sceneMemberID="viewController">
+                <tabBarController title="Mates" id="Grt-Ch-s28" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cuT-Gz-0Y2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.95686274510000002" green="0.30588235289999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.95686274510000002" green="0.30588235289999999" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.76862745099999996" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="cfY-oM-Bwy" kind="relationship" relationship="viewControllers" id="IXa-T0-aXx"/>
