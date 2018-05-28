@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import UIDropDown
-
+import EMAlertController
 
 class BasicInfoViewController: UIViewController {
     
@@ -27,6 +27,11 @@ class BasicInfoViewController: UIViewController {
     var userId: String? = nil
     var userEmail: String? = nil
     var gender: String? = nil
+    
+    var firstBool = false
+    var lastBool = false
+    var genderBool = false
+    var dob = true
     
     var newUser: User!
     
@@ -46,6 +51,7 @@ class BasicInfoViewController: UIViewController {
         dropGender.didSelect { (option, index) in
             print("You just select: \(option) at index: \(index)")
             self.gender = option
+            self.genderBool = true
         }
         self.view.addSubview(dropGender)
         
@@ -67,11 +73,38 @@ class BasicInfoViewController: UIViewController {
         print(components.month!)
         print(components.year!)
         
+        let now = Date()
+        let birthday = self.dobPicker.date
+        
+        //https://stackoverflow.com/questions/25232009/calculate-age-from-birth-date-using-nsdatecomponents-in-swift
+        let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
+        let age = ageComponents.year!
+        print("AGE\n\n")
+        print(age)
+        
         //check if enough data has been entered
-        if (firstName.text! == "")  {
-            let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        if (firstName.text! != "") {
+            self.firstBool = true
+        }
+        if (lastName.text! != "") {
+            self.lastBool = true
+        }
+        if (self.gender != nil) {
+            self.genderBool = true
+        }
+        if (age < 18) {
+            let alert = EMAlertController(title: "Uh oh!", message: "You must be 18 years or older to join RunningMates.")
+            let cancel = EMAlertAction(title: "Okay", style: .cancel)
+            alert.addAction(action: cancel)
             self.present(alert, animated: true, completion: nil)
+        }
+        
+        if (self.firstBool == false || self.lastBool == false || self.genderBool == false)  {
+            let alert = EMAlertController(title: "", message: "Please fill in all required fields.")
+            let cancel = EMAlertAction(title: "Okay", style: .cancel)
+            alert.addAction(action: cancel)
+            self.present(alert, animated: true, completion: nil)
+            
         } else {
             updateInfoFromUserDefaults()
             // alamofire request

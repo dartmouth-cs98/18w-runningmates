@@ -39,7 +39,7 @@ import WebKit
 //                self.present(navigationController, animated: true, completion: nil)
 //            }
 //        }
-      
+//
         override func viewDidLoad() {
             super.viewDidLoad()
             view.addBackground()
