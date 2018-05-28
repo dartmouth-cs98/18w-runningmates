@@ -524,8 +524,8 @@
 			isa = PBXGroup;
 			children = (
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
-				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FAFE988D2079665A008B56BA /* FullChatView.storyboard */,
+				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FA66655420AE228400D9DC5A /* MatchesLoadingView.xib */,
 				F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
