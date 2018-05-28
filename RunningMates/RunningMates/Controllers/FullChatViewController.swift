@@ -28,8 +28,6 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
     var userID: String = ""
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var toolbar: UIToolbar!
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -179,5 +177,4 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             self.tableView.reloadData()
         })
     }
-    
 }

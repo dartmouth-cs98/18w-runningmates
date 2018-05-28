@@ -33,9 +33,11 @@ class User: NSObject, NSCoding {
     var age: Int
     var location: [Float]
     var swipes: [String: Int]?
-    var mates: [Any]?
-    var potentialMates: [Any]?
-    var blockedMates: [Any]?
+    var mates: [String: Any]?
+    var potentialMates: [String: Any]?
+    var blockedMates: [String: Any]?
+    var requestsReceived: [String: Any]?
+
     var seenProfiles: [Any]?
     var email: String
     var password: String?
@@ -45,7 +47,7 @@ class User: NSObject, NSCoding {
     
     
     //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json
-    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [String: Any], potentialMates: [String: Any], blockedMates: [String: Any], requestsReceived: [String: Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
@@ -92,10 +94,11 @@ class User: NSObject, NSCoding {
             throw UserInitError.invalidLocation
         }
         let swipes = json["swipes"] as! [String: Int]?
-        let mates = json["mates"] as! [Any]?
-        let potentialMates = json["potentialMates"] as! [Any]?
+        let mates = json["mates"] as! [String: Any]?
+        let potentialMates = json["potentialMates"] as! [String: Any]?
         let seenProfiles = json["seenProfiles"] as! [Any]?
-        let blockedMates = json["blockedMates"] as! [Any]?
+        let blockedMates = json["blockedMates"] as! [String: Any]?
+        let requestsReceived = json["requestsReceived"] as! [String: Any]?
         guard let email = json["email"] as! String? else {
             throw UserInitError.invalidEmail
         }
@@ -138,6 +141,7 @@ class User: NSObject, NSCoding {
         static let potentialMates = "potentialMates"
         static let seenProfiles = "seenProfiles"
         static let blockedMates = "blockedMates"
+        static let requestsReceived = "requestsReceived"
         static let email = "email"
         static let password = "password"
         static let token = "token"
@@ -159,6 +163,7 @@ class User: NSObject, NSCoding {
         aCoder.encode(potentialMates, forKey: PropertyKey.potentialMates)
         aCoder.encode(seenProfiles, forKey: PropertyKey.seenProfiles)
         aCoder.encode(blockedMates, forKey: PropertyKey.blockedMates)
+        aCoder.encode(requestsReceived, forKey: PropertyKey.requestsReceived)
         aCoder.encode(email, forKey: PropertyKey.email)
         aCoder.encode(password, forKey: PropertyKey.password)
         aCoder.encode(token, forKey: PropertyKey.token)
@@ -182,10 +187,11 @@ class User: NSObject, NSCoding {
         let age = aDecoder.decodeInteger(forKey: PropertyKey.age)
         let location = aDecoder.decodeObject(forKey: PropertyKey.location) as? [Float]
         let swipes = aDecoder.decodeObject(forKey: PropertyKey.swipes) as? [String: Int]
-        let mates = aDecoder.decodeObject(forKey: PropertyKey.mates) as? [Any]
-        let potentialMates = aDecoder.decodeObject(forKey: PropertyKey.potentialMates) as? [Any]
+        let mates = aDecoder.decodeObject(forKey: PropertyKey.mates) as? [String: Any]
+        let potentialMates = aDecoder.decodeObject(forKey: PropertyKey.potentialMates) as? [String: Any]
         let seenProfiles = aDecoder.decodeObject(forKey: PropertyKey.seenProfiles) as? [Any]
-        let blockedMates = aDecoder.decodeObject(forKey: PropertyKey.blockedMates) as? [Any]
+        let blockedMates = aDecoder.decodeObject(forKey: PropertyKey.blockedMates) as? [String: Any]
+        let requestsReceived = aDecoder.decodeObject(forKey: PropertyKey.potentialMates) as? [String: Any]
         let email = aDecoder.decodeObject(forKey: PropertyKey.email) as? String
         let password = aDecoder.decodeObject(forKey: PropertyKey.password) as? String
         let token = aDecoder.decodeObject(forKey: PropertyKey.token) as? String
@@ -199,7 +205,7 @@ class User: NSObject, NSCoding {
         
         // Must call designated initializer.
         //        self.init(name: name, photo: photo, rating: rating)
-        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, data: data!);
+        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, requestsReceived: requestsReceived!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, data: data!);
         
     }
 }
