@@ -43,7 +43,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
                 
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true;
-        self.profileImage.layer.borderWidth = 2.5;
+        self.profileImage.layer.borderWidth = 6;
         self.profileImage.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).cgColor
         
         
