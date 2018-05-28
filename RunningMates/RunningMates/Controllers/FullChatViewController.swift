@@ -22,7 +22,6 @@ class ChatPreviewCell: UITableViewCell {
     
 }
 
-
 class FullChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var selectedChat: String = ""

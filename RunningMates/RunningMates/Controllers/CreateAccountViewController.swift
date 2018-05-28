@@ -20,9 +20,10 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var passReconfirmTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var stravaButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
+   // @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var infoView: UIView!
     var alertView: UIAlertController?
     var webView: WKWebView!
@@ -31,14 +32,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBackground()
-        
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//
-//        view.addSubview(blurEffectView)
-//        view.addSubview(infoView)
+        self.signUpButton.layer.borderWidth = 1.5
+        self.signUpButton.layer.borderColor = UIColor(red: 1, green: 0.7686, blue: 0.1765, alpha: 1.0).cgColor
         self.hideKeyboardOnBackgroundTap()
     }
     
