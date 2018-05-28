@@ -23,6 +23,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     
+    @IBOutlet weak var infoView: UIView!
     var alertView: UIAlertController?
     var webView: WKWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -30,6 +31,14 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addBackground()
+        
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//
+//        view.addSubview(blurEffectView)
+//        view.addSubview(infoView)
         self.hideKeyboardOnBackgroundTap()
     }
     
@@ -151,7 +160,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
 }
 
 extension UIView {
-    func addBackground(imageName: String = "running", contentMode: UIViewContentMode = .scaleAspectFill) {
+    func addBackground(imageName: String = "running1", contentMode: UIViewContentMode = .scaleAspectFill) {
         // setup the UIImageView
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: imageName)

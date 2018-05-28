@@ -54,16 +54,36 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         //https://stackoverflow.com/questions/8077740/how-to-fill-background-image-of-an-uiview
         
-        let image = UIImage(named:"running")
+        let image = UIImage(named:"running1")
         self.view.layer.contents = image?.cgImage
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+
+        
+        // Vibrancy Effect
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        vibrancyEffectView.frame = view.bounds
+        
+        // Label for vibrant text
+        let vibrantLabel = UILabel()
+        vibrantLabel.text = "Vibrant"
+        vibrantLabel.font = UIFont.systemFont(ofSize: 72.0)
+        vibrantLabel.sizeToFit()
+        vibrantLabel.center = view.center
+        
+        // Add label to the vibrancy view
+        vibrancyEffectView.contentView.addSubview(vibrantLabel)
+        
+        // Add the vibrancy view to the blur view
+        blurEffectView.contentView.addSubview(vibrancyEffectView)
         view.addSubview(blurEffectView)
         view.addSubview(infoView)
-        
+
     }
 
     @IBAction func addImageButton(_ sender: Any) {
