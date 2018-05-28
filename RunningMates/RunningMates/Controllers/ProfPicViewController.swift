@@ -16,6 +16,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var addImageButton: UIButton!
     
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     var userId: String? = nil
     var userEmail: String? = nil
@@ -36,7 +37,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     var didChooseImage = false
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
                 
@@ -50,6 +51,18 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.userEmail = UserDefaults.standard.value(forKey: "email") as? String
         self.rootUrl = appDelegate.rootUrl
         imagePicker.delegate = self
+        
+        //https://stackoverflow.com/questions/8077740/how-to-fill-background-image-of-an-uiview
+        
+        let image = UIImage(named:"running")
+        self.view.layer.contents = image?.cgImage
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.addSubview(infoView)
         
     }
 
