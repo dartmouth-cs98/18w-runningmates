@@ -27,6 +27,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     // var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
     var userEmail: String! = UserDefaults.standard.string(forKey: "email")
+    var preferences: [String: Any]! = UserDefaults.standard.value(forKey: "preferences") as! [String : Any]
+
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -164,19 +166,20 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.locationCoords = [lat, long]
 
                 let testerLocation =  [Double(-147.349442), Double(64.751114)]
-                let params : [String:Any] = [
-                    "location": [
-                        lat,
-                        long
-                    ]
-                ]
+//                let params : [String:Any] = [
+//                    "location": [
+//                        lat,
+//                        long
+//                    ],
+//                ]
 
-                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
-                    (title, message) in
-                    print("updated location")
-                } )
+//                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
+//                    (title, message) in
+//                    print("updated location")
+//                } )
+                let maxDistance = self.preferences["proximity"] as! Double
 
-                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, completion: { list in
+                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, maxDistance: maxDistance, completion: { list in
                     self.userList = list
                     self.kolodaView?.reloadData()
                     self.loadingView.removeFromSuperview()
@@ -290,8 +293,6 @@ extension MatchingViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        print("the current index is", index)
-        print(userList[index].user.firstName!)
 
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
@@ -309,10 +310,10 @@ extension MatchingViewController: KolodaViewDataSource {
 
         var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {
-            location = "< 1 mi away"
+            location = "Less than 1 mile away"
         } else {
             let distanceInMi = distance / 1609
-            location = String(round(distanceInMi)) + " mi away"
+            location = String(round(distanceInMi)) + " miles away"
         }
 
         let bio = (String(userList[index].user.bio))
@@ -340,6 +341,7 @@ extension MatchingViewController: KolodaViewDataSource {
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
         view.totalMilesText.text! = totalMiles
+        view.locationText.text! = location
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
 

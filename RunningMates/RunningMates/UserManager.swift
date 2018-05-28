@@ -85,6 +85,12 @@ class UserManager: NSObject {
                                     UserDefaults.standard.set(preferences, forKey: "preferences")
                                 }
                                 
+                                if (user["requestsReceived"] != nil) {
+                                    
+                                    var requestsReceived = (user["requestsReceived"] as? [String:Any])!
+                                    UserDefaults.standard.set(requestsReceived, forKey: "requestsReceived")
+                                }
+                                
                                 if (user["data"] != nil) {
                                     
                                     //                                var data = [String:Any]()
@@ -170,6 +176,12 @@ class UserManager: NSObject {
                             if (user["images"] != nil) {
                                 let images = user["images"] as! [String]
                                 UserDefaults.standard.set(images, forKey: "images")
+                            }
+                            
+                            if (user["requestsReceived"] != nil) {
+                                print("WE HAVE STORED REQUESTS", user["requestsReceived"])
+                                var requestsReceived = (user["requestsReceived"] as? [String:Any])!
+                                UserDefaults.standard.set(requestsReceived, forKey: "requestsReceived")
                             }
                             
                             if (user["preferences"] != nil) {
@@ -292,7 +304,7 @@ class UserManager: NSObject {
     }
     
     
-    func requestPotentialMatches(userEmail: String, location: [Double], completion: @escaping ([sortedUser])->()){
+    func requestPotentialMatches(userEmail: String, location: [Double], maxDistance: Double, completion: @escaping ([sortedUser])->()){
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
@@ -303,10 +315,14 @@ class UserManager: NSObject {
             "Authorization": userToken,
             "Content-Type": "application/json"
         ]
-        
+        let params: [String: Any] = [
+            "location": location,
+            "email": userEmail,
+            "maxDistance": maxDistance
+            ]
         let url = rootUrl + "api/users"
         
-        let request = Alamofire.request(url, method: .get, headers: headers)
+        let request = Alamofire.request(url, method: .get, parameters: params, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success:
