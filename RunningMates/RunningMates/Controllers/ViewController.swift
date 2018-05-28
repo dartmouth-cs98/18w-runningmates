@@ -42,7 +42,7 @@ import WebKit
 //
         override func viewDidLoad() {
             super.viewDidLoad()
-            view.addBackground()
+            view.addBackground(imageName: "running1")
             self.createAccountButton.backgroundColor = .clear
             self.createAccountButton.layer.borderWidth = 1.5
             self.createAccountButton.layer.borderColor = UIColor.white.cgColor

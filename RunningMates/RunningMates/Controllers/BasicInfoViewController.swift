@@ -121,7 +121,6 @@ class BasicInfoViewController: UIViewController {
                 print("updated user here!")
                 self.updateInfoFromUserDefaults()
             })
-            
         }
         
         //send request for DOB as integers
