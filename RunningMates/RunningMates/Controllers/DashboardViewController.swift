@@ -75,16 +75,16 @@ class DashboardViewController: UIViewController {
         setDataTextFields()
         self.navigationController?.navigationBar.tintColor =  UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
 
-        if (UserDefaults.standard.string(forKey: "bio") != nil) {
-            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
-        }
-        let userImages = UserDefaults.standard.stringArray(forKey: "images")
-        let url = URL(string: userImages![0] as! String)
-        let photoData = try? Data(contentsOf: url!)
-        let image = UIImage(data: photoData!)
-        //self.view.backgroundColor = UIColor(patternImage: image!)
-        self.view.layer.contents = image?.cgImage
-                
+//        if (UserDefaults.standard.string(forKey: "bio") != nil) {
+//            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+//        }
+//        let userImages = UserDefaults.standard.stringArray(forKey: "images")
+//        let url = URL(string: userImages![0] as! String)
+//        let photoData = try? Data(contentsOf: url!)
+//        let image = UIImage(data: photoData!)
+//        //self.view.backgroundColor = UIColor(patternImage: image!)
+//        self.view.layer.contents = image?.cgImage
+//
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds

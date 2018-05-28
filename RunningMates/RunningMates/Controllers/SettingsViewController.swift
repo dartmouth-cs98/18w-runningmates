@@ -33,11 +33,11 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
         super.viewDidLoad()
         
         // learned to add border stuff here: https://stackoverflow.com/questions/37230084/how-to-change-uibutton-border-color-black-to-white
-        self.ecButton.layer.cornerRadius = 15
+        self.ecButton.layer.cornerRadius = 16
         self.faqButton.layer.cornerRadius = 16
-        self.contactButton.layer.cornerRadius = 17
-        self.tosButton.layer.cornerRadius = 18
-        self.ppButton.layer.cornerRadius = 19
+        self.contactButton.layer.cornerRadius = 16
+        self.tosButton.layer.cornerRadius = 16
+        self.ppButton.layer.cornerRadius = 16
         self.signoutButton.layer.cornerRadius = 5
         // Do any additional setup after loading the view, typically from a nib.
     }
