@@ -16,6 +16,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var addImageButton: UIButton!
     
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     var userId: String? = nil
     var userEmail: String? = nil
@@ -36,7 +37,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
     var didChooseImage = false
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
                 
@@ -51,6 +52,38 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.rootUrl = appDelegate.rootUrl
         imagePicker.delegate = self
         
+        //https://stackoverflow.com/questions/8077740/how-to-fill-background-image-of-an-uiview
+        
+        let image = UIImage(named:"running1")
+        self.view.layer.contents = image?.cgImage
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+
+        
+        // Vibrancy Effect
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        vibrancyEffectView.frame = view.bounds
+        
+        // Label for vibrant text
+        let vibrantLabel = UILabel()
+        vibrantLabel.text = "Vibrant"
+        vibrantLabel.font = UIFont.systemFont(ofSize: 72.0)
+        vibrantLabel.sizeToFit()
+        vibrantLabel.center = view.center
+        
+        // Add label to the vibrancy view
+        vibrancyEffectView.contentView.addSubview(vibrantLabel)
+        
+        // Add the vibrancy view to the blur view
+        blurEffectView.contentView.addSubview(vibrancyEffectView)
+        view.addSubview(blurEffectView)
+        view.addSubview(infoView)
+
     }
 
     @IBAction func addImageButton(_ sender: Any) {
