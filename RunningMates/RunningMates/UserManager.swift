@@ -244,7 +244,7 @@ class UserManager: NSObject {
     
 
         let params : [String:Any] = [
-            "email": userEmail
+            "email": userEmail,
         ]
         let _request = Alamofire.request(url, parameters: params)
             .responseJSON { response in

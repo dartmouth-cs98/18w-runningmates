@@ -16,7 +16,7 @@ import EMAlertController
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
    // MARK: Properties
     var locationManager: CLLocationManager!
-    var locationCoords: [Double]!
+    var locationCoords: [Double]?
     var loadingView: MatchesLoadingView!
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -51,7 +51,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
-            showLocationDisabledPopup()
+//            showLocationDisabledPopup()
             locationManager.startUpdatingLocation()
             
         case .authorizedAlways:
@@ -90,8 +90,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             showLocationDisabledPopup()
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
             print("authorized")
+            loadMatches()
         } else {
             print("authorized when in use")
+            loadMatches()
         }
     }
     
@@ -100,6 +102,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
+        print("in showForeverAlonePopup")
         
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
@@ -155,29 +158,22 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         if let location = locations[locations.count - 1] as? CLLocation {
 
-
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
 
-                let testerLocation =  [Double(-147.349442), Double(64.751114)]
                 let params : [String:Any] = [
                     "location": [
                         lat,
                         long
                     ]
                 ]
-
+                
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
                     (title, message) in
                     print("updated location")
                 } )
-
-                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, completion: { list in
-                    self.userList = list
-                    self.kolodaView?.reloadData()
-                    self.loadingView.removeFromSuperview()
-                    self.showForeverAlonePopup()
-                })
+                
+                self.loadMatches()
             } else {
                 print("No coordinates")
             }
@@ -186,6 +182,39 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
         manager.stopUpdatingLocation()
+    }
+    
+    func loadMatches() {
+    
+        let testerLocation =  [Double(-147.349442), Double(64.751114)]
+        
+        var lat: Double?
+        if (self.locationCoords?[0] != nil) {
+            lat = self.locationCoords![0]
+        }
+        var long: Double?
+        if (self.locationCoords?[1] != nil) {
+            long = self.locationCoords![1]
+        }
+        
+        let params : [String:Any] = [
+            "location": [
+                lat,
+                long
+            ]
+        ]
+        
+        if (lat != nil && long != nil) {
+            UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], completion: { list in
+                print("request potential matches completion")
+                self.userList = list
+                self.kolodaView?.reloadData()
+                self.loadingView.removeFromSuperview()
+                self.showForeverAlonePopup()
+            })
+        } else {
+            print("lat and long are nil")
+        }
     }
 
 
