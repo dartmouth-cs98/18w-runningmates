@@ -17,13 +17,14 @@ import WebKit
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         var rootURl: String = ""
 //        var userEmail = UserDefaults.standard.string(forKey: "email")!
-        
+
         @IBOutlet weak var loginButton: UIButton!
         @IBOutlet weak var passTextField: UITextField!
         @IBOutlet weak var emailTextField: UITextField!
         @IBOutlet weak var createAccountButton: UIButton!
         
-       
+        @IBOutlet weak var everyoneLabel: UILabel!
+        
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -34,9 +35,7 @@ import WebKit
             
             self.loginButton.backgroundColor = .clear
             self.loginButton.layer.borderWidth = 1.5
-            self.loginButton.layer.borderColor = UIColor(red: 1, green: 0.8, blue: 0, alpha: 1.0).cgColor
-            self.loginButton.setTitleColor(UIColor(red: 1, green: 0.8, blue: 0, alpha: 1.0), for: .normal)
-            
+            self.loginButton.layer.borderColor = UIColor(red: 1, green: 0.7686, blue: 0.1765, alpha: 1.0).cgColor
             rootURl = appDelegate.rootUrl;
             self.hideKeyboardOnBackgroundTap()
         }
