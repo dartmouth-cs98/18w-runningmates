@@ -15,12 +15,7 @@ class SocketIOManager: NSObject {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
 
-//    var manager = SocketManager(socketURL: URL(string: "http://localhost:9090")!)
-//    var manager = SocketManager(socketURL: URL(string: "https://running-mates.herokuapp.com/")!)
-
     var socket : SocketIOClient
-
-//    var socket = SocketIOClient(socketURL: URL(string: "http://localhost:9090")!)
 
     override init() {
         manager = SocketManager(socketURL: URL(string: appDelegate.rootUrl)!)
@@ -42,6 +37,7 @@ class SocketIOManager: NSObject {
     }
 
     func login(userID: String) {
+        print("LOGGING IN")
         socket.emit("login", userID)
     }
 
