@@ -38,6 +38,10 @@ class LoginViewController: UIViewController, WKUIDelegate, UINavigationControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addBackground()
+        self.loginButton.backgroundColor = .clear
+        self.loginButton.layer.borderWidth = 1.5
+        self.loginButton.layer.borderColor = UIColor(red: 1, green: 0.7686, blue: 0.1765, alpha: 1.0).cgColor
         
         rootURl = appDelegate.rootUrl;
         self.hideKeyboardOnBackgroundTap()
