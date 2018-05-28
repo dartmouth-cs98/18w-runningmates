@@ -80,7 +80,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
-                        print(response)
+//                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
@@ -117,7 +117,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
-        
         // Check to make sure user has filled in all textfields
         if ((passTextField.text! == "") || (emailTextField.text! == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
@@ -147,7 +146,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    print("****************** **** **** completion")
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
 //                     If the account creation was successful, send user to create profile page
