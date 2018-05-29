@@ -13,11 +13,8 @@
         <!--ProfPic-->
         <scene sceneID="mbx-dr-rCi">
             <objects>
-<<<<<<< HEAD
                 <viewController storyboardIdentifier="ProfPic" title="ProfPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
-=======
-                <viewController storyboardIdentifier="profPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
->>>>>>> 908d478dbf8f9016a69314d8d6a1331f641c829f
+
                     <view key="view" contentMode="scaleToFill" id="2TW-SY-lSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
