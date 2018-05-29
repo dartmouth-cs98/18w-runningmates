@@ -69,10 +69,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         kolodaView.dataSource = self
         kolodaView.delegate = self
 
-
-        UserManager.instance.requestUserObject(userEmail: self.userEmail, completion: {user in
-            self.userId = user.id!
-        })
+        self.userId = UserDefaults.standard.string(forKey: "id")!
 
        // Do any additional setup after loading the view, typically from a nib.
 
@@ -116,7 +113,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
             let cancel = EMAlertAction(title: "Cancel", style: .cancel)
             let confirm = EMAlertAction(title: "Refresh", style: .normal) {
-                // Perform Action
+                self.loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+                self.topView.addSubview(self.loadingView)
+                self.loadingView.progressIndicator.startAnimating()
+                self.locationManager.startUpdatingLocation()
             }
             
             alert.addAction(action: cancel)
@@ -180,8 +180,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                     print("updated location")
                     self.loadMatches()
                 } )
-                
-
             } else {
                 print("No coordinates")
             }
@@ -315,11 +313,17 @@ extension MatchingViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
+        let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
+        
+        if let images = userList[index].user.images as? [String]{
+            if let url = URL(string: images[0]) {
+                let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                let image = UIImage(data: photoData!)
 
-        let url = URL(string: userList[index].user.imageURL)
-        let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-
-        let image = UIImage(data: photoData!)
+                view.profileImage.image = image
+            }
+        }
+        
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
 
 
@@ -356,9 +360,7 @@ extension MatchingViewController: KolodaViewDataSource {
 
         //let userText = nameAge + location + bio + totalMiles + averageRunLength
 
-        let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
 
-        view.profileImage.image = image!
         view.nameText.text! = nameAge
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength

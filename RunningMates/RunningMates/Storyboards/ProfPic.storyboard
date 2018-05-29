@@ -10,10 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Prof Pic View Controller-->
+        <!--ProfPic-->
         <scene sceneID="mbx-dr-rCi">
             <objects>
-                <viewController storyboardIdentifier="profPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfPic" title="ProfPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+
                     <view key="view" contentMode="scaleToFill" id="2TW-SY-lSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
