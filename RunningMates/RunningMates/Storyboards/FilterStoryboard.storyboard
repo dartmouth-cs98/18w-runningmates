@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qFv-Bt-2Md">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qFv-Bt-2Md">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Preferences-->
+        <!--Filter-->
         <scene sceneID="SEJ-dm-eZG">
             <objects>
-                <viewController id="2mX-mE-oR2" customClass="FilterViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="filterView" title="Filter" id="2mX-mE-oR2" customClass="FilterViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eQV-46-NDZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -256,10 +256,11 @@
             </objects>
             <point key="canvasLocation" x="1232.8" y="85.907046476761622"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Filter-->
         <scene sceneID="42R-3T-wHJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qFv-Bt-2Md" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2U-QA-qe8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="filter" title="Filter" automaticallyAdjustsScrollViewInsets="NO" id="qFv-Bt-2Md" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BPa-pj-zZl">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -270,7 +271,6 @@
                         <segue destination="2mX-mE-oR2" kind="relationship" relationship="rootViewController" id="P4i-vs-bI9"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c2U-QA-qe8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="382" y="86"/>
         </scene>
