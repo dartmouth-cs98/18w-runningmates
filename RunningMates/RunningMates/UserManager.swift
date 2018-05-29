@@ -124,6 +124,7 @@ class UserManager: NSObject {
                                 completion("success")
                             }
                         case .failure(let error):
+                            print("signup failure")
                             print(error)
                             completion("error")
                     }
