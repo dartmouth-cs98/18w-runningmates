@@ -10,7 +10,7 @@ import DLRadioButton
 import Alamofire
 
 
-class FilterViewController: UIViewController {
+class FilterViewController: UIViewController, UINavigationControllerDelegate {
 
    
      let ageSlide = RangeSlider(frame: CGRect.zero)
@@ -281,18 +281,20 @@ class FilterViewController: UIViewController {
     
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! MatchingViewController
+        self.present(vc, animated: true, completion: nil)
         
-        let isPresentingInAddContactMode = presentingViewController is UINavigationController
-        
-            if isPresentingInAddContactMode {
-                dismiss(animated: true, completion: nil)
-            }
-            else if let owningNavigationController = navigationController{
-                owningNavigationController.popViewController(animated: true)
-            }
-            else {
-                fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
-            }
+//        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+//
+//            if isPresentingInAddContactMode {
+//                dismiss(animated: true, completion: nil)
+//            }
+//            else if let owningNavigationController = navigationController{
+//                owningNavigationController.popViewController(animated: true)
+//            }
+//            else {
+//                fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+//            }
         
     
         }
@@ -300,19 +302,20 @@ class FilterViewController: UIViewController {
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         
         savePrefs()
-        
-        let isPresentingInAddContactMode = presentingViewController is UINavigationController
-        
-        if isPresentingInAddContactMode {
-            dismiss(animated: true, completion: nil)
-        }
-        else if let owningNavigationController = navigationController{
-            owningNavigationController.popViewController(animated: true)
-        }
-        else {
-            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
-        }
-        
+        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! MatchingViewController
+        self.present(vc, animated: true, completion: nil)
+//        let isPresentingInAddContactMode = presentingViewController is UINavigationController
+//
+//        if isPresentingInAddContactMode {
+//            dismiss(animated: true, completion: nil)
+//        }
+//        else if let owningNavigationController = navigationController{
+//            owningNavigationController.popViewController(animated: true)
+//        }
+//        else {
+//            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
+//        }
+//
     }
   
 }
