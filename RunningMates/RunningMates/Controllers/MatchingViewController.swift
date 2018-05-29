@@ -174,9 +174,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
                     (title, message) in
                     print("updated location")
+                    self.loadMatches()
                 } )
-
-                self.loadMatches()
+                
 
             } else {
                 print("No coordinates")
