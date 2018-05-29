@@ -479,7 +479,37 @@ class UserManager: NSObject {
         }
 //        debugPrint("whole _request ****",_request)
     }
-    
+    func sendSafeTrackMessage(toPhoneNumber: String?, completion: @escaping (String)->()) {
+        let rootUrl: String = appDelegate.rootUrl
+        let url = rootUrl + "api/safetrack"
+        
+        let params: Parameters = [
+            "toPhoneNumber": toPhoneNumber!,
+        ]
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonObj = response.result.value as? [String:Any] {
+                        
+//                        let token = (jsonObj["token"] as! String)
+//                        let user = (jsonObj["user"] as? [String:Any])!
+//
+//                        UserDefaults.standard.set(email!, forKey: "email")
+//                        UserDefaults.standard.set(token, forKey: "token")
+//
+//                        UserDefaults.standard.set(password!, forKey: "password")
+                        
+                        completion("success")
+                    }
+                case .failure(let error):
+                    print(error)
+                    completion("error")
+                }
+        }
+        
+    }
     // https://stackoverflow.com/questions/43402032/how-to-remove-all-userdefaults-data-swift
     func removeUserDefaults() {
         let domain = Bundle.main.bundleIdentifier!

@@ -32,7 +32,8 @@
                                     <color key="titleColor" red="1" green="0.65656852659999998" blue="0.17974369079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveClick:" destination="PA4-Mm-ez4" eventType="touchUpInside" id="LTW-xo-F0L"/>
+
+                                    <action selector="saveClick:" destination="PA4-Mm-ez4" eventType="touchUpInside" id="JDG-d6-QeS"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tell us about yourself:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zt-0v-IEu">
@@ -65,14 +66,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLD-6S-Rd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="101.59999999999999" y="147.97601199400302"/>
-        </scene>
-        <!--Dashboard-->
-        <scene sceneID="6Di-SL-1no">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dashboard" id="DoP-Nb-TbU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V0J-mI-qNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="716" y="319"/>
         </scene>
     </scenes>
 </document>
