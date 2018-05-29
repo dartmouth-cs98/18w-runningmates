@@ -148,6 +148,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
 
     func getCurrentLocation() {
+        print("getCurrentLocation")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -159,18 +160,19 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        print("didUpdateLocations")
         if let location = locations[locations.count - 1] as? CLLocation {
-
+            print("location is CLLocation")
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
-
+                print("valid lat and long")
 
                 let params : [String:Any] = [
                     "location": [
                         lat,
                         long
-                    ]
+                    ],
+                    "email": self.userEmail
                 ]
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
@@ -214,8 +216,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         if (lat != nil && long != nil) {
             UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], maxDistance: maxDistance, completion: { list in
+
                 self.userList = list
                 self.kolodaView?.reloadData()
+
                 self.loadingView.removeFromSuperview()
                 self.showForeverAlonePopup()
             })

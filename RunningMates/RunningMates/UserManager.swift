@@ -373,6 +373,7 @@ class UserManager: NSObject {
                     print("error fetching users")
                     print(error)
                 }
+                completion(usersList)
         }
     }
     
@@ -449,7 +450,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-//        debugPrint("whole _request ****",_request)
+        debugPrint("whole _request ****",_request)
     }
     
     
