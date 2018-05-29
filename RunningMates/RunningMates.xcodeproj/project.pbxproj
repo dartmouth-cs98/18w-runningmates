@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3849E120BA927D009D8577 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
 		2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */; };
 		2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */; };
@@ -34,6 +35,7 @@
 		F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD2203CE74200DFFBEF /* logo_strava.png */; };
 		F8109CFD203D0C57009F5F49 /* sunrise image.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */; };
 		F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81510CB203638E400E9A2C5 /* ProfileViewController.swift */; };
+		F81A167E20B9C25300AEAA5C /* ProfPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A167D20B9C25300AEAA5C /* ProfPrefViewController.swift */; };
 		F82FFD0C2094E55400DDEA2F /* ProfileTableClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */; };
 		F848C3E720B363BE00F1704D /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3E620B363BE00F1704D /* Welcome.storyboard */; };
 		F848C3EB20B3689A00F1704D /* ProfPic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F848C3EA20B3689A00F1704D /* ProfPic.storyboard */; };
@@ -48,6 +50,7 @@
 		F8BEE1F3203B0E2C00274660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BEE1EC203B0E2C00274660 /* User.swift */; };
 		F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */; };
 		F8BF963720917F4A004A2E30 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */; };
+		F8C2051720B76940002812FF /* ProfPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C2051620B76940002812FF /* ProfPicViewController.swift */; };
 		FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA050D55203761B00025DAEE /* Dashboard.storyboard */; };
 		FA076CBA20363A5A00FC848D /* FilterStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */; };
 		FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA076CC320363EB200FC848D /* FilterViewController.swift */; };
@@ -139,6 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
 		2B16CFD2203CE74200DFFBEF /* logo_strava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_strava.png; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		2B7B91E920A6321C00B2EA07 /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
 		35D2388A3D0F5484A4ED0ABF /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C61D7A543F953A4C9C2E807 /* Pods_RunningMates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunningMates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8820381720B7450D00EA8A8C /* RunningMates.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunningMates.entitlements; sourceTree = "<group>"; };
 		8869231E209A238300269557 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		88692321209CC5ED00269557 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 		D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA91528B6ADD7DB68601D714 /* Pods-RunningMates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunningMates.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunningMates/Pods-RunningMates.release.xcconfig"; sourceTree = "<group>"; };
 		F81510CB203638E400E9A2C5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F81A167D20B9C25300AEAA5C /* ProfPrefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfPrefViewController.swift; sourceTree = "<group>"; };
 		F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableClasses.swift; sourceTree = "<group>"; };
 		F848C3E620B363BE00F1704D /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		F848C3EA20B3689A00F1704D /* ProfPic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfPic.storyboard; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 		F8BEE1EC203B0E2C00274660 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmergencyContact.storyboard; sourceTree = "<group>"; };
 		F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
+		F8C2051620B76940002812FF /* ProfPicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfPicViewController.swift; sourceTree = "<group>"; };
 		FA050D55203761B00025DAEE /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterStoryboard.storyboard; sourceTree = "<group>"; };
 		FA076CC320363EB200FC848D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +458,7 @@
 		FA5711012021208D005792CB /* RunningMates */ = {
 			isa = PBXGroup;
 			children = (
+				8820381720B7450D00EA8A8C /* RunningMates.entitlements */,
 				FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */,
 				F8BEE1EC203B0E2C00274660 /* User.swift */,
 				FA4006DB208937DE0054DAEE /* Message.swift */,
@@ -488,18 +496,15 @@
 		FAB5A7C5206F18CF00DDE1E9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
-				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
-				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
 				FA3CC5E42092065600FE0199 /* DashboardViewController.swift */,
 				FA3CC5E620922C5E00FE0199 /* EmergencyContactFullViewController.swift */,
 				F8BF963620917F4A004A2E30 /* EmergencyContactViewController.swift */,
 				FA076CC320363EB200FC848D /* FilterViewController.swift */,
 				FAFE988F20796699008B56BA /* FullChatViewController.swift */,
 				2B16CFF1204884AB00DFFBEF /* CreateProfileViewController.swift */,
-				88C0AFD7203247E00008F5B5 /* MatchingView.swift */,
 				2B16CFEB20487B9C00DFFBEF /* CreateAccountViewController.swift */,
 				F848C3F220B374A600F1704D /* BasicInfoViewController.swift */,
+				F8C2051620B76940002812FF /* ProfPicViewController.swift */,
 				F84E78B520B3BAA000D49EE5 /* RunDataViewController.swift */,
 				FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */,
 				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
@@ -512,6 +517,8 @@
 				FA3CC5DF2091684600FE0199 /* SafeTrackViewController.swift */,
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
+				F81A167D20B9C25300AEAA5C /* ProfPrefViewController.swift */,
+				0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -520,8 +527,8 @@
 			isa = PBXGroup;
 			children = (
 				FAD1AF452043218D00EA78CE /* chat.storyboard */,
-				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FAFE988D2079665A008B56BA /* FullChatView.storyboard */,
+				FA3CC5E12091690500FE0199 /* SafeTrack.storyboard */,
 				FA66655420AE228400D9DC5A /* MatchesLoadingView.xib */,
 				F8B96DD320927ECE00B0E9B1 /* Profile.storyboard */,
 				FA076CB920363A5A00FC848D /* FilterStoryboard.storyboard */,
@@ -600,6 +607,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					FA5711122021208E005792CB = {
 						CreatedOnToolsVersion = 9.2;
@@ -838,13 +850,15 @@
 				F81510CC203638E400E9A2C5 /* ProfileViewController.swift in Sources */,
 				FA5711032021208D005792CB /* AppDelegate.swift in Sources */,
 				2B7B91E420A62C6C00B2EA07 /* MatchesLoadingView.swift in Sources */,
-				88C0AFD8203247E00008F5B5 /* MatchingView.swift in Sources */,
 				F848C3F320B374A600F1704D /* BasicInfoViewController.swift in Sources */,
 				FA3CC5EB20922F8300FE0199 /* EmergencyContact.swift in Sources */,
 				FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */,
 				D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */,
 				2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */,
+				F8C2051720B76940002812FF /* ProfPicViewController.swift in Sources */,
+				0B3849E120BA927D009D8577 /* FriendRequestViewController.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
+				F81A167E20B9C25300AEAA5C /* ProfPrefViewController.swift in Sources */,
 				F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */,
 				F8BEE1F3203B0E2C00274660 /* User.swift in Sources */,
 				FA3CC5E720922C5E00FE0199 /* EmergencyContactFullViewController.swift in Sources */,
@@ -1036,6 +1050,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "27b64893-80a1-4e59-b2dc-28d7b0131d1b";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development edu.dartmouth.RunningMates";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=*]" = "match Development edu.dartmouth.RunningMates";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "RunningMates/RunningMates-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

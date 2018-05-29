@@ -12,21 +12,28 @@ import Alamofire
 import WebKit
 import os.log
 
+
+
 class CreateAccountViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var passReconfirmTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var stravaButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
+   // @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var infoView: UIView!
     var alertView: UIAlertController?
     var webView: WKWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addBackground(imageName: "running2")
+        self.signUpButton.layer.borderWidth = 1.5
+        self.signUpButton.layer.borderColor = UIColor(red: 1, green: 0.7686, blue: 0.1765, alpha: 1.0).cgColor
         self.hideKeyboardOnBackgroundTap()
     }
     
@@ -68,7 +75,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
-                        print(response)
+//                        print(response)
                         switch response.result {
                         case .success:
                             print("Post Successful")
@@ -78,8 +85,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                             self.appDelegate.userEmail = String(describing: user! ["email"]!)
                             print (self.appDelegate.userEmail)
 
-                            let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
-                            self.present(createProfileVC, animated: true, completion: nil)
+                            let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                            self.present(profPicVC, animated: true, completion: nil)
                         case .failure(let error):
                             print("failure in creating profile")
                             print(error)
@@ -105,8 +112,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
         let pass: String? = passTextField.text
         let email: String? = emailTextField.text
         
-        print(rootUrl, pass, email)
-        
         // Check to make sure user has filled in all textfields
         if ((passTextField.text! == "") || (emailTextField.text! == "")) {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new account.", preferredStyle: UIAlertControllerStyle.alert)
@@ -128,21 +133,50 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             self.present(alert, animated: true, completion: nil)
         } else {
             // If everything looks ok, try to sign them in
-                print("does this work")
+
             UserManager.instance.requestForSignup(email: email, password: pass, completion: { response in
+                print("RESULT FROM SIGNUP: ", response)
                 if (response == "error") {
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    print("****************** **** **** completion")
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
-                    // If the account creation was successful, send user to create profile page
-                    let  createProfileVC : CreateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! CreateProfileViewController
-                    self.present(createProfileVC, animated: true, completion: nil)
+//                     If the account creation was successful, send user to create profile page
+//                    let  welcomeVC : CreateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! CreateProfileViewController
+//                    self.present(createProfileVC, animated: true, completion: nil)
                 }
             })
+//            let storyboard : UIStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
+//            let vc : welcomeVC = storyboard.instantiateViewController(withIdentifier: "welcome") as! WelcomeViewController
+     
+
+            /// vc.teststring = "hello"
+//
+//            let navigationController = UINavigationController(rootViewController: vc)
+//            
         }
+    }
+}
+
+extension UIView {
+    func addBackground(imageName: String = "running2", contentMode: UIViewContentMode = .scaleAspectFill) {
+        // setup the UIImageView
+        let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImageView.image = UIImage(named: imageName)
+        backgroundImageView.contentMode = contentMode
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(backgroundImageView)
+        sendSubview(toBack: backgroundImageView)
+        
+        // adding NSLayoutConstraints
+        let leadingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        let trailingConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let topConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: backgroundImageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
 }

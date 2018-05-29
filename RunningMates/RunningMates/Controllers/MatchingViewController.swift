@@ -27,6 +27,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     // var userEmail1: String! = UserDefaults.standard.string(forKey: "email")
     var userEmail: String! = UserDefaults.standard.string(forKey: "email")
+    var preferences: [String: Any]! = UserDefaults.standard.value(forKey: "preferences") as! [String : Any]
+
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
@@ -82,12 +84,13 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        navigationController?.setToolbarHidden(false, animated: false)
+
    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
             // The user denied authorization
-            print("not authorized")
             showLocationDisabledPopup()
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
             print("authorized")
@@ -101,9 +104,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
-        print("showing popup")
-        print(self.userList.count)
-        print(self.current_index)
         
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
@@ -164,19 +164,20 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.locationCoords = [lat, long]
 
                 let testerLocation =  [Double(-147.349442), Double(64.751114)]
-                let params : [String:Any] = [
-                    "location": [
-                        lat,
-                        long
-                    ]
-                ]
+//                let params : [String:Any] = [
+//                    "location": [
+//                        lat,
+//                        long
+//                    ],
+//                ]
+                    self.locationCoords = testerLocation
+//                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
+//                    (title, message) in
+//                    print("updated location")
+//                } )
+                let maxDistance = self.preferences["proximity"] as! Double
 
-                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
-                    (title, message) in
-                    print("updated location")
-                } )
-
-                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, completion: { list in
+                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, maxDistance: maxDistance, completion: { list in
                     self.userList = list
                     self.kolodaView?.reloadData()
                     self.loadingView.removeFromSuperview()
@@ -225,22 +226,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
    //MARK: Actions
 
     @IBAction func leftButtonTapped() {
-        print("swipe left", current_index, userList[current_index].user.firstName)
-
-//        if (current_index > 0) {
-//            current_index = current_index - 1
-//        }
-//        else {
-//            current_index = userList.count - 1
-//        }
-
         kolodaView?.swipe(.left)
     }
 
     @IBAction func rightButtonTapped() {
-        print("swipe right")
         kolodaView?.swipe(.right)
-
     }
 
     @IBAction func undoButtonTapped() {
@@ -290,8 +280,6 @@ extension MatchingViewController: KolodaViewDataSource {
     }
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        print("the current index is", index)
-        print(userList[index].user.firstName!)
 
         let url = URL(string: userList[index].user.imageURL)
         let photoData = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
@@ -307,14 +295,14 @@ extension MatchingViewController: KolodaViewDataSource {
         let userLocation = self.locationCoords
         var matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
 
-        print("locations: " + String(describing: userLocation!) + " " + String(describing: matchLocation))
+//        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
 
         var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {
-            location = "< 1 mi away"
+            location = "Less than 1 mile away"
         } else {
             let distanceInMi = distance / 1609
-            location = String(round(distanceInMi)) + " mi away"
+            location = String(round(distanceInMi)) + " miles away"
         }
 
         let bio = (String(userList[index].user.bio))
@@ -342,6 +330,7 @@ extension MatchingViewController: KolodaViewDataSource {
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
         view.totalMilesText.text! = totalMiles
+        view.locationText.text! = location
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
 
@@ -359,13 +348,11 @@ extension MatchingViewController: KolodaViewDataSource {
         let coordinate1 = CLLocation(latitude: CLLocationDegrees(userLocation[1]), longitude: CLLocationDegrees(userLocation[0]))
         let coordinate2 = CLLocation(latitude: CLLocationDegrees(matchLocation[1]), longitude: CLLocationDegrees(matchLocation[0]))
 
-
         let distanceInMeters = coordinate1.distance(from: coordinate2)
         return distanceInMeters.magnitude
     }
 
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection){
-            print("swiped card at", index, "in direction", direction)
         if (direction == SwipeResultDirection.right) {
             tryMatch(index: index)
         }
@@ -376,8 +363,6 @@ extension MatchingViewController: KolodaViewDataSource {
         if (index >= userList.count) {
             current_index = 0
         }
-//        print("currently looking at", userList[current_index].user.firstName)
-        showForeverAlonePopup()
     }
 
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {

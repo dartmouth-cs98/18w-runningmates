@@ -22,15 +22,12 @@ class ChatPreviewCell: UITableViewCell {
     
 }
 
-
 class FullChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var selectedChat: String = ""
     var userID: String = ""
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var toolbar: UIToolbar!
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -180,5 +177,4 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             self.tableView.reloadData()
         })
     }
-    
 }

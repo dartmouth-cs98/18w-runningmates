@@ -12,7 +12,8 @@ class DashboardViewController: UIViewController {
     
     // MARK: Properties
     
-
+    @IBOutlet weak var infoView: UIView!
+    
     @IBOutlet weak var profPic: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var editButton: UIButton!
@@ -29,9 +30,9 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        
-        
+     
         //https://www.appcoda.com/ios-programming-circular-image-calayer/
         self.profPic.layer.cornerRadius = self.profPic.frame.size.width / 2;
         self.profPic.clipsToBounds = true;
@@ -48,20 +49,22 @@ class DashboardViewController: UIViewController {
         self.metricCirc2.layer.borderWidth = 1.5;
         self.metricCirc2.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
-            self.name.text = UserDefaults.standard.string(forKey: "firstName")!
-        }
-        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
-        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
-            let url = URL(string: userImages[0] as! String)
-            
-            
-            if let photoData = try? Data(contentsOf: url!) {
-                let image = UIImage(data: photoData)
-                self.profPic.image = image!
-            }
-            
-        }
+//        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+        self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        print("HELLO THERE WTF\n\n\n")
+        print(UserDefaults.standard.string(forKey: "firstName")!)
+        
+//        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
+//        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
+//            let url = URL(string: userImages[0] as! String)
+//
+//
+//            if let photoData = try? Data(contentsOf: url!) {
+//                let image = UIImage(data: photoData)
+//                self.profPic.image = image!
+//            }
+//
+     //   }
        
         //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         
@@ -70,10 +73,24 @@ class DashboardViewController: UIViewController {
 //        var data: [String: Any] = UserDefaults.standard.value(forKey: "data") as! [String : Any]
         
         setDataTextFields()
-        
-        if (UserDefaults.standard.string(forKey: "bio") != nil) {
-            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
-        }
+        self.navigationController?.navigationBar.tintColor =  UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
+
+//        if (UserDefaults.standard.string(forKey: "bio") != nil) {
+//            self.bioTextView.text = UserDefaults.standard.string(forKey: "bio")!
+//        }
+//        let userImages = UserDefaults.standard.stringArray(forKey: "images")
+//        let url = URL(string: userImages![0] as! String)
+//        let photoData = try? Data(contentsOf: url!)
+//        let image = UIImage(data: photoData!)
+//        //self.view.backgroundColor = UIColor(patternImage: image!)
+//        self.view.layer.contents = image?.cgImage
+//
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.addSubview(infoView)
     }
     
     override func didReceiveMemoryWarning() {

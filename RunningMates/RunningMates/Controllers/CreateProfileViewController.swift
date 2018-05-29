@@ -21,19 +21,13 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
-    var profileImages: [Int: UIImageView] = [:]
-    var imageName = ""
-    var profileImageUrl = ""
-    var profileImageNames: [Int: String] = [:]
-    var profileImageUrls: [Int: String] = [:]
-    var signUrls: [AnyObject] = []
-//    @IBOutlet weak var profileImage_0: UIImageView!
-//    @IBOutlet weak var profileImage_1: UIImageView!
-//    @IBOutlet weak var profileImage_2: UIImageView!
-//    @IBOutlet weak var profileImage_3: UIImageView!
-//    @IBOutlet weak var profileImage_4: UIImageView!
-//    @IBOutlet weak var profileImage_5: UIImageView!
-   
+        var profileImages: [Int: UIImageView] = [:]
+        var imageName = ""
+        var profileImageUrl = ""
+        var profileImageNames: [Int: String] = [:]
+        var profileImageUrls: [Int: String] = [:]
+        var signUrls: [AnyObject] = []
+
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
@@ -92,7 +86,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
         //pickerView.selectedRow(inComponent: 3)
-
+        
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true
@@ -143,10 +137,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.stravaLogo1.isHidden = false
             self.stravaLogo2.isHidden = false
-//            getUserRequest(completion: {_ in })
+
             UserManager.instance.requestUserObject(userEmail: self.userEmail!, completion: {user in
                 let data : [String:Any] = user.data!
-                print(user)
+
                 let urlString = String (describing: user.imageURL)
                 let url = URL(string: urlString)
                 let imagedata = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
