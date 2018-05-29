@@ -89,6 +89,13 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 //            else {
 //                fatalError("editing profile error.")
 //            }
+            let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
+            let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+            /// vc.teststring = "hello"
+            
+            let navigationController = UINavigationController(rootViewController: vc)
+            
+            self.present(navigationController, animated: true, completion: nil)
         }
         
     }
