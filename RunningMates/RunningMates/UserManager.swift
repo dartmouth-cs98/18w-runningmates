@@ -324,9 +324,10 @@ class UserManager: NSObject {
         
         let request = Alamofire.request(url, method: .get, parameters: params, headers: headers)
             .responseJSON { response in
+
                 switch response.result {
                 case .success:
-                    
+                    print("POTENTIAL MATCHES", response.result.value)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
@@ -367,11 +368,15 @@ class UserManager: NSObject {
                         completion(usersList)
                     } else {
                         print("error creating user")
+                        completion(usersList)
+
                     }
                     
                 case .failure(let error):
                     print("error fetching users")
                     print(error)
+
+                    completion(usersList)
                 }
         }
     }
