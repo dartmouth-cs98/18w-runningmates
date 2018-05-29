@@ -299,13 +299,15 @@ extension MatchingViewController: KolodaViewDataSource {
         let image = UIImage(data: photoData!)
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
 
-
+        let thirdPartyIds = userList[index].user.thirdPartyIds
+        print("ids: " + String(describing: thirdPartyIds))
+        
         // Calculate potential match's distance from user
         var location = ""
         let userLocation = self.locationCoords
         var matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
 
-        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
+        print("locations: " + String(describing: userLocation!) + " " + String(describing: matchLocation))
 
         var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {
@@ -331,10 +333,10 @@ extension MatchingViewController: KolodaViewDataSource {
             averageRunLength = "Avg. Run Length: No info to show"
         }
 
-        //let userText = nameAge + location + bio + totalMiles + averageRunLength
 
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
 
+        view.locationText.text = location
         view.profileImage.image = image!
         view.nameText.text! = nameAge
         view.bioText.text! = bio

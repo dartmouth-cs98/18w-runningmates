@@ -41,11 +41,12 @@ class User: NSObject, NSCoding {
     var password: String?
     var token: String?
     var preferences: [String:Any]?
+    var thirdPartyIds: [String:Any]?
     var data: [String:Any]?
     
     
     //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json
-    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], data: [String:Any]) {
+    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [Any], potentialMates: [Any], blockedMates: [Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], thirdPartyIds: [String:Any], data: [String:Any]) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
@@ -63,6 +64,7 @@ class User: NSObject, NSCoding {
         self.password = password
         self.token = token
         self.preferences = preferences
+        self.thirdPartyIds = thirdPartyIds
         self.data = data
     }
     
@@ -103,6 +105,7 @@ class User: NSObject, NSCoding {
         let token = json["token"] as! String?
         let preferences = json["preferences"] as! [String:Any]?
         let data = json["data"] as! [String:Any]?
+        let thirdParty = json["thirdPartyIds"] as! [String:Any]?
         
         self.id = id
         self.firstName = firstName
@@ -121,6 +124,7 @@ class User: NSObject, NSCoding {
         self.password = password
         self.token = token
         self.preferences = preferences
+        self.thirdPartyIds = thirdParty
         self.data = data
     }
     
@@ -142,6 +146,7 @@ class User: NSObject, NSCoding {
         static let password = "password"
         static let token = "token"
         static let preferences = "preferences"
+        static let thirdPartyIds = "thirdPartyIds"
         static let data = "data"
     }
     
@@ -190,6 +195,7 @@ class User: NSObject, NSCoding {
         let password = aDecoder.decodeObject(forKey: PropertyKey.password) as? String
         let token = aDecoder.decodeObject(forKey: PropertyKey.token) as? String
         let preferences = aDecoder.decodeObject(forKey: PropertyKey.preferences) as? [String: Any]
+        let thirdPartyIds = aDecoder.decodeObject(forKey: PropertyKey.thirdPartyIds) as? [String: Any]
         let data = aDecoder.decodeObject(forKey: PropertyKey.data) as? [String: Any]
         
         //        // Because photo is an optional property of Meal, just use conditional cast.
@@ -199,7 +205,7 @@ class User: NSObject, NSCoding {
         
         // Must call designated initializer.
         //        self.init(name: name, photo: photo, rating: rating)
-        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, data: data!);
+        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, thirdPartyIds: thirdPartyIds!, data: data!);
         
     }
 }
