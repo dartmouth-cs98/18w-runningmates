@@ -84,6 +84,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
+//        navigationController?.setToolbarHidden(false, animated: false)
+
    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
