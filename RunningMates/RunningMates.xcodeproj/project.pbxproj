@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3849E120BA927D009D8577 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
 		2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */; };
 		2B16CFEA2048797600DFFBEF /* CreateAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE92048797600DFFBEF /* CreateAccount.storyboard */; };
@@ -141,6 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
 		2B16CFD2203CE74200DFFBEF /* logo_strava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_strava.png; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				FAD1AF432042539700EA78CE /* SettingsViewController.swift */,
 				FA5711042021208D005792CB /* ViewController.swift */,
 				F81A167D20B9C25300AEAA5C /* ProfPrefViewController.swift */,
+				0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				D3BBB48720AE2BDF00BD6CF9 /* LoginViewController.swift in Sources */,
 				2B7B91982097ACC100B2EA07 /* MatchingCardView.swift in Sources */,
 				F8C2051720B76940002812FF /* ProfPicViewController.swift in Sources */,
+				0B3849E120BA927D009D8577 /* FriendRequestViewController.swift in Sources */,
 				FA076CC420363EB200FC848D /* FilterViewController.swift in Sources */,
 				F81A167E20B9C25300AEAA5C /* ProfPrefViewController.swift in Sources */,
 				F86F177D20A3A42D003E1C91 /* RoundButton.swift in Sources */,
