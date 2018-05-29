@@ -16,7 +16,7 @@ import EMAlertController
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
    // MARK: Properties
     var locationManager: CLLocationManager!
-    var locationCoords: [Double]!
+    var locationCoords: [Double]?
     var loadingView: MatchesLoadingView!
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -53,7 +53,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
-            showLocationDisabledPopup()
+//            showLocationDisabledPopup()
             locationManager.startUpdatingLocation()
             
         case .authorizedAlways:
@@ -81,7 +81,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        navigationController?.setToolbarHidden(false, animated: false)
+//        navigationController?.setToolbarHidden(false, animated: false)
 
    }
     
@@ -91,8 +91,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             showLocationDisabledPopup()
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
             print("authorized")
+            loadMatches()
         } else {
             print("authorized when in use")
+            loadMatches()
         }
     }
     
@@ -101,6 +103,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
+        print("in showForeverAlonePopup")
         
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
@@ -145,6 +148,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
 
     func getCurrentLocation() {
+        print("getCurrentLocation")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -156,41 +160,26 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        print("didUpdateLocations")
         if let location = locations[locations.count - 1] as? CLLocation {
-
-
+            print("location is CLLocation")
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
+                print("valid lat and long")
 
-                let testerLocation =  [Double(-147.349442), Double(64.751114)]
-//                let params : [String:Any] = [
-//                    "location": [
-//                        lat,
-//                        long
-//                    ],
-//                ]
-                    self.locationCoords = testerLocation
-//                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
-//                    (title, message) in
-//                    print("updated location")
-//                } )
-                let maxDistance = self.preferences["proximity"] as! Double
-
-                UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: testerLocation, maxDistance: maxDistance, completion: { list in
-                    print("list count: ", list.count)
-                    if list.count > 0 {
-                        self.userList = list
-                        self.kolodaView?.reloadData()
-                        self.loadingView.removeFromSuperview()
-
-                    }
-                    else {
-                        self.loadingView.removeFromSuperview()
-                        self.showForeverAlonePopup()
-                    }
-
-                })
+                let params : [String:Any] = [
+                    "location": [
+                        lat,
+                        long
+                    ],
+                    "email": self.userEmail
+                ]
+                
+                UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
+                    (title, message) in
+                    print("updated location")
+                    self.loadMatches()
+                } )
             } else {
                 print("No coordinates")
             }
@@ -199,6 +188,42 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // Call stopUpdatingLocation() to stop listening for location updates,
         // other wise this function will be called every time when user location changes.
         manager.stopUpdatingLocation()
+    }
+    
+    func loadMatches() {
+    
+        let testerLocation =  [Double(-147.349442), Double(64.751114)]
+        
+        var lat: Double?
+        if (self.locationCoords?[0] != nil) {
+            lat = self.locationCoords![0]
+        }
+        var long: Double?
+        if (self.locationCoords?[1] != nil) {
+            long = self.locationCoords![1]
+        }
+        
+        let params : [String:Any] = [
+            "location": [
+                lat,
+                long
+            ]
+        ]
+        
+        let maxDistance = self.preferences["proximity"] as! Double
+        
+        if (lat != nil && long != nil) {
+            UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], maxDistance: maxDistance, completion: { list in
+
+                self.userList = list
+                self.kolodaView?.reloadData()
+
+                self.loadingView.removeFromSuperview()
+                self.showForeverAlonePopup()
+            })
+        } else {
+            print("lat and long are nil")
+        }
     }
 
 

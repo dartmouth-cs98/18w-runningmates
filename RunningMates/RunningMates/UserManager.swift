@@ -124,6 +124,7 @@ class UserManager: NSObject {
                                 completion("success")
                             }
                         case .failure(let error):
+                            print("signup failure")
                             print(error)
                             completion("error")
                     }
@@ -255,7 +256,7 @@ class UserManager: NSObject {
     
 
         let params : [String:Any] = [
-            "email": userEmail
+            "email": userEmail,
         ]
         let _request = Alamofire.request(url, parameters: params)
             .responseJSON { response in
@@ -378,6 +379,7 @@ class UserManager: NSObject {
 
                     completion(usersList)
                 }
+                completion(usersList)
         }
     }
     
@@ -454,7 +456,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-//        debugPrint("whole _request ****",_request)
+        debugPrint("whole _request ****",_request)
     }
     
     

@@ -21,6 +21,11 @@ enum UserInitError: Error {
     case invalidLocation
     case invalidEmail
     case invalidPassword
+    case invalidMates
+    case invalidPotentialMates
+    case invalidSeenProfiles
+    case invalidBlockedMates
+    case invalidRequestsReceived
 }
 
 class User: NSObject, NSCoding {
@@ -73,6 +78,8 @@ class User: NSObject, NSCoding {
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
     init?(json: [String: Any]) throws {
+//        print("-------JSON IS:-------")
+//        print(json)
         guard let id = json["id"] as! String? else {
             throw UserInitError.invalidId
         }
