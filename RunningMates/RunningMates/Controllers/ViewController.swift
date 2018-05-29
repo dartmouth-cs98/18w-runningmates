@@ -26,6 +26,7 @@ import WebKit
         @IBOutlet weak var everyoneLabel: UILabel!
         
     
+
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
 
@@ -39,10 +40,10 @@ import WebKit
                 self.present(navigationController, animated: true, completion: nil)
             }
         }
-      
+
         override func viewDidLoad() {
             super.viewDidLoad()
-            view.addBackground()
+            view.addBackground(imageName: "running1")
             self.createAccountButton.backgroundColor = .clear
             self.createAccountButton.layer.borderWidth = 1.5
             self.createAccountButton.layer.borderColor = UIColor.white.cgColor

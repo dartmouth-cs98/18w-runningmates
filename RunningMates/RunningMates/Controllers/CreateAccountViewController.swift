@@ -31,7 +31,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addBackground()
+        view.addBackground(imageName: "running2")
         self.signUpButton.layer.borderWidth = 1.5
         self.signUpButton.layer.borderColor = UIColor(red: 1, green: 0.7686, blue: 0.1765, alpha: 1.0).cgColor
         self.hideKeyboardOnBackgroundTap()
@@ -85,8 +85,8 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                             self.appDelegate.userEmail = String(describing: user! ["email"]!)
                             print (self.appDelegate.userEmail)
 
-                            let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! ProfileTableViewController
-                            self.present(createProfileVC, animated: true, completion: nil)
+                            let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                            self.present(profPicVC, animated: true, completion: nil)
                         case .failure(let error):
                             print("failure in creating profile")
                             print(error)
@@ -153,7 +153,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
 }
 
 extension UIView {
-    func addBackground(imageName: String = "running1", contentMode: UIViewContentMode = .scaleAspectFill) {
+    func addBackground(imageName: String = "running2", contentMode: UIViewContentMode = .scaleAspectFill) {
         // setup the UIImageView
         let backgroundImageView = UIImageView(frame: UIScreen.main.bounds)
         backgroundImageView.image = UIImage(named: imageName)

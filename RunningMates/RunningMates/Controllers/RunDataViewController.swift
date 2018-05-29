@@ -38,6 +38,8 @@ class RunDataViewController: UIViewController {
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
         
         self.hideKeyboardOnBackgroundTap()
+        self.racesDone.layer.borderColor = UIColor.gray.cgColor
+        self.racesDone.layer.borderWidth = 1
         self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
         self.rootUrl = appDelegate.rootUrl
         print("did sign up with strava: ")
