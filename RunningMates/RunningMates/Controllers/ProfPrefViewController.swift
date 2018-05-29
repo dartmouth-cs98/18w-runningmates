@@ -27,6 +27,8 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         super.viewDidLoad()
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
+        self.bioTextView.layer.borderWidth = 1
+        self.bioTextView.layer.borderColor = UIColor.gray.cgColor
         
         self.hideKeyboardOnBackgroundTap()
         self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
