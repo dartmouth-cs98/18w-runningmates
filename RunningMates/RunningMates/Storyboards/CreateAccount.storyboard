@@ -56,15 +56,14 @@
                                         </state>
                                         <connections>
                                             <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="St7-NT-06N"/>
-                                            <segue destination="RfX-yd-URn" kind="show" id="GJ9-LG-gQm"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87W-21-0pe">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87W-21-0pe" userLabel="Cancel Button">
                                         <rect key="frame" x="18" y="43" width="23" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="arrow-89-xxl"/>
                                         <connections>
-                                            <segue destination="IST-ae-gXH" kind="show" id="QIz-yK-yPh"/>
+                                            <action selector="onCancelButtonClick:" destination="2kk-h8-hBr" eventType="touchUpInside" id="4lu-i9-Fb9"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="there's a time and pace for everyone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7C-vQ-QN0">
@@ -177,7 +176,6 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="cancelButton" destination="2YL-sD-or9" id="ILZ-42-GaK"/>
                         <outlet property="emailTextField" destination="wes-lt-wjT" id="iJ3-t9-Hws"/>
                         <outlet property="infoView" destination="3bq-5V-NXs" id="vh4-lS-efQ"/>
                         <outlet property="passReconfirmTextField" destination="Fjr-1Y-6rL" id="0fW-y3-0wN"/>
@@ -187,18 +185,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZL6-aL-Cnf" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2YL-sD-or9">
-                    <rect key="frame" x="0.0" y="0.0" width="62" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Cancel">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="onCancelButtonClick:" destination="2kk-h8-hBr" eventType="touchUpInside" id="vDl-xN-FvI"/>
-                    </connections>
-                </button>
             </objects>
             <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
         </scene>
