@@ -55,7 +55,12 @@
                                             <color key="titleColor" red="1" green="0.76900915920000001" blue="0.17794004390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+<<<<<<< HEAD
                                             <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="6s6-S5-xfm"/>
+=======
+                                            <action selector="trySignUp:" destination="2kk-h8-hBr" eventType="touchUpInside" id="St7-NT-06N"/>
+                                            <segue destination="RfX-yd-URn" kind="show" id="GJ9-LG-gQm"/>
+>>>>>>> 908d478dbf8f9016a69314d8d6a1331f641c829f
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87W-21-0pe">

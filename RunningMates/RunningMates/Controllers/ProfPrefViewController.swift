@@ -27,6 +27,8 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         super.viewDidLoad()
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
+        self.bioTextView.layer.borderWidth = 1
+        self.bioTextView.layer.borderColor = UIColor.gray.cgColor
         
         self.hideKeyboardOnBackgroundTap()
         self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
@@ -77,6 +79,7 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 print("updated user here!")
                 self.updateInfoFromUserDefaults()
             })
+        
 
 //            let isPresentingInAddContactMode = presentingViewController is UINavigationController
 //
@@ -89,6 +92,13 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 //            else {
 //                fatalError("editing profile error.")
 //            }
+        let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
+        let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+        /// vc.teststring = "hello"
+        
+        let navigationController = UINavigationController(rootViewController: vc)
+        
+        self.present(navigationController, animated: true, completion: nil)
         }
         
     }

@@ -32,6 +32,7 @@ class BasicInfoViewController: UIViewController {
     var lastBool = false
     var genderBool = false
     var dob = true
+    var ageVal: Int = 0
     
     var newUser: User!
     
@@ -55,18 +56,20 @@ class BasicInfoViewController: UIViewController {
         }
         self.view.addSubview(dropGender)
         
+        
     }
     
     func updateInfoFromUserDefaults() {
 
         UserDefaults.standard.set(firstName.text, forKey: "firstName")
         UserDefaults.standard.set(self.gender, forKey: "gender")
-        
+
     }
     
     @IBAction func nextButton(_ sender: Any) {
         print("GENDER\n", self.gender)
         print(self.dobPicker.date)
+        
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day,.month,.year], from: self.dobPicker.date);
         print(components.day!)
@@ -80,7 +83,8 @@ class BasicInfoViewController: UIViewController {
         let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
         let age = ageComponents.year!
         print("AGE\n\n")
-        print(age)
+        self.ageVal = age   
+        
         
         //check if enough data has been entered
         if (firstName.text! != "") {
@@ -92,7 +96,7 @@ class BasicInfoViewController: UIViewController {
         if (self.gender != nil) {
             self.genderBool = true
         }
-        if (age < 18) {
+        if (self.ageVal < 18) {
             let alert = EMAlertController(title: "Uh oh!", message: "You must be 18 years or older to join RunningMates.")
             let cancel = EMAlertAction(title: "Okay", style: .cancel)
             alert.addAction(action: cancel)
@@ -114,12 +118,14 @@ class BasicInfoViewController: UIViewController {
                 "gender": self.gender!,
                 "birthMonth": components.month!,
                 "birthDay": components.day!,
-                "birthYear": components.year!
+                "birthYear": components.year!,
+                "age": self.ageVal
             ]
             
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
                 print("updated user here!")
                 self.updateInfoFromUserDefaults()
+                UserDefaults.standard.set(self.ageVal, forKey: "age")
             })
         }
         

@@ -147,6 +147,14 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                     self.present(profPicVC, animated: true, completion: nil)
                 }
             })
+//            let storyboard : UIStoryboard = UIStoryboard(name: "Welcome", bundle: nil)
+//            let vc : welcomeVC = storyboard.instantiateViewController(withIdentifier: "welcome") as! WelcomeViewController
+     
+
+            /// vc.teststring = "hello"
+//
+//            let navigationController = UINavigationController(rootViewController: vc)
+//            
         }
     }
 }

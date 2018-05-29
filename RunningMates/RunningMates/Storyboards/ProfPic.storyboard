@@ -13,7 +13,11 @@
         <!--ProfPic-->
         <scene sceneID="mbx-dr-rCi">
             <objects>
+<<<<<<< HEAD
                 <viewController storyboardIdentifier="ProfPic" title="ProfPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+=======
+                <viewController storyboardIdentifier="profPic" id="0hZ-os-hCh" customClass="ProfPicViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+>>>>>>> 908d478dbf8f9016a69314d8d6a1331f641c829f
                     <view key="view" contentMode="scaleToFill" id="2TW-SY-lSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +63,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="  Step 2: About Me" image="arrow-32-32">
+                                <state key="normal" title="  Step 2: Basic Info" image="arrow-32-32">
                                     <color key="titleColor" red="1" green="0.76900915920000001" blue="0.17794004390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
