@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UINavigationControllerDelegate, UIPickerViewDataSource {
 
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -60,7 +60,7 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func saveClick(_ sender: Any) {
         // https://stackoverflow.com/questions/26674399/getting-selected-value-of-a-uipickerviewcontrol-in-swift
-        var selectedValue = pickerOptions[pickerView.selectedRow(inComponent: 0)]
+        let selectedValue = pickerOptions[pickerView.selectedRow(inComponent: 0)]
         if (bioTextView.text! == "") {
             let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
@@ -78,6 +78,13 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
                 print("updated user here!")
                 self.updateInfoFromUserDefaults()
+                let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+                let vc : FilterViewController = storyboard.instantiateViewController(withIdentifier: "filterView") as! FilterViewController
+                /// vc.teststring = "hello"
+                
+                let navigationController = UINavigationController(rootViewController: vc)
+                
+                self.present(navigationController, animated: true, completion: nil)
             })
         
 
@@ -92,13 +99,9 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 //            else {
 //                fatalError("editing profile error.")
 //            }
-        let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
-        let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+
+
         /// vc.teststring = "hello"
-        
-        let navigationController = UINavigationController(rootViewController: vc)
-        
-        self.present(navigationController, animated: true, completion: nil)
         }
         
     }

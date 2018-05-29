@@ -49,7 +49,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guR-iR-FKy" customClass="KolodaView" customModule="Koloda">
-                                <rect key="frame" x="30" y="20" width="314" height="470"/>
+                                <rect key="frame" x="30" y="104" width="314" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <viewLayoutGuide key="safeArea" id="NoS-32-pbW"/>
                             </view>

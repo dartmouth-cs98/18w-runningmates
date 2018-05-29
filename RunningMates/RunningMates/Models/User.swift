@@ -21,6 +21,11 @@ enum UserInitError: Error {
     case invalidLocation
     case invalidEmail
     case invalidPassword
+    case invalidMates
+    case invalidPotentialMates
+    case invalidSeenProfiles
+    case invalidBlockedMates
+    case invalidRequestsReceived
 }
 
 class User: NSObject, NSCoding {
@@ -28,6 +33,7 @@ class User: NSObject, NSCoding {
     var firstName: String?
     var lastName: String?
     var imageURL: String
+    var images: [String]
     var bio: String
     var gender: String
     var age: Int
@@ -49,10 +55,12 @@ class User: NSObject, NSCoding {
     
     //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json
     init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [String: Any], potentialMates: [String: Any], blockedMates: [String: Any], requestsReceived: [String: Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], thirdPartyIds: [String:Any], data: [String:Any]) {
+
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.imageURL = imageURL
+        self.images = images
         self.bio = bio
         self.gender = gender
         self.age = age
@@ -73,6 +81,8 @@ class User: NSObject, NSCoding {
     //JSON initializer
     // https://developer.apple.com/swift/blog/?id=37
     init?(json: [String: Any]) throws {
+//        print("-------JSON IS:-------")
+//        print(json)
         guard let id = json["id"] as! String? else {
             throw UserInitError.invalidId
         }
@@ -96,6 +106,8 @@ class User: NSObject, NSCoding {
             throw UserInitError.invalidLocation
         }
         let swipes = json["swipes"] as! [String: Int]?
+        let images = json["images"] as! [String]?
+
         let mates = json["mates"] as! [String: Any]?
         let potentialMates = json["potentialMates"] as! [String: Any]?
         let seenProfiles = json["seenProfiles"] as! [Any]?
@@ -114,6 +126,7 @@ class User: NSObject, NSCoding {
         self.firstName = firstName
         self.lastName = lastName
         self.imageURL = imageURL
+        self.images = images!
         self.bio = bio
         self.gender = gender
         self.age = age
@@ -136,6 +149,7 @@ class User: NSObject, NSCoding {
         static let firstName = "firstName"
         static let lastName = "lastName"
         static let imageURL = "imageURL"
+        static let images = "images"
         static let bio = "bio"
         static let gender = "gender"
         static let age = "age"
@@ -159,6 +173,7 @@ class User: NSObject, NSCoding {
         aCoder.encode(firstName, forKey: PropertyKey.firstName)
         aCoder.encode(lastName, forKey: PropertyKey.lastName)
         aCoder.encode(imageURL, forKey: PropertyKey.imageURL)
+        aCoder.encode(images, forKey: PropertyKey.images)
         aCoder.encode(bio, forKey: PropertyKey.bio)
         aCoder.encode(gender, forKey: PropertyKey.gender)
         aCoder.encode(age, forKey: PropertyKey.age)
@@ -187,6 +202,8 @@ class User: NSObject, NSCoding {
         let firstName = aDecoder.decodeObject(forKey: PropertyKey.firstName) as? String
         let lastName = aDecoder.decodeObject(forKey: PropertyKey.lastName) as? String
         let imageURL = aDecoder.decodeObject(forKey: PropertyKey.imageURL) as? String
+        let images = aDecoder.decodeObject(forKey: PropertyKey.images) as? [String]
+
         let bio = aDecoder.decodeObject(forKey: PropertyKey.bio) as? String
         let gender = aDecoder.decodeObject(forKey: PropertyKey.gender) as? String
         let age = aDecoder.decodeInteger(forKey: PropertyKey.age)

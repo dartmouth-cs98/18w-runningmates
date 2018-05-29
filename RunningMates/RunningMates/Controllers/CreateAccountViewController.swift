@@ -64,7 +64,6 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             scope: "write", state:"mystate",
             success: { credential, response, parameters in
                 print("response token: ")
-//                let  createProfileVC = self.storyboard?.instantiateViewController(withIdentifier: "createProfile") as! CreateProfileViewController
 //                self.present(createProfileVC, animated: true, completion: nil)
                 
                 print(credential.oauthToken)
@@ -135,7 +134,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
             // If everything looks ok, try to sign them in
 
             UserManager.instance.requestForSignup(email: email, password: pass, completion: { response in
-                print("RESULT FROM SIGNUP: ", response)
+
                 if (response == "error") {
                     let alert = UIAlertController(title: "Error Creating Account", message: "Please try again with a different email.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
@@ -143,9 +142,9 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 } else {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     appDelegate.userEmail = self.emailTextField.text!
-//                     If the account creation was successful, send user to create profile page
-//                    let  welcomeVC : CreateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: "Profile") as! CreateProfileViewController
-//                    self.present(createProfileVC, animated: true, completion: nil)
+                     // If the account creation was successful, send user to create profile page
+                    let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                    self.present(profPicVC, animated: true, completion: nil)
                 }
             })
 //            let storyboard : UIStoryboard = UIStoryboard(name: "Welcome", bundle: nil)

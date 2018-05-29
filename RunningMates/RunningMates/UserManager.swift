@@ -124,6 +124,7 @@ class UserManager: NSObject {
                                 completion("success")
                             }
                         case .failure(let error):
+                            print("signup failure")
                             print(error)
                             completion("error")
                     }
@@ -255,7 +256,7 @@ class UserManager: NSObject {
     
 
         let params : [String:Any] = [
-            "email": userEmail
+            "email": userEmail,
         ]
         let _request = Alamofire.request(url, parameters: params)
             .responseJSON { response in
@@ -324,9 +325,10 @@ class UserManager: NSObject {
         
         let request = Alamofire.request(url, method: .get, parameters: params, headers: headers)
             .responseJSON { response in
+
                 switch response.result {
                 case .success:
-                    
+                    print("POTENTIAL MATCHES", response.result.value)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
@@ -367,12 +369,17 @@ class UserManager: NSObject {
                         completion(usersList)
                     } else {
                         print("error creating user")
+                        completion(usersList)
+
                     }
                     
                 case .failure(let error):
                     print("error fetching users")
                     print(error)
+
+                    completion(usersList)
                 }
+                completion(usersList)
         }
     }
     
@@ -449,7 +456,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-//        debugPrint("whole _request ****",_request)
+        debugPrint("whole _request ****",_request)
     }
     
     

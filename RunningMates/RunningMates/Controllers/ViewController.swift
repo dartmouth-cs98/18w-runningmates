@@ -26,20 +26,21 @@ import WebKit
         @IBOutlet weak var everyoneLabel: UILabel!
         
     
-//        override func viewDidAppear(_ animated: Bool) {
-//            super.viewDidAppear(animated)
-//
-//            let token: String? = UserDefaults.standard.string(forKey: "token")
-//            if (token != nil && token != "") {
-//                // go to Matching view
-//                let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
-//                let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
-//                let navigationController = UINavigationController(rootViewController: vc)
-//
-//                self.present(navigationController, animated: true, completion: nil)
-//            }
-//        }
-//
+
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+
+            let token: String? = UserDefaults.standard.string(forKey: "token")
+            if (token != nil && token != "") {
+                // go to Matching view
+                let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
+                let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+                let navigationController = UINavigationController(rootViewController: vc)
+
+                self.present(navigationController, animated: true, completion: nil)
+            }
+        }
+
         override func viewDidLoad() {
             super.viewDidLoad()
             view.addBackground(imageName: "running1")
