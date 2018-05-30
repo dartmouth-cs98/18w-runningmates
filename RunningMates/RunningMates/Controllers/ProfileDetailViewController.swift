@@ -22,12 +22,16 @@ class ProfileDetailViewController: UIViewController {
     @IBOutlet weak var runsPerWeek: UILabel!
     @IBOutlet weak var racesDone: UILabel!
     @IBOutlet weak var totalElevation: UILabel!
+    @IBOutlet weak var matchReason: UILabel!
+    @IBOutlet weak var matchButton: UIButton!
+    @IBOutlet weak var segments: UILabel!
     
     var userList = [sortedUser]()
     var index: Int!
     var distance: String!
     var currentUser: User!
     var loadingView: ProfileLoadingView!
+    var userId: String! = ""
     
     override func viewWillAppear(_ animated: Bool) {
         loadingView = ProfileLoadingView().fromNib() as! ProfileLoadingView
@@ -61,9 +65,46 @@ class ProfileDetailViewController: UIViewController {
     }
     
     func loadDataForUser(user: User) {
+        var data = user.data
+        
         nameLabel.text = user.firstName! + ", " + String(user.age)
         locationLabel.text = distance!
         bioLabel.text = user.bio
+        
+        if (data!["milesPerWeek"] != nil) {
+            milesPerWeek.text = String(describing: data!["milesPerWeek"]!) + " mi/week"
+        } else {
+            milesPerWeek.text = ""
+            milesPerWeek.removeFromSuperview()
+        }
+        if (data!["runsPerWeek"] != nil) {
+            runsPerWeek.text = String(describing: data!["runsPerWeek"]!) + " runs/week"
+        } else {
+            totalElevation.text = ""
+            totalElevation.removeFromSuperview()
+        }
+        if (data!["totalMilesRun"] != nil) {
+            totalMilesLabel.text = String(describing: data!["totalMilesRun"]!) + " total miles"
+        } else {
+            totalMilesLabel.text = ""
+            totalMilesLabel.removeFromSuperview()
+        }
+        if (data!["totalElevationClimbed"] != nil) {
+            totalElevation.text = String(describing: data!["totalElevationClimbed"]!) + " mi total Elevation"
+        } else {
+            totalElevation.text = ""
+            totalElevation.removeFromSuperview()
+        }
+        
+        if (userList[index].matchReason != "") {
+            matchReason.text = "*" + userList[index].matchReason + "!*"
+        }
+        
+        if (user.data!["racesDone"] != nil) {
+            racesDone.text = "Races: " + String(describing: user.data!["racesDone"]!)
+        } else {
+            racesDone.removeFromSuperview()
+        }
         
         if let images = user.images as? [String] {
             if let url = URL(string: images[0]) {
@@ -73,6 +114,8 @@ class ProfileDetailViewController: UIViewController {
                 self.profImage.image = image
             }
         }
+        
+        segments.text = "Segments: "
         
         if (user.data!["totalMilesRun"] != nil) {
             self.totalMilesLabel.text = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
@@ -86,5 +129,24 @@ class ProfileDetailViewController: UIViewController {
             self.averageRunLengthLabel.text = "Avg. Run Length: No info to show"
         }
         self.loadingView.removeFromSuperview()
+    }
+   
+    @IBAction func onClick(_ sender: Any) {
+        self.userId = UserDefaults.standard.string(forKey: "id")!
+        
+        UserManager.instance.sendMatchRequest(userId: self.userId, targetId: self.userList[index].user.id!, firstName: self.userList[index].user.firstName!, completion: { title, message in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            self.present(alertController, animated: true, completion: {
+                print("here we are")
+                let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
+                let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
+                let navigationController = UINavigationController(rootViewController: vc)
+                
+                self.present(navigationController, animated: true, completion: nil)
+            })
+        })
     }
 }
