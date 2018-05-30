@@ -18,12 +18,12 @@ struct sortedUser {
 
 class UserManager: NSObject {
     static let instance = UserManager()
+    var userList = [sortedUser]()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     override init() {
-
     }
     
     func requestForSignup(email: String?, password: String?, completion: @escaping (String)->()) {
@@ -366,6 +366,7 @@ class UserManager: NSObject {
                             }
                         }
                         completion(usersList)
+                        self.userList = usersList
                     } else {
                         print("error creating user")
                         completion(usersList)
@@ -381,7 +382,6 @@ class UserManager: NSObject {
                 completion(usersList)
         }
     }
-    
     
     func sendMatchRequest(userId: String, targetId: String, firstName: String, completion: @escaping (String, String)->()) {
         
