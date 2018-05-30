@@ -35,8 +35,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var stravaLogo1: UIImageView!
     @IBOutlet weak var stravaLogo2: UIImageView!
     
-    //    var rootURl: String = "https://running-mates.herokuapp.com/"
-//    // var rootURl: String = "http://localhost:9090/"
+
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var racesDoneTextView: UITextView!
     @IBOutlet weak var runsPerWeekTextField: UITextField!
@@ -54,6 +53,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     var newUser: User!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,31 +61,27 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
         
         self.hideKeyboardOnBackgroundTap()
-//        self.userEmail = appDelegate.userEmail
         self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
         self.rootUrl = appDelegate.rootUrl
         
-        self.nameTextView.layer.cornerRadius = 5
-        self.bioTextView.layer.cornerRadius = 5
-        self.milesPerWeekTextField.layer.cornerRadius = 5
-        self.runsPerWeekTextField.layer.cornerRadius = 5
-        self.racesDoneTextView.layer.cornerRadius = 5
         
+        self.nameTextView.layer.borderColor = UIColor.gray.cgColor
+        self.bioTextView.layer.borderWidth = 1
+        self.bioTextView.layer.borderColor = UIColor.gray.cgColor
+        self.milesPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
+        self.runsPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
+        self.racesDoneTextView.layer.borderWidth = 1
+        self.racesDoneTextView.layer.borderColor = UIColor.gray.cgColor
         
-        profileImage.layer.borderWidth = 2
-        profileImage.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        profileImage.clipsToBounds = true
-        
+        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+        self.profileImage.clipsToBounds = true;
+        self.profileImage.layer.borderWidth = 2.5;
+        self.profileImage.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
        
-
-        
-//        nameTextView.clipsToBounds = true
-//        milesPerWeekTextField.clipsToBounds = true
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         imagePicker.delegate = self
         pickerOptions = ["Casual running partners", "Training buddy", "Up for anything", "Meet new friends", "More than friends"]
-        //pickerView.selectedRow(inComponent: 3)
         
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
@@ -149,9 +145,6 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 self.nameTextView.text = user.firstName
                 self.bioTextView.text = user.bio
                 self.milesPerWeekTextField.text = String (describing: data["milesPerWeek"])
-                //                    self.totalElevationTextField.text = String (describing: data!! ["totalElevationClimbed"])
-                //                    self.totalMilesTextField.text = String (describing: data!! ["totalMilesRun"])
-                //                    self.longestRunTextView.text = String (describing: data!! ["longestRun"])
                 self.racesDoneTextView.text = data["racesDone"] as! String
                 self.runsPerWeekTextField.text = data["runsPerWeek"] as! String
             })
@@ -278,6 +271,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     @IBAction func saveClicked(_ sender: Any) {
+        
+        let selectedValue = pickerOptions[pickerView.selectedRow(inComponent: 0)]
 
         //check if enough data has been entered
         if ((nameTextView.text! == "") || (bioTextView.text! == "") || (milesPerWeekTextField.text! == "") || (runsPerWeekTextField.text! == "")) {
@@ -286,6 +281,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             self.present(alert, animated: true, completion: nil)
         } else {
         updateInfoFromUserDefaults()
+        
         
         let milespwk:Int = Int(milesPerWeekTextField.text!)!
         let runsperWk:Int = Int(runsPerWeekTextField.text!)!
@@ -326,7 +322,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             "email": self.userEmail!,
             "firstName": self.nameTextView.text!,
             "bio":self.bioTextView.text!,
-            "data": data
+            "data": data,
+            "desiredGoals": [selectedValue]
         ]
         
         UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
