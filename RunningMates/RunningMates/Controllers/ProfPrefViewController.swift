@@ -78,6 +78,7 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UINavigati
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
                 print("updated user here!")
                 self.updateInfoFromUserDefaults()
+                UserDefaults.standard.set([selectedValue], forKey: "desiredGoals")
                 let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)
                 let vc : FilterViewController = storyboard.instantiateViewController(withIdentifier: "filterView") as! FilterViewController
                 /// vc.teststring = "hello"

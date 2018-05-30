@@ -54,17 +54,17 @@ class DashboardViewController: UIViewController {
         print("HELLO THERE WTF\n\n\n")
         print(UserDefaults.standard.string(forKey: "firstName")!)
         
-//        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
-//        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
-//            let url = URL(string: userImages[0] as! String)
-//
-//
-//            if let photoData = try? Data(contentsOf: url!) {
-//                let image = UIImage(data: photoData)
-//                self.profPic.image = image!
-//            }
-//
-     //   }
+        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
+        if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
+            let url = URL(string: userImages[0] as! String)
+
+
+            if let photoData = try? Data(contentsOf: url!) {
+                let image = UIImage(data: photoData)
+                self.profPic.image = image!
+            }
+
+        }
        
         //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         
