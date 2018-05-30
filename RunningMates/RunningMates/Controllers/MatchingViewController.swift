@@ -334,12 +334,18 @@ extension MatchingViewController: KolodaViewDataSource {
 
 //        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
 
-        var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
-        if (distance < 1609) {
-            location = "Less than 1 mile away"
+        if (self.locationCoords != nil && self.locationCoords![0] != nil && self.locationCoords![1] != nil) {
+            var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
+            if (distance < 1609) {
+                location = "Less than 1 mile away"
+            } else {
+                let distanceInMi = distance / 1609
+                location = String(round(distanceInMi)) + " miles away"
+            }
+            
+            view.locationText.text! = location
         } else {
-            let distanceInMi = distance / 1609
-            location = String(round(distanceInMi)) + " miles away"
+            view.locationText.text! = ""
         }
 
         let bio = (String(userList[index].user.bio))
@@ -365,7 +371,7 @@ extension MatchingViewController: KolodaViewDataSource {
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
         view.totalMilesText.text! = totalMiles
-        view.locationText.text! = location
+        
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
 

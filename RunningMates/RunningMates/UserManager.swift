@@ -327,7 +327,7 @@ class UserManager: NSObject {
 
                 switch response.result {
                 case .success:
-                    print("POTENTIAL MATCHES", response.result.value)
+//                    print("POTENTIAL MATCHES", response.result.value)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
