@@ -79,9 +79,9 @@ class RunDataViewController: UIViewController {
             //            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
             //            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
             if var data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
-                    let milespwk:Int? = Int(milesPerWeek.text!)
+                    let milespwk:Double? = Double(milesPerWeek.text!)
                     data["milesPerWeek"] = milespwk
-                    let runsperWk:Int? = Int(runsPerWeek.text!)
+                    let runsperWk:Double? = Double(runsPerWeek.text!)
                     data["runsPerWeek"] = runsperWk
                     let racesDoneArray:String? = racesDone.text!
                     data["racesDone"] = [racesDoneArray]
@@ -97,8 +97,8 @@ class RunDataViewController: UIViewController {
         //check if enough data has been entered
             updateInfoFromUserDefaults()
             
-            let milespwk:Int = Int(milesPerWeek.text!)!
-            let runsperWk:Int = Int(runsPerWeek.text!)!
+            let milespwk:Double = Double(milesPerWeek.text!)!
+            let runsperWk:Double = Double(runsPerWeek.text!)!
             var elevation: Double = 0.0
             var milesRun: Double = 0.0
             var avgRunLength: Double = 0.0
@@ -106,13 +106,13 @@ class RunDataViewController: UIViewController {
             if (UserDefaults.standard.value(forKey: "data") != nil) {
                 var dataObj = (UserDefaults.standard.value(forKey: "data") as? [String:Any])!
       
-                if (dataObj["totalElevationClimbed"] as? Int != nil) {
+                if (dataObj["totalElevationClimbed"] as? Double != nil) {
                     elevation = (dataObj["totalElevationClimbed"] as? Double)!
                 }
-                if (dataObj["totalMilesRun"] as? Int != nil) {
+                if (dataObj["totalMilesRun"] as? Double != nil) {
                     milesRun = (dataObj["totalMilesRun"] as? Double)!
                 }
-                if (dataObj["averageRunLength"] as? Int != nil) {
+                if (dataObj["averageRunLength"] as? Double != nil) {
                     avgRunLength = (dataObj["averageRunLength"] as? Double)!
                 }
             }
