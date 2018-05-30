@@ -44,11 +44,14 @@ class RunDataViewController: UIViewController {
         self.rootUrl = appDelegate.rootUrl
         print("did sign up with strava: ")
         print(self.appDelegate.didSignUpWithStrava)
-        if (self.appDelegate.didSignUpWithStrava == 0) {
+        if (self.appDelegate.didSignUpWithStrava == 1) {
             self.ver1.isHidden = false
             self.ver2.isHidden = false
+            self.milesPerWeek.isUserInteractionEnabled = false
+            self.runsPerWeek.isUserInteractionEnabled = false
+            
         }
-        if (self.appDelegate.didSignUpWithStrava == 1) {
+        if (self.appDelegate.didSignUpWithStrava == 0) {
             self.ver1.isHidden = true
             self.ver2.isHidden = true
             UserManager.instance.requestUserObject(userEmail: self.userEmail!, completion: {user in
