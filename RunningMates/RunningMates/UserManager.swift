@@ -472,6 +472,7 @@ class UserManager: NSObject {
                     if let jsonSegments = response.result.value as? [[String:Any]] {
                         for jsonSegment in jsonSegments {
                             do {
+                                print (jsonSegment)
                                 let title = (jsonSegment["title"] as! String)
                                 let targetTime = (jsonSegment["targetTime"] as! String)
                                 let userTime = (jsonSegment["userTime"] as! String!)
@@ -487,6 +488,7 @@ class UserManager: NSObject {
                                 print("other error")
                             }
                         }
+                        print (segmentList)
                         completion(segmentList)
                         self.segmentList = segmentList
                     } else {
