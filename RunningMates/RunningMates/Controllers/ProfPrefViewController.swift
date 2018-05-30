@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import OAuthSwift
+import Alamofire
+import WebKit
+import os.log
 
-class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UINavigationControllerDelegate, UIPickerViewDataSource {
+class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -76,16 +80,19 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UINavigati
                 ]
 
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
-                print("updated user here!")
                 self.updateInfoFromUserDefaults()
                 UserDefaults.standard.set([selectedValue], forKey: "desiredGoals")
-                let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)
-                let vc : FilterViewController = storyboard.instantiateViewController(withIdentifier: "filterView") as! FilterViewController
+                
+                let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as! UINavigationController
+                self.present(vc, animated: true, completion: nil)
+                
+//                let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+//                let vc : FilterViewController = storyboard.instantiateViewController(withIdentifier: "filterView") as! FilterViewController
                 /// vc.teststring = "hello"
                 
-                let navigationController = UINavigationController(rootViewController: vc)
-                
-                self.present(navigationController, animated: true, completion: nil)
+//                let navigationController = UINavigationController(rootViewController: vc)
+//
+//                self.present(navigationController, animated: true, completion: nil)
             })
         
 

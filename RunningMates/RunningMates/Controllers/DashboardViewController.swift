@@ -51,10 +51,7 @@ class DashboardViewController: UIViewController {
         
 //        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
-        print("HELLO THERE WTF\n\n\n")
-        print(UserDefaults.standard.string(forKey: "firstName")!)
         
-        print("IMAGES???? \n\n\n", UserDefaults.standard.stringArray(forKey: "images"))
         if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
             let url = URL(string: userImages[0] as! String)
 
