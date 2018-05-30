@@ -54,7 +54,7 @@ class User: NSObject, NSCoding {
     
     
     //    //MARK: Initialization Dont believe we need to initialize twice with the lowere json
-    init(id: String, firstName: String, lastName: String, imageURL: String, bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [String: Any], potentialMates: [String: Any], blockedMates: [String: Any], requestsReceived: [String: Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], thirdPartyIds: [String:Any], data: [String:Any]) {
+    init(id: String, firstName: String, lastName: String, imageURL: String, images: [String], bio: String, gender: String, age: Int, location: [Float], swipes: [String: Int], mates: [String: Any], potentialMates: [String: Any], blockedMates: [String: Any], requestsReceived: [String: Any], seenProfiles: [Any], email: String, password: String, token: String, preferences: [String:Any], thirdPartyIds: [String:Any], data: [String:Any]) {
 
         self.id = id
         self.firstName = firstName
@@ -221,13 +221,8 @@ class User: NSObject, NSCoding {
         let thirdPartyIds = aDecoder.decodeObject(forKey: PropertyKey.thirdPartyIds) as? [String: Any]
         let data = aDecoder.decodeObject(forKey: PropertyKey.data) as? [String: Any]
         
-        //        // Because photo is an optional property of Meal, just use conditional cast.
-        //        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-        //
-        //        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
-        
         // Must call designated initializer.
         //        self.init(name: name, photo: photo, rating: rating)
-        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, requestsReceived: requestsReceived!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, thirdPartyIds: thirdPartyIds!, data: data!);
+        self.init(id: id, firstName: firstName!, lastName: lastName!, imageURL: imageURL!, images: images!, bio: bio!, gender: gender!, age: age, location: location!, swipes: swipes!, mates: mates!, potentialMates: potentialMates!, blockedMates: blockedMates!, requestsReceived: requestsReceived!, seenProfiles: seenProfiles!, email: email!, password: password!, token: token!, preferences: preferences!, thirdPartyIds: thirdPartyIds!, data: data!);
     }
 }

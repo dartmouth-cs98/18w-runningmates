@@ -22,6 +22,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     var current_index: Int!
+    var location = ""
 
     var userId: String = ""
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -97,6 +98,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             loadMatches()
         }
     }
+    
+    
     
     func showForeverAlonePopup() {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
@@ -215,6 +218,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         if (lat != nil && long != nil) {
             UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], maxDistance: maxDistance, completion: { list in
 
+                UserDefaults.standard.set(list, forKey: "userList")
                 self.userList = list
                 self.kolodaView?.reloadData()
 
@@ -299,6 +303,16 @@ extension MatchingViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
     }
+    
+    func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
+        print("user clicked on card at " + String(index))
+        
+        UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
+        UserDefaults.standard.set(location, forKey: "distanceAway")
+        
+        let vc : ProfileDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetail") as! ProfileDetailViewController
+        self.present(vc, animated: true, completion: nil)
+    }
 
 }
 extension MatchingViewController: KolodaViewDataSource {
@@ -330,9 +344,8 @@ extension MatchingViewController: KolodaViewDataSource {
         print("ids: " + String(describing: thirdPartyIds))
         
         // Calculate potential match's distance from user
-        var location = ""
         let userLocation = self.locationCoords
-        var matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
+        let matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
 
 //        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
 
@@ -361,9 +374,7 @@ extension MatchingViewController: KolodaViewDataSource {
         }
 
 
-
         view.locationText.text = location
-        view.profileImage.image = image!
         view.nameText.text! = nameAge
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength

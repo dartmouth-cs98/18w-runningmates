@@ -21,8 +21,8 @@
         <!--Profile Detail View Controller-->
         <scene sceneID="DSa-3l-jrm">
             <objects>
-                <viewController id="3iV-vH-ZNc" customClass="ProfileDetailViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6GY-8a-Wgl">
+                <viewController storyboardIdentifier="ProfileDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3iV-vH-ZNc" customClass="ProfileDetailViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="3" contentMode="scaleToFill" restorationIdentifier="ProfileDetail" id="6GY-8a-Wgl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
