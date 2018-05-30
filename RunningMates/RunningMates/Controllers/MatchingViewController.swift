@@ -218,7 +218,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         if (lat != nil && long != nil) {
             UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], maxDistance: maxDistance, completion: { list in
 
-                UserDefaults.standard.set(list, forKey: "userList")
+                //UserDefaults.standard.set(list, forKey: "userList")
                 self.userList = list
                 self.kolodaView?.reloadData()
 
@@ -304,13 +304,14 @@ extension MatchingViewController: KolodaViewDelegate {
         koloda.reloadData()
     }
     
-    func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
+    func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         print("user clicked on card at " + String(index))
         
         UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
         UserDefaults.standard.set(location, forKey: "distanceAway")
         
-        let vc : ProfileDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileDetail") as! ProfileDetailViewController
+        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "profileDetail")
         self.present(vc, animated: true, completion: nil)
     }
 
@@ -346,8 +347,6 @@ extension MatchingViewController: KolodaViewDataSource {
         // Calculate potential match's distance from user
         let userLocation = self.locationCoords
         let matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
-
-//        print("locations: " + String(describing: userLocation) + " " + String(describing: matchLocation))
 
         var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
         if (distance < 1609) {

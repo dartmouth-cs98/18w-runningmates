@@ -16,19 +16,33 @@ class ProfileDetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var totalMilesLabel: UILabel!
     @IBOutlet weak var averageRunLengthLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet var topView: UIView!
     
     var userList = [sortedUser]()
     var index: Int!
     var distance: String!
     var currentUser: User!
+    var loadingView: ProfileLoadingView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadingView = ProfileLoadingView().fromNib() as! ProfileLoadingView
+        topView.addSubview(loadingView)
+        loadingView.progressIndicator.startAnimating()
+        print("showing loading view")
+        
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         self.profImage.layer.cornerRadius = self.profImage.frame.size.width / 2;
         self.profImage.clipsToBounds = true;
         
+        super.viewDidAppear(animated)
+        
         // get list of potential matches, and find the one they clicked
-        userList = UserDefaults.standard.value(forKey: "userList") as! [sortedUser]
+        userList = UserManager.instance.userList
         index = UserDefaults.standard.value(forKey: "clickedUserIndex") as! Int
         distance = UserDefaults.standard.value(forKey: "distanceAway") as! String
         
@@ -45,6 +59,7 @@ class ProfileDetailViewController: UIViewController {
     func loadDataForUser(user: User) {
         nameLabel.text = user.firstName! + ", " + String(user.age)
         locationLabel.text = distance!
+        bioLabel.text = user.bio
         
         if let images = user.images as? [String] {
             if let url = URL(string: images[0]) {
@@ -66,5 +81,6 @@ class ProfileDetailViewController: UIViewController {
         } else {
             self.averageRunLengthLabel.text = "Avg. Run Length: No info to show"
         }
+        self.loadingView.removeFromSuperview()
     }
 }
