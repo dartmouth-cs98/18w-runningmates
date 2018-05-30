@@ -53,12 +53,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="api_logo_pwrdBy_strava_horiz_light" translatesAutoresizingMaskIntoConstraints="NO" id="qaZ-wn-aEb">
-                                <rect key="frame" x="125" y="347" width="80" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="api_logo_pwrdBy_strava_horiz_light" translatesAutoresizingMaskIntoConstraints="NO" id="TUj-Bm-Njj">
-                                <rect key="frame" x="125" y="279" width="80" height="16"/>
+                                <rect key="frame" x="151" y="279" width="80" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qSK-5Y-3Fr">
@@ -116,6 +112,10 @@
                                 <color key="textColor" red="1" green="0.76900915920000001" blue="0.17794004390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="api_logo_pwrdBy_strava_horiz_light" translatesAutoresizingMaskIntoConstraints="NO" id="qaZ-wn-aEb">
+                                <rect key="frame" x="151" y="348" width="80" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="zxT-Sf-dxs"/>

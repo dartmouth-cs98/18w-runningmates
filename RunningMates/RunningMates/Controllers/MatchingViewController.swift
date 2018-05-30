@@ -109,7 +109,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         print("in showForeverAlonePopup")
         
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
-            let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you. Looks like you're gonna die alone.")
+            let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you.")
             let icon = UIImage(named: "thumbsdown")
             
             alert.iconImage = icon
