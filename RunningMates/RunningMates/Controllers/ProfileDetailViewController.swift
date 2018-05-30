@@ -25,6 +25,8 @@ class ProfileDetailViewController: UIViewController {
     @IBOutlet weak var matchReason: UILabel!
     @IBOutlet weak var matchButton: UIButton!
     @IBOutlet weak var segments: UILabel!
+    @IBOutlet weak var stravaImage: UIImageView!
+    @IBOutlet weak var verifiedImage: UIImageView!
     
     var userList = [sortedUser]()
     var index: Int!
@@ -38,6 +40,9 @@ class ProfileDetailViewController: UIViewController {
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
         print("showing loading view")
+        
+        stravaImage.isHidden = true
+        verifiedImage.isHidden = true
         
         super.viewWillAppear(animated)
     }
@@ -115,7 +120,12 @@ class ProfileDetailViewController: UIViewController {
             }
         }
         
-        segments.text = "Segments: "
+        if (user.thirdPartyIds != nil) {
+            verifiedImage.isHidden = false
+            stravaImage.isHidden = false
+        }
+        
+        segments.text = ""
         
         if (user.data!["totalMilesRun"] != nil) {
             self.totalMilesLabel.text = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
