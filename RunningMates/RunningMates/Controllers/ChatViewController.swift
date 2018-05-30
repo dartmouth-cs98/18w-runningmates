@@ -109,7 +109,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         resizingMode: .stretch)
          .withRenderingMode(.alwaysTemplate)
         // Fallback on earlier versions
-        cell.bubbleView.tintColor = UIColor(red:255/255.0, green: 112/255.0, blue: 16/255.0, alpha: 1.0)
+        cell.bubbleView.tintColor = UIColor(red:255/255.0, green:196/255.0, blue:25/255.0, alpha: 1.0)
         cell.textView.textColor = UIColor.white
 
         cell.bubbleHeightConstraint.constant =  getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310) + 15
