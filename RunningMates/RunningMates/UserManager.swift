@@ -15,10 +15,18 @@ struct sortedUser {
     var matchReason: String
 }
 
+struct segment {
+    var title: String
+    var userTime: String!
+    var targetTime: String
+    var distance: Float
+}
+
 
 class UserManager: NSObject {
     static let instance = UserManager()
     var userList = [sortedUser]()
+    var segmentList = [segment]()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -432,6 +440,72 @@ class UserManager: NSObject {
         debugPrint("whole _request ****",_request)
     }
     
+    
+    
+    func sendMatchingSegmentRequest(userId: String, targetId: String, completion: @escaping ([segment])->()) {
+        
+        let rootUrl: String = appDelegate.rootUrl
+        
+        var segmentList = [segment]()
+        
+        let userToken: String = UserDefaults.standard.string(forKey: "token")!
+        
+        let headers : [String:String] = [
+            "Authorization": userToken,
+            "Content-Type": "application/json"
+        ]
+        
+        
+        // alamofire request
+        let params: [String: Any] = [
+            "userId": userId,
+            "targetId": targetId
+        ]
+        
+        let url = rootUrl + "api/matchingSegments"
+    
+        
+        let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    if let jsonSegments = response.result.value as? [[String:Any]] {
+                        for jsonSegment in jsonSegments {
+                            do {
+                                print (jsonSegment)
+                                let title = (jsonSegment["title"] as! String)
+                                let targetTime = (jsonSegment["targetTime"] as! String)
+                                let userTime = (jsonSegment["userTime"] as! String!)
+                                let distance = (jsonSegment["distance"] as! Float)
+                                let segmentInstance = segment(title: title, userTime: userTime, targetTime: targetTime, distance: distance);
+                                
+                                if (title != nil) {
+                                    segmentList.append(segmentInstance)
+                                } else {
+                                    print("nil")
+                                }
+                            } catch {
+                                print("other error")
+                            }
+                        }
+                        print (segmentList)
+                        completion(segmentList)
+                        self.segmentList = segmentList
+                    } else {
+                        print("error creating user")
+                        completion(segmentList)
+                        
+                    }
+                    
+                case .failure(let error):
+                    print("signup failure")
+                    print(error)
+                    completion(segmentList)
+                }
+                completion(segmentList)
+        }
+        debugPrint("whole _request ****",_request)
+    }
     
     
     func requestUserUpdate(userEmail: String, params: [String:Any], completion: @escaping (String, String)-> ()){
