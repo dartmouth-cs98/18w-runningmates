@@ -74,18 +74,77 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
-//                        print(response)
+                        print("STRAVA RESPONSE")
+                        print(response)
                         switch response.result {
                         case .success:
-                            print("Post Successful")
+                            if let jsonObj = response.result.value as? [String:Any] {
+                                self.appDelegate.didSignUpWithStrava = 1
+                                
+                                let token = (jsonObj["token"] as! String)
+                                let user = (jsonObj["user"] as? [String:Any])!
+                                
+//                                UserDefaults.standard.set(user["email"]!, forKey: "email")
+//                                UserDefaults.standard.set(user["_id"]!, forKey: "id")
+                                UserDefaults.standard.set(token, forKey: "token")
 
-                            self.appDelegate.didSignUpWithStrava = 1
-                            let user = response.result.value as? [String:Any]!
-                            self.appDelegate.userEmail = String(describing: user! ["email"]!)
-                            print (self.appDelegate.userEmail)
-
-                            let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
-                            self.present(profPicVC, animated: true, completion: nil)
+                                
+                                if (user["firstName"] != nil) {
+                                    let firstName = user["firstName"] as! String
+                                    UserDefaults.standard.set(firstName, forKey: "firstName")
+                                    
+                                }
+                                if (user["email"] != nil) {
+                                    UserDefaults.standard.set(user["email"]!, forKey: "email")
+                                }
+                                if (user["_id"] != nil) {
+                                    UserDefaults.standard.set(user["_id"]!, forKey: "id")
+                                }
+                                if (user["lastName"] != nil) {
+                                    UserDefaults.standard.set(user["lastName"]!, forKey: "lastName")
+                                }
+                                if (user["bio"] != nil) {
+                                    UserDefaults.standard.set(user["bio"]!, forKey: "bio")
+                                }
+                                
+                                if (user["imageURL"] != nil) {
+                                    UserDefaults.standard.set(user["imageURL"]!, forKey: "imageURL")
+                                }
+                                
+                                if (user["images"] != nil) {
+                                    let images = user["images"] as! [String]
+                                    UserDefaults.standard.set(images, forKey: "images")
+                                }
+                                
+                                if (user["preferences"] != nil) {
+                                    
+                                    var preferences = (user["preferences"] as? [String:Any])!
+                                    if let proximityPrefs = (preferences["proximity"]  as? Double) {
+                                        preferences["proximity"] = proximityPrefs
+                                    }
+                                    UserDefaults.standard.set(preferences, forKey: "preferences")
+                                }
+                                
+                                if (user["requestsReceived"] != nil) {
+                                    
+                                    var requestsReceived = (user["requestsReceived"] as? [String:Any])!
+                                    UserDefaults.standard.set(requestsReceived, forKey: "requestsReceived")
+                                }
+                                
+                                if (user["data"] != nil) {
+                                    UserDefaults.standard.set(user["data"], forKey: "data")
+                                }
+                                if (user["desiredGoals"] != nil) {
+                                    UserDefaults.standard.set(user["desiredGoals"]!, forKey: "desiredGoals")
+                                }
+                                if (user["_id"] != nil) {
+                                    UserDefaults.standard.set(user["_id"]!, forKey: "id")
+                                }
+                                
+                                
+                                let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                                self.present(profPicVC, animated: true, completion: nil)
+                            }
                         case .failure(let error):
                             print("failure in creating profile")
                             print(error)

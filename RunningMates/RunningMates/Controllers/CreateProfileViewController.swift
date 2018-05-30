@@ -172,10 +172,10 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
 //            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
             if var data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
-                let milespwk:Int? = Int(milesPerWeekTextField.text!)
+                let milespwk:Double? = Double(milesPerWeekTextField.text!)
                 data["milesPerWeek"] = milespwk
                 
-                let runsperWk:Int? = Int(runsPerWeekTextField.text!)
+                let runsperWk:Double? = Double(runsPerWeekTextField.text!)
                 data["runsPerWeek"] = runsperWk
                 
                 let racesDoneArray:String? = racesDoneTextView.text!
@@ -283,8 +283,8 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         updateInfoFromUserDefaults()
         
         
-        let milespwk:Int = Int(milesPerWeekTextField.text!)!
-        let runsperWk:Int = Int(runsPerWeekTextField.text!)!
+        let milespwk:Double = Double(milesPerWeekTextField.text!)!
+        let runsperWk:Double = Double(runsPerWeekTextField.text!)!
         var elevation: Double = 0.0
         var milesRun: Double = 0.0
         var avgRunLength: Double = 0.0
@@ -356,9 +356,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     "firstName": self.nameTextView.text!,
                     "bio": self.bioTextView.text!,
                     "images": userImages,
-                    "milesPerWeek": Int(self.milesPerWeekTextField.text!),
+                    "milesPerWeek": Double(self.milesPerWeekTextField.text!),
                     "racesDone": [self.racesDoneTextView.text!],
-                    "runsPerWeek": Int(self.runsPerWeekTextField.text!)
+                    "runsPerWeek": Double(self.runsPerWeekTextField.text!)
                 ]
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
@@ -366,9 +366,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     print("\n\n user images: \n\n", userImages)
                     UserDefaults.standard.set(userImages, forKey: "images")
                     UserDefaults.standard.set(self.bioTextView.text!, forKey: "bio")
-                    UserDefaults.standard.set(Int(self.milesPerWeekTextField.text!), forKey: "milesPerWeek")
+                    UserDefaults.standard.set(Double(self.milesPerWeekTextField.text!), forKey: "milesPerWeek")
                     UserDefaults.standard.set([self.racesDoneTextView.text!], forKey: "racesDone")
-                    UserDefaults.standard.set(Int(self.runsPerWeekTextField.text!), forKey: "runsPerWeek")
+                    UserDefaults.standard.set(Double(self.runsPerWeekTextField.text!), forKey: "runsPerWeek")
                     UserDefaults.standard.synchronize()
 
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

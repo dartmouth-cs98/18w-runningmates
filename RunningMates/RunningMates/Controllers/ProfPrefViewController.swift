@@ -65,11 +65,11 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func saveClick(_ sender: Any) {
         // https://stackoverflow.com/questions/26674399/getting-selected-value-of-a-uipickerviewcontrol-in-swift
         let selectedValue = pickerOptions[pickerView.selectedRow(inComponent: 0)]
-        if (bioTextView.text! == "") {
-            let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        } else {
+//        if (bioTextView.text! == "") {
+//            let alert = UIAlertController(title: "", message: "Please fill in all required fields to create a new profile.", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
             updateInfoFromUserDefaults()
 
             // alamofire request
@@ -110,7 +110,7 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
 
         /// vc.teststring = "hello"
-        }
+        
         
     }
 }

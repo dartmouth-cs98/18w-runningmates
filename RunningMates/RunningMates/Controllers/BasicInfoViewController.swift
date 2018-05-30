@@ -56,6 +56,14 @@ class BasicInfoViewController: UIViewController {
         }
         self.view.addSubview(dropGender)
         
+        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+            self.firstName.text = UserDefaults.standard.string(forKey: "firstName")
+        }
+        
+        if (UserDefaults.standard.string(forKey: "lastName") != nil) {
+            self.lastName.text = UserDefaults.standard.string(forKey: "lastName")
+        }
+
         
     }
     

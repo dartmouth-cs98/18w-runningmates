@@ -45,6 +45,15 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profileImage.clipsToBounds = true;
         self.profileImage.layer.borderWidth = 6;
         self.profileImage.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).cgColor
+        if self.appDelegate.didSignUpWithStrava == 1 {
+            let userUrl = UserDefaults.standard.value(forKey: "imageURL")
+            let url = URL(string: userUrl as! String)
+            if let photoData = try? Data(contentsOf: url!) {
+                let image = UIImage(data: photoData)
+                self.profileImage.image = image!
+                self.didChooseImage = true
+            }
+        }
         
         
         self.hideKeyboardOnBackgroundTap()
