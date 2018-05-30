@@ -467,7 +467,9 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
+                print(response)
                 switch response.result {
+                    
                 case .success:
                     if let jsonSegments = response.result.value as? [[String:Any]] {
                         for jsonSegment in jsonSegments {

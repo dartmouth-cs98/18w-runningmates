@@ -48,7 +48,8 @@ class ProfileDetailViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        self.userId = UserDefaults.standard.string(forKey: "id")!
+
         self.profImage.layer.cornerRadius = self.profImage.frame.size.width / 2;
         self.profImage.clipsToBounds = true;
         
@@ -126,6 +127,13 @@ class ProfileDetailViewController: UIViewController {
         }
         
         segments.text = ""
+        var segmentsArray = [segment]()
+        
+        UserManager.instance.sendMatchingSegmentRequest(userId: userId!, targetId: user.id!, completion: { list in
+            segmentsArray = list
+        })
+        
+        print(String(describing: segmentsArray))
         
         if (user.data!["totalMilesRun"] != nil) {
             self.totalMilesLabel.text = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
@@ -142,8 +150,6 @@ class ProfileDetailViewController: UIViewController {
     }
    
     @IBAction func onClick(_ sender: Any) {
-        self.userId = UserDefaults.standard.string(forKey: "id")!
-        
         UserManager.instance.sendMatchRequest(userId: self.userId, targetId: self.userList[index].user.id!, firstName: self.userList[index].user.firstName!, completion: { title, message in
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
