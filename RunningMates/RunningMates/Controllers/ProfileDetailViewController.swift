@@ -18,6 +18,10 @@ class ProfileDetailViewController: UIViewController {
     @IBOutlet weak var averageRunLengthLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet var topView: UIView!
+    @IBOutlet weak var milesPerWeek: UILabel!
+    @IBOutlet weak var runsPerWeek: UILabel!
+    @IBOutlet weak var racesDone: UILabel!
+    @IBOutlet weak var totalElevation: UILabel!
     
     var userList = [sortedUser]()
     var index: Int!

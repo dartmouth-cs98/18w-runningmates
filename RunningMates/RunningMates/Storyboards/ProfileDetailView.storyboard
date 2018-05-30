@@ -80,6 +80,41 @@
                                 <color key="textColor" red="0.97261422870000003" green="0.76691323519999999" blue="0.19951894880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="820-eG-lIX">
+                                <rect key="frame" x="17" y="340" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3v-BN-2YN">
+                                <rect key="frame" x="16" y="369" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jo-tk-4iY">
+                                <rect key="frame" x="16" y="398" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-aM-5dX">
+                                <rect key="frame" x="17" y="518" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJz-4J-0PD">
+                                <rect key="frame" x="16" y="427" width="330" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="dGu-jh-bQI"/>
@@ -88,10 +123,15 @@
                         <outlet property="averageRunLengthLabel" destination="9XW-qD-5R6" id="RSf-pI-ybd"/>
                         <outlet property="bioLabel" destination="ZrW-Ak-ogo" id="mGp-dM-Pkz"/>
                         <outlet property="locationLabel" destination="b9O-GY-Bwh" id="8bF-j0-zPF"/>
+                        <outlet property="milesPerWeek" destination="820-eG-lIX" id="7tB-Lh-XaG"/>
                         <outlet property="nameLabel" destination="0rt-cH-3va" id="YTG-dI-LAr"/>
                         <outlet property="profImage" destination="P69-dg-cJd" id="0Nn-WF-7WQ"/>
+                        <outlet property="racesDone" destination="hJz-4J-0PD" id="owb-VD-P8j"/>
+                        <outlet property="runsPerWeek" destination="G3v-BN-2YN" id="vuB-og-Dsu"/>
                         <outlet property="topView" destination="6GY-8a-Wgl" id="Pwr-Nx-ceJ"/>
+                        <outlet property="totalElevation" destination="6Jo-tk-4iY" id="QQB-GD-6Iu"/>
                         <outlet property="totalMilesLabel" destination="t1u-6e-VP9" id="rCe-yl-pIx"/>
+                        <outlet property="totalMilesRun" destination="820-eG-lIX" id="Pui-5R-0q8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PxS-GP-QzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
