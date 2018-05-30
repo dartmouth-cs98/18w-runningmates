@@ -192,28 +192,28 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     
     func loadMatches() {
     
-        let testerLocation =  [Double(-147.349442), Double(64.751114)]
-        
-        var lat: Double?
-        if (self.locationCoords?[0] != nil) {
-            lat = self.locationCoords![0]
-        }
-        var long: Double?
-        if (self.locationCoords?[1] != nil) {
-            long = self.locationCoords![1]
-        }
-        
-        let params : [String:Any] = [
-            "location": [
-                lat,
-                long
-            ]
-        ]
+//        let testerLocation =  [Double(-147.349442), Double(64.751114)]
+//
+//        var lat: Double?
+//        if (self.locationCoords?[0] != nil) {
+//            lat = self.locationCoords![0]
+//        }
+//        var long: Double?
+//        if (self.locationCoords?[1] != nil) {
+//            long = self.locationCoords![1]
+//        }
+//
+//        let params : [String:Any] = [
+//            "location": [
+//                lat,
+//                long
+//            ]
+//        ]
         
         let maxDistance = self.preferences["proximity"] as! Double
         
-        if (lat != nil && long != nil) {
-            UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, location: [lat!, long!], maxDistance: maxDistance, completion: { list in
+//        if (lat != nil && long != nil) {
+            UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, maxDistance: maxDistance, completion: { list in
 
                 self.userList = list
                 self.kolodaView?.reloadData()
@@ -221,9 +221,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.loadingView.removeFromSuperview()
                 self.showForeverAlonePopup()
             })
-        } else {
-            print("lat and long are nil")
-        }
+//        } else {
+//            print("lat and long are nil")
+//        }
     }
 
 

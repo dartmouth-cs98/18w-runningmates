@@ -305,7 +305,7 @@ class UserManager: NSObject {
     }
     
     
-    func requestPotentialMatches(userEmail: String, location: [Double], maxDistance: Double, completion: @escaping ([sortedUser])->()){
+    func requestPotentialMatches(userEmail: String, maxDistance: Double, completion: @escaping ([sortedUser])->()){
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
@@ -317,7 +317,6 @@ class UserManager: NSObject {
             "Content-Type": "application/json"
         ]
         let params: [String: Any] = [
-            "location": location,
             "email": userEmail,
             "maxDistance": maxDistance
             ]
@@ -328,7 +327,7 @@ class UserManager: NSObject {
 
                 switch response.result {
                 case .success:
-//                    print("POTENTIAL MATCHES", response.result.value)
+                    print("POTENTIAL MATCHES", response.result.value)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
