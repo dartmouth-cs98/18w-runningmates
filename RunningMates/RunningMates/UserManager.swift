@@ -305,7 +305,7 @@ class UserManager: NSObject {
     }
     
     
-    func requestPotentialMatches(userEmail: String, location: [Double], maxDistance: Double, completion: @escaping ([sortedUser])->()){
+    func requestPotentialMatches(userEmail: String, maxDistance: Double, completion: @escaping ([sortedUser])->()){
         let rootUrl: String = appDelegate.rootUrl
         
         var usersList = [sortedUser]()
@@ -317,7 +317,6 @@ class UserManager: NSObject {
             "Content-Type": "application/json"
         ]
         let params: [String: Any] = [
-            "location": location,
             "email": userEmail,
             "maxDistance": maxDistance
             ]
@@ -328,7 +327,7 @@ class UserManager: NSObject {
 
                 switch response.result {
                 case .success:
-                    print("POTENTIAL MATCHES", response.result.value)
+//                    print("POTENTIAL MATCHES", response.result.value)
                     if let jsonResult = response.result.value as? [[String:Any]] {
                         for jsonUser in jsonResult {
                             do {
@@ -409,22 +408,28 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
+                print("SEND MATCH REQUEST RESPONSE")
+                print(response)
                 switch response.result {
                 case .success:
-                    let responseDictionary = response.result.value as! [String:Any]
-                    if (String(describing: responseDictionary["response"]!) == "match") {
-                        title = "You matched with \(firstName)"
-                        message = "Go to your chat to say hello!"
-                    } else {
-                        title = "Your request to \(firstName) has been sent!"
-                        message = "Keep running!"
+                    print("SUCCESS SENDING MATCH")
+
+                    if let responseDictionary = response.result.value as? [String:Any] {
+                        if (String(describing: responseDictionary["response"]!) == "match") {
+                            title = "You matched with \(firstName)"
+                            message = "Go to your chat to say hello!"
+                        } else {
+                            title = "Your request to \(firstName) has been sent!"
+                            message = "Keep running!"
+                        }
                     }
                 case .failure(let error):
-                    print("error fetching users")
+                    print("error sending match request")
                     print(error)
                 }
                 completion(title, message)
         }
+        debugPrint("whole _request ****",_request)
     }
     
     

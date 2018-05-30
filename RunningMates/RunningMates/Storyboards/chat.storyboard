@@ -22,7 +22,7 @@
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="myN-Dg-xkf">
                                 <rect key="frame" x="93" y="30" width="189" height="58"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qW-m2-fEc">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qW-m2-fEc">
                                         <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="58" id="nUX-ki-lmG"/>
@@ -72,6 +72,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="501" id="xX4-gA-XWe"/>
                                 </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="wpY-wS-ysK" customClass="CustomMessageCell" customModule="RunningMates" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="338" height="44"/>
@@ -94,6 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="sdL-by-wd5" firstAttribute="bottom" secondItem="YKf-lN-4eF" secondAttribute="bottomMargin" id="0ba-3b-f0E"/>
                                                 <constraint firstItem="sdL-by-wd5" firstAttribute="leading" secondItem="YKf-lN-4eF" secondAttribute="leadingMargin" constant="-1" id="bgd-vD-1Cf"/>
@@ -113,7 +115,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xQ4-Rq-6of" firstAttribute="leading" secondItem="A5f-KQ-epo" secondAttribute="leading" id="17G-AI-uNh"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xQ4-Rq-6of" secondAttribute="bottom" constant="10" id="5yj-DY-0C7"/>
