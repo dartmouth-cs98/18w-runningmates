@@ -90,7 +90,7 @@ class ProfileDetailViewController: UIViewController {
             totalMilesLabel.removeFromSuperview()
         }
         if (data!["totalElevationClimbed"] != nil) {
-            totalElevation.text = String(describing: data!["totalElevationClimbed"]!) + " mi total Elevation"
+            totalElevation.text = String(describing: data!["totalElevationClimbed"]!) + " total Elevation (ft)"
         } else {
             totalElevation.text = ""
             totalElevation.removeFromSuperview()
