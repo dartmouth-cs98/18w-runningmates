@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileDetailViewController: UIViewController {
+class ProfileDetailViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var profImage: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
@@ -46,6 +46,12 @@ class ProfileDetailViewController: UIViewController {
         
         super.viewWillAppear(animated)
     }
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         self.userId = UserDefaults.standard.string(forKey: "id")!
@@ -154,15 +160,8 @@ class ProfileDetailViewController: UIViewController {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            
-            self.present(alertController, animated: true, completion: {
-                print("here we are")
-                let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
-                let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
-                let navigationController = UINavigationController(rootViewController: vc)
-                
-                self.present(navigationController, animated: true, completion: nil)
-            })
+                        self.present(alertController, animated: true,  completion: nil)
+
         })
     }
 }

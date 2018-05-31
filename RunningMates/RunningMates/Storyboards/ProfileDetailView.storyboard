@@ -30,14 +30,6 @@
                                 <rect key="frame" x="17" y="58" width="149" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYj-FX-D6l">
-                                <rect key="frame" x="17" y="26" width="23" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="arrow-89-xxl"/>
-                                <connections>
-                                    <segue destination="nHz-ZX-rsk" kind="show" id="RoU-vf-GTI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rt-cH-3va">
                                 <rect key="frame" x="181" y="66" width="190" height="34"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -130,7 +122,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="onClick:" destination="3iV-vH-ZNc" eventType="touchUpInside" id="mXe-j8-14f"/>
+                                    <action selector="onClick:" destination="3iV-vH-ZNc" eventType="touchUpInside" id="Lgl-Nd-kvC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3v-BN-2YN">
@@ -194,12 +186,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PxS-GP-QzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="100.29985007496252"/>
+            <point key="canvasLocation" x="271" y="89"/>
         </scene>
     </scenes>
     <resources>
         <image name="api_logo_pwrdBy_strava_horiz_light" width="338" height="63"/>
-        <image name="arrow-89-xxl" width="256" height="256"/>
         <image name="profile_default.jpg" width="247" height="247"/>
         <image name="verified" width="256" height="256"/>
     </resources>

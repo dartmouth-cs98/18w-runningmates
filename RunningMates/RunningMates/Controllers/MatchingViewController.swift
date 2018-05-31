@@ -309,13 +309,18 @@ extension MatchingViewController: KolodaViewDelegate {
         
         UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
         UserDefaults.standard.set(location, forKey: "distanceAway")
-        
-        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "profileDetail")
-        self.present(vc, animated: true, completion: nil)
-    }
+        performSegue(withIdentifier: "profileDetail", sender: nil)
 
-}
+//
+////        func prepare(for: UIStoryboardSegue, sender: Any?)
+//        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
+//        let vc =  storyboard.instantiateViewController(withIdentifier: "profileDetail")
+//        self.present(vc, animated: true, completion: nil
+//        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "profileDetail")
+//        self.present(vc, animated: true, completion: nil)
+    }
+    }
 extension MatchingViewController: KolodaViewDataSource {
 
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
@@ -323,6 +328,10 @@ extension MatchingViewController: KolodaViewDataSource {
 
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("preparing for segue")
+    }
+    
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
         return .default
     }
@@ -331,11 +340,13 @@ extension MatchingViewController: KolodaViewDataSource {
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
         
         if let images = userList[index].user.images as? [String]{
+            if (images.count > 0){
             if let url = URL(string: images[0]) {
                 let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
                 let image = UIImage(data: photoData!)
 
                 view.profileImage.image = image
+            }
             }
         }
         
@@ -351,7 +362,7 @@ extension MatchingViewController: KolodaViewDataSource {
         if (self.locationCoords != nil && self.locationCoords![0] != nil && self.locationCoords![1] != nil) {
             var distance = getDistanceInMeters(userLocation: userLocation!, matchLocation: matchLocation)
             if (distance < 1609) {
-                location = "Less than 1 mile away"
+                location = "1 mile away"
             } else {
                 let distanceInMi = distance / 1609
                 location = String(round(distanceInMi)) + " miles away"
@@ -366,10 +377,14 @@ extension MatchingViewController: KolodaViewDataSource {
         let data = (self.userList[index].user.data )
 
         let  totalMiles: String, averageRunLength: String, matchReason: String
-        if (data!["totalMilesRun"] != nil) {
-            totalMiles = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
+        let totalMilesRun: String
+        if (data!["runsPerWeek"] != nil) {
+            
+            var totalRunsString = String(describing: userList[index].user.data!["runsPerWeek"]!)
+            var TotalRunsDouble  = Double(totalRunsString)!
+            totalMilesRun = ("Runs/Week: " + String(format: "%.0f", TotalRunsDouble) + " runs")
         } else {
-            totalMiles = "Total Miles: No info to show"
+            totalMilesRun = "Runs/Week: No info to show"
         }
 
         if (data!["averageRunLength"] != nil) {
@@ -383,7 +398,7 @@ extension MatchingViewController: KolodaViewDataSource {
         view.nameText.text! = nameAge
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
-        view.totalMilesText.text! = totalMiles
+        view.totalMilesText.text! = totalMilesRun
         
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
