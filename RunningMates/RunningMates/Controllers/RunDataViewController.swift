@@ -98,27 +98,13 @@ class RunDataViewController: UIViewController {
     @IBAction func saveClicked(_ sender: Any) {
         
         //check if enough data has been entered
-            updateInfoFromUserDefaults()
-            
+        
             let milespwk:Double = Double(milesPerWeek.text!)!
             let runsperWk:Double = Double(runsPerWeek.text!)!
             var elevation: Double = 0.0
             var milesRun: Double = 0.0
-            var avgRunLength: Double = 0.0
-            
-            if (UserDefaults.standard.value(forKey: "data") != nil) {
-                var dataObj = (UserDefaults.standard.value(forKey: "data") as? [String:Any])!
-      
-                if (dataObj["totalElevationClimbed"] as? Double != nil) {
-                    elevation = (dataObj["totalElevationClimbed"] as? Double)!
-                }
-                if (dataObj["totalMilesRun"] as? Double != nil) {
-                    milesRun = (dataObj["totalMilesRun"] as? Double)!
-                }
-                if (dataObj["averageRunLength"] as? Double != nil) {
-                    avgRunLength = (dataObj["averageRunLength"] as? Double)!
-                }
-            }
+            var avgRunLength: Double = milespwk/runsperWk
+        
 
         
             let data: [String: Any] = [
@@ -136,7 +122,6 @@ class RunDataViewController: UIViewController {
             ]
             
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
-                print("updated user here!")
                 self.updateInfoFromUserDefaults()
             })
         }
