@@ -308,9 +308,9 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
-       // dismiss(animated: true, completion: nil)
+       // let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+        //self.present(vc, animated: true, completion: nil)
+         dismiss(animated: true, completion: nil)
 
         
         }
@@ -318,10 +318,10 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         
         savePrefs()
-        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-       // dismiss(animated: true, completion: nil)
+        //let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+         dismiss(animated: true, completion: nil)
 
-        self.present(vc, animated: true, completion: nil)
+       // self.present(vc, animated: true, completion: nil)
 
     }
   

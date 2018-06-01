@@ -274,13 +274,6 @@
             </objects>
             <point key="canvasLocation" x="382" y="86"/>
         </scene>
-        <!--Matching-->
-        <scene sceneID="dJb-o6-2G6">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Matching" storyboardName="Matching" id="hH5-Hd-laX" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Cn-NX-myu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="orangeCheck" width="293" height="49"/>
