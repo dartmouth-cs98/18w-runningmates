@@ -53,12 +53,14 @@ class DashboardViewController: UIViewController {
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
         
         if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
-            let url = URL(string: userImages[0] as! String)
+            if (userImages.count > 0) {
+                let url = URL(string: userImages[0] as! String)
 
 
-            if let photoData = try? Data(contentsOf: url!) {
-                let image = UIImage(data: photoData)
-                self.profPic.image = image!
+                if let photoData = try? Data(contentsOf: url!) {
+                    let image = UIImage(data: photoData)
+                    self.profPic.image = image!
+                }
             }
 
         }

@@ -302,14 +302,16 @@ extension MatchingViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
         
-        if let images = userList[index].user.images as? [String]{
-            if (images.count > 0){
-            if let url = URL(string: images[0]) {
-                let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-                let image = UIImage(data: photoData!)
+        if (userList.count > 0 && index < userList.count) {
+            if let images = userList[index].user.images as? [String]{
+                if (images.count > 0){
+                    if let url = URL(string: images[0]) {
+                        let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                        let image = UIImage(data: photoData!)
 
-                view.profileImage.image = image
-            }
+                        view.profileImage.image = image
+                    }
+                }
             }
         }
         
