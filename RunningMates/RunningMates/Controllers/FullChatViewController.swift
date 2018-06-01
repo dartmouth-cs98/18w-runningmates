@@ -63,14 +63,6 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.userImg.clipsToBounds = true;
             cell.userImg.layer.borderWidth = 2.5;
             cell.userImg.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
-            
-//            cell.userImg.contentMode = UIViewContentMode.scaleAspectFit
-//            cell.userImg.layoutIfNeeded()
-//            cell.userImg.layer.borderWidth = 1
-//            cell.userImg.layer.masksToBounds = true
-//            cell.userImg.layer.borderColor = UIColor.white.cgColor
-//            cell.userImg.layer.cornerRadius = (cell.userImg.frame.size.width) / 2
-//            cell.userImg.clipsToBounds = true
         }
         cell.nameLabel?.text = displayedMembers
         cell.contentPreviewLabel?.text = content

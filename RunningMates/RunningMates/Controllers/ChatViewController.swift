@@ -97,8 +97,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textView?.text = chat_text
     let messageUserID = data[indexPath.row].sentBy
         
-//  print("HEIGHT OF TEXT", getStringHeight(mytext: chat_text, fontSize: cell.textView.font.pointSize, width: 310))
-        
    //  message to yourself
     if (messageUserID == self.sentByID) {
         let image = UIImage(named: "chat_bubble_sent")
@@ -199,16 +197,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
       //  self.tableView.rowHeight = UITableViewAutomaticDimension
 
         let url = URL(string: self.imageURL)
-        let imgData = try? Data(contentsOf: url!)
-        let image = UIImage(data: imgData!)
-        self.userImageView.image = image
+                if (url != nil) {
+            let imgData = try? Data(contentsOf: url!)
+            let image = UIImage(data: imgData!)
+            self.userImageView.image = image
+                    
+            self.userImageView.layer.cornerRadius = self.userImageView.frame.size.width / 2;
+            self.userImageView.clipsToBounds = true;
+            self.userImageView.layer.borderWidth = 2.5;
+            self.userImageView.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor
         
-        self.userImageView.contentMode = UIViewContentMode.scaleAspectFit
-        self.userImageView.layer.borderWidth = 1
-        self.userImageView.layer.masksToBounds = true
-        self.userImageView.layer.borderColor = UIColor.white.cgColor
-        self.userImageView.layer.cornerRadius = (self.userImageView.frame.size.width) / 2
-        self.userImageView.clipsToBounds = true
+        }
         
         self.userLabel.text = self.recipientName
         
@@ -230,12 +229,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         socket.connect()
 
 
-        if (self.chatID != nil) {
-            print("chat id: " + self.chatID)
-        }
-
-        //        view.bringSubview(toFront: toolbar)
-
         // https://stackoverflow.com/questions/29065219/swift-uitableview-didselectrowatindexpath-not-getting-called
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -254,7 +247,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
     @IBAction func sendMessage(_ sender: Any) {
-        print(self.chatInput.text!)
 
         var message : [String: Any] = [:]
 
@@ -272,7 +264,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 "recipient": self.recipientID
             ]
         }
-        print(message)
 
         let socket = manager!.defaultSocket
         socket.emit("chat message", message)
@@ -288,7 +279,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if(message_to_display.messageText != ""){
             data.append(message_to_display);
 
-            print("data array", data)
             self.tableView.reloadData()
             scrollToBottom()
         }
