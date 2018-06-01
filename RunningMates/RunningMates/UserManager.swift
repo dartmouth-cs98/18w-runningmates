@@ -552,12 +552,13 @@ class UserManager: NSObject {
         ]
         
         let url = rootUrl + "api/signout"
-
+        let userID : String = UserDefaults.standard.value(forKey: "id") as! String
+        
         let _request = Alamofire.request(url, method: .post, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .success: // clear user defaults, route to sign in page
-                    let userID : String = UserDefaults.standard.value(forKey: "id") as! String
+                    
                     SocketIOManager.instance.logout(userID: userID)
                     
                 case .failure:
