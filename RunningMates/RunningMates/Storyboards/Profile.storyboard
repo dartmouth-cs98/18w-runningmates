@@ -112,6 +112,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Arrow" width="16" height="16"/>
+        <image name="Arrow" width="300" height="50"/>
     </resources>
 </document>

@@ -166,6 +166,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Z5m-Sz-U1Q"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="wes-lt-wjT" id="iJ3-t9-Hws"/>
@@ -178,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZL6-aL-Cnf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="469.60000000000002" y="121.88905547226388"/>
+            <point key="canvasLocation" x="681.5" y="121.5"/>
         </scene>
         <!--ProfPic-->
         <scene sceneID="8rG-6v-sB2">
@@ -186,7 +187,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="ProfPic" storyboardName="ProfPic" id="SHu-Gc-kUR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdY-uF-zmT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="68"/>
+            <point key="canvasLocation" x="1253.5" y="68"/>
         </scene>
     </scenes>
     <resources>
