@@ -163,13 +163,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didUpdateLocations")
         if let location = locations[locations.count - 1] as? CLLocation {
-            print("location is CLLocation")
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
-                print("valid lat and long")
-
                 let params : [String:Any] = [
                     "location": [
                         lat,
@@ -180,7 +176,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
                     (title, message) in
-                    print("updated location")
                     self.loadMatches()
                 } )
             } else {
@@ -194,24 +189,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func loadMatches() {
-    
-//        let testerLocation =  [Double(-147.349442), Double(64.751114)]
-//
-//        var lat: Double?
-//        if (self.locationCoords?[0] != nil) {
-//            lat = self.locationCoords![0]
-//        }
-//        var long: Double?
-//        if (self.locationCoords?[1] != nil) {
-//            long = self.locationCoords![1]
-//        }
-//
-//        let params : [String:Any] = [
-//            "location": [
-//                lat,
-//                long
-//            ]
-//        ]
+        print("load matches called")
         
         let maxDistance = self.preferences["proximity"] as! Double
         
@@ -225,9 +203,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.loadingView.removeFromSuperview()
                 self.showForeverAlonePopup()
             })
-//        } else {
-//            print("lat and long are nil")
-//        }
     }
 
 
@@ -310,16 +285,7 @@ extension MatchingViewController: KolodaViewDelegate {
         UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
         UserDefaults.standard.set(location, forKey: "distanceAway")
         performSegue(withIdentifier: "profileDetail", sender: nil)
-
-//
-////        func prepare(for: UIStoryboardSegue, sender: Any?)
-//        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
-//        let vc =  storyboard.instantiateViewController(withIdentifier: "profileDetail")
-//        self.present(vc, animated: true, completion: nil
-//        let storyboard = UIStoryboard(name: "ProfileDetailView", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "profileDetail")
-//        self.present(vc, animated: true, completion: nil)
-    }
+        }
     }
 extension MatchingViewController: KolodaViewDataSource {
 
@@ -328,10 +294,7 @@ extension MatchingViewController: KolodaViewDataSource {
 
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing for segue")
-    }
-    
+
     func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
         return .default
     }
@@ -353,7 +316,6 @@ extension MatchingViewController: KolodaViewDataSource {
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
 
         let thirdPartyIds = userList[index].user.thirdPartyIds
-        print("ids: " + String(describing: thirdPartyIds))
         
         // Calculate potential match's distance from user
         let userLocation = self.locationCoords

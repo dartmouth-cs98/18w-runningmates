@@ -36,6 +36,8 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     var userId: String! = ""
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         loadingView = ProfileLoadingView().fromNib() as! ProfileLoadingView
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
@@ -44,7 +46,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         stravaImage.isHidden = true
         verifiedImage.isHidden = true
         
-        super.viewWillAppear(animated)
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -54,12 +55,24 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     
     
     override func viewDidAppear(_ animated: Bool) {
-        self.userId = UserDefaults.standard.string(forKey: "id")!
+        super.viewDidAppear(animated)
 
-        self.profImage.layer.cornerRadius = self.profImage.frame.size.width / 2;
+        
+//        self.profImage.layer.frame.size.width = 140
+//        self.profImage.layer.frame.size.height = 140
+
+        self.profImage.layer.cornerRadius = 80;
         self.profImage.clipsToBounds = true;
         
-        super.viewDidAppear(animated)
+        self.userId = UserDefaults.standard.string(forKey: "id")!
+        print(self.profImage.layer.frame.size.width)
+        print(self.profImage.layer.frame.size.height)
+        print(self.profImage.frame.size.width)
+        print(self.profImage.frame.size.height)
+
+    
+ 
+        //super.viewDidAppear(animated)
         
         // get list of potential matches, and find the one they clicked
         userList = UserManager.instance.userList
@@ -112,9 +125,9 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             matchReason.text = "*" + userList[index].matchReason + "!*"
         }
         
-        if (user.data!["racesDone"] != nil) {
+        if ( (user.data!["racesDone"] != nil) && (String(describing: user.data!["racesDone"]!) != "(\n)") ){
             racesDone.text = "Races: " + String(describing: user.data!["racesDone"]!)
-        } else {
+                    } else {
             racesDone.removeFromSuperview()
         }
         

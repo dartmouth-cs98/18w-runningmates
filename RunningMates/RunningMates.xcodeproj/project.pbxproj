@@ -10,7 +10,6 @@
 		0B3849E120BA927D009D8577 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */; };
 		2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04C979203B7332008F7E52 /* Gradient.swift */; };
 		2B0EA42820BE1AB800B2F40B /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EA42720BE1AB700B2F40B /* ProfileDetailViewController.swift */; };
-		2B0EA43120BE1AE700B2F40B /* ProfileDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B0EA43020BE1AE700B2F40B /* ProfileDetailView.storyboard */; };
 		2B0EA43920BF045200B2F40B /* ProfileLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0EA43820BF045200B2F40B /* ProfileLoadingView.xib */; };
 		2B0EA44220BF047400B2F40B /* ProfileLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EA44120BF047400B2F40B /* ProfileLoadingView.swift */; };
 		2B16CFE820477C2400DFFBEF /* CreateProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */; };
@@ -149,7 +148,6 @@
 		0B3849E020BA927C009D8577 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		2B04C979203B7332008F7E52 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		2B0EA42720BE1AB700B2F40B /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
-		2B0EA43020BE1AE700B2F40B /* ProfileDetailView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileDetailView.storyboard; sourceTree = "<group>"; };
 		2B0EA43820BF045200B2F40B /* ProfileLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileLoadingView.xib; sourceTree = "<group>"; };
 		2B0EA44120BF047400B2F40B /* ProfileLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLoadingView.swift; sourceTree = "<group>"; };
 		2B16CFD0203CE70E00DFFBEF /* sunrise image.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sunrise image.jpeg"; sourceTree = "<group>"; };
@@ -551,7 +549,6 @@
 				FA5711062021208D005792CB /* Main.storyboard */,
 				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
 				2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */,
-				2B0EA43020BE1AE700B2F40B /* ProfileDetailView.storyboard */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
 				D3BBB48420AE2B8400BD6CF9 /* Login.storyboard */,
@@ -732,7 +729,6 @@
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,
 				2B7B91CE20A4F70800B2EA07 /* MatchingCardOverlay.xib in Resources */,
 				F848C3E720B363BE00F1704D /* Welcome.storyboard in Resources */,
-				2B0EA43120BE1AE700B2F40B /* ProfileDetailView.storyboard in Resources */,
 				FA57110A2021208D005792CB /* Assets.xcassets in Resources */,
 				F8B96DD420927ECE00B0E9B1 /* Profile.storyboard in Resources */,
 				F848C3ED20B36DAC00F1704D /* BasicInfo.storyboard in Resources */,
