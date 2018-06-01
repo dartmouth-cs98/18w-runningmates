@@ -89,12 +89,15 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
             
             
             if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
-                let url = URL(string: userImages[0])
                 
-                
-                if let photoData = try? Data(contentsOf: url!) {
-                    let image = UIImage(data: photoData)
-                    profileImage.image = image!
+                if (userImages.count > 0) {
+                    let url = URL(string: userImages[0])
+                    
+                    
+                    if let photoData = try? Data(contentsOf: url!) {
+                        let image = UIImage(data: photoData)
+                        profileImage.image = image!
+                    }
                 }
             }
             

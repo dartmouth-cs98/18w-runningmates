@@ -62,12 +62,8 @@ class SettingsViewController: UIViewController, MFMailComposeViewControllerDeleg
     
     @IBAction func signOutPressed(_ sender: Any) {
     UserManager.instance.requestForSignOut(completion: {
-//        let  mainVC : ViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main") as! ViewController
-//        self.present(mainVC, animated: true, completion: nil)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : ViewController = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
-//        let navigationController = UINavigationController(rootViewController: vc)
-        
         self.present(vc, animated: true, completion: nil)
         
     })

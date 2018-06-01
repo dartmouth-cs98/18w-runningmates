@@ -73,7 +73,6 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // function adapted from: https://stackoverflow.com/questions/26207846/pass-data-through-segue
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("selected a cell")
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
         let selectedObj = data[indexPath.row] as! [String: Any]
@@ -167,8 +166,6 @@ class FullChatViewController: UIViewController, UITableViewDataSource, UITableVi
 
     // https://www.twilio.com/blog/2016/09/getting-started-with-socket-io-in-swift-on-ios.html
     @objc func handleMessageNotification(_ notification: Notification) {
-        print("-----HANDLING MESSAGE-----")
-        
         self.fetchChats(completion: { chats in
             self.data = chats
             self.tableView.dataSource = self

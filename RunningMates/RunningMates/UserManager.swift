@@ -559,13 +559,13 @@ class UserManager: NSObject {
                 case .success: // clear user defaults, route to sign in page
                     let userID : String = UserDefaults.standard.value(forKey: "id") as! String
                     SocketIOManager.instance.logout(userID: userID)
-                    self.removeUserDefaults()
-                    completion()
+                    
                 case .failure:
                     print("error signing out")
                 }
         }
-//        debugPrint("whole _request ****",_request)
+        self.removeUserDefaults()
+        completion()
     }
     func sendSafeTrackMessage(toPhoneNumber: String?, completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
