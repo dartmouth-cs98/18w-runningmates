@@ -113,18 +113,45 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
                 self.nonBinaryButton.isSelected = true
                 self.nonBinaryLabel.textColor = UIColor(red:255.0/255.0, green:196.0/255.0, blue:46.0/255.0, alpha:1.0)
             }
+            
+            //make sure the input is in range of our sliders
         
             ageSlide.lowerValue = (ageLower as AnyObject).doubleValue
             ageSlide.upperValue = (ageUpper as AnyObject).doubleValue
+            
         
+            if (ageSlide.upperValue > 99){
+                ageSlide.upperValue = 99
+            }
+            
+            if (ageSlide.lowerValue < 18){
+                ageSlide.lowerValue = 18
+            }
+            
             distSlide.lowerValue = (runLengthLower as AnyObject).doubleValue
             distSlide.upperValue = (runLengthUpper as AnyObject).doubleValue
 
+            if (distSlide.upperValue > 25){
+                distSlide.upperValue = 25
+            }
+            if (distSlide.lowerValue < 0){
+                distSlide.lowerValue = 0
+            }
+            
+            
             var userMetersProx = currPref["proximity"] as! Double
             let userMilesProx = (userMetersProx * 0.000621371192)
             userMetersProx = userMilesProx * 1609.344
         
             proxSlide.upperValue = userMilesProx
+            
+            if (proxSlide.upperValue > 25){
+                proxSlide.upperValue = 25
+            }
+            if (proxSlide.upperValue < 0){
+                proxSlide.upperValue = 25
+            }
+            
             
             self.userPref = currPref
         }
@@ -283,39 +310,19 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
         self.present(vc, animated: true, completion: nil)
+       // dismiss(animated: true, completion: nil)
+
         
-//        let isPresentingInAddContactMode = presentingViewController is UINavigationController
-//
-//            if isPresentingInAddContactMode {
-//                dismiss(animated: true, completion: nil)
-//            }
-//            else if let owningNavigationController = navigationController{
-//                owningNavigationController.popViewController(animated: true)
-//            }
-//            else {
-//                fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
-//            }
-        
-    
         }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         
         savePrefs()
         let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+       // dismiss(animated: true, completion: nil)
+
         self.present(vc, animated: true, completion: nil)
-//        let isPresentingInAddContactMode = presentingViewController is UINavigationController
-//
-//        if isPresentingInAddContactMode {
-//            dismiss(animated: true, completion: nil)
-//        }
-//        else if let owningNavigationController = navigationController{
-//            owningNavigationController.popViewController(animated: true)
-//        }
-//        else {
-//            fatalError("The Emergency Contact View Controller is not inside a navigation controller.")
-//        }
-//
+
     }
   
 }

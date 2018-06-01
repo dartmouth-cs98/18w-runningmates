@@ -140,14 +140,14 @@ class RangeSlider: UIControl {
   
         }
         if (id == 2){
-            print("pace")
+            print("distance")
             minimumValue = 0
             
-            upperValue  = 15
+            upperValue  = 25
             
             lowerValue = 0
             
-            maximumValue = 15
+            maximumValue = 25
             
         }
         
