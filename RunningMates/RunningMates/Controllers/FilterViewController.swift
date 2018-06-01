@@ -50,7 +50,8 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var mileageLabel: UILabel!
 
-    
+    var presentedBy: String!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -308,21 +309,19 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-       // let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-        //self.present(vc, animated: true, completion: nil)
-         dismiss(animated: true, completion: nil)
+        print(presentingViewController)
 
+        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+        self.present(vc, animated: true, completion: nil)
+  
         
-        }
+    }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        
+        print(presentingViewController)
         savePrefs()
-        //let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-         dismiss(animated: true, completion: nil)
-
-       // self.present(vc, animated: true, completion: nil)
-
+     
+            let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+            self.present(vc, animated: true, completion: nil)
     }
-  
 }

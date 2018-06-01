@@ -62,6 +62,7 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             return pickerOptions[row]
     }
     
+    
     @IBAction func saveClick(_ sender: Any) {
         // https://stackoverflow.com/questions/26674399/getting-selected-value-of-a-uipickerviewcontrol-in-swift
         let selectedValue = pickerOptions[pickerView.selectedRow(inComponent: 0)]
@@ -82,8 +83,9 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
                 self.updateInfoFromUserDefaults()
                 UserDefaults.standard.set([selectedValue], forKey: "desiredGoals")
-                
+
                 let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as! UINavigationController
+
                 self.present(vc, animated: true, completion: nil)
                 
 //                let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)

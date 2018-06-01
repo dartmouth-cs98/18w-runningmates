@@ -34,7 +34,7 @@
                                         <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="-3"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="bZu-eF-9dI" kind="presentation" id="gcO-WO-vID"/>
+                                            <segue destination="bZu-eF-9dI" kind="presentation" identifier="matchingToFilter" id="gcO-WO-vID"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="a1g-qt-pcQ"/>
