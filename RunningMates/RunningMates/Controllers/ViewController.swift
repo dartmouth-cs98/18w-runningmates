@@ -33,6 +33,8 @@ import WebKit
             let token: String? = UserDefaults.standard.string(forKey: "token")
             if (token != nil && token != "") {
                 // go to Matching view
+//                let storyboard : UIStoryboard = UIStoryboard(name: "SafeTrack", bundle: nil)
+//                let vc : SafeTrackViewController = storyboard.instantiateViewController(withIdentifier: "safeTrack") as! SafeTrackViewController
                 let storyboard : UIStoryboard = UIStoryboard(name: "Matching", bundle: nil)
                 let vc : MatchingViewController = storyboard.instantiateViewController(withIdentifier: "matchingView") as! MatchingViewController
                 let navigationController = UINavigationController(rootViewController: vc)

@@ -35,7 +35,8 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     var currentLocation: CLLocation?
     var zoomLevel: Float = 15.0
     
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     var sendUpdates = false
     //var lastLocation
     
@@ -137,6 +138,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         print("im here")
         let contacts = loadContacts()
         if (contacts != nil){
+
             for (contact) in contacts!{
                 print("contact: ", contact)
                 print(contact.phoneNumber)
@@ -151,7 +153,42 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
                     lastName = UserDefaults.standard.string(forKey: "lastName")!
                 }
             
-                print("Hi ", contact.FirstName, ", your friend ", firstName, " ", lastName, "has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is", currentLocation?.coordinate.latitude, currentLocation?.coordinate.longitude)
+                var latitude = 0.0
+                var longitude = 0.0
+                if(currentLocation != nil){
+                    latitude = currentLocation!.coordinate.latitude
+                    longitude = currentLocation!.coordinate.longitude
+                }
+                
+                print("Hi ", contact.FirstName, ", your friend ", firstName, " ", lastName, "has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is", latitude, longitude)
+                
+                var phoneNumberAsString = ""
+             
+                var message = "Hi \(contact.FirstName) your friend \(firstName)  \(lastName) has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is \(latitude) \(longitude)"
+                print(message)
+              
+                let rootUrl: String = appDelegate.rootUrl
+                let url = rootUrl + "api/safetrack"
+                
+                let params: Parameters = [
+                    "toPhoneNumber": contact.phoneNumber,
+                    "Message": message,
+                    ]
+                
+                let _request = Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .success:
+                            if let jsonObj = response.result.value as? [String:Any] {
+                                
+                                print("success")
+                                
+                            }
+                        case .failure(let error):
+                            print("failed")
+                            print(error)
+                        }
+                    }
                 }
             }
         }
