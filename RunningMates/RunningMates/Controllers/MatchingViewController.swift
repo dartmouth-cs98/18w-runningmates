@@ -41,7 +41,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getCurrentLocation()
+
     }
 
 
@@ -54,13 +54,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
+            getCurrentLocation()
 //            showLocationDisabledPopup()
-            locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
             
         case .authorizedAlways:
+            getCurrentLocation()
             // just needed something in this switch
-            locationManager.startUpdatingLocation()
-            self.kolodaView?.reloadData()
+            // locationManager.startUpdatingLocation()
+            // self.kolodaView?.reloadData()
         }
     }
 
@@ -69,6 +71,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+        self.navigationController?.isNavigationBarHidden = false
+
 
         self.userId = UserDefaults.standard.string(forKey: "id")!
 
@@ -80,8 +85,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
 
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
 //        navigationController?.setToolbarHidden(false, animated: false)
 
    }
@@ -91,11 +94,10 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             // The user denied authorization
             showLocationDisabledPopup()
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
-            print("authorized")
-            loadMatches()
+            //loadMatches()
         } else {
             print("authorized when in use")
-            loadMatches()
+            // loadMatches()
         }
     }
     
@@ -106,7 +108,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
-        print("in showForeverAlonePopup")
         
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you.")
@@ -151,7 +152,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
 
     func getCurrentLocation() {
-        print("getCurrentLocation")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -189,8 +189,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func loadMatches() {
-        print("load matches called")
-        
+ 
         let maxDistance = self.preferences["proximity"] as! Double
         
 //        if (lat != nil && long != nil) {
@@ -201,7 +200,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.kolodaView?.reloadData()
 
                 self.loadingView.removeFromSuperview()
-                self.showForeverAlonePopup()
             })
     }
 
@@ -237,6 +235,17 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
    //MARK: Actions
 
+    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+        
+        //            let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+        //            self.present(vc, animated: true, completion: nil)
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as? FilterViewController
+        {
+            present(vc, animated: true, completion: nil)
+        }
+        //self.navigationController?.popToRootViewController(animated: true)
+        
+    }
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
     }
@@ -264,11 +273,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
             UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
 
-            self.present(alertController, animated: true, completion: nil)
+                if message == "Go to your chat to say hello!" {
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
             })
         }
     }
@@ -280,7 +292,6 @@ extension MatchingViewController: KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        print("user clicked on card at " + String(index))
         
         UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
         UserDefaults.standard.set(location, forKey: "distanceAway")

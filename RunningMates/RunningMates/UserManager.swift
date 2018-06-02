@@ -346,8 +346,6 @@ class UserManager: NSObject {
                                 
                                 if (user != nil) {
                                     usersList.append(sortUserInstance)
-                                } else {
-                                    print("nil")
                                 }
                             } catch UserInitError.invalidId {
                                 print("invalid id")
