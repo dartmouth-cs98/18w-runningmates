@@ -28,6 +28,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var profileImageUrls: [Int: String] = [:]
         var signUrls: [AnyObject] = []
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
@@ -56,6 +57,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.scrollView.contentInset = UIEdgeInsets.zero
+
         
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
