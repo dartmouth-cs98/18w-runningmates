@@ -40,6 +40,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
 
         loadingView = ProfileLoadingView().fromNib() as! ProfileLoadingView
         topView.addSubview(loadingView)
+        self.loadingView.center = self.view.center
         loadingView.progressIndicator.startAnimating()
         stravaImage.isHidden = true
         verifiedImage.isHidden = true

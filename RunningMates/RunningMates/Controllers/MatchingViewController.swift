@@ -89,6 +89,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
         loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
         topView.addSubview(loadingView)
+        self.loadingView.center = self.view.center
         loadingView.progressIndicator.startAnimating()
         
         //        navigationController?.setToolbarHidden(false, animated: false)
