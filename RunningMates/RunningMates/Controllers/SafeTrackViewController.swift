@@ -36,6 +36,9 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     var zoomLevel: Float = 15.0
     
     
+    var sendUpdates = false
+    //var lastLocation
+    
     override func loadView() {
         super.loadView()
 
@@ -52,7 +55,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-        
+        didTapStartTracking()
         
         let camera = GMSCameraPosition.camera(withLatitude: +31.75097946, longitude: +35.23694368, zoom: 17.0)
         
@@ -69,6 +72,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         locations: [CLLocation]) {
         print("*********did update locations")
         let location: CLLocation = locations.last!
+        currentLocation = location
         print("Location: \(location)")
         
          marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -110,7 +114,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
                 stLabel.backgroundColor = UIColor(red:244.0/255.0, green:78.0/255.0, blue:86.0/255.0, alpha:1.0)
                 stLabel.textColor = UIColor.white
             stLabel.text = "Stop SafeTrack"
-            didTapStartTracking()
+//            didTapStartTracking()
 
             }
             
@@ -127,8 +131,35 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         print("Error: \(error)")
 }
      func didTapStartTracking() {
-        var contacts = loadContacts()
-        print(contacts)
+        print("in start tracking")
+        print("St switch is", stSwitch)
+        if (stSwitch < 0 ){
+        print("im here")
+        let contacts = loadContacts()
+        if (contacts != nil){
+            for (contact) in contacts!{
+                print("contact: ", contact)
+                print(contact.phoneNumber)
+                print("I want to text: ", contact.phoneNumber)
+                print("and say :")
+                var firstName = ""
+                var lastName = ""
+                if (UserDefaults.standard.string(forKey: "firstName") != nil) {
+                    firstName = UserDefaults.standard.string(forKey: "firstName")!
+                }
+                if (UserDefaults.standard.string(forKey: "lastName") != nil) {
+                    lastName = UserDefaults.standard.string(forKey: "lastName")!
+                }
+            
+                print("Hi ", contact.FirstName, ", your friend ", firstName, " ", lastName, "has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is", currentLocation?.coordinate.latitude, currentLocation?.coordinate.longitude)
+                }
+            }
+        }
+        //20.0 is 20 seconds & is just for testing - change to 300 in final version
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) { [weak self] in
+            self?.didTapStartTracking()
+        }
+    }
 //        print( ProcessInfo.processInfo.environment["AUTH_SECRET"])
 //        print("sending text",  ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"] )
 //        if let accountSID = ProcessInfo.processInfo.environment["TWILIO_ACCOUNT_SID"],
@@ -150,7 +181,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
 //        else{
 //            print("error with tokens")
 //        }
-    }
+ 
     
     @IBAction func didPressEndRun(_ sender: Any) {
         dismiss(animated: true, completion: nil)
