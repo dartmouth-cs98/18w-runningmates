@@ -11,6 +11,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.6.0):
     - GoogleMaps/Base (= 2.6.0)
+  - ImgixSwift (0.3.0)
   - Koloda (4.3.1):
     - pop (~> 1.0)
   - OAuthSwift (1.2.0)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - ExpyTableView
   - GoogleMaps
   - GooglePlaces
+  - ImgixSwift
   - Koloda
   - OAuthSwift (~> 1.2.0)
   - Socket.IO-Client-Swift (~> 13.1.0)
@@ -41,6 +43,7 @@ SPEC CHECKSUMS:
   ExpyTableView: 75fe6494d4613fd3dc4bd965cce6e14cec7e2223
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  ImgixSwift: 1298ffe4b3a6e44c635be32f61c1ca94e8f8084d
   Koloda: 0d39b2aa188ccd1fac48d752acaf9802e683c625
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
@@ -48,6 +51,6 @@ SPEC CHECKSUMS:
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
   UIDropDown: 22e6e3e22d419884c8f21d95ea9be36aac905ed4
 
-PODFILE CHECKSUM: 14776f66b71febe79588c8959c60643428dc53a5
+PODFILE CHECKSUM: 05e714715023034926fd54cb5b041d0a69c545dd
 
 COCOAPODS: 1.4.0

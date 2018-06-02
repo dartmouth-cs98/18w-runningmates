@@ -15,4 +15,5 @@ target 'RunningMates' do
     pod 'EMAlertController'
     pod 'UIDropDown'
     pod 'Canvas'
+    pod 'ImgixSwift'
 end
