@@ -124,6 +124,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             let confirm = EMAlertAction(title: "Refresh", style: .normal) {
                 self.loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
                 self.topView.addSubview(self.loadingView)
+                self.loadingView.center = self.view.center
                 self.loadingView.progressIndicator.startAnimating()
                 self.locationManager.startUpdatingLocation()
             }
