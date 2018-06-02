@@ -380,7 +380,10 @@ extension MatchingViewController: KolodaViewDataSource {
         }
         
         if (data!["averageRunLength"] != nil) {
-            averageRunLength = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!) + " mi")
+            var averageRunLengthString = String(describing: userList[index].user.data!["averageRunLength"]!)
+            var averageRunLengthDouble = Double(averageRunLengthString)!
+            averageRunLength = ("Avg. Run Length: " + String(format: "%.1f", averageRunLengthDouble) + " mi.")
+            
         } else {
             averageRunLength = "Avg. Run Length: No info to show"
         }
