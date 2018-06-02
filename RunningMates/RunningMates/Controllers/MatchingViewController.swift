@@ -42,12 +42,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet var topView: GradientView!
 
     let client = ImgixClient.init(host: "runningmates.imgix.net")
-  
+
     var userList = [sortedUser]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getCurrentLocation()
+
     }
 
 
@@ -57,16 +57,18 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         //ask for permission. note: iOS only lets you ask once
         case .notDetermined:
             locationManager.requestAlwaysAuthorization()
-            
+
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
+            getCurrentLocation()
 //            showLocationDisabledPopup()
-            locationManager.startUpdatingLocation()
-            
+            // locationManager.startUpdatingLocation()
+
         case .authorizedAlways:
+            getCurrentLocation()
             // just needed something in this switch
-            locationManager.startUpdatingLocation()
-            self.kolodaView?.reloadData()
+            // locationManager.startUpdatingLocation()
+            // self.kolodaView?.reloadData()
         }
     }
 
@@ -75,6 +77,9 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
         kolodaView.dataSource = self
         kolodaView.delegate = self
+
+        self.navigationController?.isNavigationBarHidden = false
+
 
         self.userId = UserDefaults.standard.string(forKey: "id")!
 
@@ -86,40 +91,36 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
 
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
 //        navigationController?.setToolbarHidden(false, animated: false)
 
    }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
             // The user denied authorization
             showLocationDisabledPopup()
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
-            print("authorized")
-            loadMatches()
+            //loadMatches()
         } else {
             print("authorized when in use")
-            loadMatches()
+            // loadMatches()
         }
     }
-    
-    
-    
+
+
+
     func showForeverAlonePopup() {
         // closures: https://stackoverflow.com/questions/45925661/unexpected-non-void-return-value-in-void-function-swift3
-        
+
         //https://www.hackingwithswift.com/read/22/2/requesting-location-core-location
         //location services
-        print("in showForeverAlonePopup")
-        
+
         if (self.current_index != nil && self.current_index >= self.userList.count || self.userList.count == 0) {
             let alert = EMAlertController(title: "Uh oh!", message: "There's no one new around you.")
             let icon = UIImage(named: "thumbsdown")
-            
+
             alert.iconImage = icon
-            
+
             let cancel = EMAlertAction(title: "Cancel", style: .cancel)
             let confirm = EMAlertAction(title: "Refresh", style: .normal) {
                 self.loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
@@ -127,26 +128,26 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.loadingView.progressIndicator.startAnimating()
                 self.locationManager.startUpdatingLocation()
             }
-            
+
             alert.addAction(action: cancel)
             alert.addAction(action: confirm)
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     func showLocationDisabledPopup() {
         let alertController = UIAlertController(
             title: "Background Location Access Disabled",
             message: "In order to optimize your matching experience please enable location services",
             preferredStyle: .alert)
-        
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-        
+
         let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
             if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
                 UIApplication.shared.open(URL(string: "\(url)")!)
-                
+
             }
         }
         alertController.addAction(openAction)
@@ -157,7 +158,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
 
     func getCurrentLocation() {
-        print("getCurrentLocation")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -179,7 +179,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                     ],
                     "email": self.userEmail
                 ]
-                
+
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
                     (title, message) in
                     self.loadMatches()
@@ -193,12 +193,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // other wise this function will be called every time when user location changes.
         manager.stopUpdatingLocation()
     }
-    
+
     func loadMatches() {
-        print("load matches called")
-        
+
         let maxDistance = self.preferences["proximity"] as! Double
-        
+
 //        if (lat != nil && long != nil) {
             UserManager.instance.requestPotentialMatches(userEmail: self.userEmail, maxDistance: maxDistance, completion: { list in
 
@@ -207,7 +206,6 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.kolodaView?.reloadData()
 
                 self.loadingView.removeFromSuperview()
-                self.showForeverAlonePopup()
             })
     }
 
@@ -243,6 +241,17 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
    //MARK: Actions
 
+    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+
+        //            let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+        //            self.present(vc, animated: true, completion: nil)
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as? FilterViewController
+        {
+            present(vc, animated: true, completion: nil)
+        }
+        //self.navigationController?.popToRootViewController(animated: true)
+
+    }
     @IBAction func leftButtonTapped() {
         kolodaView?.swipe(.left)
     }
@@ -270,11 +279,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
             UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
             //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
 
-            self.present(alertController, animated: true, completion: nil)
+                if message == "Go to your chat to say hello!" {
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                    alertController.addAction(defaultAction)
+
+                    self.present(alertController, animated: true, completion: nil)
+                }
             })
         }
     }
@@ -284,10 +296,9 @@ extension MatchingViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         koloda.reloadData()
     }
-    
+
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        print("user clicked on card at " + String(index))
-        
+
         UserDefaults.standard.set(Int(index), forKey: "clickedUserIndex")
         UserDefaults.standard.set(location, forKey: "distanceAway")
         performSegue(withIdentifier: "profileDetail", sender: nil)
@@ -307,54 +318,15 @@ extension MatchingViewController: KolodaViewDataSource {
 
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let view: MatchingCardView = MatchingCardView().fromNib() as! MatchingCardView
-        
-        if let images = userList[index].user.images as? [String]{
-            if (images.count > 0){
-            if let url = URL(string: images[0]) {
-                let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//                let StringUrl = String(images[0])
-//                print("url", url)
-//                print("photoData", photoData)
-//
-//                let result = client.buildUrl(StringUrl, params: [
-//                    "auto":"compress"])
-//
-//
-//          //      let url = URL(string: image.url)
-//
-//                DispatchQueue.global().async {
-//                    let data = try? Data(contentsOf: result) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//                    DispatchQueue.main.async {
-//                        let image =  UIImage(data: data!)
-//
-//                        self.imageView.image = UIImage(data: data!)
-//                        view.profileImage.image = image
-//
-//                    }
-//                }
-////                // Build a basic URL
-//
-//              // https://assets.imgix.net/dog.jpg
-//                print(result)
-////                // Add some parameters
-////                client.buildUrl("dog.jpg", params: [
-////                    "w": 300,
-////                    "h": 300,
-////                    "fit": "crop"
-////                    ]) // => https://assets.imgix.net/dog.jpg?w=300&h=300&fit=crop
-////                let NewphotoData = try? Data(contentsOf: result)
-//
-                let image = UIImage(data: photoData!)
 
-                view.profileImage.image = image
-              }
+
             }
         }
-        
+
         let nameAge = (String(userList[index].user.firstName!) + ", " + String(userList[index].user.age))
 
         let thirdPartyIds = userList[index].user.thirdPartyIds
-        
+
         // Calculate potential match's distance from user
         let userLocation = self.locationCoords
         let matchLocation = [Double(userList[index].user.location[0]), Double(userList[index].user.location[1])]
@@ -367,7 +339,7 @@ extension MatchingViewController: KolodaViewDataSource {
                 let distanceInMi = distance / 1609
                 location = String(round(distanceInMi)) + " miles away"
             }
-            
+
             view.locationText.text! = location
         } else {
             view.locationText.text! = ""
@@ -379,7 +351,7 @@ extension MatchingViewController: KolodaViewDataSource {
         let  totalMiles: String, averageRunLength: String, matchReason: String
         let totalMilesRun: String
         if (data!["runsPerWeek"] != nil) {
-            
+
             var totalRunsString = String(describing: userList[index].user.data!["runsPerWeek"]!)
             var TotalRunsDouble  = Double(totalRunsString)!
             totalMilesRun = ("Runs/Week: " + String(format: "%.0f", TotalRunsDouble) + " runs")
@@ -399,7 +371,7 @@ extension MatchingViewController: KolodaViewDataSource {
         view.bioText.text! = bio
         view.averageRunLengthText.text! = averageRunLength
         view.totalMilesText.text! = totalMilesRun
-        
+
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.clipsToBounds = true
 
@@ -428,7 +400,7 @@ extension MatchingViewController: KolodaViewDataSource {
 
         current_index = index + 1
         showForeverAlonePopup()
-        
+
         if (index >= userList.count) {
             current_index = 0
         }

@@ -34,7 +34,7 @@
                                         <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="-3"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="bZu-eF-9dI" kind="presentation" identifier="matchingToFilter" id="gcO-WO-vID"/>
+                                            <segue destination="bZu-eF-9dI" kind="presentation" modalPresentationStyle="overCurrentContext" id="Uux-tM-R3A"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="a1g-qt-pcQ"/>
@@ -94,7 +94,7 @@
         <!--FilterStoryboard-->
         <scene sceneID="7Xc-qg-bIu">
             <objects>
-                <viewControllerPlaceholder storyboardName="FilterStoryboard" id="bZu-eF-9dI" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Filter" storyboardName="FilterStoryboard" id="bZu-eF-9dI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6t-Ih-xyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3206.4000000000001" y="102.54872563718142"/>
