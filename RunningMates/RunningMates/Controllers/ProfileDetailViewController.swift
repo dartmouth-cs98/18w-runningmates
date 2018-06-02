@@ -41,8 +41,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         loadingView = ProfileLoadingView().fromNib() as! ProfileLoadingView
         topView.addSubview(loadingView)
         loadingView.progressIndicator.startAnimating()
-        print("showing loading view")
-        
         stravaImage.isHidden = true
         verifiedImage.isHidden = true
         
@@ -65,10 +63,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         self.profImage.clipsToBounds = true;
         
         self.userId = UserDefaults.standard.string(forKey: "id")!
-        print(self.profImage.layer.frame.size.width)
-        print(self.profImage.layer.frame.size.height)
-        print(self.profImage.frame.size.width)
-        print(self.profImage.frame.size.height)
 
     
  
@@ -152,7 +146,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             segmentsArray = list
         })
         
-        print(String(describing: segmentsArray))
         
         if (user.data!["totalMilesRun"] != nil) {
             self.totalMilesLabel.text = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
