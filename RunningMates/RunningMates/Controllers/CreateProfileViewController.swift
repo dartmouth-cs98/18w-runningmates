@@ -65,13 +65,26 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.rootUrl = appDelegate.rootUrl
         
         
-        self.nameTextView.layer.borderColor = UIColor.gray.cgColor
+        self.nameTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.nameTextView.layer.borderWidth = 1
+        self.nameTextView.layer.cornerRadius = 10
+        
+        self.bioTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
         self.bioTextView.layer.borderWidth = 1
-        self.bioTextView.layer.borderColor = UIColor.gray.cgColor
-        self.milesPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
-        self.runsPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
+        self.bioTextView.layer.cornerRadius = 10
+
+        self.milesPerWeekTextField.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.milesPerWeekTextField.layer.borderWidth = 1
+        self.milesPerWeekTextField.layer.cornerRadius = 10
+        
+        self.runsPerWeekTextField.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.runsPerWeekTextField.layer.borderWidth = 1
+        self.runsPerWeekTextField.layer.cornerRadius = 10
+        
+        self.racesDoneTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
         self.racesDoneTextView.layer.borderWidth = 1
-        self.racesDoneTextView.layer.borderColor = UIColor.gray.cgColor
+        self.racesDoneTextView.layer.cornerRadius = 10
+
         
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true;
