@@ -11,7 +11,11 @@ import Alamofire
 import CoreLocation
 import Koloda
 import EMAlertController
+import ImgixSwift
 
+// Import the framework
+
+// Set up an ImgixClient
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
    // MARK: Properties
@@ -37,6 +41,8 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     @IBOutlet weak var avgPaceLabel: UILabel!
     @IBOutlet var topView: GradientView!
 
+    let client = ImgixClient.init(host: "runningmates.imgix.net")
+  
     var userList = [sortedUser]()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -306,10 +312,42 @@ extension MatchingViewController: KolodaViewDataSource {
             if (images.count > 0){
             if let url = URL(string: images[0]) {
                 let photoData = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//                let StringUrl = String(images[0])
+//                print("url", url)
+//                print("photoData", photoData)
+//
+//                let result = client.buildUrl(StringUrl, params: [
+//                    "auto":"compress"])
+//
+//
+//          //      let url = URL(string: image.url)
+//
+//                DispatchQueue.global().async {
+//                    let data = try? Data(contentsOf: result) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//                    DispatchQueue.main.async {
+//                        let image =  UIImage(data: data!)
+//
+//                        self.imageView.image = UIImage(data: data!)
+//                        view.profileImage.image = image
+//
+//                    }
+//                }
+////                // Build a basic URL
+//
+//              // https://assets.imgix.net/dog.jpg
+//                print(result)
+////                // Add some parameters
+////                client.buildUrl("dog.jpg", params: [
+////                    "w": 300,
+////                    "h": 300,
+////                    "fit": "crop"
+////                    ]) // => https://assets.imgix.net/dog.jpg?w=300&h=300&fit=crop
+////                let NewphotoData = try? Data(contentsOf: result)
+//
                 let image = UIImage(data: photoData!)
 
                 view.profileImage.image = image
-            }
+              }
             }
         }
         
