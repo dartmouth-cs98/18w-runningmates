@@ -50,8 +50,15 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         switch CLLocationManager.authorizationStatus() {
         //ask for permission. note: iOS only lets you ask once
         case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
+            let canAsk = locationManager //.requestAlwaysAuthorization()
+            if (canAsk != nil){
+                 locationManager.requestAlwaysAuthorization()
+            }
+            else{
+                showLocationDisabledPopup()
+            }
             
+        
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
             getCurrentLocation()
