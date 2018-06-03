@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var didSignUpWithStrava: Int = 0
 
 
-//     var rootUrl: String = "http://localhost:9090/"
-    var rootUrl: String = "https://running-mates.herokuapp.com/"
+     var rootUrl: String = "http://localhost:9090/"
+    //var rootUrl: String = "https://running-mates.herokuapp.com/"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
