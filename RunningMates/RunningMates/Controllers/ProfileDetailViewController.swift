@@ -14,16 +14,12 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var profImage: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var totalMilesLabel: UILabel!
     @IBOutlet weak var averageRunLengthLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet var topView: UIView!
     @IBOutlet weak var milesPerWeek: UILabel!
     @IBOutlet weak var runsPerWeek: UILabel!
-    @IBOutlet weak var racesDone: UILabel!
-    @IBOutlet weak var totalElevation: UILabel!
     @IBOutlet weak var matchReason: UILabel!
-    @IBOutlet weak var matchButton: UIButton!
     @IBOutlet weak var segments: UILabel!
     @IBOutlet weak var segment2: UILabel!
     @IBOutlet weak var segment3: UILabel!
@@ -45,7 +41,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var theriTime3: UILabel!
     @IBOutlet weak var theriTime4: UILabel!
     @IBOutlet weak var theriTime5: UILabel!
-    @IBOutlet weak var stravaImage: UIImageView!
     @IBOutlet weak var verifiedImage: UIImageView!
     
     var userList = [sortedUser]()
@@ -62,7 +57,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         topView.addSubview(loadingView)
         self.loadingView.center = self.view.center
         loadingView.progressIndicator.startAnimating()
-        stravaImage.isHidden = true
         verifiedImage.isHidden = true
         
     }
@@ -130,12 +124,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             matchReason.text = "*" + userList[index].matchReason + "!*"
         }
         
-        if ( (user.data!["racesDone"] != nil) && (String(describing: user.data!["racesDone"]!) != "(\n)") ){
-            racesDone.text = "Races: " + String(describing: user.data!["racesDone"]!)
-                    } else {
-            racesDone.removeFromSuperview()
-        }
-        
         if let images = user.images as? [String] {
             if let url = URL(string: images[0]) {
                 let photoData = try? Data(contentsOf: url)
@@ -147,7 +135,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         
         if (user.thirdPartyIds != nil) {
             verifiedImage.isHidden = false
-            stravaImage.isHidden = false
         }
         
         segments.text = ""
@@ -162,7 +149,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
                 self.yourTime1.text = segmentsArray[0].userTime
                 self.theriTime1.text = segmentsArray[0].targetTime
             } else {
-                self.segments.text = ""
+                self.segments.text = user.firstName!  + " has no segments."
                 self.distance1.text = ""
                 self.yourTime1.text = ""
                 self.theriTime1.text = ""
@@ -219,11 +206,6 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             }
         })
         
-
-        
-        
-        
-        
         if (user.data!["averageRunLength"] != nil) {
             self.averageRunLengthLabel.text = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!) + " mi")
         } else {
@@ -231,14 +213,5 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         }
         self.loadingView.removeFromSuperview()
     }
-   
-    @IBAction func onClick(_ sender: Any) {
-        UserManager.instance.sendMatchRequest(userId: self.userId, targetId: self.userList[index].user.id!, firstName: self.userList[index].user.firstName!, completion: { title, message in
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
-                        self.present(alertController, animated: true,  completion: nil)
 
-        })
-    }
 }

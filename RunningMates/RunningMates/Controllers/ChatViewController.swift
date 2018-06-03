@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
+    @IBOutlet weak var typeView: UIView!
     @IBOutlet weak var myStupidView: UIView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
@@ -191,6 +192,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector:"keyboardWillAppear:", name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector:"keyboardWillDisappear:", name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         self.tableView.separatorStyle = .none
 
@@ -283,6 +286,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             scrollToBottom()
         }
 
+    }
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.chatInput.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    @objc func keyboardWillDisappear(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                self.chatInput.frame.origin.y += keyboardSize.height
+        }
     }
 }
 

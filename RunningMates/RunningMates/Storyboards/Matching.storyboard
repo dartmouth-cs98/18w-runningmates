@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SLy-yC-Sbj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -282,27 +282,6 @@
                                 <rect key="frame" x="141" y="84" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="api_logo_pwrdBy_strava_horiz_light" translatesAutoresizingMaskIntoConstraints="NO" id="AuM-PE-AZf">
-                                <rect key="frame" x="247" y="620" width="109" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAn-mk-2HK">
-                                <rect key="frame" x="141" y="607" width="92" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.76862745099999996" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Match">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onClick:" destination="7Qd-11-esG" eventType="touchUpInside" id="8im-xd-QFd"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iI-en-vV1">
                                 <rect key="frame" x="19" y="429" width="302" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -415,7 +394,6 @@
                         <outlet property="distance4" destination="lby-yo-seV" id="Twv-d2-3Dp"/>
                         <outlet property="distance5" destination="0yf-HO-lEB" id="r1J-NI-1kv"/>
                         <outlet property="locationLabel" destination="dcM-a7-leD" id="Bb8-jG-Fxo"/>
-                        <outlet property="matchButton" destination="cAn-mk-2HK" id="6f3-eo-zYs"/>
                         <outlet property="matchReason" destination="Apy-wo-dRh" id="dfo-b6-MUb"/>
                         <outlet property="milesPerWeek" destination="yOK-Go-gCr" id="Smk-5Y-HDF"/>
                         <outlet property="name4Segment" destination="XGt-7u-PET" id="DaN-X7-ZOM"/>
@@ -427,7 +405,6 @@
                         <outlet property="segment4" destination="ltZ-Oe-99p" id="DFT-20-CXh"/>
                         <outlet property="segment5" destination="0MX-ig-eMm" id="Mjk-NZ-5cy"/>
                         <outlet property="segments" destination="rrw-dA-vgF" id="u4w-aK-VAV"/>
-                        <outlet property="stravaImage" destination="AuM-PE-AZf" id="irk-XQ-0nW"/>
                         <outlet property="theriTime1" destination="o1k-mK-d5b" id="wo0-5P-w5h"/>
                         <outlet property="theriTime2" destination="F2R-C7-gJ7" id="Q31-w7-fy7"/>
                         <outlet property="theriTime3" destination="p9w-xP-3aN" id="A4G-nI-VIH"/>
@@ -466,7 +443,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="api_logo_pwrdBy_strava_horiz_light" width="338" height="63"/>
         <image name="chat-4-xxl" width="80" height="80"/>
         <image name="profile_default.jpg" width="247" height="247"/>
         <image name="settings-10-xxl" width="80" height="80"/>
