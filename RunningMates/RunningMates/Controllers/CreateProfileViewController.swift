@@ -103,6 +103,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true
+        }
             
             
             if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
@@ -149,7 +150,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     }
                 }
             }
-        }
+        
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.stravaLogo1.isHidden = false
             self.stravaLogo2.isHidden = false
