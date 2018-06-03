@@ -164,7 +164,9 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
                 
                 var phoneNumberAsString = ""
              
-                var message = "Hi \(contact.FirstName) your friend \(firstName)  \(lastName) has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is \(latitude) \(longitude)"
+                var link = "http://maps.google.com/maps?q=loc:" + String(format: "%f,%f", latitude, longitude);
+                
+                var message = "Hi \(contact.FirstName) your friend \(firstName)  \(lastName) has you listed as an Emergency Contact in RunningMates, and wants you know they are currently on a run and that their location is: \(link)"
                 print(message)
               
                 let rootUrl: String = appDelegate.rootUrl
@@ -181,7 +183,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         }
         //20.0 is 20 seconds & is just for testing - change to 300 in final version
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 300.0) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20) { [weak self] in
             self?.didTapStartTracking()
         }
     }
