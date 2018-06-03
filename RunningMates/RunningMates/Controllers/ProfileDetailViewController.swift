@@ -25,6 +25,10 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var matchReason: UILabel!
     @IBOutlet weak var matchButton: UIButton!
     @IBOutlet weak var segments: UILabel!
+    @IBOutlet weak var segment2: UILabel!
+    @IBOutlet weak var segment3: UILabel!
+    @IBOutlet weak var segment4: UILabel!
+    @IBOutlet weak var segment5: UILabel!
     @IBOutlet weak var stravaImage: UIImageView!
     @IBOutlet weak var verifiedImage: UIImageView!
     
@@ -100,20 +104,8 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         if (data!["runsPerWeek"] != nil) {
             runsPerWeek.text = String(describing: data!["runsPerWeek"]!) + " runs/week"
         } else {
-            totalElevation.text = ""
-            totalElevation.removeFromSuperview()
-        }
-        if (data!["totalMilesRun"] != nil) {
-            totalMilesLabel.text = String(describing: data!["totalMilesRun"]!) + " total miles"
-        } else {
-            totalMilesLabel.text = ""
-            totalMilesLabel.removeFromSuperview()
-        }
-        if (data!["totalElevationClimbed"] != nil) {
-            totalElevation.text = String(describing: data!["totalElevationClimbed"]!) + " total Elevation (ft)"
-        } else {
-            totalElevation.text = ""
-            totalElevation.removeFromSuperview()
+            runsPerWeek.text = ""
+            runsPerWeek.removeFromSuperview()
         }
         
         if (userList[index].matchReason != "") {
@@ -141,18 +133,47 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         }
         
         segments.text = ""
-        var segmentsArray = [segment]()
+        var segmentsArray = [segment!]()
         
         UserManager.instance.sendMatchingSegmentRequest(userId: userId!, targetId: user.id!, completion: { list in
             segmentsArray = list
+            
+            if (segmentsArray.indices.contains(0)){
+                self.segments.text = segmentsArray[0].title
+            } else {
+                self.segments.text = ""
+            }
+
+
+            if (segmentsArray.indices.contains(1)){
+                self.segment2.text = segmentsArray[1].title
+            } else {
+                self.segment2.text = ""
+            }
+
+            if (segmentsArray.indices.contains(2)){
+                self.segment3.text = segmentsArray[2].title
+            } else {
+                self.segment3.text = ""
+            }
+
+            if (segmentsArray.indices.contains(3)){
+                self.segment4.text = segmentsArray[3].title
+            } else {
+                self.segment4.text = ""
+            }
+
+            if (segmentsArray.indices.contains(4)){
+                self.segment5.text = segmentsArray[4].title
+            } else {
+                self.segment5.text = ""
+            }
         })
         
+
         
-        if (user.data!["totalMilesRun"] != nil) {
-            self.totalMilesLabel.text = ("Total Miles: " + String(describing: userList[index].user.data!["totalMilesRun"]!) + " mi")
-        } else {
-            self.totalMilesLabel.text = "Total Miles: No info to show"
-        }
+        
+        
         
         if (user.data!["averageRunLength"] != nil) {
             self.averageRunLengthLabel.text = ("Avg. Run Length: " + String(describing: userList[index].user.data!["averageRunLength"]!) + " mi")
