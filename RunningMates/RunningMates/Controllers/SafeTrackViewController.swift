@@ -71,10 +71,10 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations
         locations: [CLLocation]) {
-        print("*********did update locations")
+        //print("*********did update locations")
         let location: CLLocation = locations.last!
         currentLocation = location
-        print("Location: \(location)")
+       // print("Location: \(location)")
         
          marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
  

@@ -42,8 +42,8 @@ class RunDataViewController: UIViewController {
         self.racesDone.layer.borderWidth = 1
         self.userEmail = UserDefaults.standard.value(forKey: "email") as! String
         self.rootUrl = appDelegate.rootUrl
-        print("did sign up with strava: ")
-        print(self.appDelegate.didSignUpWithStrava)
+        //print("did sign up with strava: ")
+        //print(self.appDelegate.didSignUpWithStrava)
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.ver1.isHidden = false
             self.ver2.isHidden = false
