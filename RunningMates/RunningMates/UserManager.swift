@@ -465,7 +465,7 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
-                print(response)
+                print("matching segment response", response)
                 switch response.result {
                     
                 case .success:
@@ -475,7 +475,12 @@ class UserManager: NSObject {
                                 print (jsonSegment)
                                 let title = (jsonSegment["title"] as! String)
                                 let targetTime = (jsonSegment["targetTime"] as! String)
-                                let userTime = (jsonSegment["userTime"] as! String!)
+                                var userTime = ""
+                                if (jsonSegment["userTime"] is NSNull){
+                                    userTime = ""
+                                } else {
+                                    userTime = (jsonSegment["userTime"] as! String!)
+                                }
                                 let distance = (jsonSegment["distance"] as! Float)
                                 let segmentInstance = segment(title: title, userTime: userTime, targetTime: targetTime, distance: distance);
                                 
