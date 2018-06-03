@@ -20,7 +20,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet var topView: UIView!
     @IBOutlet weak var milesPerWeek: UILabel!
     @IBOutlet weak var runsPerWeek: UILabel!
-    @IBOutlet weak var racesDone: UILabel!
+    // @IBOutlet weak var racesDone: UILabel!
     @IBOutlet weak var totalElevation: UILabel!
     @IBOutlet weak var matchReason: UILabel!
     @IBOutlet weak var matchButton: UIButton!
@@ -130,11 +130,11 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             matchReason.text = "*" + userList[index].matchReason + "!*"
         }
         
-        if ( (user.data!["racesDone"] != nil) && (String(describing: user.data!["racesDone"]!) != "(\n)") ){
-            racesDone.text = "Races: " + String(describing: user.data!["racesDone"]!)
-                    } else {
-            racesDone.removeFromSuperview()
-        }
+//        if ( (user.data!["racesDone"] != nil) && (String(describing: user.data!["racesDone"]!) != "(\n)") ){
+//            racesDone.text = "Races: " + String(describing: user.data!["racesDone"]!)
+//                    } else {
+//            racesDone.removeFromSuperview()
+//        }
         
         if let images = user.images as? [String] {
             if let url = URL(string: images[0]) {
