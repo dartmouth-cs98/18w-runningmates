@@ -85,15 +85,13 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
     //https://stackoverflow.com/questions/25218399/how-to-select-a-contact-with-abpeoplepickernavigationcontroller-in-swift
     func contactPickerDidCancel(picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
-        print("nvm")
+        
     }
     
     
   
     //https://stackoverflow.com/questions/25218399/how-to-select-a-contact-with-abpeoplepickernavigationcontroller-in-swift
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        print("here")
-
             picker.dismiss(animated: true, completion: nil)
         
             //See if the contact has multiple phone numbers
@@ -214,10 +212,10 @@ class EmergencyContactViewController: UIViewController,UINavigationControllerDel
                     
                     //Do what you need to do with your new contact information here!
                     //Get the string value of the phone number like this:
-                    print(nameToSave, "name to save")
-                    print(contact.givenName, "given name")
-                    print(contact.familyName, "family name")
-                    
+//                    print(nameToSave, "name to save")
+//                    print(contact.givenName, "given name")
+//                    print(contact.familyName, "family name")
+//
                     self.FirstName.text = contact.givenName
                     self.LastName.text = contact.familyName
                     //https://stackoverflow.com/questions/36343312/how-to-get-a-cncontact-phone-numbers-as-string-in-swift

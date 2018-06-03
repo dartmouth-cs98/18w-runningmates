@@ -237,7 +237,7 @@ class FriendRequestViewController: UIViewController, UITableViewDataSource, UITa
     
     // https://www.twilio.com/blog/2016/09/getting-started-with-socket-io-in-swift-on-ios.html
     @objc func handleMessageNotification(_ notification: Notification) {
-        print("-----HANDLING MESSAGE-----")
+        //print("-----HANDLING MESSAGE-----")
         
         self.fetchFriendRequests(completion: { friendRequests in
             self.data = friendRequests

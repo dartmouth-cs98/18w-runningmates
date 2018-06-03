@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let imgType = assetPath.pathExtension
         
         print("type:")
-        print(String(describing: imgType))
+        //print(String(describing: imgType))
         
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
@@ -106,7 +106,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 switch response.result {
                 case .success:
                     print("success! response is:")
-                    print(response)
+                    //print(response)
                 case .failure(let error):
                     print("error fetching users")
                     print(error)

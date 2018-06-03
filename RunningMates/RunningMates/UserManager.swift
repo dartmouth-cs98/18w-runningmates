@@ -414,11 +414,11 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
-                print("SEND MATCH REQUEST RESPONSE")
-                print(response)
+                //print("SEND MATCH REQUEST RESPONSE")
+                //print(response)
                 switch response.result {
                 case .success:
-                    print("SUCCESS SENDING MATCH")
+                    //print("SUCCESS SENDING MATCH")
 
                     if let responseDictionary = response.result.value as? [String:Any] {
                         if (String(describing: responseDictionary["response"]!) == "match") {
@@ -435,7 +435,7 @@ class UserManager: NSObject {
                 }
                 completion(title, message)
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     
@@ -465,14 +465,14 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
-                print("matching segment response", response)
+                //print("matching segment response", response)
                 switch response.result {
                     
                 case .success:
                     if let jsonSegments = response.result.value as? [[String:Any]] {
                         for jsonSegment in jsonSegments {
                             do {
-                                print (jsonSegment)
+                                //print (jsonSegment)
                                 let title = (jsonSegment["title"] as! String)
                                 let targetTime = (jsonSegment["targetTime"] as! String)
                                 var userTime = ""
@@ -493,7 +493,7 @@ class UserManager: NSObject {
                                 print("other error")
                             }
                         }
-                        print (segmentList)
+                        //print (segmentList)
                         completion(segmentList)
                         self.segmentList = segmentList
                     } else {
@@ -509,7 +509,7 @@ class UserManager: NSObject {
                 }
                 completion(segmentList)
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     
@@ -540,7 +540,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     

@@ -124,11 +124,11 @@ class DashboardViewController: UIViewController {
                     
                     if self.appDelegate.didSignUpWithStrava == 1 {
                         self.milesWkLabel.text = String(format: "%.1f", milesPerWeek as! CVarArg)
-                        print(self.milesWkLabel.text)
+                        
                     }
                     else {
                         self.milesWkLabel.text = String(describing: milesPerWeek)
-                        print(self.milesWkLabel.text)
+                  
                     }
                 }
                 
@@ -137,11 +137,11 @@ class DashboardViewController: UIViewController {
                     
                     if self.appDelegate.didSignUpWithStrava == 1 {
                         self.runsWkLabel.text = String(format: "%.1f", runsPerWeek as! CVarArg)
-                        print(self.runsWkLabel.text)
+                        
                     }
                     else {
                         self.runsWkLabel.text = String(describing: runsPerWeek)
-                        print(self.runsWkLabel.text)
+                        
                     }
                 }
             }

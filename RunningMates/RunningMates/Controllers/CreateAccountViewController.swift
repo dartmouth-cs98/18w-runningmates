@@ -75,7 +75,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         print("STRAVA RESPONSE")
-                        print(response)
+                        //print(response)
                         switch response.result {
                         case .success:
                             if let jsonObj = response.result.value as? [String:Any] {
@@ -152,7 +152,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 }
         },
             failure: { error in
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
                 print("wrong login")
             }
         )

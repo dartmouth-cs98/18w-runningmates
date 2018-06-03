@@ -99,7 +99,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
             
             
             let ageLower = (userAgePref[0])
-            print(ageLower, "ARE LOWER")
+           // print(ageLower, "ARE LOWER")
             let ageUpper = (userAgePref[1])
      
             if userGenderPref.contains("Female") {
@@ -226,7 +226,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     
 
     @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
-        print(ageSlide.minimumValue)
+        //print(ageSlide.minimumValue)
         let lowAge = String(Int(round(ageSlide.lowerValue)));
         let highAge = String(Int(round(ageSlide.upperValue)));
         ageSelectedLabel.text = "Between " + lowAge
