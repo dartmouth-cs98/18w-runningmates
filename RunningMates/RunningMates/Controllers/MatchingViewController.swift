@@ -56,20 +56,16 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             }
             else{
                 showLocationDisabledPopup()
+                self.loadingView.removeFromSuperview()
             }
             
         
         //show an alert if they said no last time
         case .authorizedWhenInUse, .restricted, .denied:
             getCurrentLocation()
-            //            showLocationDisabledPopup()
-            // locationManager.startUpdatingLocation()
             
         case .authorizedAlways:
             getCurrentLocation()
-            // just needed something in this switch
-            // locationManager.startUpdatingLocation()
-            // self.kolodaView?.reloadData()
         }
     }
     
@@ -91,19 +87,18 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         topView.addSubview(loadingView)
         self.loadingView.center = self.view.center
         loadingView.progressIndicator.startAnimating()
-        
-        //        navigationController?.setToolbarHidden(false, animated: false)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == CLAuthorizationStatus.denied) {
             // The user denied authorization
+            self.loadingView.removeFromSuperview()
             showLocationDisabledPopup()
+
+            
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
-            //loadMatches()
         } else {
             print("authorized when in use")
-            // loadMatches()
         }
     }
     
