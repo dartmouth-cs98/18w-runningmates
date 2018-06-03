@@ -13,7 +13,7 @@ import ImgixSwift
 
 class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
     // MARK: Properties
-    var locationManager: CLLocationManager!
+    var locationManager = CLLocationManager()
     var locationCoords: [Double]?
     var loadingView: MatchesLoadingView!
     @IBOutlet weak var kolodaView: KolodaView!
@@ -45,35 +45,71 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Show progress view while we wait for matches to load
-        switch CLLocationManager.authorizationStatus() {
-        //ask for permission. note: iOS only lets you ask once
-        case .notDetermined:
-            let canAsk = locationManager //.requestAlwaysAuthorization()
-            if (canAsk != nil){
-                 locationManager.requestAlwaysAuthorization()
-            }
-            else{
-                showLocationDisabledPopup()
-                self.loadingView.removeFromSuperview()
-            }
-            
-        
-        //show an alert if they said no last time
-        case .authorizedWhenInUse, .restricted, .denied:
-            getCurrentLocation()
-            
-        case .authorizedAlways:
-            getCurrentLocation()
-        }
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        print("HERE")
+//        // Show progress view while we wait for matches to load
+//       // switch CLLocationManager.authorizationStatus() {
+////        //ask for permission. note: iOS only lets you ask once
+////        case .notDetermined:
+////            let canAsk = locationManager //.requestAlwaysAuthorization()
+////            print("CAN ASK", canAsk)
+////            if (canAsk != nil){
+////                 locationManager.requestAlwaysAuthorization()
+////            }
+////            else{
+////                showLocationDisabledPopup()
+////                self.loadingView.removeFromSuperview()
+////            }
+////
+////
+////        //show an alert if they said no last time
+////        case .authorizedWhenInUse, .restricted, .denied:
+////            getCurrentLocation()
+////
+////        case .authorizedAlways:
+////            getCurrentLocation()
+////        }
+//        print(CLLocationManager.authorizationStatus())
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+//        loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+//        topView.addSubview(loadingView)
+//        self.loadingView.center = self.view.center
+//        loadingView.progressIndicator.startAnimating()
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        locationManager = CLLocationManager()
+        switch CLLocationManager.authorizationStatus() {
+        //ask for permission. note:stathsiOS only lets you ask once
+        case .notDetermined:
+        let canAsk = locationManager //.requestAlwaysAuthorization()
+        print("CAN ASK", canAsk)
+        if (canAsk != nil){
+            locationManager.requestAlwaysAuthorization()
+
+        }
+        else{
+            showLocationDisabledPopup()
+           self.loadingView.removeFromSuperview()
+        }
+        
+        
+        //show an alert if they said no last time
+        case .authorizedWhenInUse, .restricted, .denied:
+        getCurrentLocation()
+
+        case .authorizedAlways:
+            print("authorized always")
+            getCurrentLocation()
+        }
+        
+        locationManager.startUpdatingLocation()
+        getCurrentLocation()
         
         self.navigationController?.isNavigationBarHidden = false
         
@@ -83,13 +119,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
         // Do any additional setup after loading the view, typically from a nib.
         // https://stackoverflow.com/questions/32855753/i-want-to-swipe-right-and-left-in-swift
         // https://stackoverflow.com/questions/31785755/when-im-using-uiswipegesturerecognizer-im-getting-thread-1signal-sigabrt
-        loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
-        topView.addSubview(loadingView)
-        self.loadingView.center = self.view.center
-        loadingView.progressIndicator.startAnimating()
+
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("auth status changed")
         if (status == CLAuthorizationStatus.denied) {
             // The user denied authorization
             self.loadingView.removeFromSuperview()
@@ -97,8 +131,14 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
 
             
         } else if (status == CLAuthorizationStatus.authorizedAlways) {
+         //   self.loadingView.removeFromSuperview()
+            loadMatches()
+
         } else {
             print("authorized when in use")
+           // self.loadingView.removeFromSuperview()
+            loadMatches()
+
         }
     }
     
@@ -153,6 +193,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     // adapted the following 2 functions from the following URL on 5/21/18:
     // http://swiftdeveloperblog.com/code-examples/determine-users-current-location-example-in-swift/
     func getCurrentLocation() {
+        print("getting current location")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -164,6 +205,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("in did update locations")
         if let location = locations[locations.count - 1] as? CLLocation {
             if let lat = location.coordinate.latitude as? Double, let long = location.coordinate.longitude as? Double {
                 self.locationCoords = [lat, long]
@@ -177,6 +219,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail, params: params, completion: {
                     (title, message) in
+                    print("load matches called here 1")
                     self.loadMatches()
                 } )
             } else {
@@ -190,7 +233,11 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     }
     
     func loadMatches() {
-        
+        loadingView = MatchesLoadingView().fromNib() as! MatchesLoadingView
+        topView.addSubview(loadingView)
+        self.loadingView.center = self.view.center
+        loadingView.progressIndicator.startAnimating()
+        print("loading matches")
         let maxDistance = self.preferences["proximity"] as! Double
         
         //        if (lat != nil && long != nil) {
