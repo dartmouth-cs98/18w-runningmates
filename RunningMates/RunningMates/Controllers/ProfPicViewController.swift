@@ -94,7 +94,7 @@ class ProfPicViewController: UIViewController, UIImagePickerControllerDelegate, 
         ]
         let image = profileImage.image
         let imageData = UIImageJPEGRepresentation(image!, 0.7)
-        print("signed object: \n\n\n ", userImageUpdateUrlObject)
+        //print("signed object: \n\n\n ", userImageUpdateUrlObject)
         if let signedOb = userImageUpdateUrlObject[0]["signedRequest"] as? String {
             let request = Alamofire.upload(imageData!, to: signedOb, method: .put, headers: headers)
                 .responseData {

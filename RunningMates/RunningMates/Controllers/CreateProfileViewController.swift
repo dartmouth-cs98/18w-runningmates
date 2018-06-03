@@ -103,6 +103,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true
+        }
             
             
             if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
@@ -133,7 +134,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
                 if (data["milesPerWeek"] != nil) {
                     let mpwkText = String(describing: data["milesPerWeek"]!)
-                    print("\n\n user current mpk: \n\n", mpwkText)
+                    //print("\n\n user current mpk: \n\n", mpwkText)
                     self.milesPerWeekTextField.text = mpwkText
                 }
                 
@@ -149,7 +150,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     }
                 }
             }
-        }
+        
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.stravaLogo1.isHidden = false
             self.stravaLogo2.isHidden = false
@@ -347,7 +348,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         ]
         
         UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
-            print("updated user here!")
+            //print("updated user here!")
             self.updateInfoFromUserDefaults()
         })
         
@@ -383,7 +384,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-                    print("\n\n user images: \n\n", userImages)
+                    //print("\n\n user images: \n\n", userImages)
                     UserDefaults.standard.set(userImages, forKey: "images")
                     UserDefaults.standard.set(self.bioTextView.text!, forKey: "bio")
                     UserDefaults.standard.set(Double(self.milesPerWeekTextField.text!), forKey: "milesPerWeek")
@@ -575,7 +576,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        }
         let image = profileImage.image
         let imageData = UIImageJPEGRepresentation(image!, 0.7)
-        print("signed object: \n\n\n ", userImageUpdateUrlObject)
+        //print("signed object: \n\n\n ", userImageUpdateUrlObject)
         if let signedOb = userImageUpdateUrlObject[0]["signedRequest"] as? String {
             let request = Alamofire.upload(imageData!, to: signedOb, method: .put, headers: headers)
                 .responseData {

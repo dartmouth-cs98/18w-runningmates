@@ -50,7 +50,7 @@ class BasicInfoViewController: UIViewController {
         dropGender.placeholder = "Select gender..."
         dropGender.options = ["Female", "Male", "Non-Binary"]
         dropGender.didSelect { (option, index) in
-            print("You just select: \(option) at index: \(index)")
+            //print("You just select: \(option) at index: \(index)")
             self.gender = option
             self.genderBool = true
         }
@@ -75,14 +75,14 @@ class BasicInfoViewController: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        print("GENDER\n", self.gender)
-        print(self.dobPicker.date)
+//        print("GENDER\n", self.gender)
+//        print(self.dobPicker.date)
         
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day,.month,.year], from: self.dobPicker.date);
-        print(components.day!)
-        print(components.month!)
-        print(components.year!)
+//        print(components.day!)
+//        print(components.month!)
+//        print(components.year!)
         
         let now = Date()
         let birthday = self.dobPicker.date
@@ -90,7 +90,7 @@ class BasicInfoViewController: UIViewController {
         //https://stackoverflow.com/questions/25232009/calculate-age-from-birth-date-using-nsdatecomponents-in-swift
         let ageComponents = calendar.dateComponents([.year], from: birthday, to: now)
         let age = ageComponents.year!
-        print("AGE\n\n")
+        //print("AGE\n\n")
         self.ageVal = age   
         
         
