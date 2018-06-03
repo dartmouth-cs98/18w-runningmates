@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
+    @IBOutlet weak var typeView: UIView!
     @IBOutlet weak var myStupidView: UIView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var manager: SocketManager?
@@ -191,8 +192,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView.separatorStyle = .none
+        
+        // help from https://stackoverflow.com/questions/26070242/move-view-with-keyboard-using-swift?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
       //  self.tableView.rowHeight = UITableViewAutomaticDimension
 
@@ -244,10 +249,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
 
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
 
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y = 0.0
+        }
+    }
 
     @IBAction func sendMessage(_ sender: Any) {
 
+        dismissKeyboard()
         var message : [String: Any] = [:]
 
         if (self.chatID != nil) {
@@ -269,6 +285,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         socket.emit("chat message", message)
         self.chatInput.text = ""
 
+    }
+    
+   override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+    
     }
 
     func recieveMessage(message_data: [Any]){
