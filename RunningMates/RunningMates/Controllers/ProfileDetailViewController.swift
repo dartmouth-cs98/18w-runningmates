@@ -29,6 +29,22 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var segment3: UILabel!
     @IBOutlet weak var segment4: UILabel!
     @IBOutlet weak var segment5: UILabel!
+    @IBOutlet weak var distance1: UILabel!
+    @IBOutlet weak var distance2: UILabel!
+    @IBOutlet weak var distance3: UILabel!
+    @IBOutlet weak var distance4: UILabel!
+    @IBOutlet weak var distance5: UILabel!
+    @IBOutlet weak var name4Segment: UILabel!
+    @IBOutlet weak var yourTime1: UILabel!
+    @IBOutlet weak var yourTime2: UILabel!
+    @IBOutlet weak var yourTime3: UILabel!
+    @IBOutlet weak var yourTime4: UILabel!
+    @IBOutlet weak var yourTime5: UILabel!
+    @IBOutlet weak var theriTime1: UILabel!
+    @IBOutlet weak var theriTime2: UILabel!
+    @IBOutlet weak var theriTime3: UILabel!
+    @IBOutlet weak var theriTime4: UILabel!
+    @IBOutlet weak var theriTime5: UILabel!
     @IBOutlet weak var stravaImage: UIImageView!
     @IBOutlet weak var verifiedImage: UIImageView!
     
@@ -92,6 +108,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
         var data = user.data
         
         nameLabel.text = user.firstName! + ", " + String(user.age)
+        name4Segment.text = user.firstName!
         locationLabel.text = distance!
         bioLabel.text = user.bio
         
@@ -102,7 +119,8 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             milesPerWeek.removeFromSuperview()
         }
         if (data!["runsPerWeek"] != nil) {
-            runsPerWeek.text = String(describing: data!["runsPerWeek"]!) + " runs/week"
+            runsPerWeek.text = (String(describing: data!["runsPerWeek"]!) + " runs/week")
+    
         } else {
             runsPerWeek.text = ""
             runsPerWeek.removeFromSuperview()
@@ -140,33 +158,64 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             
             if (segmentsArray.indices.contains(0)){
                 self.segments.text = segmentsArray[0].title
+                self.distance1.text = (String(format: "%.1f", segmentsArray[0].distance) + "mi")
+                self.yourTime1.text = segmentsArray[0].userTime
+                self.theriTime1.text = segmentsArray[0].targetTime
             } else {
                 self.segments.text = ""
+                self.distance1.text = ""
+                self.yourTime1.text = ""
+                self.theriTime1.text = ""
+                
             }
 
 
             if (segmentsArray.indices.contains(1)){
                 self.segment2.text = segmentsArray[1].title
+                self.distance2.text = (String(format: "%.1f", segmentsArray[1].distance) + "mi")
+                self.yourTime2.text = segmentsArray[1].userTime
+                self.theriTime2.text = segmentsArray[1].targetTime
             } else {
                 self.segment2.text = ""
+                self.distance2.text = ""
+                self.yourTime2.text = ""
+                self.theriTime2.text = ""
             }
 
             if (segmentsArray.indices.contains(2)){
                 self.segment3.text = segmentsArray[2].title
+                self.distance3.text = (String(format: "%.1f", segmentsArray[2].distance) + "mi")
+                self.yourTime3.text = segmentsArray[2].userTime
+                self.theriTime3.text = segmentsArray[2].targetTime
             } else {
                 self.segment3.text = ""
+                self.distance3.text = ""
+                self.yourTime3.text = ""
+                self.theriTime3.text = ""
             }
 
             if (segmentsArray.indices.contains(3)){
                 self.segment4.text = segmentsArray[3].title
+                self.distance4.text = (String(format: "%.1f", segmentsArray[3].distance) + "mi")
+                self.yourTime4.text = segmentsArray[3].userTime
+                self.theriTime4.text = segmentsArray[3].targetTime
             } else {
                 self.segment4.text = ""
+                self.distance4.text = ""
+                self.yourTime4.text = ""
+                self.theriTime4.text = ""
             }
 
             if (segmentsArray.indices.contains(4)){
                 self.segment5.text = segmentsArray[4].title
+                self.distance5.text = (String(format: "%.1f", segmentsArray[4].distance) + "mi")
+                self.yourTime5.text = segmentsArray[4].userTime
+                self.theriTime5.text = segmentsArray[4].targetTime
             } else {
                 self.segment5.text = ""
+                self.distance5.text = ""
+                self.yourTime5.text = ""
+                self.theriTime5.text = ""
             }
         })
         
