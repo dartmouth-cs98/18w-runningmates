@@ -172,24 +172,11 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
                 
                 let params: Parameters = [
                     "toPhoneNumber": contact.phoneNumber,
-                    "Message": message,
-                    ]
+                    "message": message
+                ]
                 
-                let _request = Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default)
-                    .responseJSON { response in
-                        switch response.result {
-                        case .success:
-                            if let jsonObj = response.result.value as? [String:Any] {
-                                
-                                print("success")
-                                
-                            }
-                        case .failure(let error):
-                            print("failed")
-                            print(error)
-                        }
-                    }
-                }
+                UserManager.instance.sendSafeTrackMessage(params: params, completion: { (message) in
+                    print(message)})
             }
         }
         //20.0 is 20 seconds & is just for testing - change to 300 in final version

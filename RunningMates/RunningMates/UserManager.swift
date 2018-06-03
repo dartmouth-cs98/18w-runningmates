@@ -566,28 +566,18 @@ class UserManager: NSObject {
         self.removeUserDefaults()
         completion()
     }
-    func sendSafeTrackMessage(toPhoneNumber: String?, completion: @escaping (String)->()) {
+    
+    
+    func sendSafeTrackMessage(params: [String:Any], completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
         let url = rootUrl + "api/safetrack"
         
-        let params: Parameters = [
-            "toPhoneNumber": toPhoneNumber!,
-        ]
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
                 case .success:
                     if let jsonObj = response.result.value as? [String:Any] {
-                        
-//                        let token = (jsonObj["token"] as! String)
-//                        let user = (jsonObj["user"] as? [String:Any])!
-//
-//                        UserDefaults.standard.set(email!, forKey: "email")
-//                        UserDefaults.standard.set(token, forKey: "token")
-//
-//                        UserDefaults.standard.set(password!, forKey: "password")
-                        
                         completion("success")
                     }
                 case .failure(let error):
