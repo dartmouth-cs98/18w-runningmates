@@ -19,6 +19,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet var topView: UIView!
     @IBOutlet weak var milesPerWeek: UILabel!
     @IBOutlet weak var runsPerWeek: UILabel!
+
     @IBOutlet weak var matchReason: UILabel!
     @IBOutlet weak var segments: UILabel!
     @IBOutlet weak var segment2: UILabel!
@@ -124,6 +125,7 @@ class ProfileDetailViewController: UIViewController, UINavigationControllerDeleg
             matchReason.text = "*" + userList[index].matchReason + "!*"
         }
         
+
         if let images = user.images as? [String] {
             if let url = URL(string: images[0]) {
                 let photoData = try? Data(contentsOf: url)
