@@ -20,6 +20,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var safetrackButton: UIButton!
     
+    @IBOutlet weak var verified: UIImageView!
     @IBOutlet weak var metricCirc2: UIView!
     @IBOutlet weak var metricCirc: UIView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -51,6 +52,12 @@ class DashboardViewController: UIViewController {
         
 //        if (UserDefaults.standard.string(forKey: "firstName") != nil) {
         self.name.text = UserDefaults.standard.string(forKey: "firstName")!
+        if (self.appDelegate.didSignUpWithStrava == 1) {
+            self.verified.isHidden = false
+        }
+        else {
+            self.verified.isHidden = true
+        }
         
         if let userImages = UserDefaults.standard.stringArray(forKey: "images"){
             if (userImages.count > 0) {
@@ -110,14 +117,32 @@ class DashboardViewController: UIViewController {
         if (UserDefaults.standard.value(forKey: "data") != nil) {
 //            var defaultData: Data = UserDefaults.standard.value(forKey: "data") as! Data
 //            if var data : [String:Any] = NSKeyedUnarchiver.unarchiveObject(with: defaultData) as! [String:Any] {
+            
             if let data = UserDefaults.standard.value(forKey: "data") as? [String:Any] {
                 if (data["milesPerWeek"] != nil) {
-                    self.milesWkLabel.text = String(describing: data["milesPerWeek"]!)
+                    let milesPerWeek = data["milesPerWeek"]!
+                    
+                    if self.appDelegate.didSignUpWithStrava == 1 {
+                        self.milesWkLabel.text = String(format: "%.1f", milesPerWeek as! CVarArg)
+                        print(self.milesWkLabel.text)
+                    }
+                    else {
+                        self.milesWkLabel.text = String(describing: milesPerWeek)
+                        print(self.milesWkLabel.text)
+                    }
                 }
                 
                 if (data["runsPerWeek"] != nil) {
+                    let runsPerWeek = data["runsPerWeek"]!
                     
-                    self.runsWkLabel.text = String(describing: data["runsPerWeek"]!)
+                    if self.appDelegate.didSignUpWithStrava == 1 {
+                        self.runsWkLabel.text = String(format: "%.1f", runsPerWeek as! CVarArg)
+                        print(self.runsWkLabel.text)
+                    }
+                    else {
+                        self.runsWkLabel.text = String(describing: runsPerWeek)
+                        print(self.runsWkLabel.text)
+                    }
                 }
             }
           
