@@ -56,7 +56,7 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-        didTapStartTracking()
+        self.didTapStartTracking()
         
         let camera = GMSCameraPosition.camera(withLatitude: +31.75097946, longitude: +35.23694368, zoom: 17.0)
         
@@ -180,10 +180,10 @@ class SafeTrackViewController: UIViewController,  CLLocationManagerDelegate {
             }
         }
         //20.0 is 20 seconds & is just for testing - change to 300 in final version
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) { [weak self] in
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 300.0) { [weak self] in
             self?.didTapStartTracking()
         }
-      }
     }
     
     @IBAction func didPressEndRun(_ sender: Any) {
