@@ -141,13 +141,16 @@ class UserManager: NSObject {
     
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
         
+        print(Url)
         let params: Parameters = [
             "email": email!,
             "password": password!
         ]
+        print(params)
         
-        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .responseJSON { response in
+        let _request = Alamofire.request(Url, method: .post, parameters: params)
+            .responseString { response in
+                print("response", response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
