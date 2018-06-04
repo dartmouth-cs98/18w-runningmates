@@ -142,8 +142,10 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                                 }
                                 
                                 
-                                let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
-                                self.present(profPicVC, animated: true, completion: nil)
+                                let  stravaPassVC = self.storyboard?.instantiateViewController(withIdentifier: "stravaPass") as! selectStravaPasswordViewController
+                                //                                self.present(stravaPassVC, animated: true, completion: nil)
+                               // let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                                self.present(stravaPassVC, animated: true, completion: nil)
                             }
                         case .failure(let error):
                             print("failure in creating profile")
