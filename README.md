@@ -4,6 +4,10 @@
 
 ![emergency contacts](ec.gif)
 
+![edit profile](editProf.gif)
+
+![chat](chat.gif)
+
 ### Project Description
 RunningMates is a mobile application that utilizes various third-party APIs to compile personal fitness data to connect individuals looking for new connections with others who share their passions in various outdoor activities. The application will use state-of-art data analytic techniques to provide users with the best recommendations of events and people in their area, based on their skill levels and preferences.
 
