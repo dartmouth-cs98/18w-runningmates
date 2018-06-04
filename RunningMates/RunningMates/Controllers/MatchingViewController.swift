@@ -163,6 +163,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.loadingView.center = self.view.center
                 self.loadingView.progressIndicator.startAnimating()
                 self.locationManager.startUpdatingLocation()
+//                self.loadMatches()
             }
             
             alert.addAction(action: cancel)
@@ -320,6 +321,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
             
             UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
                 //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+
                 if message == "Go to your chat to say hello!" {
                     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)

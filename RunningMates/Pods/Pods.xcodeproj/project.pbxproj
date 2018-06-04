@@ -17,10 +17,11 @@
 		0A2F0DC58CA9D464D6579E062C5B7E89 /* POPAnimatableProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 75B40801261CB3CE8B7D370D3A7A380B /* POPAnimatableProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DD7213BAF6205B2E72800AF0357603D /* CSAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 791947B6C8DACC382BA777E6401D916B /* CSAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E37FC0900CC0556C089119E4EFD926A /* OAuthSwiftResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93A08591763BC3FC65799785515FA82 /* OAuthSwiftResponse.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0EA45CC9810F0C7BB7E97E714FF015E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		0ED0BE531E6987655C7E49BBD7C44A3D /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = E6729D811D2F28AACA51E31C43AD88E7 /* POPAnimation.mm */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50FC2C478FA7EE67E5424E60DE131E /* Timeline.swift */; };
+		1210141754F7E0B33E88DD949947E5A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		146630EFBC4D2231A50CB9F11A337EC6 /* UINavigationBar+TCCustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AFF8EE5343C24B2E3FBCBA147B14D2 /* UINavigationBar+TCCustomFont.m */; };
+		1574BF49CB4C7B4E138278790CDAAD9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		16143090A5E1AC434839BE67339EDB95 /* DraggableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626ED91C08ABAD667357F42054A70534 /* DraggableCardView.swift */; };
 		18192E3874A67154698901D50EE8F55D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C24ADFE2581C5932E8BC4EA2BCCB50 /* Utils.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BDC2E7F57B15913E82B01DF5FB834F7F /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,7 +30,6 @@
 		1D6EC5800196AB04C390C606DF0BCE87 /* POPDecayAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = FDCBB2A74469F7001DEB5B74BE3EDCCF /* POPDecayAnimation.mm */; };
 		1ED8CB9123077805739DDD87286C23BF /* UITextField+PlaceholderColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 599340C8E17E5A31D8B9887DBDAF21AF /* UITextField+PlaceholderColor.m */; };
 		1F2DD5C9E3E2928D94995EA52768585F /* SocketEngineWebsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550730593A4D639A5CD68A3BDFC4B4E5 /* SocketEngineWebsocket.swift */; };
-		22B7A953292CA12A9F1C9E3024AAE5B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		22C891D66D74578173B4C4EE995623EB /* NSString+ImgixSwiftMd5.h in Headers */ = {isa = PBXBuildFile; fileRef = 47CD42C886D6D2CA54713D98BF3A0BB4 /* NSString+ImgixSwiftMd5.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24D8DD1F1588A2F0586B3D641B223DBD /* Pods-RunningMates-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D642533461B136403B09ECCCE5B854F0 /* Pods-RunningMates-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28931EB0A56D0D61296C59D507D4A19D /* EMAlertController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D1F3D4DBDFCEAD5FF13FA3ED59C6B76D /* EMAlertController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,30 +40,32 @@
 		309B0C0029F0F734D692ACF8CE7ADA5A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0309C53AAEC840CE66457A90BFD3E5 /* WebSocket.swift */; };
 		31A9CB8F37997988437B176D0A809599 /* OAuthSwiftURLHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C4BD6D3B8C21C3709E4531459B6EE /* OAuthSwiftURLHandlerType.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		31D4474ED62210CA87B5DEC8E57C99E3 /* SocketIOClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FA1CCA5A2A8F63AEDE7E267B7BF4F /* SocketIOClientConfiguration.swift */; };
+		32E0EAA7CD08FCA1CEB091BC594B02F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		345B7CE00D1256AD8D179FFFF96A5F7C /* POPBasicAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 342D6FA7FF645E92C44F17AB11CCE62A /* POPBasicAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		353F58E7CC2C710F05CC9422F41D1377 /* Int+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6D14B8185A884985BCF24F7E8ECDD0 /* Int+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		35BEB81FB3C458390E5A68B1D1E9C72E /* ImgixSwift-Umbrella-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 48DECD10679203EDEFAC2DB6E3353CB7 /* ImgixSwift-Umbrella-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68848CBB929D863FAB2D1B208C79C6B /* TaskDelegate.swift */; };
+		39E4D461CF54C8C126121E2CF539D242 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
+		3A07FCE144900EE9D168F7993D1EF820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		3A5D78EF2A1342D0396C1C4AF0451491 /* CSAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE10C83AA371DF479CB02C8C30836CF3 /* CSAnimationView.m */; };
 		3A5FCCCB61472AD8DFFA13B906E5CB17 /* UITextView+TCCustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DABF24D4A56F9BB48AA8DD2B59CFD4F /* UITextView+TCCustomFont.m */; };
-		3BED91C554BFB10BFD1B442D5C01F6C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		3C31096949345FF247B6D80AF37E73E9 /* POPAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C179E454315A88792B94171B4F0F28 /* POPAction.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3C833269BE71EC7B21149EC53936A9C4 /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5349DB10F24DCF6E9669FB3F4520B2E2 /* SocketEngineSpec.swift */; };
 		3D7F4684619BAE1D9ED90F008AF3A18E /* SocketIOClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D43B0AC0E047680975ADE7BBC8215D /* SocketIOClient.swift */; };
 		3E09C110A61852F344D95E743E0E9EDA /* UIApplication+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A8A19B833B5D2CFE7ED305694A9C9 /* UIApplication+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		409702801F96F612AC27F046CDF163DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		41BBF01B60596EA5B469BFB659CB61D5 /* POPAnimatablePropertyTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F9105EF1A024CB54D2E6CE37B4AABE9B /* POPAnimatablePropertyTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424D8BAD6E0D92F547BE368E4F724F3D /* SocketEnginePollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A2DA765FAAC57885A87766338068C6 /* SocketEnginePollable.swift */; };
+		425DFAF556DB07F3CC847F949344A63F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		4316EEF54AA9BF80F6BAF24FA6A51EFE /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3551C52FA4C52CCB6603082C7E742694 /* Compression.swift */; };
 		46738FFF090F8DE7E08DC4B487A82202 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C98ADD38AD699D8C64E234DA6B698B1 /* SocketManager.swift */; };
 		46ED946DBAF960483E39E952B6BE86FA /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284F38CFB690F3BEDA3D25B6183BD411 /* SocketAckManager.swift */; };
 		46F6F06A4F7782742CC4CC1D612093FC /* POPAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FDE0FFDF73FB60A65DB3A596D8AF14C /* POPAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		47CD4222F833531A807BE086D693ED65 /* OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BEF85265C110187C97E2DC48472C4 /* OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4974D6FE49157F2204B47F79703FE60B /* Collection+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA16721FB881CCC81E919E75BF42CD60 /* Collection+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4982F4B5EAA4C94F33E2FAAA64A837C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		4AE96262C5D4C290E125BF6DB5B8F8D6 /* POPSpringSolver.h in Headers */ = {isa = PBXBuildFile; fileRef = C64FEEB71374A4A2F47FACD6A6752904 /* POPSpringSolver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		4C778137BBA41922618A1EA457F691D1 /* CSBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = ECC425DE7AA0E76CF0C9DF7FCA77CEC6 /* CSBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CC15260B84C2DEF22A205B9B230CD5F /* ExpyAbstractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFCCA9149FD1763F526952720A207B1 /* ExpyAbstractions.swift */; };
-		4EF787F1D567516F433EFB2462F43801 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		4EFA06E27AE9D3097CDC20FB95049C7B /* SwipeResultDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866970A74F5AF3B2485DA7DDAA32F186 /* SwipeResultDirection.swift */; };
 		4FD56234A3C64323E7F1CD5BC8B158D0 /* POPAnimationEventInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D3FB89F2E48D4998577222057F45DC0 /* POPAnimationEventInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		50E7CB02530E4C7D9BFA05196ACFC0B0 /* URL+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA35CCD6478695089CC09C6C5B5EB5F /* URL+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -80,15 +82,12 @@
 		58C2628667414D1539EA389BB09F78D6 /* SocketEnginePacketType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C70EACA830E33BA90B490B6910F74E8 /* SocketEnginePacketType.swift */; };
 		5974532CFE7419B98CC53348B0515FBE /* POPSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 95FDEF7C5E29CAB51F6D75E31A6F6735 /* POPSpringAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B129BEF632CE80000AEBE65FF4171BF /* POPCustomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 81BAE6D9D5601E56FBE74185E8F11DB7 /* POPCustomAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5C5E968A6F15DB496267EC229F6A8F6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		5CC3111F76F6E705205BB03C7ED4E248 /* UIButton+TCCustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AB0638805279D49008C68DD8936E40 /* UIButton+TCCustomFont.m */; };
 		5E7E0B70C0D1CCD0AC694A99E8324ECD /* DLRadioButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A379A20ACC8A1BA54514C854EF0B3D /* DLRadioButton-dummy.m */; };
 		60401BE1466432D67BEC5FC667372016 /* OAuthSwiftMultipartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5082020459972E6AD22879F7CDA53500 /* OAuthSwiftMultipartData.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		611EBA6258C9C42F2029C636A7D47512 /* Koloda-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 856DA267E3DCEFD3D5C4DE8D35CFBD7A /* Koloda-dummy.m */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDA404E2118C0462563884D93759467 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993447B89544C860EED84500FEE570D2 /* ServerTrustPolicy.swift */; };
-		63B1155BF07706CF3B3A6024429F96DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFA2D3F23BCE2C170FF386603D29B07 /* UIKit.framework */; };
-		63C0B3598765ED8904E89B3721D326DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		6549C61A563E8A6EA19294978B65CDE4 /* CSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FD459A2152A98B54D4B0885708A7E1 /* CSNavigationController.m */; };
 		6607761CBD7844EC06F1A5176B779E1F /* POPAnimationEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 437CFCD8F936CCEB7A24D30E86204437 /* POPAnimationEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69C653694C632A81FDA4C3334741C271 /* POPGeometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = EF36003999F4B3B3FE7BB8F9E4312D71 /* POPGeometry.mm */; };
@@ -96,13 +95,11 @@
 		6C038D9CB4B3F8B059D25D1291BCB7D1 /* POP.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3B9FE1668EA96830E3F7E409B508E9 /* POP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E132A434A393B2E32E2A62A13F785E9 /* Socket.IO-Client-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D40695607998A923F94F196399EC76 /* Socket.IO-Client-Swift-dummy.m */; };
 		7084DBE22FAED57F460CF8CC714315B4 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C50463076E7CF2AF8FBE2A4645ADE3 /* SocketAckEmitter.swift */; };
-		709452945722846972A589C7E118CF8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		70CEC9CC1A4B78EF8E4F5A169D7B2E4D /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D4EF04F5BE46C73E204EED073B5D7E6 /* POPVector.mm */; };
 		722043CDFAD463446C6662F706DFB995 /* UITextField+TCCustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F4A11B3B400CCBBFD9A94C8748F8C3 /* UITextField+TCCustomFont.m */; };
 		72DB89172AB78AD338694AB86D54C73D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291066C9387C919FAF9113A26CE3212E /* OverlayView.swift */; };
 		72E2BD070B991A87F61903FC002C7D2B /* POPSpringAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = E410FB56A63D25D46568134765B901CE /* POPSpringAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		732033EAA0A34B63117950705E3EB162 /* POPCGUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B8167BAE31E8997100892C61F61906E /* POPCGUtils.mm */; };
-		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		76AD1AF90E187C0C8FD636C4605F0F5C /* OAuthSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CBD97D084B895A9F80B39361D765CC /* OAuthSwift-dummy.m */; };
 		79BE0D4D48A2208DFCD0FD2883DF98C4 /* Socket.IO-Client-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C1086E376FBE92746C7E241874C0FB25 /* Socket.IO-Client-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D28C5039987E3BD979F3837EFDA83D /* POPAnimationExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 586186CD71C785FA10F2ED4EE5F0B9CB /* POPAnimationExtras.mm */; };
@@ -112,6 +109,7 @@
 		7D815106E67A24F37A301E53E73A8D60 /* POPDecayAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = B137F0FD2981AEB385DB3DDFB20BAD1D /* POPDecayAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E7C861B8F677FC04BEEBAC471C440E /* Result.swift */; };
 		81D94DDC2AF1479F0CA2F22F02AD5BF3 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0B9540C9A71386223666421C8FF665 /* pop.framework */; };
+		834F4D9819C6010E611A7E151B8899C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		84116DD709725E60919846D7B1AF714B /* DLRadioButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D7E4B37F23D31EE45A14D251726ABF6 /* DLRadioButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8483482AB25E39C543CD98F9837D6C38 /* OAuthSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DFDE12B5E13AD70B91489BF31AB729E1 /* OAuthSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84FF1C38A57F11E3904FA148253DAC58 /* SocketIOClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2758E0107A7A4D89DE01267AB3551456 /* SocketIOClientSpec.swift */; };
@@ -119,9 +117,9 @@
 		867A49724713BA06EB915C56763F1986 /* EMAlertController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E5AB9807BB4FAFEDE3D5032ED44B1E /* EMAlertController-dummy.m */; };
 		869EE287822139F1A0C552BD6BDE87C7 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D5EDC54DBBC2D6B5844F3658C27AE2 /* Starscream.framework */; };
 		87C96F5A170A11E619C15037EFE4E649 /* POPAnimationRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBDB283536F48E6D77E150E922360D30 /* POPAnimationRuntime.mm */; };
+		8931F7B398A9F4972CCE9541533F5E69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		89454AAAB1CAB144B68CC4C61FE0C8EE /* POPAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 81DC4870D7320C0673F87D7B73B527B2 /* POPAnimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		896EDF76694BCA4CF4826F482B14E647 /* POPAnimationTracer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3963DBBF086A07D17140B1A11CD5F18C /* POPAnimationTracer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8D931A800E4D65E64298F720F38A5B7D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFA2D3F23BCE2C170FF386603D29B07 /* UIKit.framework */; };
 		8DBF4434B421CA81C8AE3E05F0F62881 /* POPAnimationTracer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D47F3735671D7EF1A54480297916F /* POPAnimationTracer.mm */; };
 		8F2D8EC348F59816CFDEA65538E3E532 /* DLRadioButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65A5011238A6B028352E878527F6C966 /* DLRadioButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		916A4666985E3DCCA2F8D1EF422C27BE /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A703C916E2ED789191ECD5A1172BDB9 /* Dictionary+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -140,11 +138,11 @@
 		A5780157CD286244C9CFA900A5B740F5 /* ImgixClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF12FE7E76C3CD0DCE77F0D308E2340 /* ImgixClient.swift */; };
 		A588D326B88B971C118243F7D6A17F81 /* POPAnimationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E8B8BC52BEC9AB62AF185F068A81DC4 /* POPAnimationPrivate.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A6CAA0C095FCC4BE4E79D5A774182E69 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEB1FC935CC9AE7C2298C862FF7D0FB /* HMAC.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A760DE8FC74A4C59A368C4FBC6FB1454 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		A92D3B8C8BB1D7BDCD8D24AA13B83778 /* POPMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4EF238BE0C3B6A5620AEF65AC2B347B /* POPMath.mm */; };
 		A99A3078029F4E9F1C895EB0D55A4A83 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 952C6ABE0CF1F9AFB1AE27297C680277 /* Starscream-dummy.m */; };
 		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1576B092BB9723D99BCE920C1AE4F67 /* Alamofire-dummy.m */; };
 		AB06AF8220EB751120A2478C6288D80B /* EMAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5E253AABEE22EB6417B63BCCC533C4 /* EMAlertAction.swift */; };
+		AB5BF1BEEDE86E9B9895D0C73068ACAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		AC5502FB6EEEE5168A0BA6C5FFBE85B4 /* SocketParsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513C95A421EE209A670DA3A50BB9E744 /* SocketParsable.swift */; };
 		ACAEE1324CE23CFB9CD7730D95A20816 /* ImgixSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA82A5B7CC0900CCE88F1C2BCB6024C /* ImgixSwift-dummy.m */; };
 		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1A6179DF1B59F14B44E79529203C6 /* SessionManager.swift */; };
@@ -156,7 +154,6 @@
 		B4902F8CC0BA98FF3D1D4D2ABAB2ED35 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED2C6F43563F43D12E9DA4B37BFC2 /* SSLSecurity.swift */; };
 		B6358E1AED1AD2949B366E7EBE95E139 /* Canvas-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F5D15FB347B02D23763AA1A0EC8002 /* Canvas-dummy.m */; };
 		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5F8F1B5CDCB3F9ADA8DAF6E426DF00 /* MultipartFormData.swift */; };
-		B6988E28381FCC5D04082DD3969BD03F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		B97E4D9EF786C37745533D53E461EEFE /* CSNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C02DC89E68CF02D6B8537517565B147 /* CSNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA0ACEC113855E0EB2056C1727977768 /* SocketExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47118AE431518B365B9B8DBF87F4AE26 /* SocketExtensions.swift */; };
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA09CF6DE46509B8E4DC5B20DA7FB5C /* Validation.swift */; };
@@ -167,7 +164,6 @@
 		BEA3281085FA13AF921E88B84ED5D3F8 /* UILabel+TCCustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C07A4FEEF98E3840FD2835FE06A9E4D /* UILabel+TCCustomFont.m */; };
 		C12280ED793871511F65B496B446231E /* ExpyTableView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D80A098F69BF143839F9D44BCE6A3BD /* ExpyTableView-dummy.m */; };
 		C2A5B1124C3E4FA4EB0CB3E58B6F009A /* Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8A58ABCEB10599AA24BD9BA3B56B0 /* Objc.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C3F31F5C613EC224BBB883DB6C0CCC5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		C3FE4825DE03FA8E3FEBFE04FF28817D /* POPAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = F3ABB430BBCB9DDC2CD5898AE6AFEBF6 /* POPAnimator.mm */; };
 		C4B61C095ED7D9C0696FD088E8BA00B2 /* POPPropertyAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = B469E7EC7375FBDDB199F83071B38627 /* POPPropertyAnimation.mm */; };
 		C542313EF71CC058209A8126222C4567 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E5C9BA7D317567E6CF76F4D299788C0B /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,18 +172,20 @@
 		CA67FA9025C9E6997DFCEC2E2EA43078 /* POPCGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418592C64A92CD5C3983377079160E0 /* POPCGUtils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CB0136B5B71AC80E52F52981ED386522 /* SocketManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB9D86DDB1160CD79F6887343EAE77B /* SocketManagerSpec.swift */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB99CAC1D4C2B7562F7748C3B5F9AB48 /* Response.swift */; };
+		CC54CB9BCE7294864CA0EBE13F2C8FBD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6082DDEF2EED0C832C1D72976AEC55C4 /* UIKit.framework */; };
 		CF3FEFAD0F17B31334D7890ECD2B8DFE /* UITextField+PlaceholderColor.h in Headers */ = {isa = PBXBuildFile; fileRef = A68397DC81D645265F61A18320C680BA /* UITextField+PlaceholderColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CFFE858DA8FD8FE317328BD7477F30F8 /* pop-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B2C2A05C5F1B62B11C40008AC5B99C3 /* pop-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0B12848D81DE0C17A11541F26C4F03F /* Data+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2869D4D4BD0F9E41A7E09093BE3361 /* Data+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D16B1433A1727F2DC81AFA776CB31619 /* POPGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 22679A14E94B4C2D12033636E17589BD /* POPGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1819A801EAE9AE407E16D8BECBE31D8 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62D9CA1CFE26B5DB21A1561FD481949 /* SocketTypes.swift */; };
 		D18AA826C8AB0228ECECAE8DE44C4AB4 /* EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B661B93EF274DB346B967065F2E72C0 /* EMAlertController.swift */; };
+		D273027C4E5FBE05247698C432D29F41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6082DDEF2EED0C832C1D72976AEC55C4 /* UIKit.framework */; };
 		D43E00750A104A3267946740B19C846C /* POPPropertyAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = CB9E97991C065B7E4A64F653267C3441 /* POPPropertyAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D444A67F5811A4D146FCC7978AD07E25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		D5B84B208FBA94896DCB2F353F10E105 /* UITextView+TCCustomFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 13D34C96B0DA2F1C96F267A1D976145D /* UITextView+TCCustomFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D605D7AFF1229E4D09B9D03D9DA193A7 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABB4361C826AE6CE3E7FA7043DEA1E /* SocketStringReader.swift */; };
 		D8A033E57E90F3646D39E7BC566F2067 /* CSAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2C4240D72E9C89E6DA5C91C458924A /* CSAnimation.m */; };
 		DCCCA02E94D84C1C07F9F17D90C3EFD8 /* UINavigationBar+TCCustomFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3F661ACF458A4AC0CC769DD76C6A06 /* UINavigationBar+TCCustomFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DDEF0C8B2070908371400C97CE69B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */; };
 		E088F64BC2C60DCB23A5C84889A66442 /* UIButton+TCCustomFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CDD028279994D97713D07EDC173C665 /* UIButton+TCCustomFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E0BE225FFBFC70048142A86F0AC3BD40 /* SocketEngineClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B11F3DA66E48E4FF6F02E488FD34EDB /* SocketEngineClient.swift */; };
 		E410D3DC1E4F1C4A84F6EA1E3EAD2BC1 /* NSError+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F77E56E533506CF673F7C33BCCEFF /* NSError+OAuthSwift.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -202,6 +200,7 @@
 		EFB7B3E0A28D3581BA5D74C1932C310E /* OAuthSwiftError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07367E274DC1661964B5D4214C347571 /* OAuthSwiftError.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F035A88406B726DB7A39B59A7AFBB051 /* Notifications.swift */; };
 		F1727AB43B8E0BE57DA6AD2D5F5975DF /* String+ImgixSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B373BFDDFEB527BCD876114A540F2AE2 /* String+ImgixSwift.swift */; };
+		F2A79E80694FC438BF35188CE9E16DE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		F5DB5785C56226692470C646ED46B83E /* ExpyTableView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B88242A34E2FE4A55D8F27E5EB05A2F /* ExpyTableView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F62F62C967589B6C3F2B46DE4C3A7CB6 /* OAuthSwiftCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47D264A29672EFAADA4244D285B63E4 /* OAuthSwiftCredential.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0AE4A6136836FED5145E776437B9C8 /* ResponseSerialization.swift */; };
@@ -209,6 +208,7 @@
 		F879D29C437E7E88301A23E1EE92E8D5 /* POPAnimationRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 30085D0AD710FB8ED62BE7CA6D716AA8 /* POPAnimationRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4EEF75ED68FFF5FD70DD4E319D73B /* Alamofire.swift */; };
 		F8FE223355E246E6598DB8B2668A9498 /* SocketAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4AA7D718DB415CB10A342533D07E4E /* SocketAnyEvent.swift */; };
+		FE02481B57D32111FAEC74259554D4C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */; };
 		FE67373EF813D501BD93373579614664 /* UIColor+EMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451B66096D47836342298C0D200926D /* UIColor+EMAlertController.swift */; };
 /* End PBXBuildFile section */
 
@@ -420,6 +420,7 @@
 		5CF12FE7E76C3CD0DCE77F0D308E2340 /* ImgixClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImgixClient.swift; path = Sources/ImgixClient.swift; sourceTree = "<group>"; };
 		5E9F4671F406F8587ACA9B37EFFF5C38 /* GooglePlaces.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GooglePlaces.bundle; path = Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle; sourceTree = "<group>"; };
 		5F7225DC045D462285821906D6DA93AD /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		6082DDEF2EED0C832C1D72976AEC55C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		61DC615023D7C2751D556FBEF10A124B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		626ED91C08ABAD667357F42054A70534 /* DraggableCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DraggableCardView.swift; path = Pod/Classes/KolodaView/DraggableCardView/DraggableCardView.swift; sourceTree = "<group>"; };
 		631123E8FB56BCFBB81CF6BC96DC5E83 /* UIDropDown-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIDropDown-prefix.pch"; sourceTree = "<group>"; };
@@ -442,9 +443,7 @@
 		791947B6C8DACC382BA777E6401D916B /* CSAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSAnimation.h; path = CanvasLibrary/CSAnimation.h; sourceTree = "<group>"; };
 		7A0B9540C9A71386223666421C8FF665 /* pop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C55013EECCAA7C9A1543552E43FE26F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7CFA2D3F23BCE2C170FF386603D29B07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7F3F0B14C19DD1A280F99BDAB3DC3F15 /* UIDropDown.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = UIDropDown.modulemap; sourceTree = "<group>"; };
-		7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7FE519262DD2A451F78B7A2843EF794D /* SocketEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketEngine.swift; path = Source/SocketIO/Engine/SocketEngine.swift; sourceTree = "<group>"; };
 		8079EFA0B0F5CAAE6FEE155B7954EB55 /* GooglePlaces.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlaces.framework; path = Frameworks/GooglePlaces.framework; sourceTree = "<group>"; };
 		81BAE6D9D5601E56FBE74185E8F11DB7 /* POPCustomAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPCustomAnimation.h; path = pop/POPCustomAnimation.h; sourceTree = "<group>"; };
@@ -521,6 +520,7 @@
 		BDC2E7F57B15913E82B01DF5FB834F7F /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		C1086E376FBE92746C7E241874C0FB25 /* Socket.IO-Client-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Socket.IO-Client-Swift-umbrella.h"; sourceTree = "<group>"; };
 		C1576B092BB9723D99BCE920C1AE4F67 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C3EA24AFD7598825BCADA2F92427CE99 /* ExpyTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpyTableView.swift; path = ExpyTableView/Classes/ExpyTableView.swift; sourceTree = "<group>"; };
 		C440C08DEB790784A693F6414F6D45C3 /* POPDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPDefines.h; path = pop/POPDefines.h; sourceTree = "<group>"; };
 		C64FEEB71374A4A2F47FACD6A6752904 /* POPSpringSolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringSolver.h; path = pop/POPSpringSolver.h; sourceTree = "<group>"; };
@@ -587,9 +587,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3F31F5C613EC224BBB883DB6C0CCC5E /* Foundation.framework in Frameworks */,
+				39E4D461CF54C8C126121E2CF539D242 /* Foundation.framework in Frameworks */,
 				81D94DDC2AF1479F0CA2F22F02AD5BF3 /* pop.framework in Frameworks */,
-				63B1155BF07706CF3B3A6024429F96DA /* UIKit.framework in Frameworks */,
+				D273027C4E5FBE05247698C432D29F41 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +597,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDEF0C8B2070908371400C97CE69B9EA /* Foundation.framework in Frameworks */,
+				4982F4B5EAA4C94F33E2FAAA64A837C3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				409702801F96F612AC27F046CDF163DB /* Foundation.framework in Frameworks */,
+				3A07FCE144900EE9D168F7993D1EF820 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +613,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				709452945722846972A589C7E118CF8F /* Foundation.framework in Frameworks */,
+				FE02481B57D32111FAEC74259554D4C1 /* Foundation.framework in Frameworks */,
 				869EE287822139F1A0C552BD6BDE87C7 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,7 +622,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63C0B3598765ED8904E89B3721D326DD /* Foundation.framework in Frameworks */,
+				32E0EAA7CD08FCA1CEB091BC594B02F9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C5E968A6F15DB496267EC229F6A8F6E /* Foundation.framework in Frameworks */,
+				1210141754F7E0B33E88DD949947E5A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,7 +638,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */,
+				834F4D9819C6010E611A7E151B8899C3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,7 +646,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6988E28381FCC5D04082DD3969BD03F /* Foundation.framework in Frameworks */,
+				AB5BF1BEEDE86E9B9895D0C73068ACAC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +654,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EA45CC9810F0C7BB7E97E714FF015E6 /* Foundation.framework in Frameworks */,
+				8931F7B398A9F4972CCE9541533F5E69 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,8 +662,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A760DE8FC74A4C59A368C4FBC6FB1454 /* Foundation.framework in Frameworks */,
-				8D931A800E4D65E64298F720F38A5B7D /* UIKit.framework in Frameworks */,
+				1574BF49CB4C7B4E138278790CDAAD9F /* Foundation.framework in Frameworks */,
+				CC54CB9BCE7294864CA0EBE13F2C8FBD /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,7 +671,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22B7A953292CA12A9F1C9E3024AAE5B3 /* Foundation.framework in Frameworks */,
+				F2A79E80694FC438BF35188CE9E16DE1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +679,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BED91C554BFB10BFD1B442D5C01F6C1 /* Foundation.framework in Frameworks */,
+				D444A67F5811A4D146FCC7978AD07E25 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,7 +687,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EF787F1D567516F433EFB2462F43801 /* Foundation.framework in Frameworks */,
+				425DFAF556DB07F3CC847F949344A63F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +715,15 @@
 				80E8EE579B9DFF6015454DDEA67AE5F7 /* Frameworks */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		1AF99DF4E224885D71982A2E03E75D1D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C3A2E33A9DBC8E0FD35D07B7E407458B /* Foundation.framework */,
+				6082DDEF2EED0C832C1D72976AEC55C4 /* UIKit.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		21751473620E6D1F1B142B916E70FF55 /* EMAlertController */ = {
@@ -835,7 +844,7 @@
 			children = (
 				7A0B9540C9A71386223666421C8FF665 /* pop.framework */,
 				58D5EDC54DBBC2D6B5844F3658C27AE2 /* Starscream.framework */,
-				F8EC9FE0CF81AE1209806C1094717D4A /* iOS */,
+				1AF99DF4E224885D71982A2E03E75D1D /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1294,15 +1303,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Starscream";
-			sourceTree = "<group>";
-		};
-		F8EC9FE0CF81AE1209806C1094717D4A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				7FDC00FF69A1551A02BA111B0392ABB3 /* Foundation.framework */,
-				7CFA2D3F23BCE2C170FF386603D29B07 /* UIKit.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
