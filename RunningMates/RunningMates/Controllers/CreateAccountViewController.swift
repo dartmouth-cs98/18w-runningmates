@@ -75,7 +75,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: URLEncoding.httpBody)
                     .responseJSON { response in
                         print("STRAVA RESPONSE")
-                        print(response)
+                        //print(response)
                         switch response.result {
                         case .success:
                             if let jsonObj = response.result.value as? [String:Any] {
@@ -142,8 +142,10 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                                 }
                                 
                                 
-                                let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
-                                self.present(profPicVC, animated: true, completion: nil)
+                                let  stravaPassVC = self.storyboard?.instantiateViewController(withIdentifier: "stravaPass") as! selectStravaPasswordViewController
+                                //                                self.present(stravaPassVC, animated: true, completion: nil)
+                               // let  profPicVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfPic") as! ProfPicViewController
+                                self.present(stravaPassVC, animated: true, completion: nil)
                             }
                         case .failure(let error):
                             print("failure in creating profile")
@@ -152,7 +154,7 @@ class CreateAccountViewController: UIViewController, UINavigationControllerDeleg
                 }
         },
             failure: { error in
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
                 print("wrong login")
             }
         )

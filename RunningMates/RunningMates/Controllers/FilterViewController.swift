@@ -54,7 +54,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
         self.femaleButton.layer.cornerRadius = 15
         self.maleButton.layer.cornerRadius = 15
         self.nonBinaryButton.layer.cornerRadius = 15
@@ -69,7 +69,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
         self.distanceBox.layer.masksToBounds = true
         self.mileageBox.layer.masksToBounds = true
 
-        
+
         
         view.addSubview(ageSlide)
         view.addSubview(distSlide)
@@ -99,7 +99,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
             
             
             let ageLower = (userAgePref[0])
-            print(ageLower, "ARE LOWER")
+           // print(ageLower, "ARE LOWER")
             let ageUpper = (userAgePref[1])
      
             if userGenderPref.contains("Female") {
@@ -226,7 +226,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     
 
     @objc func ageSliderValueChanged(rangeSlider: RangeSlider) {
-        print(ageSlide.minimumValue)
+        //print(ageSlide.minimumValue)
         let lowAge = String(Int(round(ageSlide.lowerValue)));
         let highAge = String(Int(round(ageSlide.upperValue)));
         ageSelectedLabel.text = "Between " + lowAge
@@ -308,20 +308,25 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
-        print(presentingViewController)
+    @IBAction func cancelPressed(_ sender: UIButton) {
+//         let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+//        self.present(vc, animated: true, completion: nil)
+        //self.navigationController?.dismiss(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        // self.navigationController?.popToRootViewController(animated: true)
 
-        let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-        self.present(vc, animated: true, completion: nil)
   
         
     }
     
-    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        print(presentingViewController)
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
         savePrefs()
      
-            let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
-            self.present(vc, animated: true, completion: nil)
+//            let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+//            self.present(vc, animated: true, completion: nil)
+        //self.navigationController?.dismiss(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        // self.navigationController?.popToRootViewController(animated: true)
+
     }
 }

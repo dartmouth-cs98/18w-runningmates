@@ -28,6 +28,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         var profileImageUrls: [Int: String] = [:]
         var signUrls: [AnyObject] = []
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var milesPerWeekTextField: UITextField!
     @IBOutlet weak var nameTextView: UITextField!
@@ -57,6 +58,9 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.scrollView.contentInset = UIEdgeInsets.zero
+
+        
         self.userId = UserDefaults.standard.string(forKey: "id")!
         self.userEmail = UserDefaults.standard.string(forKey: "email")!
         
@@ -65,13 +69,26 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         self.rootUrl = appDelegate.rootUrl
         
         
-        self.nameTextView.layer.borderColor = UIColor.gray.cgColor
+        self.nameTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.nameTextView.layer.borderWidth = 1
+        self.nameTextView.layer.cornerRadius = 10
+        
+        self.bioTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
         self.bioTextView.layer.borderWidth = 1
-        self.bioTextView.layer.borderColor = UIColor.gray.cgColor
-        self.milesPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
-        self.runsPerWeekTextField.layer.borderColor = UIColor.gray.cgColor
+        self.bioTextView.layer.cornerRadius = 10
+
+        self.milesPerWeekTextField.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.milesPerWeekTextField.layer.borderWidth = 1
+        self.milesPerWeekTextField.layer.cornerRadius = 10
+        
+        self.runsPerWeekTextField.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
+        self.runsPerWeekTextField.layer.borderWidth = 1
+        self.runsPerWeekTextField.layer.cornerRadius = 10
+        
+        self.racesDoneTextView.layer.borderColor = UIColor(red: 170.0/255.0, green: 170.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor
         self.racesDoneTextView.layer.borderWidth = 1
-        self.racesDoneTextView.layer.borderColor = UIColor.gray.cgColor
+        self.racesDoneTextView.layer.cornerRadius = 10
+
         
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
         self.profileImage.clipsToBounds = true;
@@ -86,6 +103,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         if (self.appDelegate.didSignUpWithStrava == 0) {
             self.stravaLogo1.isHidden = true
             self.stravaLogo2.isHidden = true
+        }
             
             
             if let userImages = UserDefaults.standard.value(forKey: "images") as? [String] {
@@ -116,7 +134,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 var data = UserDefaults.standard.value(forKey: "data") as! [String:Any]
                 if (data["milesPerWeek"] != nil) {
                     let mpwkText = String(describing: data["milesPerWeek"]!)
-                    print("\n\n user current mpk: \n\n", mpwkText)
+                    //print("\n\n user current mpk: \n\n", mpwkText)
                     self.milesPerWeekTextField.text = mpwkText
                 }
                 
@@ -132,7 +150,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                     }
                 }
             }
-        }
+        
         if (self.appDelegate.didSignUpWithStrava == 1) {
             self.stravaLogo1.isHidden = false
             self.stravaLogo2.isHidden = false
@@ -330,7 +348,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
         ]
         
         UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
-            print("updated user here!")
+            //print("updated user here!")
             self.updateInfoFromUserDefaults()
         })
         
@@ -366,7 +384,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
                 
                 UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: { title, message in
                     //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-                    print("\n\n user images: \n\n", userImages)
+                    //print("\n\n user images: \n\n", userImages)
                     UserDefaults.standard.set(userImages, forKey: "images")
                     UserDefaults.standard.set(self.bioTextView.text!, forKey: "bio")
                     UserDefaults.standard.set(Double(self.milesPerWeekTextField.text!), forKey: "milesPerWeek")
@@ -558,7 +576,7 @@ class CreateProfileViewController: UIViewController, UIPickerViewDelegate, UIPic
 //        }
         let image = profileImage.image
         let imageData = UIImageJPEGRepresentation(image!, 0.7)
-        print("signed object: \n\n\n ", userImageUpdateUrlObject)
+        //print("signed object: \n\n\n ", userImageUpdateUrlObject)
         if let signedOb = userImageUpdateUrlObject[0]["signedRequest"] as? String {
             let request = Alamofire.upload(imageData!, to: signedOb, method: .put, headers: headers)
                 .responseData {

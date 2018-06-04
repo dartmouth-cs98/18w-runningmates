@@ -83,10 +83,18 @@ class ProfPrefViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             UserManager.instance.requestUserUpdate(userEmail: self.userEmail!, params: params, completion: {title,message in
                 self.updateInfoFromUserDefaults()
                 UserDefaults.standard.set([selectedValue], forKey: "desiredGoals")
+                
 
-                let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as! UINavigationController
+                let  vc = self.storyboard?.instantiateViewController(withIdentifier: "Filter") as! FilterViewController
 
-                self.present(vc, animated: true, completion: nil)
+                let matchVc = self.storyboard?.instantiateViewController(withIdentifier: "Matching") as! UINavigationController
+                // matchVc.present(vc, animated: true)
+                self.show(matchVc, sender: nil )
+                matchVc.present(vc, animated: true, completion: nil)
+
+
+
+//                self.present(vc, animated: true, completion: nil)
                 
 //                let storyboard : UIStoryboard = UIStoryboard(name: "Filter", bundle: nil)
 //                let vc : FilterViewController = storyboard.instantiateViewController(withIdentifier: "filterView") as! FilterViewController

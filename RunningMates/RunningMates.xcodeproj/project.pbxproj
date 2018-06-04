@@ -80,6 +80,8 @@
 		FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF452043218D00EA78CE /* chat.storyboard */; };
 		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
+		FAFD8E4820C4C46C00BDF10A /* selectStravaPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */; };
+		FAFD8E4A20C4C49C00BDF10A /* selectStravaPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD8E4920C4C49C00BDF10A /* selectStravaPasswordViewController.swift */; };
 		FAFE988A20786040008B56BA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988920786040008B56BA /* Settings.swift */; };
 		FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFE988D2079665A008B56BA /* FullChatView.storyboard */; };
 		FAFE989020796699008B56BA /* FullChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988F20796699008B56BA /* FullChatViewController.swift */; };
@@ -261,6 +263,8 @@
 		FAD1AF452043218D00EA78CE /* chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = chat.storyboard; sourceTree = "<group>"; };
 		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
+		FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = selectStravaPassword.storyboard; path = ../../../../../../Applications/selectStravaPassword.storyboard; sourceTree = "<group>"; };
+		FAFD8E4920C4C49C00BDF10A /* selectStravaPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectStravaPasswordViewController.swift; sourceTree = "<group>"; };
 		FAFE988920786040008B56BA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FAFE988D2079665A008B56BA /* FullChatView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullChatView.storyboard; sourceTree = "<group>"; };
 		FAFE988F20796699008B56BA /* FullChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullChatViewController.swift; sourceTree = "<group>"; };
@@ -517,6 +521,7 @@
 				2B0EA42720BE1AB700B2F40B /* ProfileDetailViewController.swift */,
 				D3BBB48620AE2BDF00BD6CF9 /* LoginViewController.swift */,
 				2B7B91972097ACC100B2EA07 /* MatchingCardView.swift */,
+				FAFD8E4920C4C49C00BDF10A /* selectStravaPasswordViewController.swift */,
 				88C0AFD5202CE3B50008F5B5 /* MatchingViewController.swift */,
 				F82FFD0B2094E55400DDEA2F /* ProfileTableClasses.swift */,
 				F8B96DD5209281DF00B0E9B1 /* ProfileTableViewController.swift */,
@@ -547,6 +552,7 @@
 				2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */,
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				FA5711062021208D005792CB /* Main.storyboard */,
+				FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */,
 				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
 				2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
@@ -719,6 +725,7 @@
 				FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */,
 				2B7B91DE20A6275300B2EA07 /* thumbsdown.png in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
+				FAFD8E4820C4C46C00BDF10A /* selectStravaPassword.storyboard in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
 				2B0EA43920BF045200B2F40B /* ProfileLoadingView.xib in Resources */,
@@ -808,6 +815,7 @@
 				"${BUILT_PRODUCTS_DIR}/DLRadioButton/DLRadioButton.framework",
 				"${BUILT_PRODUCTS_DIR}/EMAlertController/EMAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/ExpyTableView/ExpyTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/ImgixSwift/ImgixSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Koloda/Koloda.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
@@ -822,6 +830,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLRadioButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EMAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpyTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImgixSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Koloda.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
@@ -876,6 +885,7 @@
 				FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */,
 				2B04C97A203B7332008F7E52 /* Gradient.swift in Sources */,
 				2B0EA44220BF047400B2F40B /* ProfileLoadingView.swift in Sources */,
+				FAFD8E4A20C4C49C00BDF10A /* selectStravaPasswordViewController.swift in Sources */,
 				2B7B91C520A4F5A500B2EA07 /* MatchingCardOverlay.swift in Sources */,
 				FA3CC5E52092065600FE0199 /* DashboardViewController.swift in Sources */,
 				FAB5A7C3206F174F00DDE1E9 /* ChatViewController.swift in Sources */,

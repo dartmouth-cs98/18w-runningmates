@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Safe Track View Controller-->
+        <!--SafeTrack-->
         <scene sceneID="ZrR-fH-J7r">
             <objects>
-                <viewController id="gCF-w1-wzQ" customClass="SafeTrackViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="safeTrack" title="SafeTrack" id="gCF-w1-wzQ" customClass="SafeTrackViewController" customModule="RunningMates" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gBZ-6H-rnQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

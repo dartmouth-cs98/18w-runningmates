@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--selectStravaPassword-->
+        <scene sceneID="P5g-nZ-7gt">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="stravaPass" storyboardName="selectStravaPassword" id="eW9-8A-Q5m" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r2J-SF-OCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="658" y="496"/>
+        </scene>
         <!--Main-->
         <scene sceneID="11G-sR-r0v">
             <objects>

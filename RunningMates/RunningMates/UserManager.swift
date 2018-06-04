@@ -141,13 +141,16 @@ class UserManager: NSObject {
     
     func requestForLogin(Url:String, password: String?, email: String?, completion: @escaping (String)->()) {
         
+        print(Url)
         let params: Parameters = [
             "email": email!,
             "password": password!
         ]
+        print(params)
         
-        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-            .responseJSON { response in
+        let _request = Alamofire.request(Url, method: .post, parameters: params)
+            .responseString { response in
+                print("response", response)
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
@@ -346,8 +349,6 @@ class UserManager: NSObject {
                                 
                                 if (user != nil) {
                                     usersList.append(sortUserInstance)
-                                } else {
-                                    print("nil")
                                 }
                             } catch UserInitError.invalidId {
                                 print("invalid id")
@@ -416,11 +417,11 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON { response in
-                print("SEND MATCH REQUEST RESPONSE")
-                print(response)
+                //print("SEND MATCH REQUEST RESPONSE")
+                //print(response)
                 switch response.result {
                 case .success:
-                    print("SUCCESS SENDING MATCH")
+                    //print("SUCCESS SENDING MATCH")
 
                     if let responseDictionary = response.result.value as? [String:Any] {
                         if (String(describing: responseDictionary["response"]!) == "match") {
@@ -437,7 +438,7 @@ class UserManager: NSObject {
                 }
                 completion(title, message)
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     
@@ -467,17 +468,22 @@ class UserManager: NSObject {
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
-                print(response)
+                //print("matching segment response", response)
                 switch response.result {
                     
                 case .success:
                     if let jsonSegments = response.result.value as? [[String:Any]] {
                         for jsonSegment in jsonSegments {
                             do {
-                                print (jsonSegment)
+                                //print (jsonSegment)
                                 let title = (jsonSegment["title"] as! String)
                                 let targetTime = (jsonSegment["targetTime"] as! String)
-                                let userTime = (jsonSegment["userTime"] as! String!)
+                                var userTime = ""
+                                if (jsonSegment["userTime"] is NSNull){
+                                    userTime = ""
+                                } else {
+                                    userTime = (jsonSegment["userTime"] as! String!)
+                                }
                                 let distance = (jsonSegment["distance"] as! Float)
                                 let segmentInstance = segment(title: title, userTime: userTime, targetTime: targetTime, distance: distance);
                                 
@@ -490,7 +496,7 @@ class UserManager: NSObject {
                                 print("other error")
                             }
                         }
-                        print (segmentList)
+                        //print (segmentList)
                         completion(segmentList)
                         self.segmentList = segmentList
                     } else {
@@ -506,7 +512,7 @@ class UserManager: NSObject {
                 }
                 completion(segmentList)
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     
@@ -537,7 +543,7 @@ class UserManager: NSObject {
                     print(error)
                 }
         }
-        debugPrint("whole _request ****",_request)
+        //debugPrint("whole _request ****",_request)
     }
     
     
@@ -568,28 +574,18 @@ class UserManager: NSObject {
         self.removeUserDefaults()
         completion()
     }
-    func sendSafeTrackMessage(toPhoneNumber: String?, completion: @escaping (String)->()) {
+    
+    
+    func sendSafeTrackMessage(params: [String:Any], completion: @escaping (String)->()) {
         let rootUrl: String = appDelegate.rootUrl
         let url = rootUrl + "api/safetrack"
         
-        let params: Parameters = [
-            "toPhoneNumber": toPhoneNumber!,
-        ]
         
         let _request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
                 case .success:
                     if let jsonObj = response.result.value as? [String:Any] {
-                        
-//                        let token = (jsonObj["token"] as! String)
-//                        let user = (jsonObj["user"] as? [String:Any])!
-//
-//                        UserDefaults.standard.set(email!, forKey: "email")
-//                        UserDefaults.standard.set(token, forKey: "token")
-//
-//                        UserDefaults.standard.set(password!, forKey: "password")
-                        
                         completion("success")
                     }
                 case .failure(let error):
