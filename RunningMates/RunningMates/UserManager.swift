@@ -148,8 +148,8 @@ class UserManager: NSObject {
         ]
         print(params)
         
-        let _request = Alamofire.request(Url, method: .post, parameters: params)
-            .responseString { response in
+     let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
+        .responseJSON { response in
                 print("response", response)
                 switch response.result {
                 case .success:
