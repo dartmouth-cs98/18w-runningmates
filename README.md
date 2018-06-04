@@ -31,7 +31,8 @@ To install cocoa pods:
 * Run the project on any iPhone simulator
 
 
-## Deployment
+## Debrief
+Overall, we are very proud of how far we have come. When we started this project none of us had any experience with Swift or Xcode, so have learned a lot and had a lot of fun in the process. One thing that worked for us was having milestones to meet every week: this helped us focus on what was highest priority. We also thought it was good that we were encouraged to meet our stretch goal of adding safety tracking, because it lets us show our users that we care about their safety. Somethings that didn't work were we were not able to get our app on the App Store yet (but we aren't going to stop trying!). In general Testflight caused a LOT of headaches, and we think future classes would have a better experience if the process of publishing was made simpler. Our next steps are to keep pushing to the App Store until we get approved, and then recruiting more users! Also, we would like to add some more third party APIs (like Apple Health) to our app. Thanks for all your help Tim, we couldn't have done it without you!
 
 
 ## Authors
