@@ -120,6 +120,7 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
                 self.topView.addSubview(self.loadingView)
                 self.loadingView.progressIndicator.startAnimating()
                 self.locationManager.startUpdatingLocation()
+//                self.loadMatches()
             }
             
             alert.addAction(action: cancel)
@@ -263,12 +264,12 @@ class MatchingViewController: UIViewController, UIGestureRecognizerDelegate, CLL
     else {
 
             UserManager.instance.sendMatchRequest(userId: self.userId, targetId: userList[currentIndex].user.id!, firstName: self.userList[currentIndex].user.firstName!, completion: { title, message in
-            //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
-            alertController.addAction(defaultAction)
+                //https://www.simplifiedios.net/ios-show-alert-using-uialertcontroller/
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+                alertController.addAction(defaultAction)
 
-            self.present(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             })
         }
     }
