@@ -75,12 +75,12 @@
 		FA66655520AE228400D9DC5A /* MatchesLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA66655420AE228400D9DC5A /* MatchesLoadingView.xib */; };
 		FAB5A7C3206F174F00DDE1E9 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */; };
 		FAB6D539208013A800CCA93B /* ChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */; };
+		FABDA4C920C4E8E3005060AE /* selectStravaPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABDA4C820C4E8E3005060AE /* selectStravaPassword.storyboard */; };
 		FAD1AF422042514A00EA78CE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF412042514A00EA78CE /* Settings.storyboard */; };
 		FAD1AF442042539700EA78CE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1AF432042539700EA78CE /* SettingsViewController.swift */; };
 		FAD1AF462043218D00EA78CE /* chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD1AF452043218D00EA78CE /* chat.storyboard */; };
 		FAD3055D2048C1BF00DB682F /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3055C2048C1BF00DB682F /* RangeSlider.swift */; };
 		FAD70D39203A38CE0081C71E /* Matching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD70D38203A38CE0081C71E /* Matching.storyboard */; };
-		FAFD8E4820C4C46C00BDF10A /* selectStravaPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */; };
 		FAFD8E4A20C4C49C00BDF10A /* selectStravaPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD8E4920C4C49C00BDF10A /* selectStravaPasswordViewController.swift */; };
 		FAFE988A20786040008B56BA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE988920786040008B56BA /* Settings.swift */; };
 		FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFE988D2079665A008B56BA /* FullChatView.storyboard */; };
@@ -258,12 +258,12 @@
 		FA66655420AE228400D9DC5A /* MatchesLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchesLoadingView.xib; sourceTree = "<group>"; };
 		FAB5A7C2206F174E00DDE1E9 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		FAB6D538208013A800CCA93B /* ChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
+		FABDA4C820C4E8E3005060AE /* selectStravaPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = selectStravaPassword.storyboard; sourceTree = "<group>"; };
 		FAD1AF412042514A00EA78CE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		FAD1AF432042539700EA78CE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FAD1AF452043218D00EA78CE /* chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = chat.storyboard; sourceTree = "<group>"; };
 		FAD3055C2048C1BF00DB682F /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		FAD70D38203A38CE0081C71E /* Matching.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Matching.storyboard; sourceTree = "<group>"; };
-		FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = selectStravaPassword.storyboard; path = ../../../../../../Applications/selectStravaPassword.storyboard; sourceTree = "<group>"; };
 		FAFD8E4920C4C49C00BDF10A /* selectStravaPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectStravaPasswordViewController.swift; sourceTree = "<group>"; };
 		FAFE988920786040008B56BA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FAFE988D2079665A008B56BA /* FullChatView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullChatView.storyboard; sourceTree = "<group>"; };
@@ -552,8 +552,8 @@
 				2B7B91A02097AFEE00B2EA07 /* MatchingCardView.xib */,
 				2B16CFE720477C2400DFFBEF /* CreateProfile.storyboard */,
 				FA5711062021208D005792CB /* Main.storyboard */,
-				FAFD8E4720C4C46C00BDF10A /* selectStravaPassword.storyboard */,
 				F8BF963420917CC1004A2E30 /* EmergencyContact.storyboard */,
+				FABDA4C820C4E8E3005060AE /* selectStravaPassword.storyboard */,
 				2B7B91CD20A4F70800B2EA07 /* MatchingCardOverlay.xib */,
 				FA57110B2021208E005792CB /* LaunchScreen.storyboard */,
 				FAD1AF412042514A00EA78CE /* Settings.storyboard */,
@@ -725,12 +725,12 @@
 				FA3CC5E22091690500FE0199 /* SafeTrack.storyboard in Resources */,
 				2B7B91DE20A6275300B2EA07 /* thumbsdown.png in Resources */,
 				F8109CF6203D0C49009F5F49 /* logo_strava.png in Resources */,
-				FAFD8E4820C4C46C00BDF10A /* selectStravaPassword.storyboard in Resources */,
 				2B16D051204C985000DFFBEF /* plus_sign.png in Resources */,
 				F8BF963520917CC1004A2E30 /* EmergencyContact.storyboard in Resources */,
 				2B0EA43920BF045200B2F40B /* ProfileLoadingView.xib in Resources */,
 				FAFE988E2079665A008B56BA /* FullChatView.storyboard in Resources */,
 				F848C3F120B371AE00F1704D /* ProfPreference.storyboard in Resources */,
+				FABDA4C920C4E8E3005060AE /* selectStravaPassword.storyboard in Resources */,
 				FA66655520AE228400D9DC5A /* MatchesLoadingView.xib in Resources */,
 				FA050D56203761B00025DAEE /* Dashboard.storyboard in Resources */,
 				FA57110D2021208E005792CB /* LaunchScreen.storyboard in Resources */,

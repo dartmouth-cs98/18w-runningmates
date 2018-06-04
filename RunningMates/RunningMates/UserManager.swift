@@ -146,8 +146,9 @@ class UserManager: NSObject {
             "password": password!
         ]
         
-        let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
-           .responseJSON { response in
+
+     let _request = Alamofire.request(Url, method: .post, parameters: params, encoding: JSONEncoding.default)
+        .responseJSON { response in
                 switch response.result {
                 case .success:
                     if let jsonUser = response.result.value as? [String:Any] {
